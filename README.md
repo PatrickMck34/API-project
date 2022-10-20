@@ -72,8 +72,8 @@ information.
 
 * Require Authentication: false
 * Request
-  * Method: POST
-  * URL: /users/:userId
+  * Method: GET
+  * URL: /users/:userId/login
   * Headers:
     * Content-Type: application/json
   * Body:
