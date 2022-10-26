@@ -1,13 +1,14 @@
 {
   "dependencies": {
     "express-validator": "^6.14.2",
+    "nodemon": "^2.0.20",
+    "per-env": "^1.0.2",
     "pg": "^8.8.0"
   },
   "name": "authenticate-me",
   "description": "## USER AUTHENTICATION/AUTHORIZATION",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "install": "npm --prefix backend install backend",
     "dev:backend": "npm install --prefix backend start",
