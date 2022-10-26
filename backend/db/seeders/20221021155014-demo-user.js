@@ -28,8 +28,24 @@ module.exports = {
           username: 'FakeUser2',
           hashedPassword: bcrypt.hashSync('password3')
         }
-      ], {});
-    },
+      ],{})
+
+      return queryInterface.bulkInsert('Spots', [
+        {
+          ownerId: 1,
+          address: '123 new place street',
+          city: 'NewTown',
+          state: 'Homestate',
+          country: 'USB',
+          lat: 25.3,
+          lng: 23.5,
+          name: 'spot1',
+          description: 'A spot so good its number 1!',
+          price: 135.00,
+      
+        }
+      ],{})
+  },
   
   
 
@@ -38,9 +54,7 @@ module.exports = {
     return queryInterface.bulkDelete('Users', {
       username: { [Op.in]: ['Demo-lition', 'FakeUser1', 'FakeUser2'] }
     }, {});
-
-  }
-};
-
- 
+    return queryInterface.bulkDelete('Spots', {
+      name: {[Op.in]: ['spot1']}, });
   
+  }}

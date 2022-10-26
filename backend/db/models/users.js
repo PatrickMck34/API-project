@@ -6,12 +6,12 @@ const {
 } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
+  class Users extends Model {
     static getCurrentUserById(id) {
-      return User.scope("currentUser").findByPk(id);
+      return Users.scope("currentUser").findByPk(id);
     }
     static async login({ credential, password }) {
-      const user = await User.scope('loginUser').findOne({
+      const user = await Users.scope('loginUser').findOne({
         where: {
           [Op.or]: {
             username: credential,
@@ -20,17 +20,17 @@ module.exports = (sequelize, DataTypes) => {
         }
       });
       if (user && user.validatePassword(password)) {
-        return await User.scope('currentUser').findByPk(user.id);
+        return await Users.scope('currentUser').findByPk(user.id);
       }
     }
        static async signup({ username, email, password }) {
       const hashedPassword = bcrypt.hashSync(password);
-      const user = await User.create({
+      const user = await Users.create({
         username,
         email,
         hashedPassword
       });
-      return await User.scope('currentUser').findByPk(user.id);
+      return await Users.scope('currentUser').findByPk(user.id);
     }
     validatePassword(password) {
       return bcrypt.compareSync(password, this.hashedPassword.toString());
@@ -43,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  User.init({
+  Users.init({
     username: {type:DataTypes.STRING,
      allowNull: false,
      validate:{
@@ -78,7 +78,7 @@ module.exports = (sequelize, DataTypes) => {
     
   }}, {
     sequelize,
-    modelName: 'User',
+    modelName: 'Users',
     defaultScope: {
       attributes: {
         exclude: ["hashedPassword", "email", "createdAt", "updatedAt"]
@@ -94,5 +94,5 @@ module.exports = (sequelize, DataTypes) => {
     }
   
 });
-  return User;
+  return Users;
 };
