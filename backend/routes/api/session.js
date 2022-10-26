@@ -6,6 +6,18 @@ const router = express.Router();
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
+router.get(
+    '/',
+    restoreUser,
+    (req, res) => {
+      const { user } = req;
+      if (user) {
+        return res.json({
+          user: user.toSafeObject()
+        });
+      } else return res.json({});
+    }
+  );
 
 const validateLogin = [
     check('credential')
@@ -18,18 +30,6 @@ const validateLogin = [
     handleValidationErrors
 ];
 // Restore session user
-// router.get(
-//     '/',
-//     restoreUser,
-//     (req, res) => {
-//       const { user } = req;
-//       if (user) {
-//         return res.json({
-//           user: user.toSafeObject()
-//         });
-//       } else return res.json({});
-//     }
-//   );
   //login
   router.post(
     '/',
