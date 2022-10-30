@@ -7,11 +7,13 @@ const router = express.Router();
 const where = {};
 router.get(
     '/', async (req, res) => {
-        const spot = await Spot.findAll({
-            where,
-        });
+       const {address, city, state, country, lat, lng, name, description, price} = req.query
+        const spots = await Spot.findAll({
+            address, city, state, country, lat, lng, name, description, price})
+            
+   
             return res.json({
-            spot,
+            spots,
             });
     });
     router.post("/", async (req, res) => {
