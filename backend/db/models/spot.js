@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       const spot = await Spot.create({
         address, city, state, country, lat, lng, name, description, price
       });
-      return await Spot.FindAll({})
+      return spot
     }
     static associate(models) {
       // define association here
