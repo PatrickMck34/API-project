@@ -15,7 +15,7 @@ router.get("/api/csrf/restore", (req, res) => {
   // const apiRouter = require('./api');
   // router.get("/api/spots", (req, res) => {
     
-  //   const apiRouter = require('./api');
+    const apiRouter = require('./api');
     
   //   res.status(200).json({
       
