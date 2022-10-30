@@ -1,6 +1,6 @@
 const express = require('express')
 
-const { Spot } = require('../../db/models/spots');
+const { Spots } = require('../../db/models')
 const router = express.Router();
 // backend/routes/api/session.js
 const { check } = require('express-validator');
@@ -10,13 +10,14 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 router.get(
     '/',
-    restoreUser,
-    (req, res) => {
-      const { spot } = req;
-      if (spot) {
+    
+    async (req, res) => {
+      const { spots } = req;
+      if (spots) {
         return res.json({
-          spot: spot.toSafeObject()
+          spots: spots.toSafeObject()
         });
       } else return res.json({});
     }
+    
   );
