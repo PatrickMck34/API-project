@@ -6,6 +6,7 @@ const csurf = require('csurf');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const routes = require('./routes');
+const {Spot} = require('./db/models')
 
 const { environment } = require('./config');
 const isProduction = environment === 'production';
@@ -70,7 +71,11 @@ if (!isProduction) {
     });
   });
 
-// ...
+app.get("/api/spots", async (req, res) => {
+  const {address, city, state, country, lat, lng, name, description, price} = req.body
+  const spot = await Spot.findAll({})
+  return res.json({ spot })
+} );
 
 app.use(routes); // Connect all the routes
 module.exports = app;
