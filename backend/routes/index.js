@@ -15,9 +15,9 @@ router.get("/api/csrf/restore", (req, res) => {
     'XSRF-Token': csrfToken
   });
 });
-router.post("/api/spots", async (req, res) => {
+router.get("/api/spots", async (req, res) => {
   const {address, city, state, country, lat, lng, name, description, price} = req.body
-  const spot = await Spot.create({address, city, state, country, lat, lng, name, description, price})
+  const spot = await Spot.findAll({})
   return res.json({ spot })
 } );
 
