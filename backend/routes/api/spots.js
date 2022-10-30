@@ -13,10 +13,10 @@ const {getSpots} = require('../../db/models/spot.js')
 //             })
 //     } );
     router.post("/", async (req, res) => {
-  const {address, city, state, country, lat, lng, name, description, price} = req.body
+  const {address, city, state, country, lat, lng, name, description, price} = req.body;
   const newSpot = await Spot.createNewSpot(address, city, state, country, lat, lng, name, description, price)
 
-return res.json({newSpot})
+return res.json(newSpot)
     
 })
 
