@@ -1,6 +1,7 @@
 const express = require('express')
-const { Spot } = require('../../db/models');
+const { Spot } = require('../../db/models/spot.js');
 const router = express.Router();
+const {createSpot} = require('../../db/models/spot.js')
 // backend/routes/api/session.js
 
 
