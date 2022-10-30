@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
+const {Spots} = require('../db/models/spots')
 
 // backend/routes/index.js
 // ...
