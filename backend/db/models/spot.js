@@ -56,7 +56,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.DATE,
       
-    }
+    },
+    avgRating: {type: DataTypes.DECIMAL,
+    },
+      previewImage: {type: DataTypes.STRING}
   }, {
     sequelize,
     modelName: 'Spot',

@@ -24,6 +24,7 @@ module.exports = {
     name: 'spot1',
     description: 'A spot so good its number 1!',
     price: 135.00,
+    avgRating: 3.0
   },
   {
     id: 2,
@@ -36,6 +37,7 @@ module.exports = {
     name: 'spot2',
     description: 'A spot so good its number 2!',
     price: 127.00,
+    avgRating: 2.3
   },
   {
     id: 3,
@@ -48,6 +50,7 @@ module.exports = {
     name: 'spot1',
     description: 'A spot so good its number 1!',
     price: 135.00,
+    avgRating: 2.2
   },
    ],{})
   },
