@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
               const spot = await Spot.create({
                 address, city, state, country, lat, lng, name, description, price
               });
-              return spot
+              return await Spot.findByPk(spot.id);
             }
      static getSpots() {
       const spot = Spot.findAll({})
