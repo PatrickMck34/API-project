@@ -5,13 +5,21 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Spot extends Model {
    
-    // static async createSpot({ address, city, state, country, lat, lng, name, description, price }) {
+    static async creatNewSpot({
+          address, city, state, country, lat, lng, name, description, price}) {
+              const spot = await Spot.create({
+                address, city, state, country, lat, lng, name, description, price
+              });
+              return spot
+            }
+     static getSpots() {
+      const spot = Spot.findAll({})
+      return {spot}
+     }
+     
+     
       
-    //   const spot = await Spot.create({
-    //     address, city, state, country, lat, lng, name, description, price
-    //   });
-    //   return spot
-    // }
+    
     static associate(models) {
       // define association here
     }
