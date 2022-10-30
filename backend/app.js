@@ -20,7 +20,7 @@ const { ValidationError } = require('sequelize');
 // ...
 
 // Process sequelize errors
-}
+
 
 // Security Middleware
 if (!isProduction) {
