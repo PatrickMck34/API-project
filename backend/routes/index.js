@@ -12,20 +12,20 @@ router.get("/api/csrf/restore", (req, res) => {
       'XSRF-Token': csrfToken
     });
   });
-  const apiRouter = require('./api');
-  // router.get("/api/spots", (req, res) => {
+  // const apiRouter = require('./api');
+  router.get("/api/spots", (req, res) => {
     
+    const apiRouter = require('./api');
     
-  //   res.status(200).json({
+    res.status(200).json({
       
-    // });
+    });
 
 router.use('/api', apiRouter);
   // ...
   //get Spots
-  // });
-  const apiRouter = require('./api');
+  });
 
-router.use('/api', apiRouter);
+// router.use('/api', apiRouter);
   // ...
 module.exports = router;
