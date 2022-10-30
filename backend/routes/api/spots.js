@@ -15,7 +15,10 @@ const {createSpot} = require('../../db/models/spot.js')
     router.get("/", async (req, res) => {
 //   const {address, city, state, country, lat, lng, name, description, price} = req.body
 //   const spot = await queryInterface.create( 'Spots' , {address, city, state, country, lat, lng, name, description, price})
-const spot = await Spot.findAll({})
+const spot = await Spot.findAll({
+    where,
+    address: '123 new place street'
+})
   return res.json({ spot })
 } );
     // router.post(
