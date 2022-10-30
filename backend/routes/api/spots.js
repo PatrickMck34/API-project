@@ -6,12 +6,11 @@ const router = express.Router();
 // const { check } = require('express-validator');
 // const { handleValidationErrors } = require('../../utils/validation');
 
-router.get('/', (req, res) => {
-      const { spots } = req;
-      if (spots) {
+router.get('/', async (req, res) => {
+      const { ownerId, address, city, state, country, lat, lng, name, description, price } = req.body
+    const spot = await Spots.findAll({})
         return res.json({
-          spots
-        });
-      } else return res.json({});
-    }
-  );
+          spot
+        })
+    } );
+  module.exports = router;
