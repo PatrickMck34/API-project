@@ -4,16 +4,16 @@ const router = express.Router();
 
 // backend/routes/api/session.js
 
-
+const where = {};
 router.get(
     '/', async (req, res) => {
-        const spot = Spot.findAll([{
-            
-        }])
-        return res.json([{
-            spot
-            }])
-    } );
+        const spot = await Spot.findAll({
+            where,
+        });
+            return res.json({
+            spot,
+            });
+    });
     router.post("/", async (req, res) => {
   const spot = req.body;
   
