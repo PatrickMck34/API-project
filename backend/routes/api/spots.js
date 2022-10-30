@@ -14,7 +14,7 @@ const router = express.Router();
 //     } );
     router.post("/", async (req, res) => {
   const {address, city, state, country, lat, lng, name, description, price} = req.body;
-  const newSpot = await Spot.create({address, city, state, country, lat, lng, name, description, price})
+  const newSpot = await Spot.createNewSpot({address, city, state, country, lat, lng, name, description, price})
 
 return res.json({newSpot})
     
