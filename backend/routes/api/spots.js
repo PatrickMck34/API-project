@@ -20,12 +20,11 @@ const router = express.Router();
     //    return res.json({
     //     spots
     //    })
-    router.get(
+    router.post(
         // router.post(
     '/', async (req, res) => {
-        const {spot} = await Spot.findAll()
-        return res.json({
-            spot
-            })
+        const {address, city, state, country, lat, lng, name, description, price} = req.body
+        const spot = await Spot.createSpot({address, city, state, country, lat, lng, name, description, price})
+        return res.json({ spot })
     } );
   module.exports = router;
