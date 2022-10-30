@@ -1,26 +1,31 @@
 const express = require('express')
-// const { setTokenCookie, restoreUser } = require('../../utils/auth');
-const { Spots } = require('../../db/models');
+const { Spot } = require('../../db/models');
 const router = express.Router();
+// backend/routes/api/session.js
 
-// const { check } = require('express-validator');
-// const { handleValidationErrors } = require('../../utils/validation');
 
-router.get('/', async (req, res) => {
-      const { ownerId, address, city, state, country, lat, lng, name, description, price } = req.body
-    const spot = await Spots.findAll({})
+// router.get(
+//     '/', async (req, res) => {
+//         const spot = req
+//         return res.json({
+//             spot
+//             })
+//     } );
+    // router.post(
+    //     '/',
+    //   async (req, res) => {
+    //     const { address, city, state, country, lat, lng, name, description, price } = req.body;
+    //     const spots = await Spot.create({ address, city, state, country, lat, lng, name, description, price});
+    //     res.status(200)
+    //    return res.json({
+    //     spots
+    //    })
+    //   })router.get(
+        router.post(
+    '/', async (req, res) => {
+        const spot = await Spot.findAll()
         return res.json({
-          spot
-        })
+            spot
+            })
     } );
-    router.post(
-        '/',
-      async (req, res) => {
-        const { address, city, state, country, lat, lng, name, description, price } = req.body;
-        const spots = await Spots.create({ address, city, state, country, lat, lng, name, description, price});
-        res.status(200)
-       return res.json({
-        spots
-       })
-      })
   module.exports = router;
