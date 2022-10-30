@@ -1,7 +1,7 @@
 const express = require('express')
-const { Spot } = require('../../db/models/spot.js');
+const { Spot } = require('../../db/models');
 const router = express.Router();
-const {getSpots} = require('../../db/models/spot.js')
+
 // backend/routes/api/session.js
 
 
@@ -14,9 +14,9 @@ const {getSpots} = require('../../db/models/spot.js')
 //     } );
     router.post("/", async (req, res) => {
   const {address, city, state, country, lat, lng, name, description, price} = req.body;
-  const newSpot = await Spot.createNewSpot(address, city, state, country, lat, lng, name, description, price)
+  const newSpot = await Spot.create({address, city, state, country, lat, lng, name, description, price})
 
-return res.json(newSpot)
+return res.json({newSpot})
     
 })
 
