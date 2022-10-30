@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {Spots} = require('../db/models/spots')
+
 
 // backend/routes/index.js
 // ...
@@ -23,7 +23,7 @@ router.get("/api/csrf/restore", (req, res) => {
           spot
         })
     } );
-    router.post('/spots', async (req, res) => {
+    router.post('/', async (req, res) => {
       const { ownerId, address, city, state, country, lat, lng, name, description, price } = req.body
     const spot = await Spots.findAll({})
         return res.json({
