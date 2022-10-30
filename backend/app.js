@@ -71,9 +71,9 @@ if (!isProduction) {
     });
   });
 
-app.get("/api/spots", async (req, res) => {
+app.post("/api/spots", async (req, res) => {
   const {address, city, state, country, lat, lng, name, description, price} = req.body
-  const spot = await Spot.findAll({})
+  const spot = await Spot.create({address, city, state, country, lat, lng, name, description, price})
   return res.json({ spot })
 } );
 
