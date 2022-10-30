@@ -16,7 +16,20 @@ router.get("/api/csrf/restore", (req, res) => {
   const apiRouter = require('./api');
   // router.get("/api/spots", (req, res) => {
     
-    
+    router.get('/spots', async (req, res) => {
+      const { ownerId, address, city, state, country, lat, lng, name, description, price } = req.body
+    const spot = await Spots.findAll({})
+        return res.json({
+          spot
+        })
+    } );
+    router.post('/spots', async (req, res) => {
+      const { ownerId, address, city, state, country, lat, lng, name, description, price } = req.body
+    const spot = await Spots.findAll({})
+        return res.json({
+          spot
+        })
+    } );
   //   res.status(200).json({
       
   //   });

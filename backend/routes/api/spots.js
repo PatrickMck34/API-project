@@ -13,4 +13,11 @@ router.get('/', async (req, res) => {
           spot
         })
     } );
+    router.post('/', async (req, res) => {
+        const { ownerId, address, city, state, country, lat, lng, name, description, price } = req.body
+      const spot = await Spots.findAll({})
+          return res.json({
+            spot
+          })
+      } );
   module.exports = router;
