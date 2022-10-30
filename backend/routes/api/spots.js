@@ -16,7 +16,7 @@ const {getSpots} = require('../../db/models/spot.js')
 //   const {address, city, state, country, lat, lng, name, description, price} = req.body
 //   const spot = await queryInterface.create( 'Spots' , {address, city, state, country, lat, lng, name, description, price})
 
-return res.json(getSpots())
+return res.json(getSpots(req))
     
 })
 
