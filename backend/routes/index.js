@@ -13,6 +13,18 @@ router.get("/api/csrf/restore", (req, res) => {
     });
   });
   const apiRouter = require('./api');
+  // router.get("/api/spots", (req, res) => {
+    
+    
+  //   res.status(200).json({
+      
+    // });
+
+router.use('/api', apiRouter);
+  // ...
+  //get Spots
+  // });
+  const apiRouter = require('./api');
 
 router.use('/api', apiRouter);
   // ...
