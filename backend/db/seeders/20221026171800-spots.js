@@ -36,7 +36,7 @@ module.exports = {
     name: 'spot2',
     description: 'A spot so good its number 2!',
     price: 127.00,
-  },
+  }
    ],{})
   },
 
