@@ -14,7 +14,7 @@ const router = express.Router();
 //     } );
     router.post("/", async (req, res) => {
   const spot = req.body;
-  await Spot.create({spot})
+  
      
 return res.json({spot})
     
