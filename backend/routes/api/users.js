@@ -36,9 +36,9 @@ router.post(
 
      setTokenCookie(res, user);
 
-    return res.json({
+    return res.json(
       user
-    });
+    );
   },
   // router.post("/api/spots", async (req, res) => {
   //   const {address, city, state, country, lat, lng, name, description, price} = req.body

@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
               return await Spot.findByPk(spot.id);
             }
      static getSpots() {
-      const spot = Spot.findAll({})
+      const spot = Spot.findByPk(spot.id)
       return {spot}
      }
      

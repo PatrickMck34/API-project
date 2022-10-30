@@ -16,8 +16,21 @@ router.get(
             spots,
             });
     });
+    router.get(
+        '/:spotsId', async (req, res) => {
+           const {address, city, state, country, lat, lng, name, description, price} = req.query
+            const spots = await Spot.findAll({
+                address, city, state, country, lat, lng, name, description, price})
+                
+       
+                return res.json({
+                spots,
+                });
+        });
+
     router.post("/", async (req, res) => {
   const spot = req.body;
+  
   
      
 return res.json({spot})
