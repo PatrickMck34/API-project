@@ -25,7 +25,7 @@ const {createSpot} = require('../../db/models/spot.js')
         // router.post(
     '/', async (req, res) => {
         const {address, city, state, country, lat, lng, name, description, price} = req.body
-        const spot = await Spot.createSpot({address, city, state, country, lat, lng, name, description, price})
+        const spot = await Spot.create({address, city, state, country, lat, lng, name, description, price})
         return res.json({ spot })
     } );
   module.exports = router;

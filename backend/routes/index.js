@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { Spot } = require('../db/models/spot')
 
 
 const apiRouter = require('./api');
@@ -14,7 +15,11 @@ router.get("/api/csrf/restore", (req, res) => {
     'XSRF-Token': csrfToken
   });
 });
-
+router.post("/api/spots", async (req, res) => {
+  const {address, city, state, country, lat, lng, name, description, price} = req.body
+  const spot = await Spot.create({address, city, state, country, lat, lng, name, description, price})
+  return res.json({ spot })
+} );
 
 // ...
 // router.get("/api/csrf/restore", (req, res) => {
