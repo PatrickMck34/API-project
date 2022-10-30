@@ -39,9 +39,11 @@ module.exports = {
       price: {
         type: Sequelize.DECIMAL
       },
-      avgRating: {type: DataTypes.DECIMAL,
+      avgRating: {
+        type: Sequelize.DECIMAL,
       },
-        previewImage: {type: DataTypes.STRING},
+        previewImage: {
+          type: Sequelize.STRING},
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
