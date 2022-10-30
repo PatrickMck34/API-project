@@ -20,10 +20,10 @@ const router = express.Router();
     //    return res.json({
     //     spots
     //    })
-    //   })router.get(
-        router.post(
+    router.get(
+        // router.post(
     '/', async (req, res) => {
-        const spot = await Spot.findAll()
+        const {spot} = await Spot.findAll()
         return res.json({
             spot
             })
