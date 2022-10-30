@@ -12,15 +12,11 @@ const {createSpot} = require('../../db/models/spot.js')
 //             spot
 //             })
 //     } );
-    // router.post(
-    //     '/',
-    //   async (req, res) => {
-    //     const { address, city, state, country, lat, lng, name, description, price } = req.body;
-    //     const spots = await Spot.create({ address, city, state, country, lat, lng, name, description, price});
-    //     res.status(200)
-    //    return res.json({
-    //     spots
-    //    })
+    router.post("/", async (req, res) => {
+  const {address, city, state, country, lat, lng, name, description, price} = req.body
+  const spot = await Spot.Create({address, city, state, country, lat, lng, name, description, price})
+  return res.json({ spot })
+} );
     // router.post(
     //     // router.post(
     // '/', async (req, res) => {
