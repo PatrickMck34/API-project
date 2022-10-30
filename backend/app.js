@@ -71,12 +71,12 @@ if (!isProduction) {
     });
   });
 
-app.post("/api/spots", async (req, res) => {
-  const {address, city, state, country, lat, lng, name, description, price} = req.body
-  const spotId= 3
-  const spot = await Spot.create({spotId, address, city, state, country, lat, lng, name, description, price})
-  return res.json({ spot })
-} );
+// app.post("/api/spots", async (req, res) => {
+//   const {address, city, state, country, lat, lng, name, description, price} = req.body
+//   const spotId= 3
+//   const spot = await Spot.create({spotId, address, city, state, country, lat, lng, name, description, price})
+//   return res.json({ spot })
+// } );
 
 app.use(routes); // Connect all the routes
 module.exports = app;
