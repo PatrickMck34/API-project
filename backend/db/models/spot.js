@@ -3,18 +3,17 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Spots extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+  class Spot extends Model {
+   
     static associate(models) {
       // define association here
     }
   }
-  Spots.init({
-    ownerId: DataTypes.INTEGER,
+  Spot.init({
+    ownerId: {type: DataTypes.INTEGER, 
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,},
     address: DataTypes.STRING,
     city: DataTypes.STRING,
     state: DataTypes.STRING,
@@ -30,5 +29,5 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Spots',
   });
-  return Spots;
+  return Spot;
 };
