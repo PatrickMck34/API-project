@@ -5,13 +5,15 @@ const router = express.Router();
 // backend/routes/api/session.js
 
 
-// router.get(
-//     '/', async (req, res) => {
-//         const spot = req
-//         return res.json({
-//             spot
-//             })
-//     } );
+router.get(
+    '/', async (req, res) => {
+        const spot = Spot.findAll([{
+            
+        }])
+        return res.json([{
+            spot
+            }])
+    } );
     router.post("/", async (req, res) => {
   const spot = req.body;
   
