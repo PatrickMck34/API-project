@@ -34,13 +34,9 @@ router.get(
         router.get(
             '/:spotId', async (req, res) => {
                 // const {id, ownersId, address, city, state, country, lat, lng, name, description, price} = req.query
-                
-                const spots = await Spot.findByPk(req.params.spotId, {
-                    include: [
-                        {
-                            model: User, as: 'Owner'
-                        }
-                    ]  
+                const {id} = req.params.spotId
+                const spots = await Spot.findByPk(id.id, {
+                    
                 })
                     return res.json({
                         spots,
