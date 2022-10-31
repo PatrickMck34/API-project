@@ -69,8 +69,8 @@ router.delete("/:spotsId", async (req, res) => {
 })
 router.put(
     '/:spotsId', async (req, res) => {
-        const {id} = req
-                const ids = id.id
+        const {spot} = req
+                const ids = spot.id
       
         const spots = await Spot.findByPk(ids)
             spots = req.body
