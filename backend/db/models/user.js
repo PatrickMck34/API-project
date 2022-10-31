@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
     }
       
     static associate(models) {
-      // define association here
+      User.HasMany(models.Spot, { foreignKey: 'id'})
     }
   }
   User.init({

@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
           
     
     static associate(models) {
-      // define association here
+    Spot.belongsTo(models.User, { foreignKey: 'ownerId' })
     }
   }
   Spot.init({
@@ -32,6 +32,8 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true
     },
     ownerId: {type: DataTypes.INTEGER, 
+      foreignKey: true,
+      references: {Model: 'User'},
       
     },
     address: {type: DataTypes.STRING,
