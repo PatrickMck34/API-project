@@ -5,13 +5,14 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Spot extends Model {
    
-    static async creatNewSpot({
-          address, city, state, country, lat, lng, name, description, price}) {
+    static async CreatNewSpot({
+          id, ownerId, address, city, state, country, lat, lng, name, description, price}) {
               const spot = await Spot.create({
-                address, city, state, country, lat, lng, name, description, price
+                 id, ownerId, address, city, state, country, lat, lng, name, description, price
               });
               return await Spot.findByPk(spot.id);
             }
+
      static getSpots() {
       const spot = Spot.findByPk(spot.id)
       return {spot}
