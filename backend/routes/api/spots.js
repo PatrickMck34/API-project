@@ -29,7 +29,7 @@ router.get(
         });
 
     router.post("/", async (req, res) => {
-const {id, ownersId, address, city, state, country, lat, lng, name, description, price} = req.body;
+const { address, city, state, country, lat, lng, name, description, price} = req.body;
   const spot = await Spot.create({id, ownersId, address, city, state, country, lat, lng, name, description, price})
   
      
