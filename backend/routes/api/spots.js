@@ -10,8 +10,7 @@ router.get(
         let  {user} = req;
          const ids = user.id
          
-        const spots = await Spot.findByPk({ids          
-        })
+        const spots = await Spot.findByPk(ids)
             
    
             return res.json({
