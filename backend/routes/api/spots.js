@@ -4,6 +4,7 @@ const user = require('../../db/models/user');
 const router = express.Router();
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
 // backend/routes/api/session.js
+db = require('../../../backend/config/database')
 
 
 router.get(
@@ -56,16 +57,15 @@ return res.json({spot})
 })
 
 router.delete("/:spotId", async (req, res) => {
-    const { id } = req.params;
-   const del = await Spot.findByPk(id)
-   const spot = await Spot.destroy(del)
-        
-      
-          res.json({
-            spot,
-          });
-       
+    const { spots } = req.params;
+   const del = await Spot.destroy(spots.id)           
+   
+   res.json('Succesffully Deleted'
+
+);
+
 })
+
     // router.post("/api/spots", async (req, res) => {
 //   const {address, city, state, country, lat, lng, name, description, price} = req.body
 //   const spotId= 3
