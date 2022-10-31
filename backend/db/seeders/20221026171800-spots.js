@@ -12,9 +12,10 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-   await queryInterface.bulkInsert('Spots', [
+   return queryInterface.bulkInsert('Spots', [
     {
       id: 1,
+      ownerId: 1,
     address: '123 new place street',
     city: 'NewTown',
     state: 'Homestate',
@@ -28,6 +29,7 @@ module.exports = {
   },
   {
     id: 2,
+    ownerId: 2,
     address: '123 second place street',
     city: 'NewTown',
     state: 'Homestate',
@@ -41,6 +43,7 @@ module.exports = {
   },
   {
     id: 3,
+    ownderId: 3,
   address: '123 new place street',
     city: 'NewTown',
     state: 'Homestate',
@@ -62,6 +65,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('Spots', null, {});
+    return queryInterface.bulkDelete('Spots', null, {});
   }
 };
