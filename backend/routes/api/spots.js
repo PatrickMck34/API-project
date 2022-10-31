@@ -30,9 +30,10 @@ router.get(
         });
         
         router.get(
-            '/current', async (req, res) => {
-                const {id, ownersId, address, city, state, country, lat, lng, name, description, price} = req.query
-                const spots = await Spot.findAll({
+            '/:spotsId', async (req, res) => {
+                // const {id, ownersId, address, city, state, country, lat, lng, name, description, price} = req.query
+                
+                const spots = await Spot.findByPk(req.params.spotsId, {
                     id, ownersId, address, city, state, country, lat, lng, name, description, price})
                     
                     
