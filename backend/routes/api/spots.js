@@ -1,5 +1,6 @@
 const express = require('express')
-const { Spot } = require('../../db/models');
+const { Spot, User } = require('../../db/models');
+const user = require('../../db/models/user');
 const router = express.Router();
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
 // backend/routes/api/session.js
@@ -34,9 +35,12 @@ router.get(
                 // const {id, ownersId, address, city, state, country, lat, lng, name, description, price} = req.query
                 
                 const spots = await Spot.findByPk(req.params.spotsId, {
-                    id, ownersId, address, city, state, country, lat, lng, name, description, price})
-                    
-                    
+                    include: [
+                        {
+                            model: User, as: 'Owner'
+                        }
+                    ]  
+                })
                     return res.json({
                         spots,
                     });
