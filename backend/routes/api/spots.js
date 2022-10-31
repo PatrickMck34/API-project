@@ -32,17 +32,17 @@ router.get(
         });
         
         router.get(
-            '/:spotId', async (req, res) => {
-                const {id} = req
-                const ids = id.id
-               
-                const spots = await Spot.findByPk(ids)
-                    
-                
+            '/:spotsId', async (req, res) => {
+                // const spot = req.params.spotsId
+                       
+              
+                // const spots = await Spot.findByPk(spot)
+                   const spots = req.body
+           
                     return res.json({
-                        spots,
+                    spots,
                     });
-                });
+            });
                 
         router.post("/", async (req, res) => {
             const { id, ownerId, address, city, state, country, lat, lng, name, description, price} = req.body;
@@ -73,7 +73,7 @@ router.put(
                
       
         // const spots = await Spot.findByPk(spot)
-            spots = req.body
+            const spots = req.body
    
             return res.json({
             spots,
