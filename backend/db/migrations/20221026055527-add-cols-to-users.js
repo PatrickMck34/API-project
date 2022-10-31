@@ -17,14 +17,14 @@ module.exports = {
       type: Sequelize.STRING,
       allowNull: false
     })
-    await queryInterface.addColumn('Spots', 'avgRating', {
-      type: Sequelize.DECIMAL,
+    // await queryInterface.addColumn('Spots', 'avgRating', {
+    //   type: Sequelize.DECIMAL,
       
-    })
-    await queryInterface.addColumn('Spots', 'previewImage', {
-      type: Sequelize.STRING,
+    // })
+    // await queryInterface.addColumn('Spots', 'previewImage', {
+    //   type: Sequelize.STRING,
      
-    })
+    // })
   },
 
   async down (queryInterface, Sequelize) {
@@ -36,7 +36,7 @@ module.exports = {
      */
     await queryInterface.removeColumn('Users', 'firstName')
     await queryInterface.removeColumn('Users', 'lastName')
-    await queryInterface.removeColumn('Spots', 'avgRating')
-    await queryInterface.removeColumn('Spots', 'previewImage')
+    // await queryInterface.removeColumn('Spots', 'avgRating')
+    // await queryInterface.removeColumn('Spots', 'previewImage')
   }
 };
