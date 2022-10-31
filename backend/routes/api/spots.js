@@ -55,12 +55,15 @@ return res.json({spot})
     
 })
 
-router.delete("/:spotId", (req, res) => {
+router.delete("/:spotId", async (req, res) => {
     const { id } = req.params;
-  
-        return db.where({ id }).delete();
+   const del = await Spot.findByPk(id)
+   const spot = await Spot.destroy(del)
+        
       
-          res.json('Deleted');
+          res.json({
+            spot,
+          });
        
 })
     // router.post("/api/spots", async (req, res) => {
