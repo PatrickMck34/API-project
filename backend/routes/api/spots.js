@@ -57,8 +57,8 @@ return res.json({spot})
 })
 router.post("/:spotId/images", async (req, res) => {
     const {id, url, preview} = req.query
-   
-    const spot = await Spot.findByPk(req.params.spotId)
+   const ids = req.params.spotId
+    const spot = await Spot.findByPk(ids)
   return res.json({id, url, preview})
 })
 router.delete("/:spotsId", async (req, res) => {
