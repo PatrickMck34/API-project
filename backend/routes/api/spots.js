@@ -5,7 +5,7 @@ const router = express.Router();
 // backend/routes/api/session.js
 
 router.get(
-    '/spots/:spotId', async (req, res) => {
+    '/:spotId', async (req, res) => {
         const spotId = req.params.id;
         const {id, ownderId, address, city, state, country, lat, lng, name, description, price} = req.query
         const spots = await Spot.findByPk({spotId})
