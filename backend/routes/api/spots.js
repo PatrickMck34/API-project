@@ -8,7 +8,7 @@ router.get(
     '/:spotId', async (req, res) => {
         const spotId = req.params.id;
         const {id, ownderId, address, city, state, country, lat, lng, name, description, price} = req.query
-        const spots = await Spot.findByPk({spotId})
+        const spots = await Spot.findByPk(spotId)
             
    
             return res.json({
