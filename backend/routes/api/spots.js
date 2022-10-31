@@ -7,7 +7,7 @@ const router = express.Router();
 router.get(
     '/:spotId', async (req, res) => {
         const spotId = req.params.id;
-        const {id, ownderId, address, city, state, country, lat, lng, name, description, price} = req.query
+        const{id, ownersId, address, city, state, country, lat, lng, name, description, price} = req.query
         const spots = await Spot.findByPk(spotId)
             
    
@@ -18,9 +18,9 @@ router.get(
 const where = {};
 router.get(
     '/', async (req, res) => {
-        const {address, city, state, country, lat, lng, name, description, price} = req.query
+        const {id, ownersId, address, city, state, country, lat, lng, name, description, price} = req.query
         const spots = await Spot.findAll({
-            address, city, state, country, lat, lng, name, description, price})
+            id, ownersId, address, city, state, country, lat, lng, name, description, price})
             
             
             return res.json({
