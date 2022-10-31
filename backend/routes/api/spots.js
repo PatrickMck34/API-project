@@ -18,10 +18,10 @@ router.get(
         });
         
         router.get(
-            '/:spotsId', async (req, res) => {
+            '/spotsId', async (req, res) => {
                 const spotId = req.params.id;
                 const{id, ownersId, address, city, state, country, lat, lng, name, description, price} = req.query
-                const spots = await Spot.findByPk(1)
+                const spots = await Spot.findByPk()
                     
            
                     return res.json({
