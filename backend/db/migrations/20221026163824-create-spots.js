@@ -10,7 +10,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       ownerId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+
       },
       address: {
         type: Sequelize.STRING
