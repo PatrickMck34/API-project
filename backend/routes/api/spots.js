@@ -33,8 +33,8 @@ router.get(
         
         router.get(
             '/:spotId', async (req, res) => {
-                // const {id, ownersId, address, city, state, country, lat, lng, name, description, price} = req.query
-                const ids = req.params.spotId
+                const {id} = req
+                const ids = id.id
                
                 const spots = await Spot.findByPk(ids)
                     
