@@ -55,6 +55,14 @@ return res.json({spot})
     
 })
 
+router.delete("/:spotId", (req, res) => {
+    const { id } = req.params;
+  
+        return db.where({ id }).delete();
+      
+          res.json('Deleted');
+       
+})
     // router.post("/api/spots", async (req, res) => {
 //   const {address, city, state, country, lat, lng, name, description, price} = req.body
 //   const spotId= 3

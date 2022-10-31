@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const {
   Model, Validator
 } = require('sequelize');
+const { Spot } = require('../models')
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
