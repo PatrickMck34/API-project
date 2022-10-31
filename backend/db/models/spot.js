@@ -32,8 +32,6 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true
     },
     ownerId: {type: DataTypes.INTEGER, 
-      foreignKey: true,
-      references: {Model: 'User'},
       
     },
     address: {type: DataTypes.STRING,
