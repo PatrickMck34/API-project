@@ -43,7 +43,7 @@ module.exports = {
   },
   {
     id: 3,
-    ownderId: 3,
+    ownerId: 3,
   address: '123 new place street',
     city: 'NewTown',
     state: 'Homestate',
