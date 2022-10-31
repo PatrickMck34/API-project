@@ -5,21 +5,21 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Spot extends Model {
    
-    static async CreatNewSpot({
-          id, ownerId, address, city, state, country, lat, lng, name, description, price}) {
-              const spot = await Spot.create({
-                 id, ownerId, address, city, state, country, lat, lng, name, description, price
-              });
-              return await Spot.findByPk(spot.id);
-            }
+    // static async CreatNewSpot({
+    //       id, ownerId, address, city, state, country, lat, lng, name, description, price}) {
+    //           const spot = await Spot.create({
+    //              id, ownerId, address, city, state, country, lat, lng, name, description, price
+    //           });
+    //           return await Spot.findByPk(spot.id);
+            
 
-     static getSpots() {
-      const spot = Spot.findByPk(spot.id)
-      return {spot}
-     }
+    //  static getSpots() {
+    //   const spot = Spot.findByPk(spot.id)
+    //   return {spot}
+    //  }
      
      
-      
+          
     
     static associate(models) {
       // define association here
@@ -27,11 +27,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   Spot.init({
     id: {
-      type:DataTypes.INTEGER,
-    allowNull: false,
-    primaryKey: true,
-  autoIncrement:true},
-  
+      type:DataTypes.INTEGER
+    },
     ownerId: {type: DataTypes.INTEGER, 
       
     },
@@ -65,7 +62,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     avgRating: {type: DataTypes.DECIMAL,
     },
-      previewImage: {type: DataTypes.STRING}
+      previewImage: {type: DataTypes.STRING},
   }, {
     sequelize,
     modelName: 'Spot',
