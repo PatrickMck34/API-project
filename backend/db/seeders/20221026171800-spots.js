@@ -12,7 +12,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-   return queryInterface.bulkInsert('Spots', [
+   await queryInterface.bulkInsert('Spots', [
     {
       id: 1,
       ownerId: 1,
@@ -65,6 +65,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    return queryInterface.bulkDelete('Spots', null, {});
+    await queryInterface.bulkDelete('Spots', null, {});
   }
 };
