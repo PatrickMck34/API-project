@@ -56,15 +56,26 @@ return res.json({spot})
     
 })
 
-router.delete("/:spotId", async (req, res) => {
-    const { spots } = req.params;
-   const del = await Spot.destroy(spots.id)           
+router.delete("/:spotsId", async (req, res) => {
+    
+   const del = await Spot.destroy(req.params.spotsId,{})           
    
-   res.json('Succesffully Deleted'
+   res.json('Succesffully Deleted')
 
-);
+
 
 })
+router.put(
+    '/:spotsId', restoreUser, async (req, res) => {
+        
+        let {address, city, state, country, lat, lng, name, description, price} = req.body
+        const spots = await Spot.findByPk(req.params.spotsId)
+            spots = req.body
+   
+            return res.json({
+            spots,
+            });
+    });
 
     // router.post("/api/spots", async (req, res) => {
 //   const {address, city, state, country, lat, lng, name, description, price} = req.body
