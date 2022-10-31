@@ -32,10 +32,10 @@ router.get(
         });
         
         router.get(
-            '/:spotsId', async (req, res) => {
+            '/:spotId', async (req, res) => {
                 // const {id, ownersId, address, city, state, country, lat, lng, name, description, price} = req.query
                 
-                const spots = await Spot.findByPk(req.params.spotsId, {
+                const spots = await Spot.findByPk(req.params.spotId, {
                     include: [
                         {
                             model: User, as: 'Owner'
@@ -55,7 +55,12 @@ router.get(
 return res.json({spot})
     
 })
-
+router.post("/:spotId/images", async (req, res) => {
+    const {id, url, preview} = req.query
+   
+    const spot = await Spot.findByPk(req.params.spotId)
+  return res.json({id, url, preview})
+})
 router.delete("/:spotsId", async (req, res) => {
     
    const del = await Spot.destroy(req.params.spotsId,{})           
