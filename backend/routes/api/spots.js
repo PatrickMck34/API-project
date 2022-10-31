@@ -69,10 +69,10 @@ router.delete("/:spotsId", async (req, res) => {
 })
 router.put(
     '/:spotsId', async (req, res) => {
-        const {spot} = req
-                const ids = spot.id
+        // const spot = req.params.spotsId
+               
       
-        const spots = await Spot.findByPk(ids)
+        // const spots = await Spot.findByPk(spot)
             spots = req.body
    
             return res.json({
