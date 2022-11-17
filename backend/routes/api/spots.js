@@ -60,11 +60,11 @@ router.post("/:spotId/images", async (req, res) => {
 })
 router.delete("/:spotsId", async (req, res) => {
 
-        const id = parseInt(req.params.id)
+        const ids = parseInt(req.params.id)
       
         await Spot.destroy({
                   where: {
-                    spotId: id
+                    id: ids
                   
         }},{})
     
