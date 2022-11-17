@@ -27,14 +27,14 @@ router.get(
     '/', async (req, res) => {
          let {spot} = req
         //  return res.json({spots: spots})
-        const {id, ownerId, address, city, state, country, lat, lng, name, description, price} = req.query
-        const spots = await Spot.findAll({
-            })
+        // const {id, ownerId, address, city, state, country, lat, lng, name, description, price} = req.query
+        const spots = await Spot.getSpotsAll(req, res)
             
             
-            return res.json({
+            
+            return res.json(
                 spots,
-            });
+            );
         });
         
         router.get(
@@ -53,7 +53,7 @@ router.get(
         router.post("/",restoreUser, async (req, res) => {
             let {user} = req;
             let ownerId = user.id
-            let { id, address, city, state, country, lat, lng, name, description, price} = req.body;
+            let { address, city, state, country, lat, lng, name, description, price} = req.body;
             const spot = await Spot.create({id, ownerId, address, city, state, country, lat, lng, name, description, price})
             
      
@@ -94,7 +94,7 @@ router.put(
         const { id, ownerId, address, city, state, country, lat, lng, name, description, price} = req.body
       
         let spots = await Spot.findByPk(spot)
-            spots.id = id
+            
             spots.ownerId = ownerId
             spots.address = address
             spots.city = city
@@ -105,6 +105,7 @@ router.put(
             spots.name = name
             spots.description = description
             spots.price = price
+            
    
             return res.json({
             spots
