@@ -1,5 +1,5 @@
 const express = require('express')
-const { Spot, User } = require('../../db/models');
+const { Spot, User, SpotImages } = require('../../db/models');
 // const user = require('../../db/models/user');
 const router = express.Router();
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
@@ -38,15 +38,22 @@ router.get(
         });
         
         router.get(
-            '/:spotId', async (req, res) => {
+            '/:spotId',restoreUser, async (req, res) => {
                 const spot = req.params.spotId
-                       
+                let {user} = req
+                let id = user.id
+                 let firstName = user.firstName
+                 let lastName = user.lastName
+                 let {url, preview} =req.body
+                 let SpotsImages = {id, url, preview}
+                 let Owner = {id, firstName, lastName}
+                
               
                 const spots = await Spot.findByPk(spot)
                   
            
                     return res.json({
-                    spots,
+                    spots,Owner,SpotsImages
                     });
             });
                 
@@ -61,17 +68,19 @@ return res.json(spot)
     
 })
 router.post("/:spotId/images", restoreUser, async (req, res) => {
-    const id = req.params.spotId
+    const spotId = req.params.spotId
     let { url, preview} = req.body
-    let spots = await Spot.findByPk(id)
-     spots.url = url
-     spots.preview = preview
-     spots.id = id
-     ids = spots.id
-     prev = spots.preview
-     usl = spots.url
+    let spots = await SpotImages.create({
+         url, preview
+    })
+    //  spots.url = url
+    //  spots.preview = preview
+    //  spots.id = id
+    //  ids = spots.id
+    //  prev = spots.preview
+    //  usl = spots.url
      
-  return res.json({id, url, preview})
+  return res.json(spots)
 })
 router.delete("/:spotsId", async (req, res) => {
     const ids = req.params.spotsId
@@ -94,7 +103,7 @@ router.put(
         const { id, ownerId, address, city, state, country, lat, lng, name, description, price} = req.body
       
         let spots = await Spot.findByPk(spot)
-            
+            await spots.update({address: address,city: city, state: state, country: country, lat: lat, lng: lng, name: name, description: description, price: price})
             spots.ownerId = ownerId
             spots.address = address
             spots.city = city
@@ -107,9 +116,9 @@ router.put(
             spots.price = price
             
    
-            return res.json({
+            return res.json(
             spots
-            });
+            );
     });
 
     // router.post("/api/spots", async (req, res) => {

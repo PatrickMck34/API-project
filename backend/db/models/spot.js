@@ -17,7 +17,8 @@ module.exports = (sequelize, DataTypes) => {
             id, ownersId, address, city, state, country, lat, lng, name, description, price})
             
             
-            return ({spots})}
+            return ({spots})
+          }
           
           
    
