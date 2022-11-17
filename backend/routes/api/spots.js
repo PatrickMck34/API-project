@@ -60,7 +60,7 @@ router.post("/:spotId/images", async (req, res) => {
 })
 router.delete("/:spotsId", async (req, res) => {
     let {spotId} = req.query
-     await Spot.deleteSpot(parseInt(spotId))
+     await Spot.deleteSpot(3)
        
        return res.json("Successfully Deleted")
         })
