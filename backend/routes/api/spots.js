@@ -62,9 +62,10 @@ router.delete("/:spotsId", async (req, res) => {
 
         const id = parseInt(req.params.id)
       
-        await queryInterface.delete('Spots',{
-            spotsId: {
-                id
+        await Spot.destroy({
+                  where: {
+                    spotId: id
+                  
         }},{})
     
 //    const del = await Spot.delete(req.params.spotsId,{
