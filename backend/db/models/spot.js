@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
        return await Spot.destroy({
         where: {
           id: spotId,}
-      }, {});
+      });
 
    }
     // static async CreatNewSpot({
