@@ -9,14 +9,14 @@ db = require('../../../backend/config/database')
 
 router.get(
     '/current', restoreUser, async (req, res) => {
-        let  {user} = req;
-         const ids = user.id
-         
-        const spots = await Spot.findByPk(ids)
-            
+        
+    //    const user = User.scope('currentUser')
+    let  {user} = req;
+    const id = user.id
+    const spots = await Spot.findByPk(user.id)
    
             return res.json({
-            spots,
+            spots
             });
     });
 router.get(
@@ -32,12 +32,12 @@ router.get(
         });
         
         router.get(
-            '/:spotsId', async (req, res) => {
-                // const spot = req.params.spotsId
+            '/:spotId', async (req, res) => {
+                const spot = req.params.spotId
                        
               
-                // const spots = await Spot.findByPk(spot)
-                   const spots = req.body
+                const spots = await Spot.findByPk(spot)
+                  
            
                     return res.json({
                     spots,
@@ -45,6 +45,7 @@ router.get(
             });
                 
         router.post("/", async (req, res) => {
+            const ids = User.id
             const { id, ownerId, address, city, state, country, lat, lng, name, description, price} = req.body;
             const spot = await Spot.create({id, ownerId, address, city, state, country, lat, lng, name, description, price})
             
@@ -52,10 +53,13 @@ router.get(
 return res.json({spot})
     
 })
-router.post("/:spotId/images", async (req, res) => {
-    const {id, url, preview} = req.query
-   const ids = req.params.spotId
-    const spot = await Spot.findByPk(ids)
+router.post("/:spotId/images", restoreUser, async (req, res) => {
+    const spot = req.params.spotId
+    const {id, url, preview} = req.body
+    const spots = await Spot.findByPk(spot)
+     spots.url = url
+     spots.preview = preview
+     spots.id = id
   return res.json({id, url, preview})
 })
 router.delete("/:spotsId", async (req, res) => {
@@ -74,15 +78,25 @@ router.delete("/:spotsId", async (req, res) => {
 
 
 router.put(
-    '/:spotsId', async (req, res) => {
-        // const spot = req.params.spotsId
-               
+    '/:spotId', async (req, res) => {
+        const spot = req.params.spotId
+        const { id, ownerId, address, city, state, country, lat, lng, name, description, price} = req.body
       
-        // const spots = await Spot.findByPk(spot)
-            const spots = req.body
+        let spots = await Spot.findByPk(spot)
+            spots.id = id
+            spots.ownerId = ownerId
+            spots.address = address
+            spots.city = city
+            spots.state = state
+            spots.country = country
+            spots.lat = lat
+            spots.lng = lng
+            spots.name = name
+            spots.description = description
+            spots.price = price
    
             return res.json({
-            spots,
+            spots
             });
     });
 

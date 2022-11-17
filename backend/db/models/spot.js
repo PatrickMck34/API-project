@@ -39,6 +39,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true
     },
     ownerId: {type: DataTypes.INTEGER, 
+     
       
     },
     address: {type: DataTypes.STRING,
@@ -72,6 +73,8 @@ module.exports = (sequelize, DataTypes) => {
     avgRating: {type: DataTypes.DECIMAL,
     },
       previewImage: {type: DataTypes.STRING},
+  
+      url: {type: DataTypes.STRING},
   }, {
     sequelize,
     modelName: 'Spot',

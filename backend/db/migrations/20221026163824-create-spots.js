@@ -4,15 +4,14 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Spots', {
       id: {
-        allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
       ownerId: {
         type: Sequelize.INTEGER,
-        autoIncrement: true,
-        allowNull: false,
+        
+      
 
       },
       address: {
@@ -47,6 +46,9 @@ module.exports = {
       },
         previewImage: {
           type: Sequelize.STRING},
+          url: {
+            type: Sequelize.STRING
+          },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
