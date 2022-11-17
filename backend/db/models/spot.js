@@ -10,8 +10,17 @@ module.exports = (sequelize, DataTypes) => {
         where: {
           id: spotId,}
       });
-
-   }
+    }
+      static async getSpotsAll(req){
+      const {id, ownersId, address, city, state, country, lat, lng, name, description, price} = req.query
+        const spots = await Spot.findAll({
+            id, ownersId, address, city, state, country, lat, lng, name, description, price})
+            
+            
+            return ({spots})}
+          
+          
+   
     // static async CreatNewSpot({
     //       id, ownerId, address, city, state, country, lat, lng, name, description, price}) {
     //           const spot = await Spot.create({
