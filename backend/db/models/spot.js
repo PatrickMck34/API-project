@@ -4,7 +4,14 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Spot extends Model {
-   
+
+   static async deleteSpot(spotId) {
+       return await Spot.destroy({
+        where: {
+          id: spotId,}
+      }, {});
+
+   }
     // static async CreatNewSpot({
     //       id, ownerId, address, city, state, country, lat, lng, name, description, price}) {
     //           const spot = await Spot.create({

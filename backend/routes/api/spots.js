@@ -1,6 +1,6 @@
 const express = require('express')
 const { Spot, User } = require('../../db/models');
-const user = require('../../db/models/user');
+// const user = require('../../db/models/user');
 const router = express.Router();
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
 // backend/routes/api/session.js
@@ -59,15 +59,11 @@ router.post("/:spotId/images", async (req, res) => {
   return res.json({id, url, preview})
 })
 router.delete("/:spotsId", async (req, res) => {
-        let {spot} = req
-        const ids = parseInt(spot.id)
-        const del = await Spot.destroy({
-             where,
-               id: ids,
-           }, {});
-      
-                  
-        return res.json({del})
+    let {spot} = req
+    const ids = parseInt(spot.id)
+    const deleteSpot = await Spot.deleteSpot(ids)
+       
+       return res.json("Successfully Deleted")
         },{})
     
 
