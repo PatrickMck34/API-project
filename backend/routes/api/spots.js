@@ -59,15 +59,27 @@ router.post("/:spotId/images", async (req, res) => {
   return res.json({id, url, preview})
 })
 router.delete("/:spotsId", async (req, res) => {
+
+
+    const deleteUser = (req, res) => {
+        const id = parseInt(req.params.id)
+      
+        Spot.query('DELETE FROM spots WHERE id = $1', [id], (error, results) => {
+          if (error) {
+            throw error
+          }
+          response.status(200).send(`successfully deleted`)
+        })
+      }
     
-   const del = await Spot.delete(req.params.spotsId,{
-        where: { spotId: req.params }
-      }, {});
+//    const del = await Spot.delete(req.params.spotsId,{
+//         where: { spotId: req.params }
+//       }, {});
 
      
              
    
-  return res.json('Succesffully Deleted')
+//   return res.json('Succesffully Deleted')
 
 
 
