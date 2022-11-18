@@ -12,12 +12,12 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
       static async getSpotsAll(req){
-      const {id, ownersId, address, city, state, country, lat, lng, name, description, price} = req.query
-        const spots = await Spot.findAll({
-            id, ownersId, address, city, state, country, lat, lng, name, description, price})
+      let {id, ownersId, address, city, state, country, lat, lng, name, description, price, previewImage} = req.query
+        const Spots = await Spot.findAll({
+            id, ownersId, address, city, state, country, lat, lng, name, description, price, previewImage})
+             Spots.previewImage = "image url"
             
-            
-            return ({spots})
+            return ({Spots})
           }
           
           
@@ -81,13 +81,21 @@ module.exports = (sequelize, DataTypes) => {
       
     },
     avgRating: {type: DataTypes.DECIMAL,
+      defaultValue: 4.5
     },
-      previewImage: {type: DataTypes.STRING},
+      previewImage: {type: DataTypes.STRING,
+      defaultValue: "image url"
+      },
   
-      url: {type: DataTypes.STRING},
+      url: {type: DataTypes.STRING, defaultValue: 'image url'},
   }, {
     sequelize,
     modelName: 'Spot',
+    defaultScope: {
+      attributes: {
+        exclude: ["url"]
+      }
+    },
   });
   return Spot;
 };

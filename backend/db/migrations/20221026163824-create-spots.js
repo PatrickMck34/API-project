@@ -43,9 +43,12 @@ module.exports = {
       },
       avgRating: {
         type: Sequelize.DECIMAL,
+        defaultValue: 4.5
       },
         previewImage: {
-          type: Sequelize.STRING},
+          type: Sequelize.STRING,
+          defaultValue: "image url"
+        },
           url: {
             type: Sequelize.STRING
           },

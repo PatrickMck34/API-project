@@ -26,15 +26,16 @@ router.get(
     });
 router.get(
     '/', async (req, res) => {
-         let {spot} = req
-        //  return res.json({spots: spots})
+         let {spots} = req
+        //   spots.previewImage = "image Url"
         // const {id, ownerId, address, city, state, country, lat, lng, name, description, price} = req.query
-        const spots = await Spot.getSpotsAll(req, res)
-            
-            
+        const Spots = await Spot.getSpotsAll(req, res)
+        
+        
+    
             
             return res.json(
-                spots,
+                Spots,
             );
         });
         
@@ -70,9 +71,11 @@ router.get(
             let ownerId = user.id
             let {id, address, city, state, country, lat, lng, name, description, price} = req.body;
             const spot = await Spot.create({id, ownerId, address, city, state, country, lat, lng, name, description, price})
-            
-     
-return res.json(spot)
+            id = spot.id
+            createdAt = spot.createdAt
+            updatedAt = spot.updatedAt
+           const spots = {id, ownerId, address, city, state, country, lat, lng, name, description, price, createdAt, updatedAt}
+return res.json(spots)
     
 })
 router.post("/:spotId/reviews",restoreUser, async (req, res) =>{
@@ -96,18 +99,27 @@ router.post("/:spotId/reviews",restoreUser, async (req, res) =>{
 })
 router.post("/:spotId/images", restoreUser, async (req, res) => {
     const spotId = req.params.spotId
+    const spotCheck = await Spot.findByPk(spotId)
+      if(!spotCheck){
+        return res.status(404).json({message: "Spot couldn't be found", statusCode: 404})
+
+      }
+   
     let { url, preview} = req.body
+     
     let spots = await SpotImages.create({
-         url, preview
+        url, preview, spotId
     })
+      
     //  spots.url = url
     //  spots.preview = preview
-    //  spots.id = id
+     id = spots.id
+      let result = {id, url, preview, }
     //  ids = spots.id
     //  prev = spots.preview
     //  usl = spots.url
      
-  return res.json(spots)
+  return res.json(result)
 })
 router.delete("/:spotsId", async (req, res) => {
     const ids = req.params.spotsId

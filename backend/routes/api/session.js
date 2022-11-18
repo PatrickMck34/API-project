@@ -64,9 +64,17 @@ router.post(
         (req, res) => {
           const { user } = req;
           if (user) {
-            return res.json({
-              user: user.toSafeObject()
-            });
+            
+            id = user.id
+            firstName = user.firstName
+            lastName = user.lastName
+            email = user.email
+            username = user.username
+            users = {id, firstName, lastName, email, username} 
+            return res.json( users
+               
+
+          );
           } else return res.json({});
         }
       );
