@@ -31,13 +31,14 @@ router.post(
   '/',
   validateSignup,
   async (req, res) => {
-    const { email, password, username, firstName, lastName } = req.body;
-    const user = await User.signup({ email, password, username, firstName, lastName});
-
-     setTokenCookie(res, user);
-
+    const { email, password, username, firstName, lastName, token } = req.body;
+    const users = await User.scope('defaultScope').signup({ email, password, username, firstName, lastName, token});
+     users.token = ""
+     let id = users.id
+     const user = {id, firstName, lastName, email, username, token}
+     setTokenCookie(res, users);
     return res.json(
-     {user}
+     user
     );
   },
   // router.post("/api/spots", async (req, res) => {

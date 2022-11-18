@@ -88,6 +88,9 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.DATE,
       
+    },
+    token: {
+      type: DataTypes.STRING
     }
     
   }, {
