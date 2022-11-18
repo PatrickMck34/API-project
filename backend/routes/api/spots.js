@@ -1,5 +1,6 @@
-const express = require('express')
-const { Spot, User, SpotImages } = require('../../db/models');
+const express = require('express');
+const { Error } = require('sequelize');
+const { Spot, User, SpotImages, Reviews } = require('../../db/models');
 // const user = require('../../db/models/user');
 const router = express.Router();
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
@@ -39,13 +40,20 @@ router.get(
         
         router.get(
             '/:spotId',restoreUser, async (req, res) => {
+                
                 const spot = req.params.spotId
-                let {user} = req
+                const checkSpot = await Spot.findByPk(spot)
+                if(!checkSpot){
+                    return res.status(404).json({message: "Spot couldn't be found"})
+                }
+                let {user, SpotImages} = req
+            
+        
                 let id = user.id
                  let firstName = user.firstName
                  let lastName = user.lastName
-                 let {url, preview} =req.body
-                 let SpotsImages = {id, url, preview}
+                 let {url, preview} = req.query
+                  SpotImages = [{id, url: "image url", preview: "true"}]
                  let Owner = {id, firstName, lastName}
                 
               
@@ -53,19 +61,38 @@ router.get(
                   
            
                     return res.json({
-                    spots,Owner,SpotsImages
+                    spots,Owner,SpotImages
                     });
             });
                 
         router.post("/",restoreUser, async (req, res) => {
             let {user} = req;
             let ownerId = user.id
-            let { address, city, state, country, lat, lng, name, description, price} = req.body;
+            let {id, address, city, state, country, lat, lng, name, description, price} = req.body;
             const spot = await Spot.create({id, ownerId, address, city, state, country, lat, lng, name, description, price})
             
      
 return res.json(spot)
     
+})
+router.post("/:spotId/reviews",restoreUser, async (req, res) =>{
+    let {user} = req
+    let userId = user.id
+      const spotId = req.params.spotId;
+      let {review, stars, spotsId,} = req.body;
+      const spotCheck = await Spot.findByPk(spotId)
+      if(!spotCheck){
+        return res.status(404).json({message: "Spot couldn't be found", statusCode: 404})
+
+      }
+      
+     const check = Reviews.findByPk(userId)
+      if(check){
+      const Review = await Reviews.create({userId, spotId, review,  stars})
+      return res.json(Review)
+      }
+      
+     return res.status(403).json({message: "User already has a review for this spot", statusCode: 403})
 })
 router.post("/:spotId/images", restoreUser, async (req, res) => {
     const spotId = req.params.spotId
