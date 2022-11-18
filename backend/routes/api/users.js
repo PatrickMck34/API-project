@@ -31,10 +31,11 @@ router.post(
   '/',
   validateSignup,
   async (req, res) => {
-    const { email, password, username, firstName, lastName, token } = req.body;
-    const users = await User.scope('defaultScope').signup({ email, password, username, firstName, lastName, token});
-     users.token = ""
+    let { email, password, username, firstName, lastName, token } = req.body;
+    let users = await User.scope('defaultScope').signup({ email, password, username, firstName, lastName, token});
+     
      let id = users.id
+     token = "" 
      const user = {id, firstName, lastName, email, username, token}
      setTokenCookie(res, users);
     return res.json(
