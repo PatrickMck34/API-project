@@ -10,7 +10,7 @@
     "start:development": "nodemon ./bin/www",
     "start:production": "node ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run --prefix backend build"
+    "build": "node psql-setup-script.js"
   },
   "keywords": [],
   "author": "",
