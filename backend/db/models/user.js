@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const {
   Model, Validator
 } = require('sequelize');
-const { Spot } = require('../models')
+const { Spot, Reviews } = require('../models')
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -44,6 +44,8 @@ module.exports = (sequelize, DataTypes) => {
       
     static associate(models) {
       User.hasMany(models.Spot, { foreignKey: 'ownerId', as: 'Owner'})
+      User.hasMany(models.Reviews, {foreignKey:'userId'})
+      User.hasMany(models.Bookings, {foreignKey:'userId'})
     }
   }
   User.init({

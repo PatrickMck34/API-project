@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const {Spot} = require('../models')
 module.exports = (sequelize, DataTypes) => {
   class SpotImages extends Model {
     /**
@@ -10,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+      SpotImages.belongsTo(models.Spot, {foreignKey:'spotId'})
       // define association here
     }
   }
