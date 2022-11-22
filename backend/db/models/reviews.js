@@ -2,7 +2,7 @@
 const {
   Model
 } = require('sequelize');
-const { ReviewImages } = require('../models')
+
 module.exports = (sequelize, DataTypes) => {
   class Reviews extends Model {
     static async getReviewsAll(req){

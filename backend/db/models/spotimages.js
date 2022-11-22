@@ -2,7 +2,7 @@
 const {
   Model
 } = require('sequelize');
-const {Spot} = require('../models')
+
 module.exports = (sequelize, DataTypes) => {
   class SpotImages extends Model {
     /**

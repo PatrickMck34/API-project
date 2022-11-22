@@ -2,7 +2,7 @@
 const {
   Model
 } = require('sequelize');
-const { User, Reviews, SpotImages, Bookings } = require('../models')
+
 module.exports = (sequelize, DataTypes) => {
   class Spot extends Model {
 

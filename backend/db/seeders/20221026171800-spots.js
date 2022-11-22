@@ -2,7 +2,10 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
+
   async up (queryInterface, Sequelize) {
+    options.schema = process.env.NODE_ENV
+    options.tableName = 'Spots'
     /**
      * Add seed commands here.
      *
@@ -12,7 +15,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-   await queryInterface.bulkInsert('Spots', [
+   await queryInterface.bulkInsert(options, [
     {
     id: 1,
     ownerId: 1,
@@ -65,6 +68,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('Spots', null, {});
+    await queryInterface.bulkDelete(options, null, {});
   }
 };
