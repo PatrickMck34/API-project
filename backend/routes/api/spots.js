@@ -36,60 +36,30 @@ router.get(
         );
     });
 
-router.get(
-    '/:spotId', restoreUser, async (req, res) => {
-        let spotQuery = {}
-        let arr = []
-        const currentUser = User.currentUserId(req, res)
-          const checkSpot = await Spot.findAll({
-            where: {
-                ownerId: currentUser,
-            },
-            include: [{
-                model: 
-                    User,
-                as: 'Owner',
-            }],
+    router.get(
+        '/:spotId', restoreUser, async (req, res) => {
             
-           
-        })
-            const imageSpot = await Spot.findAll({
+            const currentUser = User.currentUserId(req, res)
+         
+                const checkSpot = await Spot.findAll({
                 where: {
-                    ownerId: currentUser,
-                },
-                
-                include:[{
-                    model: SpotImages 
-    
-                }]
-           
+                ownerId : currentUser
+            }, 
+            include: [{
+                model: SpotImages
+            },
+            {
+            model: User,
+                as: 'Owner', 
+                attributes: {exclude: ["username", "hashedPassword", "token", "email", "createdAt", "updatedAt"]}
+            },
+            ]
         })
-        arr.push(...checkSpot)
-        arr.push(...imageSpot)
-        return res.json(arr)
+
+      
+        return res.json(checkSpot)
     }),
-    //     if(!checkSpot){
-    //         return res.status(404).json({message: "Spot couldn't be found"})
-    //     }
-    //     let {user, SpotImages} = req
-
-
-    //     let id = user.id
-    //      let firstName = user.firstName
-    //      let lastName = user.lastName
-    //      let {url, preview} = req.query
-    //       SpotImages = [{id, url: "image url", preview: "true"}]
-    //      let Owner = {id, firstName, lastName}
-
-
-    //     const spots = await Spot.findByPk(spot)
-
-
-    //         return res.json({
-    //         spots,Owner,SpotImages
-    //         });
-    // })
-
+  
     router.post("/", restoreUser, async (req, res) => {
         let { user } = req;
         let ownerId = user.id

@@ -51,7 +51,7 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Spot, {as: 'Owner', foreignKey: 'ownerId'})
       User.hasMany(models.Reviews, {foreignKey:'userId'})
       User.hasMany(models.Bookings, {foreignKey:'userId'})
-      // User.belong(models.SpotImages, {through: models.Spot, foreignKey: 'id'})
+      User.belongsTo(models.SpotImages, {through: models.Spot, foreignKey: 'id'})
     }
   }
   User.init({
@@ -106,7 +106,7 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'User',
     defaultScope: {
       attributes: {
-        exclude: ["hashedPassword", "email", "createdAt", "updatedAt"]
+        exclude: ["hashedPassword", "email", "createdAt", "updatedAt", "token"]
       }
     },
     scopes: {
@@ -115,6 +115,10 @@ module.exports = (sequelize, DataTypes) => {
       },
       loginUser: {
         attributes: {}
+      },
+      userOwner: {
+        attributes: {exclude: ["username", "hashedPassword", "token", "email", "createdAt", "updatedAt"]}
+
       }
     }
   
