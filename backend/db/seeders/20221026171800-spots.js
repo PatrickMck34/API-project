@@ -4,8 +4,8 @@
 module.exports = {
 
   async up (queryInterface, Sequelize) {
-    options.schema = process.env.NODE_ENV
-    options.tableName = 'Spots'
+    // options.schema = process.env.NODE_ENV
+    // options.tableName = 'Spots'
     /**
      * Add seed commands here.
      *
@@ -15,7 +15,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-   await queryInterface.bulkInsert(options, [
+   await queryInterface.bulkInsert('Spots', [
     {
     id: 1,
     ownerId: 1,
@@ -68,6 +68,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete(options, null, {});
+    await queryInterface.bulkDelete('Spots', null, {});
   }
 };
