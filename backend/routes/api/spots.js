@@ -12,11 +12,10 @@ router.get(
     '/current', restoreUser, async (req, res) => {
 
         //    const user = User.scope('currentUser')
-        let { user } = req;
-        let id = user.id
+        const currentUser = User.currentUserId(req, res)
         const spots = await Spot.findAll({
             where: {
-                ownerId: id
+                ownerId: currentUser
             }
         })
 
@@ -26,9 +25,7 @@ router.get(
     });
 router.get(
     '/', async (req, res) => {
-        let { spots } = req
-        //   spots.previewImage = "image Url"
-        // const {id, ownerId, address, city, state, country, lat, lng, name, description, price} = req.query
+
         const Spots = await Spot.getSpotsAll(req, res)
 
 
