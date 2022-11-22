@@ -13,9 +13,9 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
       static async getSpotsAll(req){
-      let {id, ownersId, address, city, state, country, lat, lng, name, description, price, previewImage} = req.query
+      let {id, ownerId, address, city, state, country, lat, lng, name, description, price, previewImage} = req.query
         const Spots = await Spot.findAll({
-            id, ownersId, address, city, state, country, lat, lng, name, description, price, previewImage})
+            id, ownerId, address, city, state, country, lat, lng, name, description, price, previewImage})
              Spots.previewImage = "image url"
             
             return ({Spots})
@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
           
     
     static associate(models) {
-    Spot.belongsTo(models.User, { foreignKey: 'ownerId' })
+    Spot.belongsTo(models.User, {as: 'Owner', foreignKey: 'ownerId' })
     Spot.hasMany(models.SpotImages, {foreignKey:'spotId'})
     Spot.hasMany(models.Reviews, {foreignKey:'spotId'})
     Spot.hasMany(models.Bookings, {foreignKey:'spotId'})

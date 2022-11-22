@@ -13,6 +13,11 @@ module.exports = (sequelize, DataTypes) => {
       validatePassword(password) {
         return bcrypt.compareSync(password, this.hashedPassword.toString());
       }
+      static currentUserId(req, res) {
+        let { user } = req
+        let id = user.id
+        return id
+      }
       static getCurrentUserById(id) {
         return User.scope("currentUser").findByPk(id);
       }
@@ -43,9 +48,10 @@ module.exports = (sequelize, DataTypes) => {
     }
       
     static associate(models) {
-      User.hasMany(models.Spot, { foreignKey: 'ownerId', as: 'Owner'})
+      User.hasMany(models.Spot, {as: 'Owner', foreignKey: 'ownerId'})
       User.hasMany(models.Reviews, {foreignKey:'userId'})
       User.hasMany(models.Bookings, {foreignKey:'userId'})
+      // User.belong(models.SpotImages, {through: models.Spot, foreignKey: 'id'})
     }
   }
   User.init({
@@ -112,6 +118,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   
-});
+  });
+
   return User;
 };
