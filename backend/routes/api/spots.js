@@ -43,28 +43,41 @@ router.get(
             '/:spotId',restoreUser, async (req, res) => {
                 
                 const spot = req.params.spotId
-                const checkSpot = await Spot.findByPk(spot)
-                if(!checkSpot){
-                    return res.status(404).json({message: "Spot couldn't be found"})
-                }
-                let {user, SpotImages} = req
+                const checkSpot = await Spot.findAll({
+                    where:{
+                        ownerId: 2,
+                    },
+                    include:[{
+                        model: 
+                            User
+                            
+
+                        
+                    }]
+                })
+                return res.json(checkSpot)
+            }),
+            //     if(!checkSpot){
+            //         return res.status(404).json({message: "Spot couldn't be found"})
+            //     }
+            //     let {user, SpotImages} = req
             
         
-                let id = user.id
-                 let firstName = user.firstName
-                 let lastName = user.lastName
-                 let {url, preview} = req.query
-                  SpotImages = [{id, url: "image url", preview: "true"}]
-                 let Owner = {id, firstName, lastName}
+            //     let id = user.id
+            //      let firstName = user.firstName
+            //      let lastName = user.lastName
+            //      let {url, preview} = req.query
+            //       SpotImages = [{id, url: "image url", preview: "true"}]
+            //      let Owner = {id, firstName, lastName}
                 
               
-                const spots = await Spot.findByPk(spot)
+            //     const spots = await Spot.findByPk(spot)
                   
            
-                    return res.json({
-                    spots,Owner,SpotImages
-                    });
-            });
+            //         return res.json({
+            //         spots,Owner,SpotImages
+            //         });
+            // });
                 
         router.post("/",restoreUser, async (req, res) => {
             let {user} = req;

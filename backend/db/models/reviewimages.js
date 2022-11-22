@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const { Reviews } = require('../models')
 module.exports = (sequelize, DataTypes) => {
   class ReviewImages extends Model {
     /**
@@ -11,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       ReviewImages.hasMany(models.Reviews, {foreignKey:'reviewId'})
-      
+
       // define association here
     }
   }

@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const { ReviewImages } = require('../models')
 module.exports = (sequelize, DataTypes) => {
   class Reviews extends Model {
     static async getReviewsAll(req){
@@ -12,7 +13,9 @@ module.exports = (sequelize, DataTypes) => {
             return (reviews)
           }
     static associate(models) {
-      Reviews.belongsTo(models.Reviews, {foreignKey:'ownerId'})
+      Reviews.belongsToMany(models.ReviewImages, {foreignKey:'reviewId'})
+      Reviews.belongsTo(models.User, {foreignKey:'userId'})
+      Reviews.belongsTo(models.Spot, {foreignKey:'spotId'})
       // define association here
     }
   }
