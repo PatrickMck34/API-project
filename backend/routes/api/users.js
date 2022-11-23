@@ -34,6 +34,7 @@ router.post(
     let { email, password, username, firstName, lastName, token } = req.body;
     let users = await User.scope('defaultScope').signup({ email, password, username, firstName, lastName, token});
      
+    
      let id = users.id
      token = "" 
      const user = {id, firstName, lastName, email, username, token}

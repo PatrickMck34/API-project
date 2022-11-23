@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      ReviewImages.belongsTo(models.Reviews, {foreignKey:'reviewsId'})
+      ReviewImages.belongsTo(models.Reviews, {foreignKey:'reviewId'})
 
       // define association here
     }
@@ -24,6 +24,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'ReviewImages',
+    defaultScope: {
+      attributes: {
+        exclude: ["id", "updatedAt", "createdAt"]
+      }
+    },
   });
   return ReviewImages;
 };

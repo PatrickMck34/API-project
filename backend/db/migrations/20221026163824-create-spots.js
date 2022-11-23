@@ -43,6 +43,13 @@ module.exports = {
         type: Sequelize.DECIMAL,
         defaultValue: 4.5
       },
+      avgStarRating: {
+        type: Sequelize.DECIMAL,
+        defaultValue: 4.5
+      },
+      numReviews:{
+        type: Sequelize.INTEGER,
+      },
         previewImage: {
           type: Sequelize.STRING,
           defaultValue: "image url"

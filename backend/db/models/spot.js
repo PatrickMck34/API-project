@@ -90,6 +90,11 @@ module.exports = (sequelize, DataTypes) => {
       previewImage: {type: DataTypes.STRING,
       defaultValue: "image url"
       },
+      avgStarRating: {type: DataTypes.DECIMAL,
+        defaultValue: 4.5
+      },
+      numReviews: {type: DataTypes.INTEGER,
+      },
   
       url: {type: DataTypes.STRING, defaultValue: 'image url'},
   }, {
@@ -97,9 +102,21 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Spot',
     defaultScope: {
       attributes: {
-        exclude: ["url"]
+        exclude: ["url", "avgRating", "previewImage", "numReviews", "avgStarRating"]
       }
     },
+    scopes: {
+    liveScope: {
+      attributes: {
+        exclude: ["url", "avgRating"]
+      }
+    },
+    detailScope: {
+      attributes: {
+        exclude: ["url", "avgRating", "previewImage"]
+      }
+    }
+  }
   });
   return Spot;
 };
