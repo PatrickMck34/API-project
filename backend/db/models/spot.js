@@ -115,8 +115,15 @@ module.exports = (sequelize, DataTypes) => {
       attributes: {
         exclude: ["url", "avgRating", "previewImage"]
       }
+    },
+  
+  reviewScope: {
+    attributes: {
+      exclude: ["url", "avgRating", "numReviews", "avgStarRating", "description", "createdAt", "updatedAt"]
     }
   }
-  });
+  },
+  }
+);
   return Spot;
 };

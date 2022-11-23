@@ -78,31 +78,28 @@ router.get(
         router.post("/", restoreUser, async (req, res) => {
            const currentUser = User.currentUserId(req, res)
           const ownerId = currentUser
-        const { id, address, city, state, country, lat, lng, name, description, price } = req.body;
-            const spot = await Spot.create({ id, ownerId, address, city, state, country, lat, lng, name, description, price })
+        const {address, city, state, country, lat, lng, name, description, price } = req.body;
+            const spot = await Spot.create({ ownerId, address, city, state, country, lat, lng, name, description, price })
             
-        const spots = await Spot.findByPk(ownerId)
-        return res.json(spots)
+
+        return res.json(spot)
 
     })
 router.post("/:spotId/reviews", restoreUser, async (req, res) => {
-    let { user } = req
-    let userId = user.id
     const spotId = req.params.spotId;
-    let { review, reviewsId, stars, spotsId, } = req.body;
-    const spotCheck = await Spot.findByPk(spotId)
-    if (!spotCheck) {
+    let { review, stars } = req.body
+    if (spotId > 300) {
         return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 })
 
     }
 
-    const check = Reviews.findByPk(userId)
-    if (!check) {
-        const Review = await Reviews.create({ userId, spotId, review, reviewsId, stars })
-        return res.json(Review)
+    const check = await Reviews.findByPk(spotId)
+    if (check === null) {
+        const reviews = await Reviews.create({ spotId, review, stars })
+        return res.json(review)
     }
 
-    return res.status(403).json({ message: "User already has a review for this spot", statusCode: 403 })
+    return res.status(404).json({ message: "Already submitted a review!", statusCode: 404 })
 })
 router.post("/:spotId/images", restoreUser, async (req, res) => {
     const spotId = req.params.spotId
@@ -128,20 +125,18 @@ router.post("/:spotId/images", restoreUser, async (req, res) => {
 
     return res.json(result)
 })
+// router.delete("/spot-images/:spotId", async (req, res) => {
+//     const ids = req.params.spotImageId
+//     await SpotImages.deleteSpotImages(ids)
+
+//     return res.json("Successfully Deleted")
+// })
 router.delete("/:spotsId", async (req, res) => {
     const ids = req.params.spotsId
     await Spot.deleteSpot(ids)
 
     return res.json("Successfully Deleted")
 })
-
-
-
-
-
-
-
-
 
 router.put(
     '/:spotId', async (req, res) => {
@@ -170,10 +165,4 @@ router.put(
         );
     });
 
-// router.post("/api/spots", async (req, res) => {
-//   const {address, city, state, country, lat, lng, name, description, price} = req.body
-//   const spotId= 3
-//   const spot = await Spot.create({spotId, address, city, state, country, lat, lng, name, description, price})
-//   return res.json({ spot })
-// } );
 module.exports = router;
