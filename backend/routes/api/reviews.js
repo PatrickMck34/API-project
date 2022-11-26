@@ -49,6 +49,10 @@ router.post('/:reviewId/images', restoreUser, async (req, res)=>{
 })
 router.delete('/:reviewId', async (req, res)=>{
     const reviewId = req.params.reviewId
+    const spotCheck = await Reviews.findByPk(reviewId)
+    if(spotCheck === null){
+        return res.status(404).json({ message: "Unable to find Review", statusCode: 404 })
+    }
     const delReview = Reviews.destroy({
         where: {
             id :reviewId

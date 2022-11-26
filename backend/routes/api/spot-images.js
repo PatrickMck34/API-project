@@ -9,6 +9,10 @@ db = require('../../../backend/config/database')
 
 router.delete("/:spotImageId", async (req, res) => {
     const ids = req.params.spotImageId
+    const spotCheck = await SpotImages.findByPk(ids)
+    if(spotCheck === null){
+        return res.status(404).json({ message: "Unable to find Spot", statusCode: 404 })
+    }
     await SpotImages.destroy({
         where:{
             id : ids

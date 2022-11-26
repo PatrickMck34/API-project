@@ -154,11 +154,16 @@ router.post('/:spotIdForBooking/bookings', restoreUser, async (req, res)=>{
 
 router.delete("/:spotsId", async (req, res) => {
     const ids = req.params.spotsId
+    const spotCheck = await Spot.findByPk(ids)
+    if(spotCheck === null){
+        return res.status(404).json({ message: "Unable to find Spot", statusCode: 404 })
+    }
     await Spot.destroy({
         where:{
             id : ids
         }
     })
+
 
     return res.json("Successfully Deleted")
 })
