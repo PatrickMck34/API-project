@@ -121,6 +121,11 @@ module.exports = (sequelize, DataTypes) => {
         exclude: ["url", "avgRating", "previewImage", "avgStarRating", "numReviews"]
       }
     },
+    bookingScope: {
+      attributes: {
+        exclude: ["url", "avgRating", "avgStarRating", "numReviews", "createdAt", "updatedAt", "description"]
+      }
+    },
   
   reviewScope: {
     attributes: {

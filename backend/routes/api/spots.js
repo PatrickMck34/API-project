@@ -31,6 +31,15 @@ router.get(
             }
             return res.json({ message: "Spot couldn't be found", statusCode: 404 })
         });
+        router.get('/:spotIdForBooking/bookings',restoreUser, async (req, res)=>{
+            const spotId = req.params.spotIdForBooking
+            const checkId = await Spot.findByPk(spotId)
+            if (checkId === null){
+                return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 })
+            }
+            const bookings = await Bookings.findByPk(spotId)
+            return res.json(bookings)
+     })
         router.get(
             '/:spotId', restoreUser, async (req, res) => {
               const id = req.params.spotId
@@ -131,9 +140,9 @@ router.post("/:spotId/images", restoreUser, async (req, res) => {
 router.post('/:spotIdForBooking/bookings', restoreUser, async (req, res)=>{
     const {startDate, endDate} = req.body
     const currentUser = User.currentUserId(req, res)
-    const spotId = req.params.spotIdForBooking.spotId
-    const spotCheck = await Bookings.findByPk(currentUser)
-    if (spotCheck !== null || spotId > 100) {
+    const spotId = req.params.spotIdForBooking
+    const spotCheck = await Bookings.findByPk(spotId)
+    if (spotCheck || spotId > 100) {
         return res.status(404).json({ message: "Unable to create Booking for User", statusCode: 404 })
     }
    const  userId = currentUser
