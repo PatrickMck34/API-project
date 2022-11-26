@@ -102,18 +102,23 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Spot',
     defaultScope: {
       attributes: {
-        exclude: ["url", "avgRating", "previewImage", "numReviews", "avgStarRating"]
+        exclude: ["url", "numReviews", "avgStarRating"]
       }
     },
     scopes: {
     liveScope: {
       attributes: {
-        exclude: ["url", "avgRating"]
+        exclude: ["url", "avgStarRating", "numReviews"]
       }
     },
     detailScope: {
       attributes: {
         exclude: ["url", "avgRating", "previewImage"]
+      }
+    },
+    createScope: {
+      attributes: {
+        exclude: ["url", "avgRating", "previewImage", "avgStarRating", "numReviews"]
       }
     },
   

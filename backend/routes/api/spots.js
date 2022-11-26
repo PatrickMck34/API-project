@@ -1,6 +1,6 @@
 const express = require('express');
 const { Error } = require('sequelize');
-const { Spot, User, SpotImages, Reviews } = require('../../db/models');
+const { Spot, User, SpotImages, Reviews, Bookings } = require('../../db/models');
 
 const router = express.Router();
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
@@ -79,10 +79,11 @@ router.get(
            const currentUser = User.currentUserId(req, res)
           const ownerId = currentUser
         const {address, city, state, country, lat, lng, name, description, price } = req.body;
-            const spot = await Spot.create({ ownerId, address, city, state, country, lat, lng, name, description, price })
+            const spot = await Spot.scope('defaultScope').create({ ownerId, address, city, state, country, lat, lng, name, description, price })
+            const result = await Spot.scope('createScope').findByPk(ownerId)
             
 
-        return res.json(spot)
+        return res.json(result)
 
     })
 router.post("/:spotId/reviews", restoreUser, async (req, res) => {
@@ -95,8 +96,10 @@ router.post("/:spotId/reviews", restoreUser, async (req, res) => {
 
     const check = await Reviews.findByPk(spotId)
     if (check === null) {
-        const reviews = await Reviews.create({ spotId, review, stars })
-        return res.json(review)
+        const currentUser = User.currentUserId(req, res)
+         let userId = currentUser
+        const reviews = await Reviews.create({ userId, spotId, review, stars })
+        return res.json(reviews)
     }
 
     return res.status(404).json({ message: "Already submitted a review!", statusCode: 404 })
@@ -125,15 +128,28 @@ router.post("/:spotId/images", restoreUser, async (req, res) => {
 
     return res.json(result)
 })
-// router.delete("/spot-images/:spotId", async (req, res) => {
-//     const ids = req.params.spotImageId
-//     await SpotImages.deleteSpotImages(ids)
+router.post('/:spotIdForBooking/bookings', restoreUser, async (req, res)=>{
+    const {startDate, endDate} = req.body
+    const currentUser = User.currentUserId(req, res)
+    const spotId = req.params.spotIdForBooking.spotId
+    const spotCheck = await Bookings.findByPk(currentUser)
+    if (spotCheck !== null || spotId > 100) {
+        return res.status(404).json({ message: "Unable to create Booking for User", statusCode: 404 })
+    }
+   const  userId = currentUser
 
-//     return res.json("Successfully Deleted")
-// })
+    
+    const newBooking = await Bookings.create({userId, spotId, startDate, endDate, })
+    return res.json(newBooking)
+}) 
+
 router.delete("/:spotsId", async (req, res) => {
     const ids = req.params.spotsId
-    await Spot.deleteSpot(ids)
+    await Spot.destroy({
+        where:{
+            id : ids
+        }
+    })
 
     return res.json("Successfully Deleted")
 })
@@ -159,9 +175,11 @@ router.put(
         spots.description = description
         spots.price = price
 
+        const result = await Spot.scope("createScope").findByPk(spot)
+
 
         return res.json(
-            spots
+           result
         );
     });
 
