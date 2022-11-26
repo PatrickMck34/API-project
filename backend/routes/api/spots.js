@@ -1,6 +1,6 @@
 const express = require('express');
 const { Error } = require('sequelize');
-const { Spot, User, SpotImages, Reviews, Bookings } = require('../../db/models');
+const { Spot, User, SpotImages, Reviews, Bookings, ReviewImages } = require('../../db/models');
 
 const router = express.Router();
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
@@ -23,14 +23,32 @@ router.get(
             Spots
         });
     });
-    router.get(
-        '/:spotId/reviews', restoreUser, async (req, res) => {
-            const spotId = req.params
-            if (!spotId > 300) {
-                return res.json({ message: "Spot couldn't be found", statusCode: 404 })
-            }
-            return res.json({ message: "Spot couldn't be found", statusCode: 404 })
-        });
+    router.get('/:spotId/reviews', restoreUser, async (req, res) => {
+        const spotId = req.params.spotId
+        const spotCheck = await Spot.findByPk(spotId)
+        if (!spotCheck) {
+            return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 })
+        }
+                const currentUser = User.currentUserId(req, res)
+                const Rev = await Reviews.findAll({
+                    // where: {
+                    //     id : currentUser.userId
+                    //     },
+                        include: [{
+                            model: User.scope('userOwner')
+                        },
+                       
+                        {
+                            model: ReviewImages,
+                            attributes: ["id", "url"]}
+                
+                
+            ],
+            })
+            return res.json(Rev)
+                    
+            
+            }),
         router.get('/:spotIdForBooking/bookings',restoreUser, async (req, res)=>{
             const spotId = req.params.spotIdForBooking
             const checkId = await Spot.findByPk(spotId)
@@ -98,10 +116,11 @@ router.get(
 router.post("/:spotId/reviews", restoreUser, async (req, res) => {
     const spotId = req.params.spotId;
     let { review, stars } = req.body
-    if (spotId > 300) {
+    const spotCheck = await Spot.findByPk(spotId)
+    if (!spotCheck) {
         return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 })
-
     }
+    
 
     const check = await Reviews.findByPk(spotId)
     if (check === null) {
@@ -141,7 +160,7 @@ router.post('/:spotIdForBooking/bookings', restoreUser, async (req, res)=>{
     const {startDate, endDate} = req.body
     const currentUser = User.currentUserId(req, res)
     const spotId = req.params.spotIdForBooking
-    const spotCheck = await Bookings.findByPk(spotId)
+    const spotCheck = await Bookings.findByPk(currentUser)
     if (spotCheck || spotId > 100) {
         return res.status(404).json({ message: "Unable to create Booking for User", statusCode: 404 })
     }
