@@ -11,7 +11,7 @@ router.delete("/:reviewImageId", async (req, res) => {
     const ids = req.params.reviewImageId
     const spotCheck = await ReviewImages.findByPk(ids)
     if(spotCheck === null){
-        return res.status(404).json({ message: "Unable to find Review Image", statusCode: 404 })
+        return res.status(404).json({ message: "Unable to find Review", statusCode: 404 })
     }
     await ReviewImages.destroy({
         where:{

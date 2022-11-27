@@ -30,10 +30,10 @@ router.get(
             return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 })
         }
                 const currentUser = User.currentUserId(req, res)
-                const Rev = await Reviews.findAll({
-                    // where: {
-                    //     id : currentUser.userId
-                    //     },
+                const Review = await Reviews.findAll({
+                    where: {
+                        spotId : spotId
+                        },
                         include: [{
                             model: User.scope('userOwner')
                         },
@@ -45,7 +45,7 @@ router.get(
                 
             ],
             })
-            return res.json(Rev)
+            return res.json({Review})
                     
             
             }),
@@ -102,78 +102,78 @@ router.get(
                 );
             });
         
-        router.post("/", restoreUser, async (req, res) => {
-           const currentUser = User.currentUserId(req, res)
-          const ownerId = currentUser
-        const {address, city, state, country, lat, lng, name, description, price } = req.body;
-            const spot = await Spot.scope('defaultScope').create({ ownerId, address, city, state, country, lat, lng, name, description, price })
-            const result = await Spot.scope('createScope').findByPk(ownerId)
+            router.post("/:spotId/reviews", restoreUser, async (req, res) => {
+                const currentUser = User.currentUserId(req, res)
+                const spotId = req.params.spotId;
+                let { review, stars } = req.body
+                let userId = currentUser
+                const spotCheck = await Reviews.findByPk(userId)
+                if (spotCheck !== null) {
+                    return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 })
+                }
+                
+                
+                const check = await Reviews.findByPk(spotId)
+                if (check === null) {
+                    const reviews = await Reviews.create({ userId, spotId, review, stars })
+                    return res.json(reviews)
+                }
+                
+                return res.status(404).json({ message: "Already submitted a review!", statusCode: 404 })
+            })
+            router.post("/:spotId/images", restoreUser, async (req, res) => {
+                const spotId = req.params.spotId
+                const spotCheck = await Spot.findByPk(spotId)
+                if (!spotCheck) {
+                    return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 })
+                    
+                }
+                
+                let { url, preview } = req.body
+                
+                let spots = await SpotImages.create({
+                    url, preview, spotId
+                })
+                
+                //  spots.url = url
+                //  spots.preview = preview
+                id = spots.id
+                let result = { id, url, preview, }
+                //  ids = spots.id
+                //  prev = spots.preview
+                //  usl = spots.url
+                
+                return res.json(result)
+            })
+            router.post('/:spotIdForBooking/bookings', restoreUser, async (req, res)=>{
+                const {startDate, endDate} = req.body
+                const currentUser = User.currentUserId(req, res)
+                const spotId = req.params.spotIdForBooking
+                const spotCheck = await Bookings.findByPk(currentUser)
+                if (spotCheck || spotId > 100) {
+                    return res.status(404).json({ message: "Unable to create Booking for User", statusCode: 404 })
+                }
+                const  userId = currentUser
+                
+                
+                const newBooking = await Bookings.create({userId, spotId, startDate, endDate, })
+                return res.json(newBooking)
+            }) 
+            router.post("/", restoreUser, async (req, res) => {
+               const currentUser = User.currentUserId(req, res)
+              const ownerId = currentUser
+            const {address, city, state, country, lat, lng, name, description, price } = req.body;
+                const spot = await Spot.scope('defaultScope').create({ ownerId, address, city, state, country, lat, lng, name, description, price })
+                const result = await Spot.scope('createScope').findByPk(ownerId)
+                
+        
+            return res.json(result)
+        
+        })
             
-
-        return res.json(result)
-
-    })
-    router.post("/:spotId/reviews", restoreUser, async (req, res) => {
-        const currentUser = User.currentUserId(req, res)
-        const spotId = req.params.spotId;
-        let { review, stars } = req.body
-        let userId = currentUser
-        const spotCheck = await Reviews.findByPk(userId)
-    if (spotCheck !== null) {
-        return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 })
-    }
-    
-
-    const check = await Reviews.findByPk(spotId)
-    if (check === null) {
-        const reviews = await Reviews.create({ userId, spotId, review, stars })
-        return res.json(reviews)
-    }
-
-    return res.status(404).json({ message: "Already submitted a review!", statusCode: 404 })
-})
-router.post("/:spotId/images", restoreUser, async (req, res) => {
-    const spotId = req.params.spotId
-    const spotCheck = await Spot.findByPk(spotId)
-    if (!spotCheck) {
-        return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 })
-
-    }
-
-    let { url, preview } = req.body
-
-    let spots = await SpotImages.create({
-        url, preview, spotId
-    })
-
-    //  spots.url = url
-    //  spots.preview = preview
-    id = spots.id
-    let result = { id, url, preview, }
-    //  ids = spots.id
-    //  prev = spots.preview
-    //  usl = spots.url
-
-    return res.json(result)
-})
-router.post('/:spotIdForBooking/bookings', restoreUser, async (req, res)=>{
-    const {startDate, endDate} = req.body
-    const currentUser = User.currentUserId(req, res)
-    const spotId = req.params.spotIdForBooking
-    const spotCheck = await Bookings.findByPk(currentUser)
-    if (spotCheck || spotId > 100) {
-        return res.status(404).json({ message: "Unable to create Booking for User", statusCode: 404 })
-    }
-   const  userId = currentUser
-
-    
-    const newBooking = await Bookings.create({userId, spotId, startDate, endDate, })
-    return res.json(newBooking)
-}) 
-
-router.delete("/:spotsId", async (req, res) => {
-    const ids = req.params.spotsId
-    const spotCheck = await Spot.findByPk(ids)
+            router.delete("/:spotsId", async (req, res) => {
+                const ids = req.params.spotsId
+                const spotCheck = await Spot.findByPk(ids)
     if(spotCheck === null){
         return res.status(404).json({ message: "Unable to find Spot", statusCode: 404 })
     }

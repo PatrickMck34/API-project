@@ -10,7 +10,7 @@ router.get('/current',restoreUser, async (req, res)=>{
    
     const Rev = await Reviews.findAll({
         where: {
-             userId: 3
+             userId: userId
             },
             include: [{
                 model: User.scope('userOwner')
@@ -26,11 +26,13 @@ router.get('/current',restoreUser, async (req, res)=>{
     
 ],
 })
-let reviewId = 4
-const revImages = await ReviewImages.findAll({
+
+const revImages = await Reviews.findAll({
     where: {
         id: 4
-    }
+    }, include: [{
+        model: ReviewImages
+    }]
 })
 
 return res.json(Rev)
@@ -41,21 +43,24 @@ return res.json(Rev)
 
 router.post('/:reviewId/images', restoreUser, async (req, res)=>{
     const reviewId = req.params.reviewId
-   let  url = req.body.url
+     
+     let {id, url} = req.body
     if(reviewId > 300){
         return res.status(404).json({ message: "Review couldn't be found", statusCode: 404 })
     }
+    
     // const checkReviewId = await Reviews.findByPk(reviewId.reviewId)
     // const urlImage = req.body
      text = url
-    const newImage = await ReviewImages.create(text)
-    const id = newImage.id
-    
-     const resu = {id, url}
-    const result = await ReviewImages.scope("defaultScope").findByPk(reviewId.reviewId)
     
     
-    return res.json(resu)
+    
+    
+    const result = await ReviewImages.scope("defaultScope").create({id, url, reviewId, })
+    const Rest = await ReviewImages.findByPk(reviewId)
+    
+    
+    return res.json(Rest)
     
 })
 router.delete('/:reviewId', async (req, res)=>{
