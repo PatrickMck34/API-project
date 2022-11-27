@@ -6,11 +6,12 @@ const { setTokenCookie, restoreUser } = require('../../utils/auth');
 db = require('../../../backend/config/database')
 
 router.get('/current',restoreUser, async (req, res)=>{
-    const currentUser = User.currentUserId(req, res)
+    const userId = User.currentUserId(req, res)
+   
     const Rev = await Reviews.findAll({
-        // where: {
-        //     id : currentUser.userId
-        //     },
+        where: {
+             userId : userId
+            },
             include: [{
                 model: User.scope('userOwner')
             },
@@ -19,10 +20,19 @@ router.get('/current',restoreUser, async (req, res)=>{
             },
             {
                 model: ReviewImages
-    }
+                
+                }
+            
     
 ],
 })
+let reviewId = 4
+const revImages = await ReviewImages.findAll({
+    where: {
+        id: 4
+    }
+})
+
 return res.json(Rev)
         
 
@@ -37,10 +47,10 @@ router.post('/:reviewId/images', restoreUser, async (req, res)=>{
     }
     // const checkReviewId = await Reviews.findByPk(reviewId.reviewId)
     // const urlImage = req.body
-     
-    const newImage = await ReviewImages.scope('defaultScope').create(url)
+     text = url
+    const newImage = await ReviewImages.create({text})
     const id = newImage.id
-     url = newImage.url
+    
      const resu = {id, url}
     const result = await ReviewImages.scope("defaultScope").findByPk(reviewId.reviewId)
     
