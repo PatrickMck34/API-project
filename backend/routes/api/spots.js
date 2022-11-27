@@ -7,10 +7,9 @@ const { setTokenCookie, restoreUser } = require('../../utils/auth');
 
 db = require('../../../backend/config/database')
 
-
 router.get(
     '/current', restoreUser, async (req, res) => {
-
+        
         //    const user = User.scope('currentUser')
         const currentUser = User.currentUserId(req, res)
         const Spots = await Spot.scope('liveScope').findAll({
@@ -18,7 +17,7 @@ router.get(
                 ownerId: currentUser
             }
         })
-
+        
         return res.json({
             Spots
         });
@@ -29,27 +28,43 @@ router.get(
         if (!spotCheck) {
             return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 })
         }
-                const currentUser = User.currentUserId(req, res)
-                const Review = await Reviews.findAll({
-                    where: {
-                        spotId : spotId
-                        },
-                        include: [{
-                            model: User.scope('userOwner')
-                        },
-                       
-                        {
-                            model: ReviewImages,
-                            attributes: ["id", "url"]}
+        const currentUser = User.currentUserId(req, res)
+        const Review = await Reviews.findAll({
+            where: {
+                spotId : spotId
+            },
+            include: [{
+                model: User.scope('userOwner')
+            },
+            
+            {
+                model: ReviewImages,
+                attributes: ["id", "url"]}
                 
                 
             ],
-            })
-            return res.json({Review})
-                    
-            
-            }),
-        router.get('/:spotIdForBooking/bookings',restoreUser, async (req, res)=>{
+        })
+        return res.json({Review})
+        
+        
+    }),
+    // router.get('/spots?page=1&size=3', async (req, res)=>{
+    //     let { page, size } = req.query;
+    //     page = parseInt(page)
+    //     size = parseInt(size)
+    //     if (Number.isNaN(page)) page = 1;
+    //     if (Number.isNaN(size)) size = 20;
+    //     if (page < 0) page = 1
+    //     if (size < 0) size = 1
+         
+    //     const allSpotsQuery = await Spot.findAll({
+    //         where,
+    //         limit: size,
+    //     offset: (page - 1) * size,
+    //     })
+    //     return res.json({page, size})
+    // })
+    router.get('/:spotIdForBooking/bookings',restoreUser, async (req, res)=>{
             const spotId = req.params.spotIdForBooking
             const checkId = await Spot.findByPk(spotId)
             if (checkId === null){
@@ -91,16 +106,39 @@ router.get(
             
             router.get(
             '/', async (req, res) => {
+                
+                let { page, size } = req.query;
+                if(page){
+        page = parseInt(page)
+        size = parseInt(size)
+        if (Number.isNaN(page)) page = 0;
+        if (Number.isNaN(size)) size = 20;
+        if (page < 0) page = 1
+        if (size < 0) size = 1
         
-                const Spots = await Spot.getSpotsAll(req, res)
+                const Spots = await Spot.findAll({
+                    limit: size ,
+    offset: (page - 1) * size,
+                })
+            
         
         
         
+                return res.json({
+                    Spots, page, size
+            });}
+            const Spots = await Spot.findAll({
+                
+            })
         
-                return res.json(
-                    Spots,
-                );
+    
+    
+    
+            return res.json({
+                Spots
+        })
             });
+    
         
             router.post("/:spotId/reviews", restoreUser, async (req, res) => {
                 const currentUser = User.currentUserId(req, res)
