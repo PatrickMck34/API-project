@@ -113,19 +113,19 @@ router.get(
         return res.json(result)
 
     })
-router.post("/:spotId/reviews", restoreUser, async (req, res) => {
-    const spotId = req.params.spotId;
-    let { review, stars } = req.body
-    const spotCheck = await Spot.findByPk(spotId)
-    if (!spotCheck) {
+    router.post("/:spotId/reviews", restoreUser, async (req, res) => {
+        const currentUser = User.currentUserId(req, res)
+        const spotId = req.params.spotId;
+        let { review, stars } = req.body
+        let userId = currentUser
+        const spotCheck = await Reviews.findByPk(userId)
+    if (spotCheck !== null) {
         return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 })
     }
     
 
     const check = await Reviews.findByPk(spotId)
     if (check === null) {
-        const currentUser = User.currentUserId(req, res)
-         let userId = currentUser
         const reviews = await Reviews.create({ userId, spotId, review, stars })
         return res.json(reviews)
     }

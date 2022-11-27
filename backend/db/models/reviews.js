@@ -5,13 +5,7 @@ const {
 
 module.exports = (sequelize, DataTypes) => {
   class Reviews extends Model {
-    static async getReviewsAll(req){
-      const {spotId, userId, review, stars} = req.query
-        const reviews = await Reviews.findByPk(spotId)
-            
-            
-            return (reviews)
-          }
+    
     static associate(models) {
       Reviews.hasMany(models.ReviewImages)
       Reviews.belongsTo(models.User, {foreignKey:'userId'})
@@ -24,8 +18,16 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER,
     review: DataTypes.STRING,
     stars: DataTypes.INTEGER,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      
+    },
   }, {
     sequelize,
     modelName: 'Reviews',

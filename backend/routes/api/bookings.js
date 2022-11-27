@@ -32,6 +32,25 @@ router.delete("/:bookingId", async (req, res) => {
 
     return res.json("Successfully Deleted")
 })
+    router.put(
+        '/:bookingId', async (req, res) => {
+            const spot = req.params.bookingId
+            const {startDate, endDate } = req.body
+    
+            let spots = await Bookings.findByPk(spot)
+            if(spots === null){
+                return res.send({ message: "Booking couldn't be found", statusCode: 404 })
+            }
+            await spots.update({startDate: startDate, endDate: endDate})
+            // spots = review
+            
+    
+            const result = await Bookings.findByPk(spot)
+    
+    
+            return res.json(
+               result
+            )})
 
 
 module.exports = router;
