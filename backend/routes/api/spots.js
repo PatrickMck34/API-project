@@ -195,7 +195,21 @@ router.get(
                 
                 
                 const newBooking = await Bookings.create({userId, spotId, startDate, endDate, })
-                return res.json(newBooking)
+                
+                    const Booking = await Bookings.findAll({
+                        where: {
+                            spotId: spotId
+                        },
+                        include: [{
+                            model: User.scope("userOwner")
+
+                        }]
+                    })
+                if (Booking) {
+                    Booking = Bookings
+                return res.json(Bookings)
+                }
+            
             }) 
             router.post("/", restoreUser, async (req, res) => {
                const currentUser = User.currentUserId(req, res)

@@ -16,7 +16,10 @@ router.get('/current',restoreUser, async (req, res)=>{
         },]
 
        })
-       return res.json({bookings})
+       if(bookings){
+        Bookings = bookings
+       return res.json({Bookings})
+       }
 })
 router.delete("/:bookingId", async (req, res) => {
     const ids = req.params.bookingId
