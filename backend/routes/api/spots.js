@@ -77,6 +77,19 @@ router.get(
             if (checkId === null){
                 return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 })
             }
+            // if(spotId === 3){
+            //     const Booking = Bookings.findAll({
+            //                 where: {
+            //                     spotId: spotId
+            //                 }
+            //             })
+            //             if(Booking){
+            //                 const Bookings = Booking
+            //                 return res.status(200).json(Bookings)
+            //             }
+                        
+                    
+            // }
             // if(userId.id !== spotId){
             //     const Booking = Bookings.findAll({
             //         where: {
@@ -172,9 +185,24 @@ router.get(
                 let { review, stars } = req.body
                 let userId = currentUser
                 const spotCheck = await Reviews.findByPk(userId)
-                if (spotCheck !== null && (spotCheck.userId !== currentUser)) {
-                    return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 })
-                }
+               
+                    // if(spotId === 3){
+                    //     const Booking = Reviews.findAll({
+                    //                 where: {
+                    //                     spotId: spotId
+                    //                 }
+                    //             })
+                    //             if(Booking){
+                    //                 const Bookings = Booking
+                    //                 return res.status(200).json(Bookings)
+                    //             }
+                // }
+                if (spotCheck !== null) {
+                    return res.status(404).json({ message: "User already submitted a review", statusCode: 403 })}
+                    if(!spotCheck){
+                        res.status(404).json({ message: "Spot can not be found", statusCode: 404 })}
+                    
+                
                 
                 
                 const check = await Reviews.findByPk(spotId)
