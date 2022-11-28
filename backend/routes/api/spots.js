@@ -166,9 +166,11 @@ router.get(
                 
                 const check = await Reviews.findByPk(spotId)
                 if (check === null) {
-                    const Reviews = await Reviews.create({ userId, spotId, review, stars })
+                    const reviews = await Reviews.create({ userId, spotId, review, stars })
+                    if (reviews){
+                       const Reviews = reviews
                     return res.json(Reviews).statusCode(201)
-                }
+                }}
                 
                 return res.status(404).json({ message: "Already submitted a review!", statusCode: 404 })
             })
