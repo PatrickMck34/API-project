@@ -130,10 +130,6 @@ router.get(
             const Spots = await Spot.findAll({
                 
             })
-        
-    
-    
-    
             return res.json({
                 Spots
         })
@@ -201,7 +197,7 @@ router.get(
                const currentUser = User.currentUserId(req, res)
               const ownerId = currentUser
             const {address, city, state, country, lat, lng, name, description, price } = req.body;
-                const spot = await Spot.scope('defaultScope').create({ ownerId, address, city, state, country, lat, lng, name, description, price })
+                const spot = await Spot.scope('createScope').create({ownerId, address, city, state, country, lat, lng, name, description, price })
                 const result = await Spot.scope('createScope').findByPk(ownerId)
                 
         

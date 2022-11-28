@@ -10,7 +10,7 @@ router.get('/current',restoreUser, async (req, res)=>{
    
     const Rev = await Reviews.findAll({
         where: {
-             userId: userId
+            userId: userId
             },
             include: [{
                 model: User.scope('userOwner')
