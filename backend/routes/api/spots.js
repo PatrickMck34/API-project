@@ -31,7 +31,7 @@ router.get(
         const currentUser = User.currentUserId(req, res)
         const Review = await Reviews.findAll({
             where: {
-                spotId : spotId
+                id : spotId
             },
             include: [{
                 model: User.scope('userOwner')
