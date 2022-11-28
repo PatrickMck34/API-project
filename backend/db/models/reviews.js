@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
   class Reviews extends Model {
     
     static associate(models) {
-      Reviews.hasMany(models.ReviewImages)
+      Reviews.hasMany(models.ReviewImages, {foreignKey: 'reviewId'})
       Reviews.belongsTo(models.User, {foreignKey:'userId'})
       Reviews.belongsTo(models.Spot, {foreignKey:'spotId'})
       // define association here
@@ -32,12 +32,6 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Reviews',
-    defaultScope: {
-      attributes: {
-       
-      }
-    },
-   
   });
   return Reviews;
 };
