@@ -77,10 +77,10 @@ router.get(
             if (checkId === null){
                 return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 })
             }
-            if(userId === spotId){
+            if(userId.id !== spotId){
                 const Booking = Bookings.findAll({
                     where: {
-                        spotId: spotId
+                        spotId: spotId.id
                     }
                 })
                 if(Booking){
