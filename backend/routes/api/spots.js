@@ -48,8 +48,10 @@ router.get(
                 
             ],
         })
-        return res.json({Review})
-        
+        if(Review){
+            const Reviews = Review
+        return res.json({Reviews})
+        }
         
     }),
     // router.get('/spots?page=1&size=3', async (req, res)=>{
@@ -74,8 +76,18 @@ router.get(
             if (checkId === null){
                 return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 })
             }
-            const bookings = await Bookings.findByPk(spotId)
-            return res.json(bookings)
+            const bookings = await Bookings.findAll({
+                where: {
+                    spotId : spotId
+                },
+                include: [{
+                    model: Users.scope("userOwner")
+                }]
+
+            })
+            if(bookings){
+                const Bookings = bookings
+            return res.json({Bookings})
      })
         router.get(
             '/:spotId', restoreUser, async (req, res) => {
