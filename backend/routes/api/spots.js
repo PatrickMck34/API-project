@@ -72,7 +72,7 @@ router.get(
     // })
     router.get('/:spotIdForBooking/bookings',restoreUser, async (req, res)=>{
             const spotId = req.params.spotIdForBooking
-            const userId = currentUserId(req, res)
+            const userId = User.currentUserId(req, res)
             const checkId = await Spot.findByPk(spotId)
             if (checkId === null){
                 return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 })
@@ -225,10 +225,8 @@ router.get(
                 
                 const newBooking = await Bookings.create({userId, spotId, startDate, endDate, })
                 
-                    const Booking = await Bookings.findAll({
-                        where: {
-                            spotId: spotId
-                        },
+                    const Booking = await Bookings.findByPk(spotId,{
+                        
                         include: [{
                             model: User.scope("userOwner")
 
