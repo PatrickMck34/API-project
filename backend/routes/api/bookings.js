@@ -33,7 +33,7 @@ router.delete("/:bookingId", async (req, res) => {
         }
     })
 
-    return res.json("Successfully Deleted")
+    return res.json({message:"Successfully Deleted", statusCode: 200})
 })
     router.put(
         '/:bookingId', async (req, res) => {

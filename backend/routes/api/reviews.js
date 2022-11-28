@@ -63,7 +63,7 @@ router.delete('/:reviewId', async (req, res)=>{
             id :reviewId
         }
     })
-    return res.json('Success')
+    return res.status(200).json({message:'Sucessfully deleted', statusCode: 200})
 }),
 
 router.put(

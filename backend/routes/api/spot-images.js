@@ -19,6 +19,6 @@ router.delete("/:spotImageId", async (req, res) => {
         }
     })
 
-    return res.json("Successfully Deleted")
+    return res.json({message:"Successfully Deleted", statusCode: 200})
 })
 module.exports = router;

@@ -269,7 +269,7 @@ router.get(
     })
 
 
-    return res.json("Successfully Deleted")
+    return res.json({message:"Successfully Deleted", statusCode: 200})
 })
 
 router.put(
