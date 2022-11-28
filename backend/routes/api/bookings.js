@@ -42,7 +42,7 @@ router.delete("/:bookingId", async (req, res) => {
     
             let spots = await Bookings.findByPk(spot)
             if(spots === null){
-                return res.send({ message: "Booking couldn't be found", statusCode: 404 })
+                return res.status(404).send({ message: "Booking couldn't be found", statusCode: 404 })
             }
             await spots.update({startDate: startDate, endDate: endDate})
             // spots = review

@@ -49,7 +49,7 @@ router.post('/:reviewId/images', restoreUser, async (req, res)=>{
     const result = await ReviewImages.scope("defaultScope").create({id, reviewId, ReviewId, url})
     const Rest = await ReviewImages.scope("defaultScope").findByPk(revid)
     
-    return res.status(201).json(Rest)
+    return res.status(200).json(Rest)
     
 })
 router.delete('/:reviewId', async (req, res)=>{
@@ -73,13 +73,13 @@ router.put(
 
         let spots = await Reviews.findByPk(spot)
         if(spots === null){
-            return res.send({ message: "Review couldn't be found", statusCode: 404 })
+            return res.status(404).send({ message: "Review couldn't be found", statusCode: 404 })
         }
         await spots.update({ review: review})
         spots.review = review
         
 
-        const result = await Reviews.findByPk(spot)
+        const result = await Reviews.scope("liveScope").findByPk(spot)
 
 
         return res.json(

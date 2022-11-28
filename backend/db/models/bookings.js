@@ -26,6 +26,18 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Bookings',
+    defaultScope: {
+      attributes: {
+        
+      }
+    },
+    scopes: {
+      liveScope: {
+        attributes: {
+          exclude: ["userId", "id", "createdAt", "updatedAt"]
+         
+        }
+      },}
   });
   return Bookings;
 };

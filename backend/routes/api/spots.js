@@ -72,6 +72,7 @@ router.get(
     // })
     router.get('/:spotIdForBooking/bookings',restoreUser, async (req, res)=>{
             const spotId = req.params.spotIdForBooking
+            const userId = currentUserId(req, res)
             const checkId = await Spot.findByPk(spotId)
             if (checkId === null){
                 return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 })
@@ -85,6 +86,18 @@ router.get(
                 }]
 
             })
+            if(userId === spotId){
+                const Booking = Bookings.findAll({
+                    where: {
+                        spotId: spotId
+                    }
+                })
+                if(Booking){
+                    const Bookings = Booking
+                    return res.status(200).json(Bookings)
+                }
+                
+            }
             if(bookings){
                 const Bookings = bookings
             return res.json({Bookings})
@@ -115,7 +128,7 @@ router.get(
                         },
                     ]
                 })
-                if(checkSpot === null){return res.send({ message: "Spot couldn't be found", statusCode: 404 })}
+                if(checkSpot === null){return res.status(404).send({ message: "Spot couldn't be found", statusCode: 404 })}
                 result = checkSpot
                 
                 return res.json(result)
@@ -197,7 +210,7 @@ router.get(
                 //  prev = spots.preview
                 //  usl = spots.url
               
-                return res.status(201).json(result)
+                return res.status(200).json(result)
             })
             router.post('/:spotIdForBooking/bookings', restoreUser, async (req, res)=>{
                 const {startDate, endDate} = req.body
@@ -221,9 +234,12 @@ router.get(
 
                         }]
                     })
+                    // if(userId === spotId){
+                    //     const Booking = await Bookings.findByP
+                    // }
                 if (Booking) {
                     const Bookings = Booking
-                return res.status(201).json({Bookings}).statusCode(201)
+                return res.status(201).json(Bookings)
                 }
             
             }) 
@@ -262,7 +278,7 @@ router.put(
 
         let spots = await Spot.findByPk(spot)
         if(spots === null){
-            return res.send({ message: "Spot couldn't be found", statusCode: 404 })
+            return res.status(404).send({ message: "Spot couldn't be found", statusCode: 404 })
         }
         await spots.update({ address: address, city: city, state: state, country: country, lat: lat, lng: lng, name: name, description: description, price: price })
         spots.ownerId = ownerId
