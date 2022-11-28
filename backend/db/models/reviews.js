@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Reviews',
     defaultScope: {
       attributes: {
-        exclude: [ "reviewId"]
+       
       }
     },
    
