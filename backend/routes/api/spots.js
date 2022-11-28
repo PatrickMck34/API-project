@@ -39,7 +39,10 @@ router.get(
             
             {
                 model: ReviewImages,
-                attributes: ["id", "url"]}
+                attributes: {
+                    "url":"url"}
+            }
+            
                 
                 
             ],
