@@ -199,8 +199,8 @@ router.get(
                 // }
                   if (spotId > 300){
                     res.status(404).json({ message: "Spot cant be found", statusCode: 404 })}
-                    
-                  }
+                  
+                  
                     if(spotCheck !== null){
                         res.status(403).json({ message: "Already submitted review", statusCode: 404 })}
                     
@@ -247,9 +247,15 @@ router.get(
                 const currentUser = User.currentUserId(req, res)
                 const spotId = req.params.spotIdForBooking
                 const spotCheck = await Bookings.findByPk(currentUser)
-                if (spotCheck || spotId > 100) {
+                if (spotCheck) {
+                    return res.status(404).json({ message: "Sorry, this spot is already booked for the specified dates", statusCode: 403, "errors": {
+                        startDate: "conflicts with existing booking", endDate: "conflicts with existing booking" }})
+                }
+                if (spotId > 300){
                     return res.status(404).json({ message: "Unable to create Booking for User", statusCode: 404 })
                 }
+
+                
                 const  userId = currentUser
                 
                 
