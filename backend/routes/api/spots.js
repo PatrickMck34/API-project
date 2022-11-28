@@ -39,8 +39,9 @@ router.get(
             
             {
                 model: ReviewImages,
-                attributes: {
-                    "url":"url"}
+                where: {
+                    id: spotId
+                }
             }
             
                 

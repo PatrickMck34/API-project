@@ -19,8 +19,10 @@ router.get('/current',restoreUser, async (req, res)=>{
                 model: Spot.scope("reviewScope")
             },
             {
-                model: ReviewImages.scope("defaultScope")
-                
+                model: ReviewImages.scope("defaultScope"),
+                where: {
+                     id: userId
+                }
                 }
             
     
@@ -42,7 +44,7 @@ router.post('/:reviewId/images', restoreUser, async (req, res)=>{
     if(revid > 300){
         return res.status(404).json({ message: "Review couldn't be found", statusCode: 404 })
     }
-    const result = await ReviewImages.scope("defaultScope").create({id, url})
+    const result = await ReviewImages.scope("defaultScope").create({id, revid, url})
     const Rest = await ReviewImages.scope("defaultScope").findByPk(revid)
     
     return res.json(Rest)
