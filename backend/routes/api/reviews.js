@@ -10,7 +10,7 @@ router.get('/current',restoreUser, async (req, res)=>{
    
     let Review = await Reviews.findAll({
         where: {
-            id: userId
+            userId: userId
             },
             include: [{
                 model: User.scope('userOwner')
@@ -27,13 +27,8 @@ router.get('/current',restoreUser, async (req, res)=>{
 ],
 })
 
-const revImages = await Reviews.findAll({
-    where: {
-        id: 4
-    }, include: [{
-        model: ReviewImages
-    }]
-})
+
+
   
 return res.json({Review})
         
