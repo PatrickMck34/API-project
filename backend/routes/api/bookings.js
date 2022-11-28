@@ -17,7 +17,7 @@ router.get('/current',restoreUser, async (req, res)=>{
 
        })
        if(bookings){
-        Bookings = bookings
+        const Bookings = bookings
        return res.json({Bookings})
        }
 })

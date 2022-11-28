@@ -206,7 +206,7 @@ router.get(
                         }]
                     })
                 if (Booking) {
-                    Booking = Bookings
+                    const Bookings = Booking
                 return res.json(Bookings)
                 }
             
