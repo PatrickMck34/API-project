@@ -172,7 +172,7 @@ router.get(
                 let { review, stars } = req.body
                 let userId = currentUser
                 const spotCheck = await Reviews.findByPk(userId)
-                if (spotCheck !== null) {
+                if (spotCheck !== null && (spotCheck.userId !== currentUser)) {
                     return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 })
                 }
                 
@@ -183,7 +183,7 @@ router.get(
                     if (reviews){
                        const Reviews = reviews
                        
-                    return res.status(201).json(Reviews).statusCode(201)
+                    return res.status(201).json(Reviews)
                 }}
                 
                 return res.status(404).json({ message: "Already submitted a review!", statusCode: 404 })
