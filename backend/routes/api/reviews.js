@@ -42,7 +42,9 @@ router.post('/:reviewId/images', restoreUser, async (req, res)=>{
     if(revid > 300){
         return res.status(404).json({ message: "Review couldn't be found", statusCode: 404 })
     }
-    const result = await ReviewImages.scope("defaultScope").create({id, revid, url})
+    let reviewId = revid
+    let ReviewId = revid
+    const result = await ReviewImages.scope("defaultScope").create({id, reviewId, ReviewId, url})
     const Rest = await ReviewImages.scope("defaultScope").findByPk(revid)
     
     return res.json(result)
