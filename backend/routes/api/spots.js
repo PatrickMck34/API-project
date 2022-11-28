@@ -194,7 +194,7 @@ router.get(
                 //  prev = spots.preview
                 //  usl = spots.url
                 
-                return res.json(result)
+                return res.json(result).statusCode(201)
             })
             router.post('/:spotIdForBooking/bookings', restoreUser, async (req, res)=>{
                 const {startDate, endDate} = req.body
@@ -220,7 +220,7 @@ router.get(
                     })
                 if (Booking) {
                     const Bookings = Booking
-                return res.json({Bookings})
+                return res.json({Bookings}).statusCode(201)
                 }
             
             }) 
@@ -232,7 +232,7 @@ router.get(
                 const result = await Spot.scope('createScope').findByPk(ownerId)
                 
         
-            return res.json(result)
+            return res.json(result).statusCode(201)
         
         })
             
