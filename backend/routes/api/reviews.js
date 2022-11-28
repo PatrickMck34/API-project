@@ -8,7 +8,7 @@ db = require('../../../backend/config/database')
 router.get('/current',restoreUser, async (req, res)=>{
     const userId = User.currentUserId(req, res)
    
-    const Rev = await Reviews.findAll({
+    let Review = await Reviews.findAll({
         where: {
             userId: userId
             },
@@ -34,8 +34,8 @@ const revImages = await Reviews.findAll({
         model: ReviewImages
     }]
 })
-
-return res.json(Rev)
+  
+return res.json({Review})
         
 
 }),
@@ -47,10 +47,10 @@ router.post('/:reviewId/images', restoreUser, async (req, res)=>{
     if(revid > 300){
         return res.status(404).json({ message: "Review couldn't be found", statusCode: 404 })
     }
-    const result = await ReviewImages.create({id, url})
-    const Rest = await ReviewImages.findByPk(revid)
+    const result = await ReviewImages.scope("defaultScope").create({id, url})
+    const Rest = await ReviewImages.scope("defaultScope").findByPk(revid)
     
-    return res.json(result)
+    return res.json(Rest)
     
 })
 router.delete('/:reviewId', async (req, res)=>{

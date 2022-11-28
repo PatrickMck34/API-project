@@ -32,6 +32,19 @@ router.post(
   validateSignup,
   async (req, res) => {
     let { email, password, username, firstName, lastName, token } = req.body;
+    const userEmail = await User.findAll({
+      where:{
+        email: email
+      }
+    })
+    if(userEmail){
+      let message =  "User already exists"
+      let statusCode = 403
+      let errors = {"email": "User with that email already exists"}
+      let result = {message, statusCode, errors}
+      return res.json(result)
+      
+    }
     let users = await User.scope('defaultScope').signup({ email, password, username, firstName, lastName, token});
      
     
