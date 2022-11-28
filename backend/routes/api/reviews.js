@@ -47,7 +47,7 @@ router.post('/:reviewId/images', restoreUser, async (req, res)=>{
     const result = await ReviewImages.scope("defaultScope").create({id, reviewId, ReviewId, url})
     const Rest = await ReviewImages.scope("defaultScope").findByPk(revid)
     
-    return res.json(result)
+    return res.json(Rest)
     
 })
 router.delete('/:reviewId', async (req, res)=>{
