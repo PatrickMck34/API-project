@@ -8,7 +8,7 @@ db = require('../../../backend/config/database')
 router.get('/current',restoreUser, async (req, res)=>{
     const userId = User.currentUserId(req, res)
    
-    let Review = await Reviews.findAll({
+    let Review = await Reviews.scope("liveScope").findAll({
         where: {
             id: userId
             },
@@ -29,7 +29,7 @@ router.get('/current',restoreUser, async (req, res)=>{
 
 
 if(Review){
-    const Reviews = Review.scope("liveScope")
+    const Reviews = Review
     return res.json({Reviews})
 }
   

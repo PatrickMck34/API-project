@@ -29,7 +29,7 @@ router.get(
             return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 })
         }
         const currentUser = User.currentUserId(req, res)
-        const Review = await Reviews.findAll({
+        const Review = await Reviews.scope("liveScope").findAll({
             where: {
                 id : spotId
             },
@@ -49,7 +49,7 @@ router.get(
             ],
         })
         if(Review){
-            const Reviews = Review.scope("liveScope")
+            const Reviews = Review
         return res.json({Reviews})
         }
         
