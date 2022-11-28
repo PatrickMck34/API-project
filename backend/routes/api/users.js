@@ -37,7 +37,7 @@ router.post(
         email: email
       }
     })
-    if(userEmail){
+    if(!userEmail){
       let message =  "User already exists"
       let statusCode = 403
       let errors = {"email": "User with that email already exists"}
