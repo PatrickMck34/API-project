@@ -247,12 +247,12 @@ router.get(
                 const currentUser = User.currentUserId(req, res)
                 const spotId = req.params.spotIdForBooking
                 const spotCheck = await Bookings.findByPk(currentUser)
+                if (spotId > 300){
+                    return res.status(404).json({ message: "Unable to create Booking for User", statusCode: 404 })
+                }
                 if (spotCheck) {
                     return res.status(404).json({ message: "Sorry, this spot is already booked for the specified dates", statusCode: 403, "errors": {
                         startDate: "conflicts with existing booking", endDate: "conflicts with existing booking" }})
-                }
-                if (spotId > 300){
-                    return res.status(404).json({ message: "Unable to create Booking for User", statusCode: 404 })
                 }
 
                 
