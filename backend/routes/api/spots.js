@@ -88,7 +88,8 @@ router.get(
             if(bookings){
                 const Bookings = bookings
             return res.json({Bookings})
-     })
+            }
+        })
         router.get(
             '/:spotId', restoreUser, async (req, res) => {
               const id = req.params.spotId
