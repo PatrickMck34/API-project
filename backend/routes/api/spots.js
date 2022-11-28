@@ -81,7 +81,7 @@ router.get(
                     spotId : spotId
                 },
                 include: [{
-                    model: Users.scope("userOwner")
+                    model: User.scope("userOwner")
                 }]
 
             })
