@@ -29,7 +29,7 @@ router.get('/current',restoreUser, async (req, res)=>{
 
 
 if(Review){
-    const Reviews = Review
+    const Reviews = Review.scope("liveScope")
     return res.json({Reviews})
 }
   

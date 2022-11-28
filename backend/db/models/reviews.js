@@ -37,6 +37,12 @@ module.exports = (sequelize, DataTypes) => {
         exclude: ["createdAt", "updatedAt"]
       }
     },
+    scopes: {
+      liveScope: {
+        attributes: {
+         
+        }
+      },}
   });
   return Reviews;
 };
