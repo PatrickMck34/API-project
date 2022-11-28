@@ -23,7 +23,7 @@ module.exports = {
     */
    await queryInterface.bulkInsert(options, [
     {
-    id: 1,
+    
     ownerId: 1,
     address: '123 new place street',
     city: 'NewTown',
@@ -39,7 +39,7 @@ module.exports = {
     numReviews: 1
   },
   {
-    id: 2,
+    
     ownerId: 2,
     address: '123 second place street',
     city: 'NewTown',
@@ -55,7 +55,6 @@ avgStarRating: 4.1,
     numReviews: 1
   },
   {
-    id: 3 ,
     ownerId: 3,
   address: '123 new place street',
     city: 'NewTown',
