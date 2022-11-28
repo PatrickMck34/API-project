@@ -197,9 +197,9 @@ router.get(
                     //                 return res.status(200).json(Bookings)
                     //             }
                 // }
-                if (spotCheck !== null) {
+                if (spotCheck === 4) {
                     return res.status(404).json({ message: "User already submitted a review", statusCode: 403 })}
-                    if(!spotCheck){
+                    if(spotCheck !== null){
                         res.status(404).json({ message: "Spot can not be found", statusCode: 404 })}
                     
                 
