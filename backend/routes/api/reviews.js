@@ -49,7 +49,9 @@ router.post('/:reviewId/images', restoreUser, async (req, res)=>{
     }
     const result = await ReviewImages.create({url})
     const Rest = await ReviewImages.findByPk(revid)
-    return res.json(Rest)
+    revid.url = url
+    revid.id = id
+    return res.json({id, url})
     
 })
 router.delete('/:reviewId', async (req, res)=>{
