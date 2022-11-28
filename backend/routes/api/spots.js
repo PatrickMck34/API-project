@@ -80,7 +80,7 @@ router.get(
             if(userId.id !== spotId){
                 const Booking = Bookings.findAll({
                     where: {
-                        spotId: spotId.id
+                        spotId: spotId
                     }
                 })
                 if(Booking){
