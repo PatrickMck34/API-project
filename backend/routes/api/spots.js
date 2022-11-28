@@ -77,15 +77,6 @@ router.get(
             if (checkId === null){
                 return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 })
             }
-            const bookings = await Bookings.findAll({
-                where: {
-                    spotId : spotId
-                },
-                include: [{
-                    model: User.scope("userOwner")
-                }]
-
-            })
             if(userId === spotId){
                 const Booking = Bookings.findAll({
                     where: {
@@ -98,6 +89,15 @@ router.get(
                 }
                 
             }
+            const bookings = await Bookings.findAll({
+                where: {
+                    spotId : spotId
+                },
+                include: [{
+                    model: User.scope("userOwner")
+                }]
+
+            })
             if(bookings){
                 const Bookings = bookings
             return res.json({Bookings})
@@ -225,16 +225,19 @@ router.get(
                 
                 const newBooking = await Bookings.create({userId, spotId, startDate, endDate, })
                 
-                    const Booking = await Bookings.findByPk(spotId,{
+                    const Booking = await Bookings.findByPk(spotId)
                         
-                        include: [{
-                            model: User.scope("userOwner")
+                    
 
-                        }]
-                    })
-                    // if(userId === spotId){
-                    //     const Booking = await Bookings.findByP
-                    // }
+                        
+                    
+                    if(userId === spotId){
+                        const Booking = await Bookings.scope("liveScope").findByPk(spotId)
+                        if(Booking) {
+                            constBookings = Booking
+                            return res.status(200).json(Bookings)
+                        }
+                    }
                 if (Booking) {
                     const Bookings = Booking
                 return res.status(201).json(Bookings)
