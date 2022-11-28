@@ -49,7 +49,7 @@ router.get(
             ],
         })
         if(Review){
-            const Reviews = Review
+            const Reviews = Review.scope("liveScope")
         return res.json({Reviews})
         }
         
