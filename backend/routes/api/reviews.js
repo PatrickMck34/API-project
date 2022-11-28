@@ -43,7 +43,7 @@ return res.json(Rev)
 
 router.post('/:reviewId/images', restoreUser, async (req, res)=>{
     const revid = req.params.reviewId
-     let {url} = req.body
+     let {id, url} = req.body
     if(revid > 300){
         return res.status(404).json({ message: "Review couldn't be found", statusCode: 404 })
     }
