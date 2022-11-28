@@ -42,7 +42,7 @@ router.post(
       let statusCode = 403
       let errors = {"email": "User with that email already exists"}
       let result = {message, statusCode, errors}
-      return res.json(result)
+      return res.status(201).json(result)
       
     }
     let users = await User.scope('defaultScope').signup({ email, password, username, firstName, lastName, token});

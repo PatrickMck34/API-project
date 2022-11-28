@@ -169,7 +169,8 @@ router.get(
                     const reviews = await Reviews.create({ userId, spotId, review, stars })
                     if (reviews){
                        const Reviews = reviews
-                    return res.json(Reviews).statusCode(201)
+                       
+                    return res.status(201).json(Reviews).statusCode(201)
                 }}
                 
                 return res.status(404).json({ message: "Already submitted a review!", statusCode: 404 })
@@ -195,8 +196,8 @@ router.get(
                 //  ids = spots.id
                 //  prev = spots.preview
                 //  usl = spots.url
-                
-                return res.json(result).statusCode(201)
+              
+                return res.status(201).json(result)
             })
             router.post('/:spotIdForBooking/bookings', restoreUser, async (req, res)=>{
                 const {startDate, endDate} = req.body
@@ -222,7 +223,7 @@ router.get(
                     })
                 if (Booking) {
                     const Bookings = Booking
-                return res.json({Bookings}).statusCode(201)
+                return res.status(201).json({Bookings}).statusCode(201)
                 }
             
             }) 
@@ -233,8 +234,8 @@ router.get(
                 const spot = await Spot.scope('createScope').create({ownerId, address, city, state, country, lat, lng, name, description, price })
                 const result = await Spot.scope('createScope').findByPk(ownerId)
                 
-        
-            return res.json(result).statusCode(201)
+    
+            return res.status(201).json(result)
         
         })
             

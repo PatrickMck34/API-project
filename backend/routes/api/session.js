@@ -44,7 +44,7 @@ router.post(
      username = user.username
      token = ""
      const users = {id, firstName, lastName, email, username, token}
-    return res.json(
+    return res.status(201).json(
       users
     );
   }
