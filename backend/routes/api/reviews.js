@@ -28,9 +28,11 @@ router.get('/current',restoreUser, async (req, res)=>{
 })
 
 
-
+if(Review){
+    const Reviews = Review
+    return res.json({Reviews})
+}
   
-return res.json({Review})
         
 
 }),
