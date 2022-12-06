@@ -11,17 +11,17 @@ module.exports = {
     await queryInterface.bulkInsert(options, [
       {
         
-        reviewId: 1,
+      
       url: "1img url",
       },
   {
      
-    reviewId: 2,
+   
     url: "2",
 },
 {
  
-  reviewId: 3,
+
   url: "3 imgurl",
 },
     ], {})

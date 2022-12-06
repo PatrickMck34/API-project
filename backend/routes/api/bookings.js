@@ -1,13 +1,12 @@
 const express = require('express')
-const { Bookings, Reviews, Spot, User, ReviewImages } = require('../../db/models');
+const { Booking, Reviews, Spot, User, ReviewImages } = require('../../db/models');
 const router = express.Router();
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
 db = require('../../../backend/config/database')
 
 router.get('/current',restoreUser, async (req, res)=>{
        const currentUser = User.currentUserId(req, res)
-       let resu = {}
-       const bookings = await Bookings.findAll({
+       const Bookings = await Booking.findAll({
         where: {
             userId: currentUser
         },
@@ -16,18 +15,16 @@ router.get('/current',restoreUser, async (req, res)=>{
         },]
 
        })
-       if(bookings){
-        const Bookings = bookings
        return res.json({Bookings})
-       }
+       
 })
 router.delete("/:bookingId", async (req, res) => {
     const ids = req.params.bookingId
-    const spotCheck = await Bookings.findByPk(ids)
+    const spotCheck = await Booking.findByPk(ids)
     if(spotCheck === null){
         return res.status(404).json({ message: "Unable to find Spot", statusCode: 404 })
     }
-    await Bookings.destroy({
+    await Booking.destroy({
         where:{
             id : ids
         }
@@ -40,7 +37,7 @@ router.delete("/:bookingId", async (req, res) => {
             const spot = req.params.bookingId
             const {startDate, endDate } = req.body
     
-            let spots = await Bookings.findByPk(spot)
+            let spots = await Booking.findByPk(spot)
             if(spots === null){
                 return res.status(404).send({ message: "Booking couldn't be found", statusCode: 404 })
             }
@@ -48,7 +45,7 @@ router.delete("/:bookingId", async (req, res) => {
             // spots = review
             
     
-            const result = await Bookings.findByPk(spot)
+            const result = await Booking.findByPk(spot)
     
     
             return res.json(
