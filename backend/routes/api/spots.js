@@ -135,27 +135,40 @@ router.get(
                 const currentUser = User.currentUserId(req, res)
                 const spotId = req.params.spotId;
                 let { review, stars } = req.body
-                let userId = currentUser
+                const userId = currentUser
            
-                     const spotCheck = await Reviews.findByPk(spotId)
+                     const spotCheck = await Spot.findOne({where:{
+                        id : spotId
+                     }})
                         
                     
-                    console.log(currentUser)
+                    console.log(spotCheck)
                    
-                    const userSpotCheck = await Reviews.findByPk(userId
-                     )
-                     if(spotCheck === null){
-                     return res.status(404).json({ message: "Spot doesnt exist", statusCode: 404 })
+                    const userSpotCheck = await Reviews.findOne({
+                        where:{
+                            userId : userId,
+                            spotId : spotId
+                        }
+                    }) 
+                   
+                    
+                    
+                    
+                    
+                        console.log(userSpotCheck)
+                        if (userSpotCheck !== null ){
+                           return  res.status(404).json({ message: "Already submitted a Review", statusCode: 404 })}
+                            console.log(userSpotCheck)
+            
+                     if(spotCheck !== null){
+                         const reviews = await Reviews.create({ userId, spotId, review, stars })
+                         if (reviews){
+                            const Reviews = reviews
+                             return res.status(200).json(Reviews)
                      }
-                     if ( userSpotCheck !== null){
-                       res.status(404).json({ message: "Already submitted a Review", statusCode: 404 })}
-               console.log(userSpotCheck.userId)
-                    const reviews = await Reviews.create({ userId, spotId, review, stars })
-                    if (reviews){
-                       const Reviews = reviews
-                        return res.status(200).json(Reviews)
-                }
-            })
+                     }
+                     return res.status(404).json({ message: "Spot doesnt exist", statusCode: 404 })
+                    })
             router.post("/:spotId/images", restoreUser, async (req, res) => {
                 const spotId = req.params.spotId
                 const spotCheck = await Spot.findByPk(spotId)
@@ -183,25 +196,32 @@ router.get(
                 const currentUser = User.currentUserId(req, res)
                 const userId = currentUser
                 const spotId = req.params.spotIdForBooking
-                const string = startDate
-                start = new Date(startDate).getTime()
-                // console.log(start)
-                const dateCheck = await Bookings.findAll({
+                const spotCheck = await Spot.findOne({
+                    where:{
+                       id:spotId
+                    }
+                })
+                if (spotCheck === null){
+                    return res.status(403).json({ message: "Spot doesnt Exist!" })
+                    }
+                const dateCheck = await Bookings.findOne({
                     where:{
                        startDate : startDate
                     }
                 })
-                const dateChck = await Bookings.findAll({
+                const bookingCheck = await Bookings.findOne({
                     where:{
-                        startDate : startDate
+                       userId : userId
                     }
                 })
-                console.log(dateCheck)
-                console.log()
-                if (dateCheck.startDate == newBooking.startDate){
+                if (dateCheck !== null){
                     return res.status(403).json({ message: "Sorry, this spot is already booked for the specified dates", statusCode: 403, "errors": {
                         startDate: "conflicts with existing booking", endDate: "conflicts with existing booking" }})
                     }
+                if (bookingCheck !== null){
+                    return res.status(403).json({ message: "Sorry only one booking allowed" })
+                    }
+        
                 // const spotCheck = await Bookings.findAll({
                     //     where:{
                         //         spotId : spotId,
@@ -231,7 +251,7 @@ router.get(
                const currentUser = User.currentUserId(req, res)
               const ownerId = currentUser
             const {address, city, state, country, lat, lng, name, description, price } = req.body;
-                const spot = await Spot.scope('createScope').create({ownerId, address, city, state, country, lat, lng, name, description, price })
+                const spot = await Spot.create({ownerId, address, city, state, country, lat, lng, name, description, price })
                
                 
     

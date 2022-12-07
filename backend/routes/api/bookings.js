@@ -8,7 +8,7 @@ router.get('/current',restoreUser, async (req, res)=>{
        const currentUser = User.currentUserId(req, res)
        const Booking = await Bookings.findAll({
         where: {
-            // userId: currentUser
+            userId: currentUser
         },
         // include: [{
         //     model: Spot.scope('bookingScope')
