@@ -1,4 +1,5 @@
 const express = require('express');
+const { emptyQuery } = require('pg-protocol/dist/messages');
 const { Error } = require('sequelize');
 const { Spot, User, SpotImages, Reviews, Bookings, ReviewImages } = require('../../db/models');
 
@@ -135,29 +136,20 @@ router.get(
                 const spotId = req.params.spotId;
                 let { review, stars } = req.body
                 let userId = currentUser
-                     const spotCheck = await Spot.findAll({
-                        where: {
-                            id : spotId
-                            
-                        }
-                    }
-                    )
+           
+                     const spotCheck = await Reviews.findByPk(spotId)
+                        
                     
                     console.log(currentUser)
-                     const userSpotCheck = await Reviews.findAll({
-                        where: {
-                            spotId : req.params.spotId,
-                            userId : currentUser
-                        }
-                     }
+                   
+                    const userSpotCheck = await Reviews.findByPk(userId
                      )
-                    //  console.log(spotCheck.value)
-                     if (spotCheck){
-                       res.status(404).json({ message: "Spot cant be found", statusCode: 404 })}
-               console.log(userSpotCheck)
-                     if({userSpotCheck} !== null){
-                     return res.status(404).json({ message: "Already submitted a review!", statusCode: 404 })
+                     if(spotCheck === null){
+                     return res.status(404).json({ message: "Spot doesnt exist", statusCode: 404 })
                      }
+                     if ( userSpotCheck !== null){
+                       res.status(404).json({ message: "Already submitted a Review", statusCode: 404 })}
+               console.log(userSpotCheck.userId)
                     const reviews = await Reviews.create({ userId, spotId, review, stars })
                     if (reviews){
                        const Reviews = reviews
