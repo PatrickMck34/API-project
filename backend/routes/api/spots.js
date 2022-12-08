@@ -201,7 +201,7 @@ router.get(
                 
                 const {Op} = require("sequelize")
 
-                const dateCheck = await Bookings.findOne({
+                const endCheck = await Bookings.findOne({
                     where:{
                        startDate : {
                            [Op.lte]: new Date(start),
@@ -219,13 +219,31 @@ router.get(
                        }
                     }
                 })
+                const startCheck = await Bookings.findOne({
+                    where:{
+                       startDate : {
+                           [Op.gte]: new Date(start),
+                       
+                        [Op.lte]: new Date(end)
+                        // } 
+                    
+                       },
+                    
+                       endDate : {
+                           [Op.gte]: new Date(start),
+                         
+                        [Op.gte]: new Date(end) 
+                        
+                       }
+                    }
+                })
                 const bookingCheck = await Spot.findOne({
                     where:{
                        id : spotId
                     }
                 })
-               console.log(dateCheck)
-                if (dateCheck !== null){
+            
+                if (startCheck !== null || endCheck !== null){
                     return res.status(403).json({ message: "Sorry, this spot is already booked for the specified dates", statusCode: 403, "errors": {
                         startDate: "conflicts with existing booking", endDate: "conflicts with existing booking" }})
                     }
