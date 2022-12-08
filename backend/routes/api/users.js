@@ -53,7 +53,15 @@ router.post(
      const user = {id, firstName, lastName, email, username, token}
      setTokenCookie(res, users);
     return res.json(
-     user
+      {user
+        // "user": {
+        //   "id": 1,
+        //   "firstName": "John",
+        //   "lastName": "Smith",
+        //   "email": "john.smith@gmail.com",
+        //   "username": "JohnSmith"
+        // }
+      }
     );
   },
   // router.post("/api/spots", async (req, res) => {

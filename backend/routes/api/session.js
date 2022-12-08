@@ -45,7 +45,15 @@ router.post(
      token = ""
      const users = {id, firstName, lastName, email, username, token}
     return res.status(201).json(
-      users
+      {users
+        // "user": {
+        //   "id": 1,
+        //   "firstName": "John",
+        //   "lastName": "Smith",
+        //   "email": "john.smith@gmail.com",
+        //   "username": "JohnSmith"
+        // }
+      }
     );
   }
   );
@@ -71,11 +79,21 @@ router.post(
             email = user.email
             username = user.username
             users = {id, firstName, lastName, email, username} 
-            return res.json( users
+            return res.json( {user
+              // "user": {
+              //   "id": 1,
+              //   "firstName": "John",
+              //   "lastName": "Smith",
+              //   "email": "john.smith@gmail.com",
+              //   "username": "JohnSmith",
+              // }
+            }
                
 
           );
-          } else return res.json({});
+          } else return res.json({
+            "user": null
+          });
         }
       );
     module.exports = router;

@@ -151,10 +151,6 @@ router.get(
                         }
                     }) 
                    
-                    
-                    
-                    
-                    
                         console.log(userSpotCheck)
                         if (userSpotCheck !== null ){
                            return  res.status(404).json({ message: "Already submitted a Review", statusCode: 404 })}
@@ -162,6 +158,7 @@ router.get(
             
                      if(spotCheck !== null){
                          const reviews = await Reviews.create({ userId, spotId, review, stars })
+                         await reviews.save()
                          if (reviews){
                             const Reviews = reviews
                              return res.status(200).json(Reviews)
@@ -182,67 +179,62 @@ router.get(
                 let spots = await SpotImages.create({
                     url, preview, spotId
                 })
-                
-               
-                // id = spots.id
-                // let result = { id, url, preview, }
-                
-              
+                await spots.save()
                 return res.status(200).json(spots)
             })
             router.post('/:spotIdForBooking/bookings', restoreUser, async (req, res)=>{
                 const {startDate, endDate} = req.body
-               
+                const start = new Date(startDate)
+                const end = new Date(endDate)
                 const currentUser = User.currentUserId(req, res)
                 const userId = currentUser
                 const spotId = req.params.spotIdForBooking
                 const spotCheck = await Spot.findOne({
                     where:{
-                       id:spotId
+                        id:spotId
                     }
                 })
                 if (spotCheck === null){
                     return res.status(403).json({ message: "Spot doesnt Exist!" })
-                    }
+                }
+                
+                
+                const {Op} = require("sequelize")
+
                 const dateCheck = await Bookings.findOne({
                     where:{
-                       startDate : startDate
+                       startDate : {
+                           [Op.lte]: new Date(start),
+                       
+                        [Op.lte]: new Date(end)
+                        // } 
+                    
+                       },
+                    
+                       endDate : {
+                           [Op.gte]: new Date(start),
+                         
+                        [Op.lte]: new Date(end) 
+                        
+                       }
                     }
                 })
-                const bookingCheck = await Bookings.findOne({
+                const bookingCheck = await Spot.findOne({
                     where:{
-                       userId : userId
+                       id : spotId
                     }
                 })
+               console.log(dateCheck)
                 if (dateCheck !== null){
                     return res.status(403).json({ message: "Sorry, this spot is already booked for the specified dates", statusCode: 403, "errors": {
                         startDate: "conflicts with existing booking", endDate: "conflicts with existing booking" }})
                     }
-                if (bookingCheck !== null){
-                    return res.status(403).json({ message: "Sorry only one booking allowed" })
+                if (bookingCheck === null){
+                    return res.status(403).json({ message: "Spot couldn't be found" })
                     }
-        
-                // const spotCheck = await Bookings.findAll({
-                    //     where:{
-                        //         spotId : spotId,
-                        //         userId : currentUser
-                        //     }
-                        // })
-                        // if (spotCheck){
-                            //     return res.status(404).json({ message: "Unable to create Booking for User", statusCode: 404 })
-                            // }
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
+    
                             const newBooking = await Bookings.create({userId, spotId, startDate, endDate, })
-                            
-                            
-                            
+                            await newBooking.save()
                             return res.status(201).json(newBooking)
                 
             
@@ -252,7 +244,7 @@ router.get(
               const ownerId = currentUser
             const {address, city, state, country, lat, lng, name, description, price } = req.body;
                 const spot = await Spot.create({ownerId, address, city, state, country, lat, lng, name, description, price })
-               
+               await spot.save()
                 
     
             return res.status(201).json(spot)
@@ -270,6 +262,7 @@ router.get(
             id : ids
         }
     })
+    
 
 
     return res.json({message:"Successfully Deleted", statusCode: 200})
@@ -285,22 +278,20 @@ router.put(
             return res.status(404).send({ message: "Spot couldn't be found", statusCode: 404 })
         }
         await spots.update({ address: address, city: city, state: state, country: country, lat: lat, lng: lng, name: name, description: description, price: price })
-        spots.ownerId = ownerId
-        spots.address = address
-        spots.city = city
-        spots.state = state
-        spots.country = country
-        spots.lat = lat
-        spots.lng = lng
-        spots.name = name
-        spots.description = description
-        spots.price = price
-
-        const result = await Spot.scope("createScope").findByPk(spot)
-
-
+        // spots.ownerId = ownerId
+        // spots.address = address
+        // spots.city = city
+        // spots.state = state
+        // spots.country = country
+        // spots.lat = lat
+        // spots.lng = lng
+        // spots.name = name
+        // spots.description = description
+        // spots.price = price
+       spots.save()
+      
         return res.json(
-           result
+           spots
         );
     });
 

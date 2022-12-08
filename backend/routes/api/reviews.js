@@ -45,6 +45,7 @@ router.post('/:reviewId/images', restoreUser, async (req, res)=>{
         return res.status(404).json({ message: "Review couldn't be found", statusCode: 404 })
     }
 const image = await ReviewImages.create({reviewId, url})
+await image.save()
    id = image.id
       url = image.url
       result = {reviewId, id, url}
@@ -75,6 +76,7 @@ router.put(
             return res.status(404).send({ message: "Review couldn't be found", statusCode: 404 })
         }
         await spots.update({ review: review})
+        await spots.save()
         spots.review = review
         
 

@@ -40,19 +40,15 @@ router.delete("/:bookingId", async (req, res) => {
             const spot = req.params.bookingId
             const {startDate, endDate } = req.body
     
-            let spots = await Bookings.findByPk(spot)
-            if(spots === null){
+            let booking = await Bookings.findByPk(spot)
+            if(booking === null){
                 return res.status(404).send({ message: "Booking couldn't be found", statusCode: 404 })
             }
-            await spots.update({startDate: startDate, endDate: endDate})
-            // spots = review
-            
-    
-            const result = await Bookings.findByPk(spot)
-    
+            await booking.update({startDate: startDate, endDate: endDate})
+            await booking.save()
     
             return res.json(
-               result
+             booking
             )})
 
 
