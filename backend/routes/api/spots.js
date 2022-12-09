@@ -176,9 +176,10 @@ router.get(
                 
                 let { url, preview } = req.body
                 
-                let spots = await SpotImages.create({
+                const spots = await SpotImages.scope('defaultScope').create({
                     url, preview, spotId
                 })
+            
                 await spots.save()
                 return res.status(200).json(spots)
             })
@@ -261,11 +262,14 @@ router.get(
                const currentUser = User.currentUserId(req, res)
               const ownerId = currentUser
             const {address, city, state, country, lat, lng, name, description, price } = req.body;
-                const spot = await Spot.create({ownerId, address, city, state, country, lat, lng, name, description, price })
+                const spot = await Spot.scope("createScope").create({ownerId, address, city, state, country, lat, lng, name, description, price })
+                createdAt = spot.createdAt
+                updatedAt = spot.updatedAt
+                id = spot.id
                await spot.save()
-                
+               spots = {id,  ownerId, address, city, state, country, lat, lng, name, description, price, createdAt, updatedAt}
     
-            return res.status(201).json(spot)
+            return res.status(201).json(spots)
         
         })
             

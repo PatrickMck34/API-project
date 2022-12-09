@@ -45,7 +45,7 @@ router.post(
      token = ""
      const users = {id, firstName, lastName, email, username, token}
     return res.status(201).json(
-      {users
+      {user}
         // "user": {
         //   "id": 1,
         //   "firstName": "John",
@@ -53,7 +53,7 @@ router.post(
         //   "email": "john.smith@gmail.com",
         //   "username": "JohnSmith"
         // }
-      }
+      
     );
   }
   );
@@ -79,7 +79,7 @@ router.post(
             email = user.email
             username = user.username
             users = {id, firstName, lastName, email, username} 
-            return res.json( {user
+            return res.json( {user}
               // "user": {
               //   "id": 1,
               //   "firstName": "John",
@@ -87,7 +87,7 @@ router.post(
               //   "email": "john.smith@gmail.com",
               //   "username": "JohnSmith",
               // }
-            }
+            
                
 
           );
