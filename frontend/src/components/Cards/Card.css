@@ -1,0 +1,22 @@
+.card {
+    margin: 10px;
+   object-fit:fill;
+   min-width: 300px;
+   height:420px;
+   width:100%;
+   background:white;
+
+}
+.card > img {
+    object-fit: fill;
+    width: 300px;
+    height: 280px;
+    width:100%;
+    background:black;
+}
+.card_name {
+    font-size: 20px;
+    margin-bottom: 0px
+}
+    
+    
