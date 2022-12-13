@@ -36,7 +36,9 @@ module.exports = {
     price: 135.00,
     avgRating: 3.0,
     avgStarRating: 4.1,
-    numReviews: 1
+    numReviews: 1,
+    previewImage: "https://upload.wikimedia.org/wikipedia/commons/2/20/Window_tinting_for_homes.png"
+
   },
   {
     
@@ -52,7 +54,8 @@ module.exports = {
     price: 127.00,
     avgRating: 2.3,
 avgStarRating: 4.1,
-    numReviews: 1
+    numReviews: 1,
+    previewImage: "https://upload.wikimedia.org/wikipedia/commons/2/20/Window_tinting_for_homes.png"
   },
   {
     ownerId: 3,
@@ -67,7 +70,8 @@ avgStarRating: 4.1,
     price: 135.00,
     avgRating: 2.2,
     avgStarRating: 4.1,
-    numReviews: 1
+    numReviews: 1,
+    previewImage: "https://upload.wikimedia.org/wikipedia/commons/2/20/Window_tinting_for_homes.png"
   
   },
    ],{})
