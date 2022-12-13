@@ -5,7 +5,7 @@ function Card(url, name, description, price) {
     url = "https://upload.wikimedia.org/wikipedia/commons/2/20/Window_tinting_for_homes.png"
     name = "A pretty location"
     description = "A beautiful work in progress!"
-    price = "Price: It ain't cheap!"
+    price = "It aint cheap!"
     return (
         <div className='card'>
         <img src={url} alt="" />

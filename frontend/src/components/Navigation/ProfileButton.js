@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
-import OpenModalMenuItem from './OpenModalMenuItem.js';
+import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import CreateSpotForm from '../CreateSpots/index.js'
+
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -11,12 +13,12 @@ function ProfileButton({ user }) {
   const ulRef = useRef();
 
   const openMenu = () => {
-    if (showMenu) return;
+    if (!showMenu) return;
     setShowMenu(true);
   };
 
   useEffect(() => {
-    if (!showMenu) return;
+    if (showMenu) return;
 
     const closeMenu = (e) => {
       if (!ulRef.current.contains(e.target)) {
@@ -42,7 +44,7 @@ function ProfileButton({ user }) {
   return (
     <>
       <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+        <i className="fas fa-user-circle" onClick={openMenu}/>
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
@@ -58,13 +60,19 @@ function ProfileButton({ user }) {
           <>
             <OpenModalMenuItem
               itemText="Log In"
-              onItemClick={closeMenu}
+              onItemClick={openMenu}
               modalComponent={<LoginFormModal />}
             />
             <OpenModalMenuItem
               itemText="Sign Up"
-              onItemClick={closeMenu}
+              onItemClick={openMenu}
               modalComponent={<SignupFormModal />}
+            />
+
+<OpenModalMenuItem
+              itemText="Create Spot"
+              onItemClick={openMenu}
+              modalComponent={<CreateSpotForm />}
             />
           </>
         )}

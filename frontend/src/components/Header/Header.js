@@ -1,4 +1,5 @@
 import React from 'react'
+import ProfileButton from '../Navigation/ProfileButton'
 import './Header.css'
 
 function Header() {
@@ -14,6 +15,7 @@ function Header() {
         </div>
         <div className='header_right'>
             <p>Airbnb your home</p>
+        <ProfileButton />
         </div>
         </div>
     )
