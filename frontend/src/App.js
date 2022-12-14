@@ -24,10 +24,24 @@ function App() {
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
-  useEffect(() => {
-    dispatch(spotActions.GetSpots());
+ useEffect(() => {
+    // e.preventDefault(e);
+    fetch('/api/spots')
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data)
+         dispatch(spotActions.getSpots(data))
+         
+        //  console.log(data.Spots)
+        
+          
+        })
+        .catch((err) => {
+          // console.log(err.message);
+        });
+      }, [dispatch]);
 
-  }, [dispatch])
+ 
   const spots = useSelector(state=> state.spots)
 
   return (
@@ -36,7 +50,7 @@ function App() {
     </div>
   <Header />
     {/* <GetSpots /> */}
-     <Home /> 
+     {/* <Home />  */}
     <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
@@ -45,8 +59,8 @@ function App() {
           </Route>
           <Route
         path="/spots">
+          <Card />
         
-        {/* <Card spots={spots}/> */}
          </Route>
         </Switch>
       )}
