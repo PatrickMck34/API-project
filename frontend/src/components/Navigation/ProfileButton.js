@@ -4,7 +4,7 @@ import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
-import CreateSpotForm from '../CreateSpots/index.js'
+import CreateSpotForm from '../Get-Spot/index.js'
 
 
 function ProfileButton({ user }) {

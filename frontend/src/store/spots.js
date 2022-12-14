@@ -21,13 +21,25 @@ export const createSpot = (spot) => async (dispatch) => {
         }),
     });
     const data = await response.json();
-    dispatch(setSpot(data.spots));
+    dispatch(getSpots(data.spots));
     return response;
 };
-const setSpot = (spots) => {
+export const GetSpots = (spots) => async (dispatch) => {
+    const data = await csrfFetch("/api/spots", {
+        method: "GET",
+    })
+    const { address, city, state, country, lat, lng, name,description, price, createdAt, updatedAt, previewImage} = data;
+
+    
+    dispatch(getSpots(data));
+    return data;
+};
+// export const Spot = (spot) => async (dispatch) => {
+//     const {ownerId, address, city, state, country, lat, lng, name,description, price, createdAt, updatedAt, previewImage} = spot;
+export const getSpots = (data) => {
     return {
-        type: SET_SPOT,
-        payload: spots,
+        type: GET_ALL_SPOTS,
+        payload: data.Spots,
     };
 };
 
@@ -44,18 +56,20 @@ const removeSpot = () => {
     };
 };
 const initialState = {spots: null}
-const SET_SPOT = 'spot/setSpot';
-const REMOVE_SPOT = 'spot/removeSpot';
-const spotsReducer = (state = initialState, action) => {
+const GET_SPOT = '/spots/:spotId';
+const GET_ALL_SPOTS = '/spots'
+const REMOVE_SPOT = '/spot/:spotId/DELETE';
+export const spotsReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
-        case SET_SPOT:
-            newState = Object.assign({}, state);
-            newState.spots = action.payload;
-            return newState;
-            case REMOVE_SPOT:
+        case GET_ALL_SPOTS:
+            // newState = Object.assign({}, state);
+            newState = action.payload
+            return state 
+          
+            case GET_SPOT:
                 newState = Object.assign({}, state);
-                newState.spots = null;
+                newState = action.payload
                 return newState;
                 default:
         return state;

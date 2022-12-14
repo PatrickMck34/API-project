@@ -3,7 +3,7 @@ import React from "react"
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as spotActions from "../../store/spots";
-import './CreateSpot.css';
+import './Get-spot.css';
 
 
 

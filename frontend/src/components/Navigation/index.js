@@ -6,16 +6,17 @@ import OpenModalButton from '../OpenModalButton';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import './Navigation.css';
-import CreateSpot from '../CreateSpots/index.js'
+import CreateSpot from '../Get-Spot/index.js'
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
+  
 
    let sessionLinks;
   if (sessionUser) {
   sessionLinks = (
      <li>   
-         <ProfileButton user={sessionUser} />
+         {/* <ProfileButton user={sessionUser} /> */}
    </li>
     );
   } else {
@@ -45,9 +46,9 @@ function Navigation({ isLoaded }){
       
       {isLoaded && (
         <li>
-          <ProfileButton user={sessionUser} /> 
+          {/* <ProfileButton user={sessionUser} />  */}
        
-        <ProfileButton user={sessionUser} />
+        {/* <ProfileButton user={sessionUser} /> */}
        
        </li>
        )}
