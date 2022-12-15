@@ -1,30 +1,31 @@
 import React from 'react'
 import './Card.css' 
 import {useSelector} from 'react-redux'
+import { Link } from 'react-router-dom'
 
-function Card(url, name, description, price) {
-const spots = useSelector(state=> state.spots)
-
+function Card() {
+const spotsObj = useSelector(state=> state.spots.allSpots)
+const spots = Object.values(spotsObj) 
 return(
-    spots.map((spot, index) => {
+    
+    spots.map((spot) => {
         return(
-            <div>
-
-                //         <img src={spot.previewImage} alt="" />
-        <h2 className='card_name'>{spot.name}</h2>
-        <h4 className='card_description'>{spot.description}</h4>
-        <h3 className='card_price'>{spot.price}</h3>
-            </div>
+            
+            <div className="card_image">
+                <Link to="/spots/1">Details</Link>
+         <img className="card"  src={spot.previewImage} alt=""/>
+        <h2 >{spot.name}</h2>
+        <h4 >{spot.description}</h4>
+        <h3 >{spot.price}</h3>
+            
+                        </div>
+        
+        
         )
-    })
+    }
+ )   
 
-//     <div>
-//         <div className='card'>
-//         <div className='card_info'>
-//         </div>
-// </div>
-//         </div>
-        )
-}
+  
+)}
 
 export default Card

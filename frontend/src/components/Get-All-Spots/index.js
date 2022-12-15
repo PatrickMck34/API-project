@@ -4,8 +4,6 @@
 // import './GetSpots.css'
 // import * as spotActions from '../../store/spots' 
 
-
-
 // export const GetSpots = (spots) => async (dispatch) => {
 //   //  const spots = useSelector(state=> state.spots)
   

@@ -3,11 +3,8 @@ import React from "react"
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as spotActions from "../../store/spots";
-import './Get-spot.css';
-
-
-
-
+import './CreateSpot.css';
+import { useHistory } from "react-router-dom";
 function CreateSpotForm() {
   const dispatch = useDispatch();
   const [address, setAddress] = useState("");
@@ -17,27 +14,29 @@ function CreateSpotForm() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [previewImage, setPreviewImage] = useState('')
+  const [previewImage, setPreviewImage] = useState("")
 
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
-
+const history = useHistory()
   const handleSubmit = (e) => {
+    // history.push("/")
     e.preventDefault();
 
-      setErrors([]);
+      // setErrors([]);
       return dispatch(spotActions.createSpot({address, city, state, country,name,description, price, previewImage}))
-        .then(closeModal)
-        .catch(async (res) => {
-          const data = await res.json();
-          if (data && data.errors) setErrors(data.errors);
-        });
-  };
+        // .then(closeModal)
+        // .catch(async (res) => {
+        //   const data = await res.json();
+
+          // if (data && data.errors) setErrors(data.errors);
+        // });
+      };
 
   return (
     <>
       <h1>Create Spot</h1>
-      <form onSubmit={handleSubmit} className="form">
+      <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
@@ -103,6 +102,15 @@ function CreateSpotForm() {
             onChange={(e) => setPrice(e.target.value)}
             required
           />
+          </label>
+          <label>
+          previewImage
+          <input
+            type="text"
+            value={previewImage}
+            onChange={(e) => setPreviewImage(e.target.value)}
+            required
+            />
         </label>
           
         <button type="submit">Create Spot</button>

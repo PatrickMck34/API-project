@@ -6,7 +6,7 @@ function Header() {
     return(
         
         <div className='header'>
-            <img className="header_icon"
+        <img className="header_icon"
             src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_B%C3%A9lo.svg"
             alt=""
         />
@@ -15,8 +15,9 @@ function Header() {
         </div>
         <div className='header_right'>
             <p>Airbnb your home</p>
-        <ProfileButton/>
-        </div>
+            {/* <ProfileButton user={sessionUser} />  */}
+        </div> 
+   
         </div>
     )
 }

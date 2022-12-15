@@ -4,8 +4,7 @@ import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
-import CreateSpotForm from '../Get-Spot/index.js'
-
+import CreateSpotForm from "../Get-Spot";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -13,12 +12,12 @@ function ProfileButton({ user }) {
   const ulRef = useRef();
 
   const openMenu = () => {
-    if (!showMenu) return;
+    if (showMenu) return;
     setShowMenu(true);
   };
 
   useEffect(() => {
-    if (showMenu) return;
+    if (!showMenu) return;
 
     const closeMenu = (e) => {
       if (!ulRef.current.contains(e.target)) {
@@ -44,7 +43,7 @@ function ProfileButton({ user }) {
   return (
     <>
       <button onClick={openMenu}>
-        <i className="fas fa-user-circle" onClick={openMenu}/>
+        <i className="fas fa-user-circle" />
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
@@ -60,20 +59,20 @@ function ProfileButton({ user }) {
           <>
             <OpenModalMenuItem
               itemText="Log In"
-              onItemClick={openMenu}
+              onItemClick={closeMenu}
               modalComponent={<LoginFormModal />}
             />
             <OpenModalMenuItem
               itemText="Sign Up"
-              onItemClick={openMenu}
+              onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
-
-<OpenModalMenuItem
-              itemText="Create Spot"
-              onItemClick={openMenu}
+            <OpenModalMenuItem
+              itemText="Log In"
+              onItemClick={closeMenu}
               modalComponent={<CreateSpotForm />}
             />
+            
           </>
         )}
       </ul>
