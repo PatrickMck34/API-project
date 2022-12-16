@@ -4,7 +4,6 @@ import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
-import CreateSpotForm from "../Get-Spot";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -67,12 +66,6 @@ function ProfileButton({ user }) {
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
-            <OpenModalMenuItem
-              itemText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<CreateSpotForm />}
-            />
-            
           </>
         )}
       </ul>
@@ -81,3 +74,4 @@ function ProfileButton({ user }) {
 }
 
 export default ProfileButton;
+

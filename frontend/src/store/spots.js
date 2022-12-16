@@ -4,26 +4,53 @@ const READ_SPOT = '/spots/:spotId';
 const READ_SPOTS = '/spots';
 const UPDATE_SPOT = '/spots/edit'
 
-const DELETE_SPOT = '/spot/:spotId/DELETE';
+const DELETE_SPOT = '/spots/:spotId';
 const CREATE_SPOT = '/spots/new'
 
 export const createSpot = (spot) => async (dispatch) => {
     // dispatch = useDispatch()
     const { address, city, state, country, lat, lng, name,description, price} = spot
-    const previewImage = spot.previewImage
-    const data = await csrfFetch("/api/spots/", {
+ const data = await csrfFetch("/api/spots/", {
         method: "POST",
         body: JSON.stringify({
             address, city, state, country, lat, lng, name,description, price
         }),
     });
-    
-    const response = await data.json();
-    const result = {...response, previewImage}
-    console.log(result)
-    dispatch(createSpots(result));
-    return spot;
+    const response = await data.json()
+    console.log(response)
+    dispatch(createSpots(response));
+    return response
 };
+
+export const createSpotImage = (id, url) => async (dispatch) => {
+    
+    const data = await csrfFetch(`/api/spots/${id}/images`, {
+        method: "POST",
+        body: JSON.stringify({
+            url,
+            "preview": true
+            
+        }),
+    })
+    const response = await data.json()
+    dispatch(createSpot(response))
+    return response
+}
+export const updateSpot = (spot) => async (dispatch) => {
+    // dispatch = useDispatch()
+    const { address, city, state, country, lat, lng, name,description, price} = spot
+    const id = 1
+    const data = await csrfFetch(`/api/spots/1`, {
+        method: "PUT",
+        body: JSON.stringify({
+           id , address, city, state, country, lat, lng, name,description, price
+        }),
+    });
+    const response = await data.json()
+    console.log(response)
+    dispatch(createSpots(response));
+    return response
+}
 export const createSpots = (spot) =>({
     type: CREATE_SPOT,
     payload: spot
@@ -67,7 +94,7 @@ export const getSpots = (spots) => async (dispatch) => {
         dispatch(deleteSpot(id));
         return response;
     };
-    const deleteSpot = (spotId) => {
+  export  const deleteSpot = (spotId) => {
         return {
             type: DELETE_SPOT,
             spotId
@@ -95,10 +122,18 @@ export const getSpots = (spots) => async (dispatch) => {
                  newState = {...state, allSpots:{ ...state.allSpots}}
                 
                 newState.allSpots[action.payload.id] = action.payload
+                return newState
                 
-                
-             return newState;
-            
+      
+             case DELETE_SPOT:
+             newState = {...state}
+             delete newState[action.payload.id]
+            return newState
+
+            case UPDATE_SPOT:
+            newState = {...state, allSpots:{ ...state.allSpots}}
+            newState.allSpots[action.payload.id] = action.payload
+            return newState
             default:
             return state;
         }

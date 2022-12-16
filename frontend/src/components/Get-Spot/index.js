@@ -1,12 +1,14 @@
 import React from "react"
  import {useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch , useSelector} from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as spotActions from "../../store/spots";
-import './CreateSpot.css';
+import './Get-spot.css';
 import { useHistory } from "react-router-dom";
+import {createSpotImage} from "../../store/spots"
 function CreateSpotForm() {
   const dispatch = useDispatch();
+  const spots = useSelector(state=>state.spots)
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
@@ -20,11 +22,11 @@ function CreateSpotForm() {
   const { closeModal } = useModal();
 const history = useHistory()
   const handleSubmit = (e) => {
-    // history.push("/")
+    history.push("/")
     e.preventDefault();
 
       // setErrors([]);
-      return dispatch(spotActions.createSpot({address, city, state, country,name,description, price, previewImage}))
+      return (dispatch(spotActions.createSpot({address, city, state, country,name,description, price})).dispatch(spotActions.createSpotImage(spots.id, previewImage)))
         // .then(closeModal)
         // .catch(async (res) => {
         //   const data = await res.json();
@@ -34,7 +36,7 @@ const history = useHistory()
       };
 
   return (
-    <>
+    <div className="createForm">
       <h1>Create Spot</h1>
       <form onSubmit={handleSubmit}>
         <ul>
@@ -115,7 +117,7 @@ const history = useHistory()
           
         <button type="submit">Create Spot</button>
       </form>
-    </>
+    </div>
   );
   
 }

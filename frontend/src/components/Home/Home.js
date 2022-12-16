@@ -11,6 +11,7 @@ function Home() {
                 <Header />
             </div>
             <div className='home_section'>
+                
             <Card />
         </div>
          </div>

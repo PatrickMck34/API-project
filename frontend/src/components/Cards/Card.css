@@ -10,16 +10,23 @@
    padding: 8px
 
 }
-/* .card > img {
+.card > img{
     max-height: 50px;
     align-items: center;
     height:50px;
    max-width: 20px;
-    background:black;
+   background: white;
 } */
 .card_name {
     font-size: 20px;
     margin-bottom: 0px
 }
+
+.carddiv {
+    height: 300px;
+    width : 400px;
+    background: white;
+    margin : 0px;
     
-    
+
+}

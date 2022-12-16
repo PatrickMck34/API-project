@@ -1,8 +1,10 @@
 import React from 'react'
 import ProfileButton from '../Navigation/ProfileButton'
 import './Header.css'
+import {useSelector} from 'react-redux'
 
 function Header() {
+    const sessionUser = useSelector(state => state.session.user);
     return(
         
         <div className='header'>
@@ -15,7 +17,7 @@ function Header() {
         </div>
         <div className='header_right'>
             <p>Airbnb your home</p>
-            {/* <ProfileButton user={sessionUser} />  */}
+            <ProfileButton user={sessionUser} /> 
         </div> 
    
         </div>

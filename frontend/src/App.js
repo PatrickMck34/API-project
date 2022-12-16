@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import SignupFormPage from "./components/SignupFormModal";
+import SignupFormModal from "./components/SignupFormModal";
 import * as sessionActions from "./store/session";
 import * as spotsActions from "./store/spots"
 import Navigation from "./components/Navigation";
@@ -11,7 +11,9 @@ import Header from "./components/Header/Header"
 import CreateSpotForm from './components/Get-Spot/index.js'
 import Card from './components/Cards/Card'
 import SpotDetails from "./components/SpotIndex/index.js";
-
+import UpdateSpotForm from "./components/UpdateSpot";
+import Delete from './components/DeleteSpot/deleteSpot'
+import LoginFormModal from "./components/LoginFormModal";
 
 
 
@@ -42,22 +44,26 @@ function App() {
     <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route
-        path={`/spots/${spots.id}`}>
-        <SpotDetails />
-         </Route>
+          <Route exact
+        path={`/spots/${spots.id}`} component={SpotDetails}/>
+          <Route path="/" >
+            <Home/>
+            </Route>
+            <Route path="/login">
+        <LoginFormModal />
+        </Route>
           <Route path="/signup">
-          <SignupFormPage />
+          <SignupFormModal />
+      
           </Route>
-          <Route path="/">
-          {/* <Header /> */}
-          <CreateSpotForm />
-          <Home /> 
-         
-          </Route>
-       
-         
-        
+          <Route path="/spots/create">
+             <CreateSpotForm/>
+            </Route>
+          
+          <Route path="/spots/edit">
+            <UpdateSpotForm/>
+            </Route>
+          <Route exact path="/spots/create" component={Delete}/>
         </Switch>
       )}
     </>

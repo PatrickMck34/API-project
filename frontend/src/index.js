@@ -10,7 +10,7 @@ import configureStore from './store';
 import { restoreCSRF, csrfFetch } from "./store/csrf";
 import * as sessionActions from './store/session';
 import * as spotsActions from "./store/spots"
-import CreateSpotForm from './components/Get-Spot';
+
 const store = configureStore();
 
 if (process.env.NODE_ENV !== "production") {
@@ -27,19 +27,19 @@ if (process.env.NODE_ENV !== "production") {
 // HTML elements on top of the all the other HTML elements:
 function Root() {
   return (
-    <Provider store={store}>
+    
+    
         <ModalProvider>
-
+        <Provider store={store}>
         <BrowserRouter>
             <App />
-       
           <Modal />
-        
         </BrowserRouter>
-    </ModalProvider>
       </Provider>
+    </ModalProvider>
   );
 }
+        
 
 ReactDOM.render(
   <React.StrictMode>
