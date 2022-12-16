@@ -18,18 +18,18 @@
     
 }
 
-/* .header_center{
+ /* .header_center{
     display: flex;
     flex: 1;
     align-items: center;
     max-width:fit-content;
     padding: 10px;
     height:30px;
-     border: 1px solid lightgray; */
+     border: 1px solid lightgray; 
 
 
     
-/* } */
+ }  */
 
  .header_right{
     display: flex;

@@ -5,11 +5,8 @@ import SignupFormModal from "./components/SignupFormModal";
 import * as sessionActions from "./store/session";
 import * as spotsActions from "./store/spots"
 import Navigation from "./components/Navigation";
-// import {useFetch} from 'react-fetch-hook'
 import Home from "./components/Home/Home"
-import Header from "./components/Header/Header"
 import CreateSpotForm from './components/Get-Spot/index.js'
-import Card from './components/Cards/Card'
 import SpotDetails from "./components/SpotIndex/index.js";
 import UpdateSpotForm from "./components/UpdateSpot";
 import Delete from './components/DeleteSpot/deleteSpot'
@@ -46,7 +43,7 @@ function App() {
         <Switch>
           <Route exact
         path={`/spots/${spots.id}`} component={SpotDetails}/>
-          <Route path="/" >
+          <Route path="/">
             <Home/>
             </Route>
             <Route path="/login">
@@ -54,7 +51,6 @@ function App() {
         </Route>
           <Route path="/signup">
           <SignupFormModal />
-      
           </Route>
           <Route path="/spots/create">
              <CreateSpotForm/>
