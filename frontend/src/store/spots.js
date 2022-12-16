@@ -1,5 +1,5 @@
 import { csrfFetch } from './csrf'; 
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 const READ_SPOT = '/spots/:spotId';
 const READ_SPOTS = '/spots';
 const UPDATE_SPOT = '/spots/edit'
@@ -10,7 +10,7 @@ const CREATE_SPOT = '/spots/new'
 export const createSpot = (spot) => async (dispatch) => {
     // dispatch = useDispatch()
     const { address, city, state, country, lat, lng, name,description, price} = spot
-  const previewImage = spot.previewImage
+    const previewImage = spot.previewImage
     const data = await csrfFetch("/api/spots/", {
         method: "POST",
         body: JSON.stringify({
@@ -18,9 +18,9 @@ export const createSpot = (spot) => async (dispatch) => {
         }),
     });
     
-     const response = await data.json();
-     const result = {...response, previewImage}
-     console.log(result)
+    const response = await data.json();
+    const result = {...response, previewImage}
+    console.log(result)
     dispatch(createSpots(result));
     return spot;
 };
@@ -32,38 +32,39 @@ export const createSpots = (spot) =>({
 export const getSpots = (spots) => async (dispatch) => {
     const data = await csrfFetch("/api/spots")
     const spots = await data.json()
-   
+    
     dispatch(readSpots(spots.Spots))
     return spots
     
     //    if(response.ok){
-        }
-        
-    // }
+    }
     
-    export const getSpot = (id) => async dispatch => {
-        const data = await csrfFetch(`/api.spots/${id}`)
-        if(data.ok) {
-            const spot = await data.json()
-            dispatch(readSpot(spot))
-            return spot
-        }
+    
+    
+    export const getSpot = (id) => async (dispatch) => {
+        const data = await csrfFetch(`/api/spots/${id}`)
         
-    };
-   export const readSpots = (spots) =>({
+        const spot = await data.json()
+        console.log(spot)
+        dispatch(readSpot(spot))
+        
+    }
+    
+    
+    export const readSpots = (spots) =>({
         type: READ_SPOTS,
         payload: spots
     })
-    export const readSpot = spot =>({
+    export const readSpot = (spot) =>({
         type: READ_SPOT,
        payload: spot
     })
     
-    export const deleteSpots = () => async (dispatch) => {
-        const response = await csrfFetch('/api/spots', {
+    export const deleteSpots = (id) => async (dispatch) => {
+        const response = await csrfFetch(`/api/spots/${id}`, {
             method: 'DELETE',
         });
-        dispatch(deleteSpot());
+        dispatch(deleteSpot(id));
         return response;
     };
     const deleteSpot = (spotId) => {

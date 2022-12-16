@@ -43,7 +43,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route
-        path="/spots/1">
+        path={`/spots/${spots.id}`}>
         <SpotDetails />
          </Route>
           <Route path="/signup">
