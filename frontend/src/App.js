@@ -59,7 +59,6 @@ function App() {
           <Route path="/spots/create">
              <CreateSpotForm/>
             </Route>
-          
           <Route path="/spots/edit">
             <UpdateSpotForm/>
             </Route>
