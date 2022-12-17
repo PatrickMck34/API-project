@@ -14,23 +14,16 @@ return(
     spots.map((spot) => {
         return(
             <>
-            <div className="cards">
-            
-                    <div className="carddiv">
-            
-          
-            <a href={`https://go-there.onrender.com/spots/${spot.id}`}>
+            <Link to={`/spots/${spot.id}`}>
          <img className="card"  src={spot.previewImage} alt=""/>
         <h2 >{spot.name}</h2>
         <h4 >{spot.description}</h4>
         <h3 >{spot.price}</h3>
-
-                </a>
-                <Link to={`/spots/${spot.id}`} onClick={spotActions.getSpot(`${spot.id}`)} className="carddiv">Details</Link>
+                </Link>
+                
             
-                </div>
             
-        </div>
+     
             </>
         
         )

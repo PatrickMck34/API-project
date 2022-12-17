@@ -1,0 +1,73 @@
+.SpotName {
+    display: flex;
+    margin-left: 340px;
+    margin-top: 2px;
+  }
+  .spotDetails {
+    display: flex;
+    margin-left: 125px;
+    margin-left:300px;
+  }
+
+.detailsRight {
+    display:flex;
+    width: 280px;
+    
+  }
+
+ .detailsCenter{
+     width: 80px;
+  justify-content: left;
+  display: flex;
+}
+.detailsLeft{
+    margin-right: 10px;
+  justify-content: flex-end;
+  display: flex;
+  width: 190px;
+}
+.Image {
+    display: flex;
+    margin-left: 14em;
+    height: 75%;
+    width: 32em;
+    
+  }
+  .price {
+    justify-content:right;
+    display:flex;
+font-weight: 200;
+font-size: 24px;
+    justify-content: start;
+   height: 300px;
+  border-style: solid;
+  margin-left:63%;
+  margin-right: 15%;
+  }
+  .mainImage {
+    display: flex;
+  width: 30em;
+  flex-flow: column;
+  flex-wrap: wrap;
+  height: 30em;
+  }
+  .Image2 {
+    height: 11em;
+    width: 15em;
+    padding: 2px;
+  }
+  .imagediv {
+    display:flex;
+    flex-flow: column;
+    
+  }
+  .div2 {
+    display :inline-grid;
+    
+
+
+  }
+
+
+
+    

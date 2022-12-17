@@ -40,7 +40,7 @@ function UpdateSpotForm() {
   
     return (
       <>
-        <h1>Create Spot</h1>
+        <h1>Update Spot</h1>
         <form onSubmit={handleSubmit}>
           <ul>
             {errors.map((error, idx) => <li key={idx}>{error}</li>)}

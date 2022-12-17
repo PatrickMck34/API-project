@@ -5,17 +5,22 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { ModalProvider, Modal } from './context/Modal';
 import App from './App';
-
+import CreateSpotForm from './components/Get-Spot';
+import Delete from './components/DeleteSpot/deleteSpot';
+import SpotIndex from './components/SpotIndex/index'
 import configureStore from './store';
 import { restoreCSRF, csrfFetch } from "./store/csrf";
 import * as sessionActions from './store/session';
 import * as spotsActions from "./store/spots"
-
+import { Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import UpdateSpotForm from './components/UpdateSpot';
+import Header from './components/Header/Header';
 const store = configureStore();
 
 if (process.env.NODE_ENV !== "production") {
   restoreCSRF();
-
+  
   window.csrfFetch = csrfFetch;
   window.store = store;
   window.sessionActions = sessionActions;
@@ -29,10 +34,14 @@ function Root() {
   return (
     
     
-        <ModalProvider>
+    <ModalProvider>
         <Provider store={store}>
         <BrowserRouter>
+        {/* <CreateSpotForm />
+        <UpdateSpotForm/> */}
+        <Header />
             <App />
+         
           <Modal />
         </BrowserRouter>
       </Provider>

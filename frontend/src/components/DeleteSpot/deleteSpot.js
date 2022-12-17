@@ -5,13 +5,13 @@ function Delete() {
     const dispatch = useDispatch()
    const spots = useSelector(state=>state.spots)
 
-   useEffect(() => {
-    dispatch(spotActions.deleteSpots(1))
-        }, [dispatch])
+//    useEffect(() => {
+//     dispatch(spotActions.deleteSpots())
+//         }, [dispatch])
 
 return(
     <div>
-        <button onclick={(dispatch(spotActions.deleteSpots(5)),[dispatch])}>
+        <button onclick={(dispatch(spotActions.deleteSpots(2)),[dispatch])}>
 
         </button>
     </div>
