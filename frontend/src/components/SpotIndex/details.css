@@ -28,33 +28,52 @@
 }
 .Image {
     display: flex;
-    margin-left: 14em;
-    height: 75%;
-    width: 32em;
+    margin-left: 13em;
+
     
+    height: 100%;
+    width: 32em;
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
+    border-bottom-left-radius: 5%;
+    border-bottom-right-radius: 5%;
   }
   .price {
     justify-content:right;
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
+    border-bottom-left-radius: 5%;
+    border-bottom-right-radius: 5%;
     display:flex;
 font-weight: 200;
 font-size: 24px;
     justify-content: start;
-   height: 300px;
-  border-style: solid;
-  margin-left:63%;
-  margin-right: 15%;
+   height: 11em;
+width: 24%;
+   box-shadow: 0em 0em 1em rgba(0, 0, 0, 0.3);
+
+  margin-left:36em;
+
   }
   .mainImage {
     display: flex;
-  width: 30em;
+  width: 26em;
   flex-flow: column;
   flex-wrap: wrap;
-  height: 30em;
+  height: 22em;
+  justify-content:center;
+  margin-right: 20em
+ 
+ 
   }
   .Image2 {
     height: 11em;
     width: 15em;
-    padding: 2px;
+    padding: 1px;
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
+    border-bottom-left-radius: 5%;
+    border-bottom-right-radius: 5%;
   }
   .imagediv {
     display:flex;
@@ -63,6 +82,7 @@ font-size: 24px;
   }
   .div2 {
     display :inline-grid;
+
     
 
 

@@ -40,11 +40,11 @@ spots = spots.allSpots[spotsId]
                         </div>
                      </div>
 
-                        <div>
-                      <h5 className="price">${spots.price}</h5>
+                     <div>
+              <h5 className="price">${spots.price}</h5>
                   </div>
-              <div>
-                 <button className="Delete Spot">Delete Spot</button>
+           <div>
+               <button className="Delete Spot">Delete Spot</button>
                     <button>Create Review</button>
                 <button>Edit Spot</button>
                         </div>
