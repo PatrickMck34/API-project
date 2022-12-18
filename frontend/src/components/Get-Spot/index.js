@@ -99,7 +99,7 @@ const history = useHistory()
           <label>
           price
           <input
-            type="text"
+            type="number"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
             required
@@ -108,7 +108,7 @@ const history = useHistory()
           <label>
           previewImage
           <input
-            type="text"
+            type="url"
             value={previewImage}
             onChange={(e) => setPreviewImage(e.target.value)}
             required

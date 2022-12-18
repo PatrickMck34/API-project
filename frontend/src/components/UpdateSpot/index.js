@@ -11,7 +11,7 @@ import { useHistory } from "react-router-dom";
 
 function UpdateSpotForm() {
     const dispatch = useDispatch();
-    const spots = useSelector(state=>state.spots)
+
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
@@ -28,9 +28,9 @@ function UpdateSpotForm() {
       history.push("/")
       e.preventDefault();
   
-        // setErrors([]);
+     
         return (dispatch(spotActions.updateSpot({address, city, state, country,name,description, price})))
-          // .then(closeModal)
+          .then(closeModal)
           // .catch(async (res) => {
           //   const data = await res.json();
   

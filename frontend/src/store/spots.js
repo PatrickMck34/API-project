@@ -1,5 +1,5 @@
 import { csrfFetch } from './csrf'; 
-import { useDispatch } from 'react-redux';
+
 const READ_SPOT = '/spots/:spotId';
 const READ_SPOTS = '/spots';
 const UPDATE_SPOT = '/spots/edit'
@@ -8,7 +8,7 @@ const DELETE_SPOT = '/spots/:spotId';
 const CREATE_SPOT = '/spots/new'
 
 export const createSpot = (spot) => async (dispatch) => {
-    // dispatch = useDispatch()
+
     const { address, city, state, country, lat, lng, name,description, price, url} = spot
  const data = await csrfFetch("/api/spots/", {
         method: "POST",

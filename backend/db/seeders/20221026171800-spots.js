@@ -71,7 +71,8 @@ avgStarRating: 4.1,
     avgRating: 2.2,
     avgStarRating: 4.1,
     numReviews: 1,
-    previewImage: "https://upload.wikimedia.org/wikipedia/commons/2/20/Window_tinting_for_homes.png"
+    previewImage : "https://upload.wikimedia.org/wikipedia/commons/2/20/Window_tinting_for_homes.png",
+   
   
   },
    ],{})

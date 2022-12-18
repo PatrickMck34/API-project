@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import * as spotActions from "../../store/spots"
 function Card() {
-   const dispatch=useDispatch()
+//    const dispatch=useDispatch()
 const spotsObj = useSelector(state=> state.spots.allSpots)
 const spots = Object.values(spotsObj) 
 
@@ -14,14 +14,21 @@ return(
     spots.map((spot) => {
         return(
             <>
-            <Link to={`/spots/${spot.id}`}>
-         <img className="card"  src={spot.previewImage} alt=""/>
-        <h2 >{spot.name}</h2>
-        <h4 >{spot.description}</h4>
-        <h3 >{spot.price}</h3>
+         
+
+<div key={"d"+spot.id}>
+
+            <Link 
+            key={spot.id+"L"}to={`/spots/${spot.id}`}>
+         <img key={"img"+spot.id}  className="card" src={spot.previewImage} alt=""/>
+       <h2 key={spot.id+"h"}>{spot.name}</h2>
+        <h4 key={spot.id+'h4'}>{spot.description}</h4>
+        <h3 key={spot.id+"h3"}>{spot.price}</h3>
                 </Link>
                 
+                </div>
             
+          
             
      
             </>

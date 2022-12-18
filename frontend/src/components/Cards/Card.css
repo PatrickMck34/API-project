@@ -7,7 +7,11 @@
  display: flex;
  flex-wrap: wrap;
    background:white;
-   padding: 8px
+   padding: 4px;
+   border-top-left-radius: 5%;
+   border-top-right-radius: 5%;
+   border-bottom-left-radius: 5%;
+   border-bottom-right-radius: 5%;
 
 }
 .card > img{
@@ -16,6 +20,10 @@
     height:50px;
    max-width: 20px;
    background: white;
+   border-top-left-radius: 5%;
+   border-top-right-radius: 5%;
+   border-bottom-left-radius: 5%;
+   border-bottom-right-radius: 5%;
 } 
 .card_name {
     font-size: 20px;
