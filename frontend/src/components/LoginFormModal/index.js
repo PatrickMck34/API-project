@@ -6,8 +6,8 @@ import "./LoginForm.css";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
-  const [credential, setCredential] = useState("");
-  const [password, setPassword] = useState("");
+  const [credential, setCredential] = useState("Username or Email");
+  const [password, setPassword] = useState("Password");
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
 
@@ -26,32 +26,32 @@ function LoginFormModal() {
 
   return (
     <>
-      <h1>Log In</h1>
+      <h1 className="title">Log In</h1>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
-        <label>
-          Username or Email
-          <input
+        <label className="label">
+       
+          <input className="input"
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
             required
           />
         </label>
-        <label>
-          Password
-          <input
+        <label className="label">
+     
+          <input className="input"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </label>
-        <button type="submit">Log In</button>
+        <button className="button" type="submit">Log In</button>
       </form>
     </>
   );

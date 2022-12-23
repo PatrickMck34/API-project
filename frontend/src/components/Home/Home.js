@@ -7,6 +7,8 @@ function Home() {
     const spots = useSelector(state=> state.spots)
 const id = spots.id
     return(
+        <>
+            <Header />
         <div className='home'>
             <div className='home_banner'>
                
@@ -14,9 +16,11 @@ const id = spots.id
             <div className='home_section'>
      
             <Card key={"c"+id}/>
+            
                 
         </div>
          </div>
+        </>
     )
 }
 export default Home

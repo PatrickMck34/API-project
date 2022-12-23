@@ -1,4 +1,31 @@
-.createForm {
-  
-    justify-content: center;
+.labels{
+    display:flex;
+    justify-items: center;
+    margin-left: 2em;
+    margin-right: 2em;
+    padding: .7em;
+    height:2em;
+    width:38em;
+    border-top-left-radius: 5%;
+   border-top-right-radius: 5%;
+   border-bottom-left-radius: 5%;
+   border-bottom-right-radius: 5%;
+ 
+}
+.title{
+    margin-left: .5em;
+}
+.button{
+    width:82%;
+    margin-left: 3.2em;
+    margin-right: .5em;
+    align-self:center;
+    margin-bottom: 2em;
+    padding: .5em;
+    background-image: radial-gradient(circle at center center, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 27.5%, rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%, rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%);
+    color:white
+
+}
+.input {
+    width:85%
 }

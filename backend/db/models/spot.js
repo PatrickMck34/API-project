@@ -97,7 +97,9 @@ module.exports = (sequelize, DataTypes) => {
       numReviews: {type: DataTypes.INTEGER,
       },
   
-      url: {type: DataTypes.STRING, defaultValue: 'image url'},
+      url: {type: DataTypes.STRING, defaultValue: "https://upload.wikimedia.org/wikipedia/commons/2/20/Window_tinting_for_homes.png" },
+      
+
   }, {
     sequelize,
     modelName: 'Spot',

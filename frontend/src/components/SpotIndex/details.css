@@ -1,17 +1,22 @@
 .SpotName {
     display: flex;
-    margin-left: 340px;
-    margin-top: 2px;
+    margin-left: 6.5em;
+    margin-bottom:0;
+  }
+  .fa-solid {
+    margin-top:1.5em;
+    justify-self:left;
   }
   .spotDetails {
     display: flex;
-    margin-left: 125px;
-    margin-left:300px;
+    margin-left:13em;
+    margin-right: 6em;
+   justify-content: left
   }
 
 .detailsRight {
     display:flex;
-    width: 280px;
+    width: 10em;
     
   }
 
@@ -52,7 +57,7 @@ font-size: 24px;
 width: 24%;
    box-shadow: 0em 0em 1em rgba(0, 0, 0, 0.3);
 
-  margin-left:36em;
+  margin-left:37.5em;
 
   }
   .mainImage {
@@ -87,6 +92,13 @@ width: 24%;
 
 
   }
+.buttons{
+display:flex;
+justify-content:center;
+justify-content:space-around;
+padding:1em;
+
+}
 
 
 

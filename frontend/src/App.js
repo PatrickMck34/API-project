@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import SignupFormModal from "./components/SignupFormModal";
 import * as sessionActions from "./store/session";
 import * as spotsActions from "./store/spots"
@@ -44,21 +44,15 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route
-          key={"2"} path="/login">
-            <LoginFormModal />
-          </Route>
+          
           {/* <Route path="/spots/create">
             <CreateSpotForm />
           </Route> */}
           <Route
-          key={"3"} path="/signup">
-            <SignupFormModal />
-            </Route>
-          <Route
-            key={spots.id+"R"}
+            key={spots.id}
              path={`/spots/:spotsId`}>
             <SpotDetails />
+            
           </Route>
           <Route
           key={"2"} 
@@ -67,9 +61,12 @@ function App() {
             <Home />
           </Route>
           {/* <Route exact path="/spots/create" component={Delete} /> */}
-          <Route key ={"9huy"} path="/spots/edit">
+          <Route  path={"/spots/:spotId"}>
             <UpdateSpotForm />
           </Route>
+          <Route>
+  <h1>404: Page not found</h1>
+</Route>
         </Switch>
       )}
     </>

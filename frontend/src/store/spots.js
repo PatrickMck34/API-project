@@ -3,7 +3,6 @@ import { csrfFetch } from './csrf';
 const READ_SPOT = '/spots/:spotId';
 const READ_SPOTS = '/spots';
 const UPDATE_SPOT = '/spots/edit'
-
 const DELETE_SPOT = '/spots/:spotId';
 const CREATE_SPOT = '/spots/new'
 
@@ -18,22 +17,20 @@ export const createSpot = (spot) => async (dispatch) => {
     });
 
     const response = await data.json()
-    dispatch(createSpotImage(url, (response.id)))
-    console.log(response.id)
+    dispatch(createSpots(response))
     
-    
-//     const  result = {...response, url}
-//     const id = response.id
-//     // dispatch(createSpots(result))
-// return result    
+return response 
 };
 
 
 export const createSpotImage = (url, id) => async (dispatch) => {
+    const preview = {preview:true}
     const data = await csrfFetch(`/api/spots/${id}/images`, {
         method: "POST",
         body: JSON.stringify({
-            url
+            url, preview
+            
+            
             
         }),
     })
@@ -43,23 +40,33 @@ export const createSpotImage = (url, id) => async (dispatch) => {
 }
 export const updateSpot = (spot) => async (dispatch) => {
     // dispatch = useDispatch()
-    const { address, city, state, country, lat, lng, name,description, price} = spot
-    const id = 1
-    const data = await csrfFetch(`/api/spots/1`, {
+    const { address, city, state, country, name, description, price, spotsId} = spot
+
+    const data = await csrfFetch(`/api/spots/${spotsId}`, {
         method: "PUT",
         body: JSON.stringify({
-           id , address, city, state, country, lat, lng, name,description, price
+            address, city, state, country, name,description, price
         }),
     });
     const response = await data.json()
-    console.log(response)
-    dispatch(createSpots(response));
+
+    dispatch(updateSpots(response));
     return response
+    
 }
 export const createSpots = (spot) =>({
     type: CREATE_SPOT,
     payload: spot
+
 })
+export const updateSpots = (spot) =>({
+    type: UPDATE_SPOT,
+    payload: spot
+})
+// export const createImage = (spot) =>({
+//     type: CREATE_IMAGE,
+//     payload: spot
+// })
 
 export const getSpots = (spots) => async (dispatch) => {
     const data = await csrfFetch("/api/spots")
