@@ -7,6 +7,7 @@ import CreateReviewForm from '../../components/Reviews/index'
 import OpenModalButton from '../OpenModalButton'
 import CreateSpotForm from '../Get-Spot'
 import UpdateSpotForm from '../UpdateSpot'
+import Delete from '../DeleteSpot/deleteSpot'
 <script src="https://kit.fontawesome.com/d7a09d9013.js" crossorigin="anonymous"></script>
 
 function SpotDetails() {
@@ -74,13 +75,17 @@ spots = spots.allSpots[spotsId]
           buttonText="Create Review"
           modalComponent={<CreateReviewForm />}
           />
+          <OpenModalButton
+          buttonText="Delete Spot"
+          modalComponent={<Delete />}
+          />
                
                   </div>
                <h5 className="price">Price: ${spots.price}
                </h5>
           
            <div>
-               <button className="Delete Spot">Delete Spot</button>
+          
               
              
                         </div>

@@ -4,14 +4,13 @@ import { useEffect } from 'react'
 function Delete() {
     const dispatch = useDispatch()
    const spots = useSelector(state=>state.spots)
+   const num = (window.location.href.length - 1)
+   const  spotsId = (window.location.href[num])
 
-//    useEffect(() => {
-//     dispatch(spotActions.deleteSpots())
-//         }, [dispatch])
 
 return(
     <div>
-        <button onclick={(dispatch(spotActions.deleteSpots(2)),[dispatch])}>
+        <button onclick={(dispatch(spotActions.deleteSpots(spotsId)),[dispatch])}>
 
         </button>
     </div>
