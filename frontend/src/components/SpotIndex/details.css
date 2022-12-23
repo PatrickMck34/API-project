@@ -2,6 +2,8 @@
     display: flex;
     margin-left: 6.5em;
     margin-bottom:0;
+
+  
   }
   .fa-solid {
     margin-top:1.5em;
@@ -44,20 +46,20 @@
     border-bottom-right-radius: 5%;
   }
   .price {
-    justify-content:right;
+    display:inline-flex;
+ flex-direction: column;
     border-top-left-radius: 5%;
     border-top-right-radius: 5%;
     border-bottom-left-radius: 5%;
     border-bottom-right-radius: 5%;
-    display:flex;
-font-weight: 200;
+width: 45%;
 font-size: 24px;
-    justify-content: start;
-   height: 11em;
-width: 24%;
+  
+   height: 15em;
+
    box-shadow: 0em 0em 1em rgba(0, 0, 0, 0.3);
 
-  margin-left:37.5em;
+  margin-left:7em;
 
   }
   .mainImage {
@@ -93,12 +95,40 @@ width: 24%;
 
   }
 .buttons{
-display:flex;
-justify-content:center;
-justify-content:space-around;
-padding:1em;
+display:block;
+padding: 0;
+margin-top:1em;
+}
+.reviews{
+  display: flex;
+
+ 
+  border-top-left-radius: 5%;
+  border-top-right-radius: 5%;
+  border-bottom-left-radius: 5%;
+  border-bottom-right-radius: 5%;
+  width:40em;
+  height: 15em;
+  margin-top: 2.5em;
+  box-shadow: 0em 0em 1em rgba(0, 0, 0, 0.3);
+}
+.reviewsb{
+display: inline-flex;
+padding: 2px;
+margin-left: 13em;
+min-width:fit-content;
+box-sizing: border-box;
+}
+.full{
+display:inline-block;
+align-content:center;
+margin-right: 25%;
 
 }
+
+
+
+
 
 
 

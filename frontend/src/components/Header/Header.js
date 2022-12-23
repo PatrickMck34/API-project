@@ -2,6 +2,7 @@ import React from 'react'
 import ProfileButton from '../Navigation/ProfileButton'
 import './Header.css'
 import {useSelector} from 'react-redux'
+import OpenModalButton from '../OpenModalButton'
 
 function Header() {
     const sessionUser = useSelector(state => state.session.user);

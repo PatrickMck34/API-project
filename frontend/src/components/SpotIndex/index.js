@@ -18,12 +18,13 @@ function SpotDetails() {
     let spots = useSelector(state=>state.spots)
 let {spotsId} = useParams()
 spots = spots.allSpots[spotsId]
+let reviews = useSelector(state=>state.reviews)
 
 
 
-    return(
-
-<div >    
+return(
+    
+    <div className="full">    
               
                 <h1 className="SpotName">{spots.name}</h1>
 
@@ -59,10 +60,16 @@ spots = spots.allSpots[spotsId]
 
                         
                      </div>
+                     <div className="reviewsb">
+
+                     <div className="reviews">Spot Reviews
             
         
+               </div>
+               <h5 className="price">Price: ${spots.price}
                        <div className="buttons">
                
+               </div>
                <OpenModalButton 
           buttonText="Create Spot"
           modalComponent={<CreateSpotForm />}
@@ -80,17 +87,16 @@ spots = spots.allSpots[spotsId]
           modalComponent={<Delete />}
           />
                
-                  </div>
-               <h5 className="price">Price: ${spots.price}
                </h5>
+          </div>
           
-           <div>
+           
           
               
              
-                        </div>
-          </div>
+    
 
+          </div>
     ) 
 }
 export default SpotDetails
