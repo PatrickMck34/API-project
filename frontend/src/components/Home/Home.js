@@ -15,7 +15,7 @@ const id = spots.id
             </div>
             <div className='home_section'>
      
-            <Card key={"c"+id}/>
+            <Card key={"c" + id}/>
             
                 
         </div>

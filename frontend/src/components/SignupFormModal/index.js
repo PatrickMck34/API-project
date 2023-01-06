@@ -6,12 +6,12 @@ import './SignupForm.css';
 
 function SignupFormModal() {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [email, setEmail] = useState("Email");
+  const [username, setUsername] = useState("Username");
+  const [firstName, setFirstName] = useState("firstName");
+  const [lastName, setLastName] = useState("lastName");
+  const [password, setPassword] = useState("Password");
+  const [confirmPassword, setConfirmPassword] = useState("Password");
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
 
@@ -36,61 +36,61 @@ function SignupFormModal() {
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
-        <label>
-          Email
-          <input
+        <label className="label">
+       
+          <input className="input"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </label>
-        <label>
-          Username
-          <input
+        <label className="label">
+         
+          <input className="input"
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
         </label>
-        <label>
-          First Name
-          <input
+        <label className="label">
+          
+          <input className="input"
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             required
           />
         </label>
-        <label>
-          Last Name
-          <input
+        <label className="label">
+        
+          <input className="input"
             type="text"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             required
           />
         </label>
-        <label>
-          Password
-          <input
+        <label className="label">
+         
+          <input className="input"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </label>
-        <label>
-          Confirm Password
-          <input
+        <label className="label">
+         
+          <input className="input"
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
         </label>
-        <button type="submit">Sign Up</button>
+        <button className="button" type="submit">Sign Up</button>
       </form>
     </>
   );

@@ -15,8 +15,11 @@ function CreateSpotForm() {
   const [country, setCountry] = useState("country");
   const [name, setName] = useState("name");
   const [description, setDescription] = useState("description");
-  const [price, setPrice] = useState("100.00");
-  const [url, setUrl] = useState("")
+  const [price, setPrice] = useState("100");
+  const [previewImage, setPreviewImage] = useState("")
+
+  const num = (window.location.href.length - 1)
+  const  spotsId = (window.location.href[num])
 
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
@@ -26,7 +29,10 @@ const history = useHistory()
     e.preventDefault();
 
       setErrors([]);
-      return (dispatch(spotActions.createSpot({address, city, state, country,name,description, price})).dispatch(spotActions.createSpotImage(spots.id, url, {preview:true})))
+     (dispatch(spotActions.createSpot({address, city, state, country,name,description, price, previewImage})))
+     
+       
+      // return (dispatch(spotActions.createSpot({address, city, state, country,name,description, price})))
         .then(closeModal)
         .catch(async (res) => {
           const data = await res.json();
@@ -109,8 +115,8 @@ const history = useHistory()
         
           <input className="input"
             type="url"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
+            value={previewImage}
+            onChange={(e) => setPreviewImage(e.target.value)}
             required
             />
         </label>

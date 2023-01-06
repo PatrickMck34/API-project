@@ -89,7 +89,7 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 4.5
     },
       previewImage: {type: DataTypes.STRING,
-      defaultValue: "image url"
+      
       },
       avgStarRating: {type: DataTypes.DECIMAL,
         defaultValue: 4.5
@@ -97,7 +97,7 @@ module.exports = (sequelize, DataTypes) => {
       numReviews: {type: DataTypes.INTEGER,
       },
   
-      url: {type: DataTypes.STRING, defaultValue: "https://upload.wikimedia.org/wikipedia/commons/2/20/Window_tinting_for_homes.png" },
+      url: {type: DataTypes.STRING},
       
 
   }, {

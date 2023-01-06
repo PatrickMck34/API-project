@@ -1,11 +1,9 @@
 .card {
-    margin: 10px;
-   object-fit:fill;
-   width: 280px;
-   height: 300px;
- align-items:center;
+    margin: 1em;
+   width: 18em;
+   height: 20em;
  display: flex;
- flex-wrap: wrap;
+ flex-wrap: nowrap;
    background:white;
    padding: 4px;
    border-top-left-radius: 5%;
@@ -13,28 +11,9 @@
    border-bottom-left-radius: 5%;
    border-bottom-right-radius: 5%;
 
-}
-.card > img{
-    max-height: 50px;
-    align-items: center;
-    height:50px;
-   max-width: 20px;
-   background: white;
-   border-top-left-radius: 5%;
-   border-top-right-radius: 5%;
-   border-bottom-left-radius: 5%;
-   border-bottom-right-radius: 5%;
-} 
-.card_name {
-    font-size: 20px;
-    margin-bottom: 0px
-}
-
-.carddiv {
-    height: 300px;
-    width : 400px;
-    background: white;
-    margin : 0px;
-    
 
 }
+ 
+
+
+

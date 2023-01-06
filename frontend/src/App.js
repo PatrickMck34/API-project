@@ -29,8 +29,12 @@ function App() {
   const spots = useSelector(state => state.spots)
 
   useEffect(() => {
+    if(spots)
     dispatch(spotsActions.getSpots())
-  }, [dispatch])
+  else {
+    return "Loading"
+  }
+}, [dispatch])
 
   // console.log(err.message);
 

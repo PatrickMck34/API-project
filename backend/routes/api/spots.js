@@ -261,8 +261,8 @@ router.get(
             router.post("/", restoreUser, async (req, res) => {
                const currentUser = User.currentUserId(req, res)
               const ownerId = currentUser
-            const {address, city, state, country, lat, lng, name, description, price } = req.body;
-                const spot = await Spot.scope("createScope").create({ownerId, address, city, state, country, lat, lng, name, description, price })
+            const {address, city, state, country, lat, lng, name, description, price, previewImage } = req.body;
+                const spot = await Spot.scope("createScope").create({ownerId, address, city, state, country, lat, lng, name, description, price, previewImage })
                 createdAt = spot.createdAt
                 updatedAt = spot.updatedAt
                 id = spot.id

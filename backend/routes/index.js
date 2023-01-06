@@ -3,10 +3,7 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/hello/world', function (req, res){
-  res.cookie("XRSF-TOKEN", req.csrfToken);
-  res.send("Hello World")
-})
+
 
 router.get("/api/csrf/restore", (req, res) => {
   const csrfToken = req.csrfToken();

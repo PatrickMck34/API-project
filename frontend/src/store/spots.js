@@ -8,23 +8,26 @@ const CREATE_SPOT = '/spots/new'
 
 export const createSpot = (spot) => async (dispatch) => {
 
-    const { address, city, state, country, lat, lng, name,description, price, url} = spot
+    const { address, city, state, country, lat, lng, name,description, price, previewImage} = spot
  const data = await csrfFetch("/api/spots/", {
         method: "POST",
         body: JSON.stringify({
-            address, city, state, country, lat, lng, name,description, price
+            address, city, state, country, lat, lng, name,description, price, previewImage
         }),
     });
 
     const response = await data.json()
+    if(previewImage){
+        dispatch(createSpotImage(previewImage, response.id))
+
     dispatch(createSpots(response))
     
 return response 
-};
+};}
 
 
 export const createSpotImage = (url, id) => async (dispatch) => {
-    const preview = {preview:true}
+ let preview;
     const data = await csrfFetch(`/api/spots/${id}/images`, {
         method: "POST",
         body: JSON.stringify({

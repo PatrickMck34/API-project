@@ -3,6 +3,7 @@ import ProfileButton from '../Navigation/ProfileButton'
 import './Header.css'
 import {useSelector} from 'react-redux'
 import OpenModalButton from '../OpenModalButton'
+import OpenModalMenuItem from '../Navigation/OpenModalMenuItem'
 
 function Header() {
     const sessionUser = useSelector(state => state.session.user);
@@ -18,7 +19,7 @@ function Header() {
         </div>
         <div className='header_right'>
             <p>Airbnb your home</p>
-            <ProfileButton user={sessionUser} /> 
+            {/* <ProfileButton user={sessionUser} />  */}
         </div> 
    
         </div>

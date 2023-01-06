@@ -57,7 +57,7 @@ module.exports = {
       },
         previewImage: {
           type: Sequelize.STRING,
-          defaultValue: "image url"
+          
         },
           url: {
             type: Sequelize.STRING

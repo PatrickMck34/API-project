@@ -6,8 +6,8 @@ import "./LoginForm.css";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
-  const [credential, setCredential] = useState("Username or Email");
-  const [password, setPassword] = useState("Password");
+  const [credential, setCredential] = useState("");
+  const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
 
@@ -27,7 +27,7 @@ function LoginFormModal() {
   return (
     <>
       <h1 className="title">Log In</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} autocomplete="off">
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
@@ -35,7 +35,7 @@ function LoginFormModal() {
         </ul>
         <label className="label">
        
-          <input className="input"
+          <input className="input" autocomplete="Username/Email"
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
@@ -44,7 +44,7 @@ function LoginFormModal() {
         </label>
         <label className="label">
      
-          <input className="input"
+          <input className="input" autocomplete="current-password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}

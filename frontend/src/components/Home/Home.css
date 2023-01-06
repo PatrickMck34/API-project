@@ -1,10 +1,10 @@
 
 .home_section {
     display: flex;
-    padding: 20px;
-    margin-top: 95px;
-    max-width: 900px;
-    height: 400px;
-    justify-items:center;
-    margin-left: 40px
+    flex-wrap:wrap;
+   
+    margin-top: 3em;
+    max-width: fit-content;
+   max-height:fit-content;
+    margin-left: 4em;
 }
