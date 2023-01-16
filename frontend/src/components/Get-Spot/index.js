@@ -1,5 +1,5 @@
 import React from "react"
- import {useState } from "react";
+ import {useState, useEffect } from "react";
 import { useDispatch , useSelector} from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as spotActions from "../../store/spots";
@@ -21,25 +21,33 @@ function CreateSpotForm() {
   const num = (window.location.href.length - 1)
   const  spotsId = (window.location.href[num])
 
+
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
 const history = useHistory()
+
+useEffect(() => {
+    
+  dispatch(spotActions.getSpots())
+
+}, [previewImage])
+
   const handleSubmit = (e) => {
-    history.push("/")
     e.preventDefault();
-
-      setErrors([]);
-     (dispatch(spotActions.createSpot({address, city, state, country,name,description, price, previewImage})))
-     
-       
-      // return (dispatch(spotActions.createSpot({address, city, state, country,name,description, price})))
-        .then(closeModal)
-        .catch(async (res) => {
-          const data = await res.json();
-
-          if (data && data.errors) setErrors(data.errors);
-        });
-      };
+    
+    setErrors([]);
+   (dispatch(spotActions.createSpot({address, city, state, country,name,description, price, previewImage})))
+    
+    
+    // return (dispatch(spotActions.createSpot({address, city, state, country,name,description, price})))
+    .then(closeModal)
+    .catch(async (res) => {
+      const data = await res.json();
+      
+      if (data && data.errors) setErrors(data.errors);
+    });
+    history.push("/")
+  };
 
   return (
     <div className="createForm">

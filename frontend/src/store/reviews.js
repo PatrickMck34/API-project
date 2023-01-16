@@ -6,17 +6,16 @@ const UPDATE_REVIEWS = '/reviews/edit'
 const DELETE_REVIEW = '/reviews/:review';
 const CREATE_REVIEW = '/reviews/new'
 
-export const createReviews = (reviews, stars, spotId) => async (dispatch) => {
-
-    
+export const createReviews = (reviews) => async (dispatch) => {
+    const {review, stars, spotId} = reviews
  const data = await csrfFetch(`/api/spots/${spotId}/reviews` , {
         method: "POST",
         body: JSON.stringify({
-           reviews, stars, spotId
+           review, stars
         }),
     });
     const response = await data.json()
-    console.log(data)
+    
     dispatch(createReview(response))
     return response
 }
@@ -29,7 +28,7 @@ export const getReviews = (spotId) => async (dispatch) => {
 const data = await csrfFetch(`/api/spots/${spotId}/reviews` , {
     method: "GET",
     body: JSON.stringify({
-       spotId
+       
     }),
 });
 const response = await data.json()

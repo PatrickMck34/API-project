@@ -19,7 +19,7 @@ function Header() {
         </div>
         <div className='header_right'>
             <p>Airbnb your home</p>
-            {/* <ProfileButton user={sessionUser} />  */}
+            <ProfileButton user={sessionUser} /> 
         </div> 
    
         </div>

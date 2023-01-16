@@ -29,11 +29,9 @@ function App() {
   const spots = useSelector(state => state.spots)
 
   useEffect(() => {
-    if(spots)
+    
     dispatch(spotsActions.getSpots())
-  else {
-    return "Loading"
-  }
+  
 }, [dispatch])
 
   // console.log(err.message);
@@ -45,8 +43,7 @@ function App() {
   return (
     <>
 
-      <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
+      
         <Switch>
           
           {/* <Route path="/spots/create">
@@ -72,7 +69,7 @@ function App() {
   <h1>404: Page not found</h1>
 </Route>
         </Switch>
-      )}
+      
     </>
   );
 }

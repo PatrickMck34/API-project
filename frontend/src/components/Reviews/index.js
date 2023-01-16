@@ -3,30 +3,33 @@ import React from "react"
 import { useDispatch , useSelector} from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as spotActions from "../../store/spots";
-import * as reviewActions from '../../store/reviews'
+import * as reviewActions from "../../store/reviews"
 import './reviews.css';
 import { useHistory, useParams } from "react-router-dom";
 
 function CreateReviewForm() {
     const spots = useSelector(state=>state.spots)
 
-const {spotId} = useParams()
-console.log(spotId)
+
+
   const dispatch = useDispatch();
   const reviews = useSelector(state=>state.reviews)
-  const [review, setReview] = useState("Review");
-  const [stars, setStars] = useState("stars");
- 
+  const [review, setReview] = useState("");
+  const [stars, setStars] = useState(2);
 
+  const num = (window.location.href.length - 1)
+  const  spotsId = (window.location.href[num])
+const spotId = parseInt(spotsId)
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
 const history = useHistory()
-  const handleSubmit = (e) => {
-    
-    e.preventDefault();
-      
-      setErrors([]);
-      return dispatch(reviewActions.createReviews({review, stars, spotId}))
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+  console.log(spotId)
+  setErrors([]);
+  
+     dispatch(reviewActions.createReviews({review, stars, spotId}))
       .then(closeModal)
       .catch(async (res) => {
             const data = await res.json();
@@ -55,8 +58,7 @@ const history = useHistory()
        
           <input className="input"
             type="number"
-            min="1"
-            max="5"
+            
             value={stars}
             onChange={(e) => setStars(e.target.value)}
             required

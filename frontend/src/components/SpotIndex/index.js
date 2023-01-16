@@ -1,27 +1,36 @@
 import { useParams} from 'react-router-dom'
-import React from "react"
+import React, {useEffect} from "react"
 import "./details.css"
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
 import { Link } from 'react-router-dom'
 import CreateReviewForm from '../../components/Reviews/index'
 import OpenModalButton from '../OpenModalButton'
 import CreateSpotForm from '../Get-Spot'
 import UpdateSpotForm from '../UpdateSpot'
 import Delete from '../DeleteSpot/deleteSpot'
+import * as reviewsActions from '../../store/reviews'
 <script src="https://kit.fontawesome.com/d7a09d9013.js" crossorigin="anonymous"></script>
-
 function SpotDetails() {
-    // const dispatch = useDispatch()
+    
+    const dispatch = useDispatch()
     // useEffect(() => {
         // dispatch(spotsActions.getSpots())
     //         }, [dispatch])
     let spots = useSelector(state=>state.spots)
-let {spotsId} = useParams()
-spots = spots.allSpots[spotsId]
-let reviews = useSelector(state=>state.reviews)
+    let {spotsId} = useParams()
+    let reviewId = useParams()
+    spots = spots.allSpots[spotsId]
+    let reviews = useSelector(state=>state.reviews)
+//    console.log(reviews.allReviews[10])
+   useEffect(() => {
+    if(reviews)
+    dispatch(reviewsActions.getReviews(spotsId))
+  else {
+    return "Loading"
+  }
+}, [dispatch])
 
-
-
+console.log(reviewsActions.getReviews(spotsId))
 return(
     
     <div className="full">    
@@ -30,7 +39,7 @@ return(
 
                      <div className="spotDetails">
                          <i className="fa-solid fa-star"></i>
-                <h4 className="detailsStart">4.0  -1 reviews</h4>
+                <h4 className="detailsStart">4.0 </h4>
                 <h4 className="detailsLeft">{spots.city}</h4>
                 <h4 className="detailsCenter">{spots.state}</h4>
                 <h4 className="detailsRight">{spots.country}</h4>
@@ -62,8 +71,8 @@ return(
                      </div>
                      <div className="reviewsb">
 
-                     <div className="reviews">Spot Reviews
-            
+                     <div className="reviews">
+                    {/* {reviews.allReviews[reviews.allReviews.spotId].review} */}
         
                </div>
                <h5 className="price">Price: ${spots.price}
