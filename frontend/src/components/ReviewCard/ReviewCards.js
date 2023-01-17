@@ -5,19 +5,21 @@ import { useParams } from 'react-router-dom'
 import * as reviewsActions from "../../store/reviews"
 import { useEffect} from 'react'
 import "./ReviewCard.css"
+import DeleteReview from '../DeleteReview/DeleteReviews'
+import OpenModalButton from '../OpenModalButton'
 function ReviewCard() {
     const dispatch=useDispatch()
     const {spotsId} = {useParams}
     const reviewsObj = useSelector(state=> state.reviews.allReviews)
     const reviews = Object.values(reviewsObj) 
 
- useEffect(() => {
-     if(reviews)
-     dispatch(reviewsActions.getReviews(spotsId))
-   else {
-     return "Loading"
-   }
- }, [dispatch])
+//  useEffect(() => {
+//    if(reviews)
+//      dispatch(reviewsActions.getReviews(spotsId))
+  
+    
+//    }
+// , [dispatch])
 
  return(
      
@@ -30,7 +32,12 @@ function ReviewCard() {
 <div key={review.id}>
 
         {review.review} 
-           </div>
+        </div>
+        <div>
+        <button onclick={(dispatch(reviewsActions.deleteReviews(review.id)),[dispatch])}>
+
+        </button>
+        </div>
            </>
          
        

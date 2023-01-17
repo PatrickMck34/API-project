@@ -1,9 +1,7 @@
 import { csrfFetch } from './csrf'; 
 
 const READ_REVIEWS = '/reviews'
-const UPDATE_REVIEWS = '/reviews/edit'
-
-const DELETE_REVIEW = '/reviews/:review';
+const DELETE_REVIEW = '/reviews/:reviewId';
 const CREATE_REVIEW = '/reviews/new'
 
 export const createReviews = (reviews) => async (dispatch) => {
@@ -34,6 +32,19 @@ export const getReview = (review) =>({
     type: READ_REVIEWS,
     payload: review
 })
+export const deleteReviews = (id) => async (dispatch) => {
+    const response = await csrfFetch(`/api/reviews/${id}`, {
+        method: 'DELETE',
+    });
+    dispatch(deleteReview(id));
+    return response;
+};
+export  const deleteReview = (reviewId) => {
+    return {
+        type: DELETE_REVIEW,
+        reviewId
+    };
+};
 
 const initialState =  {allReviews:{}}
 export const reviewsReducer = (state = initialState, action) => {
@@ -49,6 +60,11 @@ export const reviewsReducer = (state = initialState, action) => {
                  newState ={allReviews: {} };
                  action.payload.Reviews.forEach(reviews => newState.allReviews[reviews.id] = reviews)
                 return newState 
+
+                case DELETE_REVIEW:
+             newState = {...state}
+             delete newState[action.payload]
+            
       default:
     return state
 }}

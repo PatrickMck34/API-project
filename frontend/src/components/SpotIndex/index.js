@@ -10,6 +10,7 @@ import UpdateSpotForm from '../UpdateSpot'
 import Delete from '../DeleteSpot/deleteSpot'
 import * as reviewsActions from '../../store/reviews'
 import ReviewCard from '../ReviewCard/ReviewCards'
+import DeleteReview from '../DeleteReview/DeleteReviews'
 <script src="https://kit.fontawesome.com/d7a09d9013.js" crossorigin="anonymous"></script>
 function SpotDetails() {
     
@@ -77,6 +78,10 @@ return(
                <OpenModalButton
                buttonText="Create Review"
                modalComponent={<CreateReviewForm />}
+               />
+               <OpenModalButton
+               buttonText="Delete Review"
+               modalComponent={<DeleteReview />}
                />
                </div>
         

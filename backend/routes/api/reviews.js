@@ -52,7 +52,8 @@ await image.save()
     return res.status(200).json(result)
     
 })
-router.delete('/:reviewId', async (req, res)=>{
+router.delete('/:reviewId',restoreUser, async (req, res)=>{
+    const userId = User.currentUserId(req, res)
     const reviewId = req.params.reviewId
     const spotCheck = await Reviews.findByPk(reviewId)
     if(spotCheck === null){
@@ -60,7 +61,8 @@ router.delete('/:reviewId', async (req, res)=>{
     }
     const delReview = Reviews.destroy({
         where: {
-            id :reviewId
+            id :reviewId,
+            userId : userId
         }
     })
     return res.status(200).json({message:'Sucessfully deleted', statusCode: 200})
