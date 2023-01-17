@@ -133,7 +133,7 @@ router.get(
         
             router.post("/:spotId/reviews", restoreUser, async (req, res) => {
                 const currentUser = User.currentUserId(req, res)
-                const spotId = req.params.spotId;
+                const spotId = parseInt(req.params.spotId);
                 let { review, stars } = req.body
                 const userId = currentUser
            
@@ -151,7 +151,7 @@ router.get(
                         }
                     }) 
                    
-                        console.log(userSpotCheck)
+                       
                         if (userSpotCheck !== null ){
                            return  res.status(404).json({ message: "Already submitted a Review", statusCode: 404 })}
                             console.log(userSpotCheck)

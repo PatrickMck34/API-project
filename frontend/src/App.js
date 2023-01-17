@@ -5,6 +5,7 @@ import SignupFormModal from "./components/SignupFormModal";
 import * as sessionActions from "./store/session";
 import * as spotsActions from "./store/spots"
 import Navigation from "./components/Navigation";
+import * as reviewsActions from "./store/reviews"
 
 import Home from "./components/Home/Home"
 
@@ -32,6 +33,10 @@ function App() {
     
     dispatch(spotsActions.getSpots())
   
+}, [dispatch])
+
+useEffect(() => {
+  dispatch(reviewsActions.getReviews())
 }, [dispatch])
 
   // console.log(err.message);

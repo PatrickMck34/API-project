@@ -25,15 +25,10 @@ export const createReview = (review) =>({
     payload: review
 })
 export const getReviews = (spotId) => async (dispatch) => {
-const data = await csrfFetch(`/api/spots/${spotId}/reviews` , {
-    method: "GET",
-    body: JSON.stringify({
-       
-    }),
-});
-const response = await data.json()
-dispatch(getReview(response))
-return response
+const data = await csrfFetch(`/api/spots/${spotId}/reviews`)
+    const response = await data.json()
+    dispatch(getReview(response))
+    return response
 }
 export const getReview = (review) =>({
     type: READ_REVIEWS,
@@ -45,16 +40,15 @@ export const reviewsReducer = (state = initialState, action) => {
     let newState = {}
     
     switch (action.type) {
-case CREATE_REVIEW:
-                 newState = {...state, allReviews:{ ...state.allReviews}}
-                
+               case CREATE_REVIEW:
+                 newState = {...state, allReviews:{ ...state.allReviews}} 
                 newState.allReviews[action.payload.id] = action.payload
                 return newState
 
                 case READ_REVIEWS:
-                 newState ={...state, allReviews: {} };
-                newState.allReviews = action.review
-                return newState
+                 newState ={allReviews: {} };
+                 action.payload.Reviews.forEach(reviews => newState.allReviews[reviews.id] = reviews)
+                return newState 
       default:
     return state
 }}

@@ -9,6 +9,7 @@ import CreateSpotForm from '../Get-Spot'
 import UpdateSpotForm from '../UpdateSpot'
 import Delete from '../DeleteSpot/deleteSpot'
 import * as reviewsActions from '../../store/reviews'
+import ReviewCard from '../ReviewCard/ReviewCards'
 <script src="https://kit.fontawesome.com/d7a09d9013.js" crossorigin="anonymous"></script>
 function SpotDetails() {
     
@@ -21,16 +22,13 @@ function SpotDetails() {
     let reviewId = useParams()
     spots = spots.allSpots[spotsId]
     let reviews = useSelector(state=>state.reviews)
-//    console.log(reviews.allReviews[10])
+
    useEffect(() => {
-    if(reviews)
+    
     dispatch(reviewsActions.getReviews(spotsId))
-  else {
-    return "Loading"
-  }
 }, [dispatch])
 
-console.log(reviewsActions.getReviews(spotsId))
+
 return(
     
     <div className="full">    
@@ -72,9 +70,16 @@ return(
                      <div className="reviewsb">
 
                      <div className="reviews">
-                    {/* {reviews.allReviews[reviews.allReviews.spotId].review} */}
-        
+                        <div className="ReviewTxt">
+                            Reviews: <ReviewCard />
+                        </div>
+                        
+               <OpenModalButton
+               buttonText="Create Review"
+               modalComponent={<CreateReviewForm />}
+               />
                </div>
+        
                <h5 className="price">Price: ${spots.price}
                        <div className="buttons">
                
@@ -86,10 +91,6 @@ return(
           <OpenModalButton
           buttonText="Edit Spot" 
           modalComponent={<UpdateSpotForm />}
-          />
-          <OpenModalButton
-          buttonText="Create Review"
-          modalComponent={<CreateReviewForm />}
           />
           <OpenModalButton
           buttonText="Delete Spot"

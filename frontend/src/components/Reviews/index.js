@@ -1,8 +1,8 @@
 import React from "react"
- import {useState } from "react";
+ import {useState, useEffect } from "react";
 import { useDispatch , useSelector} from "react-redux";
 import { useModal } from "../../context/Modal";
-import * as spotActions from "../../store/spots";
+import * as spotsActions from "../../store/spots";
 import * as reviewActions from "../../store/reviews"
 import './reviews.css';
 import { useHistory, useParams } from "react-router-dom";
@@ -23,10 +23,12 @@ const spotId = parseInt(spotsId)
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
 const history = useHistory()
+useEffect(() => {
+  dispatch(reviewActions.getReviews(spotId))
+}, [dispatch])
 
 const handleSubmit = (e) => {
   e.preventDefault();
-  console.log(spotId)
   setErrors([]);
   
      dispatch(reviewActions.createReviews({review, stars, spotId}))

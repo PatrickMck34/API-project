@@ -30,7 +30,7 @@ useEffect(() => {
     
   dispatch(spotActions.getSpots())
 
-}, [previewImage])
+}, [dispatch])
 
   const handleSubmit = (e) => {
     e.preventDefault();
