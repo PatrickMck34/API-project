@@ -28,14 +28,15 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
   const spots = useSelector(state => state.spots)
+  const reviews = useSelector(state=> state.reviews.allReviews)
 
   useEffect(() => {
-    
     dispatch(spotsActions.getSpots())
+    
+  }, [dispatch])
   
-}, [dispatch])
-
-useEffect(() => {
+  useEffect(() => {
+  if(reviews.length)
   dispatch(reviewsActions.getReviews())
 }, [dispatch])
 

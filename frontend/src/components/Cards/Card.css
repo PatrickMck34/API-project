@@ -1,17 +1,28 @@
 .card {
-    margin: 1em;
-   width: 18em;
-   height: 20em;
+    margin: .5em;
+   width: 19em;
+   height: 19em;
  display: flex;
  flex-wrap: nowrap;
    background:white;
-   padding: 4px;
    border-top-left-radius: 5%;
    border-top-right-radius: 5%;
    border-bottom-left-radius: 5%;
    border-bottom-right-radius: 5%;
 
 
+}
+.details {
+  display:flex;
+  justify-content:space-between;
+  width:18em;
+  flex-direction:row;
+  margin-left: 1.5em;
+  
+}
+.fa-solid {
+  padding: .4em;
+  font-size: small;
 }
  
 

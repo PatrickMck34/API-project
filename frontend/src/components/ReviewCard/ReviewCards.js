@@ -13,13 +13,13 @@ function ReviewCard() {
     const reviewsObj = useSelector(state=> state.reviews.allReviews)
     const reviews = Object.values(reviewsObj) 
 
-//  useEffect(() => {
-//    if(reviews)
-//      dispatch(reviewsActions.getReviews(spotsId))
+ useEffect(() => {
+   if(reviews)
+     dispatch(reviewsActions.getReviews(spotsId))
   
     
-//    }
-// , [dispatch])
+   }
+, [dispatch])
 
  return(
      
@@ -29,15 +29,18 @@ function ReviewCard() {
                  <>
       
 
-<div key={review.id}>
+
+<div key={review.id} className="ReviewPad">
 
         {review.review} 
+
         </div>
-        <div>
+
+        {/* <div>
         <button onclick={(dispatch(reviewsActions.deleteReviews(review.id)),[dispatch])}>
 
         </button>
-        </div>
+        </div> */}
            </>
          
        

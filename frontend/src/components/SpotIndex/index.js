@@ -37,8 +37,8 @@ return(
                 <h1 className="SpotName">{spots.name}</h1>
 
                      <div className="spotDetails">
-                         <i className="fa-solid fa-star"></i>
-                <h4 className="detailsStart">4.0 </h4>
+                         <i className="fa-solid fa-star">{spots.avgRating}</i>
+                
                 <h4 className="detailsLeft">{spots.city}</h4>
                 <h4 className="detailsCenter">{spots.state}</h4>
                 <h4 className="detailsRight">{spots.country}</h4>

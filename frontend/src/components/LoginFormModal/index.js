@@ -27,7 +27,7 @@ function LoginFormModal() {
   return (
     <>
       <h1 className="title">Log In</h1>
-      <form onSubmit={handleSubmit} autocomplete="off">
+      <form onSubmit={handleSubmit} autocomplete="on">
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>

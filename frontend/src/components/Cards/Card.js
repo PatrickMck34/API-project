@@ -9,24 +9,25 @@ import { useState , useEffect} from 'react'
 
 
 function Card() {
-       const dispatch=useDispatch()
-    const spotsObj = useSelector(state=> state.spots.allSpots)
-    const spots = Object.values(spotsObj) 
+  const dispatch=useDispatch()
+  const spotsObj = useSelector(state=> state.spots.allSpots)
+  const spots = Object.values(spotsObj) 
   
-    useEffect(() => {
-        if(spots)
-        dispatch(spotsActions.getSpots())
-      else {
-        return "Loading"
-      }
-    }, [dispatch])
-   
-    return(
-        
-        spots.map((spot) => {
-            
-                return(
-                    <>
+  useEffect(() => {
+    if(spots)
+    dispatch(spotsActions.getSpots())
+    else {
+      return "Loading"
+    }
+  }, [dispatch])
+  
+  return(
+    
+    spots.map((spot) => {
+      console.log(spot.stars)
+      
+      return(
+        <>
          
 
 <div key={spot.id + "D"}>
@@ -35,16 +36,17 @@ function Card() {
             key={spot.id +"L"} to={`/spots/${spot.id}`}>
                
               {spot.previewImage === "" ? (
-                  <h1>loading . . .</h1>
-                  ) : (
-                      <img className="card"  src={spot.previewImage} alt={spot.previewImage}/>
-                      
+                <h1>loading . . .</h1>
+                ) : (
+                  <img className="card"  src={spot.previewImage} alt={spot.previewImage}/>
+                  
                       ) }
-    
-       <h2 key={spot.id+"h"}>{spot.name}</h2>
-        <h4 key={spot.id+'h4'}>{spot.description}</h4>
-        <h3 key={spot.id+"h3"}>{spot.price}</h3>
                 </Link>
+    <div className="details">
+       <h4 key={spot.id+"h"}>{spot.city}, {spot.state}</h4> 
+       <i className="fa-solid fa-star">{spot.avgRating}</i> 
+    </div>
+        <h4 className="details" key={spot.id+"h3"}>${spot.price} night</h4>
                 
                 </div>
             

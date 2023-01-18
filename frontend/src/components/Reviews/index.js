@@ -13,7 +13,7 @@ function CreateReviewForm() {
 
 
   const dispatch = useDispatch();
-  const reviews = useSelector(state=>state.reviews)
+  const reviews = useSelector(state=>state.reviews.allReviews)
   const [review, setReview] = useState("");
   const [stars, setStars] = useState(2);
 
@@ -24,6 +24,7 @@ const spotId = parseInt(spotsId)
   const { closeModal } = useModal();
 const history = useHistory()
 useEffect(() => {
+  if(reviews.length)
   dispatch(reviewActions.getReviews(spotId))
 }, [dispatch])
 
