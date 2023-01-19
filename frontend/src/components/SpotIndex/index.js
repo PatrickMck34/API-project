@@ -2,7 +2,6 @@ import { useParams} from 'react-router-dom'
 import React, {useEffect} from "react"
 import "./details.css"
 import {useSelector, useDispatch} from 'react-redux'
-import { Link } from 'react-router-dom'
 import CreateReviewForm from '../../components/Reviews/index'
 import OpenModalButton from '../OpenModalButton'
 import CreateSpotForm from '../Get-Spot'
@@ -72,22 +71,18 @@ return(
 
                      <div className="reviews">
                         <div className="ReviewTxt">
-                            Reviews: <ReviewCard />
+                            User Reviews: 
+                             <ReviewCard />
+
+                             
                         </div>
-                        
-               <OpenModalButton
-               buttonText="Create Review"
-               modalComponent={<CreateReviewForm />}
-               />
-               <OpenModalButton
-               buttonText="Delete Review"
-               modalComponent={<DeleteReview />}
-               />
                </div>
+                        
+              
+             
         
                <h5 className="price">Price: ${spots.price}
                        <div className="buttons">
-               
                </div>
                <OpenModalButton 
           buttonText="Create Spot"
@@ -101,6 +96,10 @@ return(
           buttonText="Delete Spot"
           modalComponent={<Delete />}
           />
+                       <OpenModalButton
+               buttonText="Create Review"
+               modalComponent={<CreateReviewForm />}
+               />
                
                </h5>
           </div>
