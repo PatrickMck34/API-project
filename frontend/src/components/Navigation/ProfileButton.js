@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
-import OpenModalMenuItem from './/OpenModalMenuItem.js';
+import OpenModalButton from './/OpenModalMenuItem.js';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import { NavLink } from "react-router-dom";
+import DemoUser from "../DemoUser/DemoUser";
+
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -37,13 +39,20 @@ function ProfileButton({ user }) {
     dispatch(sessionActions.logout());
    
   };
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+  const Demo = (e) => {
+    e.preventDefault();
+    dispatch(sessionActions.Demo());
+  }
+  const ulClassName = "profile-dropdown" + (showMenu ? "open" : " hidden");
 
   return (
     <>
+
+
       <button onClick={openMenu} className={"hover"}>
         <i className="fas fa-user-circle" />
       </button>
+    
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
@@ -57,17 +66,18 @@ function ProfileButton({ user }) {
         ) : (
           <>
           <li key={"login"} className={"hover"}>
-            <OpenModalMenuItem
+            <OpenModalButton
               itemText="Log In"
               onItemClick={closeMenu}
               modalComponent={<LoginFormModal />}
               />
-            
-            <OpenModalMenuItem
+            <OpenModalButton
               itemText="Sign Up"
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
               />
+            
+              <button className="Demo" onClick={Demo}>Demo User</button>
             </li>
           </>
         )}
