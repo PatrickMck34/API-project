@@ -13,14 +13,14 @@ function Header() {
         <img className="header_icon"
             src="https://i.postimg.cc/zGhXX5JQ/Go-therelogo-Png.png"
             alt=""
-        />
+            />
         <div className='header_center'>
+            </div> 
             
-        </div>
         <div className='header_right'>
-         
             <ProfileButton user={sessionUser} /> 
-        </div> 
+        </div>
+            
    
         </div>
     )
