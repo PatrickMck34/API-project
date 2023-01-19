@@ -18,7 +18,7 @@ function Header() {
             
         </div>
         <div className='header_right'>
-            <p></p>
+         
             <ProfileButton user={sessionUser} /> 
         </div> 
    
