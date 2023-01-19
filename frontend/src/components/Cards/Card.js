@@ -24,7 +24,7 @@ function Card() {
   return(
     
     spots.map((spot) => {
-      console.log(spot.stars)
+    
       
       return(
         <>
