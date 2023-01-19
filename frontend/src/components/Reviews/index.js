@@ -2,15 +2,12 @@ import React from "react"
  import {useState, useEffect } from "react";
 import { useDispatch , useSelector} from "react-redux";
 import { useModal } from "../../context/Modal";
-import * as spotsActions from "../../store/spots";
+
 import * as reviewActions from "../../store/reviews"
 import './reviews.css';
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory} from "react-router-dom";
 
 function CreateReviewForm() {
-    const spots = useSelector(state=>state.spots)
-
-
 
   const dispatch = useDispatch();
   const reviews = useSelector(state=>state.reviews.allReviews)
@@ -23,22 +20,22 @@ const spotId = parseInt(spotsId)
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
 const history = useHistory()
-useEffect(() => {
-  if(reviews.length)
-  dispatch(reviewActions.getReviews(spotId))
-}, [dispatch])
+// useEffect(() => {
+//   if(reviews.length)
+//   dispatch(reviewActions.getReviews())
+// }, [dispatch, reviews.length])
 
 const handleSubmit = (e) => {
   e.preventDefault();
   setErrors([]);
-  dispatch(reviewActions.createReviews({review, stars, spotId}))
+  history.push('/')
+  return dispatch(reviewActions.createReviews({review, stars, spotId}))
   .then(closeModal)
   .catch(async (res) => {
     const data = await res.json();
     
     if (data && data.errors) setErrors(data.errors);
   });
-  history.push('/')
   
 };
 

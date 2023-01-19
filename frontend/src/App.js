@@ -1,23 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Router, Route, Switch } from "react-router-dom";
-import SignupFormModal from "./components/SignupFormModal";
+import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import * as spotsActions from "./store/spots"
-import Navigation from "./components/Navigation";
 import * as reviewsActions from "./store/reviews"
 
 import Home from "./components/Home/Home"
-
-import CreateSpotForm from './components/Get-Spot/index.js'
-
 import SpotDetails from "./components/SpotIndex/index.js";
 import UpdateSpotForm from "./components/UpdateSpot";
-import Delete from './components/DeleteSpot/deleteSpot'
-import LoginFormModal from "./components/LoginFormModal";
-
-
-
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +17,8 @@ function App() {
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
+
+
   const spots = useSelector(state => state.spots)
   const reviews = useSelector(state=> state.reviews.allReviews)
 
@@ -35,10 +27,10 @@ function App() {
     
   }, [dispatch])
   
-  useEffect(() => {
-  if(reviews.length)
-  dispatch(reviewsActions.getReviews())
-}, [dispatch])
+//   useEffect(() => {
+//   if(reviews.length)
+//   dispatch(reviewsActions.getReviews())
+// }, [reviews.length, dispatch])
 
   // console.log(err.message);
 

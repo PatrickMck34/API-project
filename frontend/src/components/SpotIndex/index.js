@@ -23,10 +23,10 @@ function SpotDetails() {
     spots = spots.allSpots[spotsId]
     let reviews = useSelector(state=>state.reviews)
 
-   useEffect(() => {
+//    useEffect(() => {
     
-    dispatch(reviewsActions.getReviews(spotsId))
-}, [dispatch])
+//     dispatch(reviewsActions.getReviews(spotsId))
+// }, [dispatch])
 
 
 return(

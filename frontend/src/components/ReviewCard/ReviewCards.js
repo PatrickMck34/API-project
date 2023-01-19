@@ -1,13 +1,12 @@
-import { csrfFetch } from '../../store/csrf'
+
 import React from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom'
 import * as reviewsActions from "../../store/reviews"
-import { useEffect, useState} from 'react'
-import "./ReviewCard.css"
-import DeleteReview from '../DeleteReview/DeleteReviews'
-import OpenModalButton from '../OpenModalButton'
 import * as sessionActions from "../../store/session"
+import { useEffect} from 'react'
+import "./ReviewCard.css"
+
 function ReviewCard() {
     const history = useHistory()
     const dispatch=useDispatch()
@@ -22,6 +21,9 @@ function ReviewCard() {
    }
 , [dispatch])
 let revId
+useEffect(() => {
+    dispatch(sessionActions.restoreUser());
+  }, [dispatch]);
 
 const DeleteReview = () => {
    
@@ -29,19 +31,19 @@ const DeleteReview = () => {
      history.push(`/`)
 }
 
- return(
-     
-     reviews.map((review) => {
-         revId = review.id
-             return(
-                 <>
+return(
+    
+    reviews.map((review) => {
+        revId = review.id
+        return(
+            <>
       
 
 
 <div key={review.id} className="ReviewPad">
-{review.User.firstName ? (
+            {user ? (
     <div>
-        {review.User.firstName} says: <p></p>
+        {/* {review.User.firstName} says: <p></p> */}
       
            {review.review} 
         </div>
@@ -55,8 +57,8 @@ const DeleteReview = () => {
             )}
         </div>
 <p></p>
+     
         <div>
-      
             {(review.User.id === user) ? (
 
                 <button className="button" onClick={()=>DeleteReview(review.id)}>
