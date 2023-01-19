@@ -35,20 +35,20 @@ return(
     
     reviews.map((review) => {
         revId = review.id
-        return(
-            <>
+        if(user)return(
+                <>
       
 
 
 <div key={review.id} className="ReviewPad">
             {user ? (
-    <div>
+                <div>
         {/* {review.User.firstName} says: <p></p> */}
       
            {review.review} 
         </div>
 
-       
+
 
         ):(
             <div>
