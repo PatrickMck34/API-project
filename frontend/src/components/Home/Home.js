@@ -18,9 +18,7 @@ const id = spots.id
             <Header />
         <div className='home'>
             <div className='home_banner'>
-            <button className="guest">
-                User Demo
-                </button>
+           
                
             </div>
             <div className='home_section'>
