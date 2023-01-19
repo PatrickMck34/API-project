@@ -39,9 +39,20 @@ const DeleteReview = () => {
 
 
 <div key={review.id} className="ReviewPad">
+{review.User.firstName ? (
+    <div>
         {review.User.firstName} says: <p></p>
-        {review.review} 
+      
+           {review.review} 
+        </div>
 
+       
+
+        ):(
+            <div>
+            {review.review} 
+</div>
+            )}
         </div>
 <p></p>
         <div>

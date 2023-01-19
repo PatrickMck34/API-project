@@ -31,19 +31,19 @@ useEffect(() => {
 const handleSubmit = (e) => {
   e.preventDefault();
   setErrors([]);
+  dispatch(reviewActions.createReviews({review, stars, spotId}))
+  .then(closeModal)
+  .catch(async (res) => {
+    const data = await res.json();
+    
+    if (data && data.errors) setErrors(data.errors);
+  });
+  history.push('/')
   
-     dispatch(reviewActions.createReviews({review, stars, spotId}))
-      .then(closeModal)
-      .catch(async (res) => {
-            const data = await res.json();
-          
-          if (data && data.errors) setErrors(data.errors);
-          });
-       
-        };
-        
-  return (
-    <div className="createReview">
+};
+
+return (
+  <div className="createReview">
       <h1 className="title">Create Review</h1>
       <form onSubmit={handleSubmit}>
         <ul>
