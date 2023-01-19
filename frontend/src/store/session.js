@@ -1,4 +1,3 @@
-// frontend/src/store/session.js
 import { csrfFetch } from './csrf';
 
 export const logout = () => async (dispatch) => {
@@ -62,6 +61,20 @@ export const login = (user) => async (dispatch) => {
   dispatch(setUser(data.user));
   return response;
 };
+export const Demo = () => async (dispatch) => {
+  const  credential = "DemoUser"
+  const password = "123456" 
+  const response = await csrfFetch('/api/session', {
+    method: 'POST',
+    body: JSON.stringify({
+      credential,
+      password,
+    }),
+  });
+  const data = await response.json();
+  dispatch(setUser(data.user));
+  return response;
+};
 
 const initialState = { user: null };
 
@@ -82,4 +95,3 @@ const sessionReducer = (state = initialState, action) => {
 };
 
 export default sessionReducer;
-// ...
