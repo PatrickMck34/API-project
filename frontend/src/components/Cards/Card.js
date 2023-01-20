@@ -33,7 +33,7 @@ function Card() {
 <div key={spot.id + "D"}>
 
             <Link 
-            key={spot.id +"L"} to={`/spots/${spot.id}`}>
+            key={spot.id + "link"} to={`/spots/${spot.id}`}>
                
               {spot.previewImage === "" ? (
                 <h1>loading . . .</h1>

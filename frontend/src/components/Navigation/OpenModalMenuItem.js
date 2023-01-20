@@ -16,7 +16,7 @@ function OpenModalMenuItem({
   };
 
   return (
-    <li key={"modal"} onClick={onClick}>{itemText}</li>
+    <li key={itemText} onClick={onClick}>{itemText}</li>
   );
 }
 

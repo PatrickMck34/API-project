@@ -13,10 +13,13 @@ function ReviewCard() {
     const {spotsId} = useParams()
     const reviewsObj = useSelector(state=> state.reviews.allReviews)
     const user = useSelector(state => state.session.user.id)
+    const users = useSelector(state => state.session.user)
     const reviews = Object.values(reviewsObj) 
 
+  
+
  useEffect(() => {
-   if(reviews)
+   if(user)
      dispatch(reviewsActions.getReviews(spotsId))
    }
 , [dispatch])
@@ -30,14 +33,15 @@ const DeleteReview = () => {
      dispatch(reviewsActions.deleteReviews(revId))
      history.push(`/`)
 }
-
 return(
-    
+  
     reviews.map((review) => {
         revId = review.id
-        if(user)return(
-                <>
+       
+return(
+           <>
       
+        
 
 
 <div key={review.id} className="ReviewPad">
@@ -58,18 +62,26 @@ return(
         </div>
 <p></p>
      
+<div>        {users && (review.User.id === user) ? ( 
+
+
+        
         <div>
-            {(review.User.id === user) ? (
 
                 <button className="button" onClick={()=>DeleteReview(review.id)}>
             Delete Review
 
         </button>
+            </div>
             ):(
                 <div></div>
                 )}
                 </div>
+         
+                    <div></div>
                 </>
+                
+
          
        
          
@@ -78,8 +90,7 @@ return(
      
      )
  }
-)   
-
+)
 
 )}
 

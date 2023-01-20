@@ -23,7 +23,7 @@ const id = spots.id
             </div>
             <div className='home_section'>
      
-            <Card key={id}/>
+            <Card key={id + "card"}/>
             
                 
         </div>

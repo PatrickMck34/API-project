@@ -52,12 +52,12 @@ export const reviewsReducer = (state = initialState, action) => {
     
     switch (action.type) {
                case CREATE_REVIEW:
-                 newState = {...state, allReviews:{ ...state.allReviews}} 
+                 newState = {allReviews:{ ...state.allReviews}} 
                 newState.allReviews[action.payload.id] = action.payload
                 return newState
 
                 case READ_REVIEWS:
-                 newState ={allReviews: {} };
+                 newState ={...state,allReviews: {} };
                  action.payload.Reviews.forEach(reviews => newState.allReviews[reviews.id] = reviews)
                 return newState 
 
