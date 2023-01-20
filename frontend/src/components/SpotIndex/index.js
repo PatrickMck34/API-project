@@ -8,11 +8,13 @@ import CreateSpotForm from '../Get-Spot'
 import UpdateSpotForm from '../UpdateSpot'
 import Delete from '../DeleteSpot/deleteSpot'
 import * as reviewsActions from '../../store/reviews'
+import * as spotActions from "../../store/spots"
 import ReviewCard from '../ReviewCard/ReviewCards'
 import DeleteReview from '../DeleteReview/DeleteReviews'
+import { useHistory } from 'react-router-dom'
 <script src="https://kit.fontawesome.com/d7a09d9013.js" crossorigin="anonymous"></script>
 function SpotDetails() {
-    
+  
     const dispatch = useDispatch()
     // useEffect(() => {
         // dispatch(spotsActions.getSpots())
@@ -22,6 +24,17 @@ function SpotDetails() {
     let reviewId = useParams()
     spots = spots.allSpots[spotsId]
     let reviews = useSelector(state=>state.reviews)
+    const history = useHistory()
+
+  const Delete=()=> {
+   dispatch(spotActions.deleteSpots(spotsId))
+   history.push("/")
+    }
+
+    useEffect(() => {
+        if(spots)
+        dispatch(spotActions.getSpots())
+    }, [dispatch])
 
    useEffect(() => {
     if(reviews)
@@ -94,10 +107,9 @@ return(
           buttonText="Edit Spot" 
           modalComponent={<UpdateSpotForm />}
           />
-          <OpenModalButton
-          buttonText="Delete Spot"
-          modalComponent={<Delete />}
-          />
+          <button className="button" onClick={()=> Delete(spotsId)}>
+     Delete Spot
+          </button>
                        <OpenModalButton
                buttonText="Create Review"
                modalComponent={<CreateReviewForm />}
