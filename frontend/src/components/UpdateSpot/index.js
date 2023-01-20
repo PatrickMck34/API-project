@@ -16,13 +16,13 @@ function UpdateSpotForm() {
   
   
   
-  const [address, setAddress] = useState("address");
-  const [city, setCity] = useState("city");
-  const [state, setState] = useState("state");
-  const [country, setCountry] = useState("country");
-  const [name, setName] = useState("name");
-  const [description, setDescription] = useState("description");
-  const [price, setPrice] = useState("price");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [country, setCountry] = useState("");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
 
   const num = (window.location.href.length - 1)
 const  spotsId = (window.location.href[num])
@@ -53,6 +53,7 @@ const  spotsId = (window.location.href[num])
           <label className='labels'>
            
             <input className="input"
+            placeholder="new address"
               type="text"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
@@ -62,6 +63,7 @@ const  spotsId = (window.location.href[num])
           <label className="labels">
            
             <input className="input"
+            placeholder="new city"
               type="text"
               value={city}
               onChange={(e) => setCity(e.target.value)}
@@ -71,6 +73,7 @@ const  spotsId = (window.location.href[num])
           <label className="labels">
          
             <input className="input"
+            placeholder="new state"
               type="text"
               value={state}
               onChange={(e) => setState(e.target.value)}
@@ -80,6 +83,7 @@ const  spotsId = (window.location.href[num])
           <label className="labels">
             
             <input className="input"
+            placeholder="new country"
               type="text"
               value={country}
               onChange={(e) => setCountry(e.target.value)}
@@ -89,6 +93,7 @@ const  spotsId = (window.location.href[num])
           <label className="labels">
        
             <input className="input"
+            placeholder="new name"
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -98,6 +103,7 @@ const  spotsId = (window.location.href[num])
           <label className="labels">
          
             <input className="input"
+            placeholder="new description"
               type="text"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
@@ -107,6 +113,7 @@ const  spotsId = (window.location.href[num])
             <label className="labels">
         
             <input className="input"
+            placeholder="new price"
               type="text"
               value={price}
               onChange={(e) => setPrice(e.target.value)}

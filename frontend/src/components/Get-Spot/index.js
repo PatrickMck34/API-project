@@ -9,13 +9,13 @@ import {createSpotImage} from "../../store/spots"
 function CreateSpotForm() {
   const dispatch = useDispatch();
   const spots = useSelector(state=>state.spots)
-  const [address, setAddress] = useState("address");
-  const [city, setCity] = useState("city");
-  const [state, setState] = useState("state");
-  const [country, setCountry] = useState("country");
-  const [name, setName] = useState("name");
-  const [description, setDescription] = useState("description");
-  const [price, setPrice] = useState("100");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [country, setCountry] = useState("");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
   const [previewImage, setPreviewImage] = useState("")
 
   const num = (window.location.href.length - 1)
@@ -59,6 +59,7 @@ useEffect(() => {
         <label className='labels'>
         
           <input className="input"
+          placeholder="address"
             type="text"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
@@ -68,6 +69,7 @@ useEffect(() => {
         <label className="labels">
       
           <input className="input"
+          placeholder="city"
             type="text"
             value={city}
             onChange={(e) => setCity(e.target.value)}
@@ -77,6 +79,7 @@ useEffect(() => {
         <label className="labels">
       
           <input className="input"
+          placeholder="state"
             type="text"
             value={state}
             onChange={(e) => setState(e.target.value)}
@@ -86,6 +89,7 @@ useEffect(() => {
         <label className="labels">
       
           <input className="input"
+          placeholder="country"
             type="text"
             value={country}
             onChange={(e) => setCountry(e.target.value)}
@@ -95,6 +99,7 @@ useEffect(() => {
         <label className="labels">
       
           <input className="input"
+          placeholder="name"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -104,6 +109,7 @@ useEffect(() => {
         <label className="labels">
      
           <input className="input"
+          placeholder="description"
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -113,6 +119,7 @@ useEffect(() => {
           <label className="labels">
 
           <input className="input"
+          placeholder="price"
             type="number"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
@@ -122,6 +129,7 @@ useEffect(() => {
           <label className="labels">
         
           <input className="input"
+          placeholder="image URL"
             type="url"
             value={previewImage}
             onChange={(e) => setPreviewImage(e.target.value)}

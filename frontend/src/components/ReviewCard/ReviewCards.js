@@ -29,7 +29,7 @@ useEffect(() => {
 const DeleteReview = () => {
     
     
-    history.push(`/spots/${spotsId}`)
+    history.push(`/`)
     return dispatch(reviewsActions.deleteReviews(revId))
     
 }

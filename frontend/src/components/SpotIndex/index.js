@@ -68,6 +68,8 @@ return(
                         
                      </div>
                      <div className="reviewsb">
+                     
+                       {spots.description}
 
                      <div className="reviews">
                         <div className="ReviewTxt">
