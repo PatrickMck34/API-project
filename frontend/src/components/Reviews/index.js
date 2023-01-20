@@ -28,7 +28,6 @@ const history = useHistory()
 const handleSubmit = (e) => {
   e.preventDefault();
   setErrors([]);
-  history.push('/')
   return dispatch(reviewActions.createReviews({review, stars, spotId}))
   .then(closeModal)
   .catch(async (res) => {
@@ -39,6 +38,7 @@ const handleSubmit = (e) => {
   
 };
 
+history.push(`/spots/${spotId}`)
 return (
   <div className="createReview">
       <h1 className="title">Create Review</h1>

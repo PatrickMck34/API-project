@@ -13,10 +13,11 @@ function ReviewCard() {
     const {spotsId} = useParams()
     const reviewsObj = useSelector(state=> state.reviews.allReviews)
     const user = useSelector(state => state.session.user.id)
-    const users = useSelector(state => state.session.user)
+    const usersObj = useSelector(state => state.session.user)
     const reviews = Object.values(reviewsObj) 
+    const users = Object.values(usersObj)
 
-  
+  console.log(users[0])
 
  useEffect(() => {
    if(user)
@@ -29,13 +30,14 @@ useEffect(() => {
   }, [dispatch]);
 
 const DeleteReview = () => {
-   
-     dispatch(reviewsActions.deleteReviews(revId))
-     history.push(`/`)
+    
+    dispatch(reviewsActions.deleteReviews(revId))
+    history.push(`/`)
 }
 return(
-  
+    
     reviews.map((review) => {
+       
         revId = review.id
        
 return(
@@ -62,8 +64,7 @@ return(
         </div>
 <p></p>
      
-<div>        {users && (review.User.id === user) ? ( 
-
+<div>        {users && (user === review.userId) ? ( 
 
         
         <div>
