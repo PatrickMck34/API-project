@@ -61,6 +61,7 @@ useEffect(() => {
           <input className="input"
           placeholder="address"
             type="text"
+           
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             required

@@ -29,3 +29,10 @@
 .input {
     width:85%
 }
+input:invalid {
+    border: .5px dashed red;
+  }
+  
+  input:valid {
+    border: 2px solid black;
+  }
