@@ -46,7 +46,7 @@ return(
 
 
 <div key={review.id} className="ReviewPad">
-            {users.id ? (
+            {users ? (
                 <div>
         {/* {review.User.firstName} says: <p></p> */}
       
