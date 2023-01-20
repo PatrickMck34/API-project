@@ -12,7 +12,7 @@ function CreateReviewForm() {
   const dispatch = useDispatch();
   const reviews = useSelector(state=>state.reviews.allReviews)
   const [review, setReview] = useState("");
-  const [stars, setStars] = useState(2);
+  const [stars, setStars] = useState("");
 
   const num = (window.location.href.length - 1)
   const  spotsId = (window.location.href[num])
@@ -48,6 +48,7 @@ return (
         </ul>
         <label className='labels'>
          <input className="input"
+         placeholder="review"
             type="text"
             value={review}
             onChange={(e) => setReview(e.target.value)}
@@ -57,6 +58,7 @@ return (
         <label className="labels">
        
           <input className="input"
+          placeholder="stars"
             type="number"
             
             value={stars}
