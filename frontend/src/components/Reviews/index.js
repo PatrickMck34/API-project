@@ -60,7 +60,8 @@ return (
           <input className="input"
           placeholder="stars"
             type="number"
-            
+            min={0}
+            max={5}
             value={stars}
             onChange={(e) => setStars(e.target.value)}
             required
