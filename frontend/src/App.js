@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import * as spotsActions from "./store/spots"
 import * as reviewsActions from "./store/reviews"
+import Navigation from ".//components/Navigation/index"
 
 import Home from "./components/Home/Home"
 import SpotDetails from "./components/SpotIndex/index.js";
@@ -41,7 +42,7 @@ function App() {
   return (
     <>
 
-      
+      <Navigation/>
         <Switch>
           
           {/* <Route path="/spots/create">

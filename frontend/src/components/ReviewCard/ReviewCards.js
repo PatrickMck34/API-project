@@ -12,12 +12,10 @@ function ReviewCard() {
     const dispatch=useDispatch()
     const {spotsId} = useParams()
     const reviewsObj = useSelector(state=> state.reviews.allReviews)
-    const user = useSelector(state => state.session.user.id)
-    const usersObj = useSelector(state => state.session.user)
+    const users = useSelector(state => state.session.user)
     const reviews = Object.values(reviewsObj) 
-    const users = Object.values(usersObj)
-
-
+   
+   
 
  useLayoutEffect(() => {
      dispatch(reviewsActions.getReviews(spotsId))
@@ -48,7 +46,7 @@ return(
 
 
 <div key={review.id} className="ReviewPad">
-            {user ? (
+            {users.id ? (
                 <div>
         {/* {review.User.firstName} says: <p></p> */}
       
@@ -65,7 +63,7 @@ return(
         </div>
 <p></p>
      
-<div>        {users && (user === review.userId) ? ( 
+<div>        {users && (users.id === review.userId) ? ( 
 
         
         <div>
