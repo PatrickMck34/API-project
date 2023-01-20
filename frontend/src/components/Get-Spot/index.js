@@ -32,6 +32,7 @@ useEffect(() => {
 
 }, [dispatch])
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     
@@ -42,6 +43,9 @@ useEffect(() => {
     // return (dispatch(spotActions.createSpot({address, city, state, country,name,description, price})))
     .then(closeModal)
     .catch(async (res) => {
+      if(state.length >2){
+        errors.push("State must be abbreviated to two letters")
+      }
       const data = await res.json();
       
       if (data && data.errors) setErrors(data.errors);
@@ -61,6 +65,7 @@ useEffect(() => {
           <input className="input"
           placeholder="address"
             type="text"
+            id="address"
            
             value={address}
             onChange={(e) => setAddress(e.target.value)}
@@ -82,6 +87,8 @@ useEffect(() => {
           <input className="input"
           placeholder="state"
             type="text"
+            minLength={2}
+            maxLength={2}
             value={state}
             onChange={(e) => setState(e.target.value)}
             required
