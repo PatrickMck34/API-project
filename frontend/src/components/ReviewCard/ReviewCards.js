@@ -4,7 +4,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom'
 import * as reviewsActions from "../../store/reviews"
 import * as sessionActions from "../../store/session"
-import { useEffect} from 'react'
+import { useEffect, useLayoutEffect} from 'react'
 import "./ReviewCard.css"
 
 function ReviewCard() {
@@ -17,22 +17,23 @@ function ReviewCard() {
     const reviews = Object.values(reviewsObj) 
     const users = Object.values(usersObj)
 
-  console.log(users[0])
 
- useEffect(() => {
-   if(user)
+
+ useLayoutEffect(() => {
      dispatch(reviewsActions.getReviews(spotsId))
    }
-, [dispatch])
+, [dispatch], [reviews])
 let revId
 useEffect(() => {
     dispatch(sessionActions.restoreUser());
-  }, [dispatch]);
+}, [dispatch]);
 
 const DeleteReview = () => {
     
-    dispatch(reviewsActions.deleteReviews(revId))
-    history.push(`/`)
+    
+    history.push(`/spots/${spotsId}`)
+    return dispatch(reviewsActions.deleteReviews(revId))
+    
 }
 return(
     

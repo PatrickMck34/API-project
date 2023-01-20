@@ -37,6 +37,7 @@ function LoginFormModal() {
        
           <input className="input" autocomplete="Username/Email"
             type="text"
+            placeholder="Username/Email"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
             required
@@ -46,6 +47,7 @@ function LoginFormModal() {
      
           <input className="input" autocomplete="current-password"
             type="password"
+            placeholder="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required

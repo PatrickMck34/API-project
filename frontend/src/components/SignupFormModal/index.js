@@ -6,12 +6,12 @@ import './SignupForm.css';
 
 function SignupFormModal() {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState("Email");
-  const [username, setUsername] = useState("Username");
-  const [firstName, setFirstName] = useState("firstName");
-  const [lastName, setLastName] = useState("lastName");
-  const [password, setPassword] = useState("Password");
-  const [confirmPassword, setConfirmPassword] = useState("Password");
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
 
@@ -39,6 +39,7 @@ function SignupFormModal() {
         <label className="label">
        
           <input className="input"
+          placeholder="Email"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -48,6 +49,7 @@ function SignupFormModal() {
         <label className="label">
          
           <input className="input"
+          placeholder="User Name"
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -57,6 +59,7 @@ function SignupFormModal() {
         <label className="label">
           
           <input className="input"
+          placeholder="First Name"
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
@@ -66,6 +69,7 @@ function SignupFormModal() {
         <label className="label">
         
           <input className="input"
+          placeholder="Last Name"
             type="text"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
@@ -75,6 +79,7 @@ function SignupFormModal() {
         <label className="label">
          
           <input className="input"
+          placeholder="password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -84,6 +89,7 @@ function SignupFormModal() {
         <label className="label">
          
           <input className="input"
+          placeholder="confirm password"
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
