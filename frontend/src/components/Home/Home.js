@@ -2,6 +2,7 @@ import React from 'react'
 import './Home.css'
 import Card from "../Cards/Card"
 import Header from '../Header/Header'
+import Navigation from '../Navigation'
 import {useSelector} from 'react-redux'
 import DemoUser from '../DemoUser/DemoUser'
 import { useDispatch } from 'react-redux'
@@ -15,7 +16,7 @@ function Home() {
 const id = spots.id
     return(
         <>
-            <Header />
+           
         <div className='home'>
             <div className='home_banner'>
            

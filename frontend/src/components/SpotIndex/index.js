@@ -1,5 +1,5 @@
 import { useParams} from 'react-router-dom'
-import React, {useEffect} from "react"
+import React, {useEffect, useState} from "react"
 import "./details.css"
 import {useSelector, useDispatch} from 'react-redux'
 import CreateReviewForm from '../../components/Reviews/index'
@@ -10,7 +10,7 @@ import Delete from '../DeleteSpot/deleteSpot'
 import * as reviewsActions from '../../store/reviews'
 import * as spotActions from "../../store/spots"
 import ReviewCard from '../ReviewCard/ReviewCards'
-import DeleteReview from '../DeleteReview/DeleteReviews'
+import * as sessionActions from "../../store/session"
 import { useHistory } from 'react-router-dom'
 <script src="https://kit.fontawesome.com/d7a09d9013.js" crossorigin="anonymous"></script>
 function SpotDetails() {
@@ -20,19 +20,22 @@ function SpotDetails() {
         // dispatch(spotsActions.getSpots())
     //         }, [dispatch])
     let spots = useSelector(state=>state.spots)
+    let users = useSelector(state=>state.session.user)
+    
+   
     let {spotsId} = useParams()
+    const [user, setUser] = useState()
     let reviewId = useParams()
     spots = spots.allSpots[spotsId]
     let reviews = useSelector(state=>state.reviews)
     const history = useHistory()
-
   const Delete=()=> {
    dispatch(spotActions.deleteSpots(spotsId))
    history.push("/")
     }
 
     useEffect(() => {
-        if(spots)
+        
         dispatch(spotActions.getSpots())
     }, [dispatch])
 
@@ -41,6 +44,7 @@ function SpotDetails() {
     dispatch(reviewsActions.getReviews(spotsId))
 }, [dispatch])
 
+// const userClass = "features" + (showMenu ? "open" : " hidden");
 
 return(
     
@@ -99,26 +103,32 @@ return(
                <h5 className="price">Price: ${spots.price}
                        <div className="buttons">
                </div>
-               <OpenModalButton 
-          buttonText="Create Spot"
-          modalComponent={<CreateSpotForm />}
-          />
-          <OpenModalButton
-          buttonText="Edit Spot" 
-          modalComponent={<UpdateSpotForm />}
-          />
-          <button className="button" onClick={()=> Delete(spotsId)}>
+              {(users !== null) ? (
+             <div>
+
+                  <OpenModalButton 
+                  buttonText="Create Spot"
+                  modalComponent={<CreateSpotForm spots={spots}/>}
+                  />
+                  <OpenModalButton
+                  buttonText="Edit Spot" 
+                  modalComponent={<UpdateSpotForm spots={spots}/>}
+                  />
+                  <button className="button" onClick={()=> Delete(spotsId)}>
      Delete Spot
           </button>
                        <OpenModalButton
-               buttonText="Create Review"
-               modalComponent={<CreateReviewForm />}
-               />
-               
-               </h5>
-          </div>
-          
-           
+                       buttonText="Create Review"
+                       modalComponent={<CreateReviewForm />}
+                       />
+                       </div>
+              ):(
+                <div></div>
+                       )}
+                       </h5>
+                       </div>
+                       
+                       
           
               
              

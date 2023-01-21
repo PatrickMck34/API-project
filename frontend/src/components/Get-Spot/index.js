@@ -8,7 +8,9 @@ import { useHistory, useParams } from "react-router-dom";
 import {createSpotImage} from "../../store/spots"
 function CreateSpotForm() {
   const dispatch = useDispatch();
-  const spots = useSelector(state=>state.spots)
+  const spotsobj = useSelector(state=>state.spots.allSpots)
+  const spots = Object.values(spotsobj)
+  
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
@@ -20,40 +22,37 @@ function CreateSpotForm() {
 
   const num = (window.location.href.length - 1)
   const  spotsId = (window.location.href[num])
-
-
+  
+  
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
-const history = useHistory()
-
+  const history = useHistory()
+  const newSpot = (spots.length )
+  const newSpotId=Number(newSpot)
+  const spoot = spotsobj[newSpotId].id
+  const id= spoot + 1
+  console.log(Number(spoot))
 useEffect(() => {
-    
+  
   dispatch(spotActions.getSpots())
-
+  
 }, [dispatch])
 
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    setErrors([]);
-   (dispatch(spotActions.createSpot({address, city, state, country,name,description, price, previewImage})))
-    
-    
-    // return (dispatch(spotActions.createSpot({address, city, state, country,name,description, price})))
-    .then(closeModal)
-    .catch(async (res) => {
-      if(state.length >2){
-        errors.push("State must be abbreviated to two letters")
-      }
-      const data = await res.json();
-      
-      if (data && data.errors) setErrors(data.errors);
-    });
-    history.push("/")
-  };
+const handleSubmit = (e) => {
+  e.preventDefault();
+  
+  setErrors([]);
+  (dispatch(spotActions.createSpot({address, city, state, country,name,description, price, previewImage})))
+  .then(closeModal)
+  .catch(async (res) => {
+    const data = await res.json();
+    if (data && data.errors) setErrors(data.errors);
+  });
+  history.push(`/spots/${id}`)
+}
 
-  return (
+return (
     <div className="createForm">
       <h1 className="title" >Create Spot</h1>
       <form onSubmit={handleSubmit}>

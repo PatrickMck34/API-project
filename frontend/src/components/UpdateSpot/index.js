@@ -1,6 +1,6 @@
 import React from "react"
- import {useState, useContext} from "react";
-import { useDispatch , useSelector } from "react-redux";
+ import {useState, useContext,} from "react";
+import { useDispatch , useSelector  } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as spotActions from "../../store/spots";
 import './update.css';
@@ -11,21 +11,23 @@ import { useHistory ,useParams, useLocation} from "react-router-dom";
 
 function UpdateSpotForm() {
   const spots =  useSelector(state=>state.spots)
+ 
   let Location = useLocation()
   const dispatch = useDispatch();
-  
-  
-  
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [country, setCountry] = useState("");
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
 
+  
   const num = (window.location.href.length - 1)
 const  spotsId = (window.location.href[num])
+  
+  
+  const [address, setAddress] = useState(`${spots.allSpots[spotsId].address}`);
+  const [city, setCity] = useState(`${spots.allSpots[spotsId].city}`);
+  const [state, setState] = useState(`${spots.allSpots[spotsId].state}`);
+  const [country, setCountry] = useState(`${spots.allSpots[spotsId].country}`);
+  const [name, setName] = useState(`${spots.allSpots[spotsId].name}`);
+  const [description, setDescription] = useState(`${spots.allSpots[spotsId].description}`);
+  const [price, setPrice] = useState(`${spots.allSpots[spotsId].price}`);
+
   const spot = {address, city, state, country,name,description, price}
     const [errors, setErrors] = useState([]);
     const { closeModal } = useModal();

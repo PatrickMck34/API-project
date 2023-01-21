@@ -1,4 +1,4 @@
-import { csrfFetch } from './csrf'; 
+import { csrfFetch } from './csrf';
 
 const READ_SPOT = '/spots/:spotId';
 const READ_SPOTS = '/spots';
@@ -9,7 +9,7 @@ const CREATE_SPOT = '/spots/new'
 export const createSpot = (spot) => async (dispatch) => {
 
     const { address, city, state, country, lat, lng, name,description, price, previewImage} = spot
- const data = await csrfFetch("/api/spots/", {
+    const data = await csrfFetch("/api/spots/", {
         method: "POST",
         body: JSON.stringify({
             address, city, state, country, lat, lng, name,description, price, previewImage
@@ -20,6 +20,7 @@ export const createSpot = (spot) => async (dispatch) => {
     if(previewImage){
         dispatch(createSpotImage(previewImage, response.id))
 
+  
     dispatch(createSpots(response))
     
 return response 

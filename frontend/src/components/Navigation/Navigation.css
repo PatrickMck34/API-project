@@ -4,26 +4,65 @@
  }
 .hover{
   cursor:pointer;
-  display:flex;
-  flex-direction: column;
-
+  height:7em;
 
 }
 .Demo {
-      
+ 
+      height:2em;
         color: white;
         background-image: radial-gradient(circle at center center, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 27.5%, rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%, rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%);
     }
 .menu {
   display:flex;
-width: 3.9em;
-height: 2em;
-align-self:bottom;
-flex-flow: row;
-flex-wrap:wrap-reverse;
-justify-content:center;
-align-items:center
+width:3em;
+height: 1.5em;
+flex-wrap:nowrap;
+align-items:center;
+position:absolute;
+margin-bottom:3.3em;
+border-radius: 2em;
+font-size:x-large;
+margin-left:2.7em;
+
 }
-.fas  {
-  margin-top:1.5em
+.fa-solid {
+  margin-bottom:1.5em;
+}
+.ho {
+  display:flex;
+ font-size: x-large;
+  background-color:white;
+  width:8em;
+  height:7em;
+  padding:.3em;
+  position:relative;
+  border-radius: 5%;;
+  box-shadow: 0em 0em .5em rgba(0, 0, 0, .5);
+}
+.demoButton{
+  border-bottom:1.5px solid rgba(107, 117, 108, 0.272);
+  display:flex;
+  background-color:white;
+  height:5em;
+  width:8.4em;
+  
+  
+
+  
+  
+}
+.header_user {
+
+  margin-left: 72em;
+position:absolute;
+
+
+
+  display:flex;
+ 
+
+  height:10.9em;
+
+  width:12.6em;
 }

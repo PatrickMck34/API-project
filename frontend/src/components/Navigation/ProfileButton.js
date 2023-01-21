@@ -48,43 +48,50 @@ function ProfileButton({ user }) {
   return (
     <>
 
-       <div class="menu">
+       <div className="menu">
 
       <button onClick={openMenu} className={"menu"}>
-      <i  class="fa-solid fa-bars"></i>
-        <i class="fas fa-user-circle" />
+      <i  className="fa-solid fa-bars"></i>
+        <i className="fas fa-user-circle" />
       </button>
        </div>
     
-      <ul className={ulClassName} ref={ulRef}>
+      <div className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li key={user.id}>{user.username}</li>
-            <li key={user.firstName}>{user.firstName} {user.lastName}</li>
-            <li key={user.email}>{user.email}</li>
-            <li key={"logoutButton"}>
+          {user.username}
+           {user.firstName} {user.lastName}
+            {user.email}
+            key={"logoutButton"}
               <button onClick={logout}>Log Out</button>
-            </li>
+       
           </>
         ) : (
           <>
-          <li key={"login"} className={"hover"}>
+          <div className='ho'>
+
+            <div className="demoButton">
+          <div key={"login"} className={"hover"}>
             <OpenModalButton
               itemText="Log In"
               onItemClick={closeMenu}
               modalComponent={<LoginFormModal />}
+
               />
+            
             <OpenModalButton
               itemText="Sign Up"
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
               />
-            
+
               <button className="Demo" onClick={Demo}>Demo User</button>
-            </li>
+            </div>
+            </div>
+        </div>
           </>
         )}
-      </ul>
+      </div>
     </>
   );
 }
