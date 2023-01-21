@@ -24,29 +24,29 @@ function Card() {
   return(
     
     spots.map((spot) => {
-    
+      
       
       return(
         <>
          
-
-<div key={spot.id + "D"}>
+<div class="detailsfont" key={spot.id + "D"}>
 
             <Link 
-            key={spot.id + "link"} to={`/spots/${spot.id}`}>
+            key={spot.id + "link"}  to={`/spots/${spot.id}`}>
                
+
               {spot.previewImage === "" ? (
                 <h1>loading . . .</h1>
                 ) : (
                   <img className="card"  src={spot.previewImage} alt={spot.previewImage}/>
                   
-                      ) }
+                  ) }
                 </Link>
-    <div className="details">
+    <div class="detailsfont" className="details">
        <h4 key={spot.id+"h"}>{spot.city}, {spot.state}</h4> 
        <i className="fa-solid fa-star">{spot.avgRating}</i> 
     </div>
-        <h4 className="details" key={spot.id+"h3"}>${spot.price} night</h4>
+        <h4 class="detailsfont" className="details" key={spot.id+"h3"}>${spot.price} night</h4>
                 
                 </div>
             

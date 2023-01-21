@@ -19,11 +19,17 @@
   flex-direction:row;
   margin-left: 1.5em;
   cursor:grab;
+
+  
   
 }
 .fa-solid {
   padding: .4em;
   font-size: small;
+}
+.detailsfont{
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+
 }
  
 
