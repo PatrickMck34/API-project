@@ -18,10 +18,10 @@ const id = spots.id
         <>
            
         <div className='home'>
-            <div className='home_banner'>
+          
            
                
-            </div>
+     
             <div className='home_section'>
      
             <Card key={id + "card"}/>

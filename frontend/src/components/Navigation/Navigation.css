@@ -1,68 +1,90 @@
 .hidden {
-    
-    display:none
- }
+  
+  display:none
+}
 .hover{
   cursor:pointer;
   height:7em;
-
 }
 .Demo {
- 
-      height:2em;
+  height:2em;
         color: white;
         background-image: radial-gradient(circle at center center, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 27.5%, rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%, rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%);
-    }
-.menu {
-  display:flex;
-width:3em;
-height: 1.5em;
-flex-wrap:nowrap;
-align-items:center;
-position:absolute;
-margin-bottom:3.3em;
-border-radius: 2em;
-font-size:x-large;
-margin-left:2.7em;
-
-}
-.fa-solid {
-  margin-bottom:1.5em;
-}
-.ho {
-  display:flex;
- font-size: x-large;
-  background-color:white;
-  width:8em;
-  height:7em;
+      }
+      .menu {
+        display:flex;
+        width:3em;
+        height: 1.5em;
+        flex-wrap:nowrap;
+        align-items:center;
+        position:absolute;
+        margin-top:3.5em;
+        margin-bottom:8em;
+        border-radius: 2em;
+        font-size:x-large;
+        margin-left:2.9em;
+        
+      }
+      .fa-solid {
+        margin-bottom:1.5em;
+      }
+      .ho {
+        display:flex;
+        font-size: x-large;
+        background-color:white;
+        width:8em;
+        height:7em;
   padding:.3em;
   position:relative;
   border-radius: 5%;;
   box-shadow: 0em 0em .5em rgba(0, 0, 0, .5);
 }
 .demoButton{
-  border-bottom:1.5px solid rgba(107, 117, 108, 0.272);
   display:flex;
   background-color:white;
   height:5em;
-  width:8.4em;
-  
-  
-
-  
+  width: 8em;
+  border-bottom:1.5px solid rgba(107, 117, 108, 0.272);
   
 }
 .header_user {
-
-  margin-left: 72em;
-position:absolute;
-
-
-
+  
+  margin-left: 75em;
   display:flex;
- 
-
+  position:absolute;
   height:10.9em;
-
   width:12.6em;
+}
+.header_icon {
+  display:inline-flex;
+  height:5em;
+  margin-left:5em;
+  height:4em;
+   margin-top:0em;
+  border-bottom:1.5px solid rgba(107, 117, 108, 0.632);
+  
+}
+.logged {
+  display:flex;
+}
+.header_r {
+  display:inline-flex;
+  margin-top:1em;
+
+}
+.create {
+  display:inline-flex;
+flex-flow: row;
+ margin-left:60em;
+ margin-top:2.5em;
+  
+  
+  
+}
+.header {
+display:flex;
+width:100%;
+
+
+  
 }
