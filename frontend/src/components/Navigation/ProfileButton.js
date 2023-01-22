@@ -43,29 +43,31 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(sessionActions.Demo());
   }
-  const ulClassName = "profile-dropdown" + (showMenu ? "open" : " hidden");
+  const ulClassName = "logged" + (showMenu ? "open" : "hidden");
 
   return (
     <>
-
-       <div className="menu">
+<div>
 
       <button onClick={openMenu} className={"menu"}>
       <i  className="fa-solid fa-bars"></i>
         <i className="fas fa-user-circle" />
       </button>
-       </div>
+
     
-      <div className={ulClassName} ref={ulRef}>
+        </div>
         {user ? (
+          // <div className="menu">
+            <div className={ulClassName} ref={ulRef}>
           <div className="logged">
           User: {user.username},
            Name: {user.firstName} {user.lastName}
             {user.email}
             
               <button onClick={logout}>Log Out</button>
+         </div>
        
-          </div>
+          // </div>
         ) : (
           <>
           <div className='ho'>
@@ -76,7 +78,7 @@ function ProfileButton({ user }) {
               itemText="Log In"
               onItemClick={closeMenu}
               modalComponent={<LoginFormModal />}
-
+              
               />
             
             <OpenModalButton
@@ -91,7 +93,7 @@ function ProfileButton({ user }) {
         </div>
           </>
         )}
-      </div>
+      {/* </div> */}
     </>
   );
 }

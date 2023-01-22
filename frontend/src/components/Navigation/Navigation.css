@@ -1,5 +1,4 @@
-.hidden {
-  
+.loggedhidden {
   display:none
 }
 .hover{
@@ -15,11 +14,10 @@
         display:flex;
         width:3em;
         height: 1.5em;
-        flex-wrap:nowrap;
         align-items:center;
         position:absolute;
-        margin-top:3.5em;
-        margin-bottom:8em;
+        margin-top:1.5em;
+        margin-bottom:em;
         border-radius: 2em;
         font-size:x-large;
         margin-left:1em;
@@ -69,8 +67,11 @@
 
 }
 .logged {
-  display:flex;
+  display:inline-block;
   height:10em;
+  justify-content:bottom;
+  margin-top:6em;
+  margin-right:3em
 
 
 }
@@ -86,6 +87,7 @@
 flex-flow: row;
  margin-left:50em;
  margin-top:2.5em;
+ width:15em;
   
   
   
