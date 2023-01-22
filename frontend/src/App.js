@@ -13,27 +13,36 @@ import UpdateSpotForm from "./components/UpdateSpot";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-
+const [isSpots, setIsSpots] = useState(false)
+const [isReviews, setIsReviews] = useState(false)
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-  }, [dispatch]);
+  }, [dispatch, isLoaded]);
 
 
   const spots = useSelector(state => state.spots)
-  const reviews = useSelector(state=> state.reviews.allReviews)
+  const reviews = useSelector(state=> state.reviews)
 
   useEffect(() => {
-    dispatch(spotsActions.getSpots())
-    
-  }, [dispatch])
-  
-//   useEffect(() => {
-//   if(reviews.length)
-//   dispatch(reviewsActions.getReviews())
-// }, [reviews.length, dispatch])
+   if(isSpots === false){
 
-  // console.log(err.message);
+    dispatch(spotsActions.getSpots()).then(() => setIsSpots(true))
+  }else {
+    console.log("loading")
+  }
+  
+  }, [dispatch, isSpots])
+  
+  useEffect(() => {
+    if(!isReviews){
+  dispatch(reviewsActions.getReviews()).then(() => setIsReviews(true))
+    }else {
+      console.log("loading")
+    }
+}, [dispatch, isReviews])
+
+
 
 
 
@@ -42,7 +51,8 @@ function App() {
   return (
     <>
 
-      <Navigation/>
+<Navigation isLoaded={isLoaded} />
+      {isLoaded && (
         <Switch>
           
           {/* <Route path="/spots/create">
@@ -51,24 +61,23 @@ function App() {
           <Route
             key={spots.id}
              path={`/spots/:spotsId`}>
-            <SpotDetails />
-            
+            <SpotDetails isLoaded={isLoaded}/>
           </Route>
           <Route
           key={"2"} 
           exact
             path="/">
-            <Home />
+            <Home isLoaded={isLoaded}/>
           </Route>
-          {/* <Route exact path="/spots/create" component={Delete} /> */}
-          <Route  path={"/spots/:spotId"}>
-            <UpdateSpotForm />
+        
+     <Route  path={"/spots/:spotId"}>
+            <UpdateSpotForm isLoaded={isLoaded}/>
           </Route>
           <Route>
   <h1>404: Page not found</h1>
 </Route>
         </Switch>
-      
+      )}
     </>
   );
 }

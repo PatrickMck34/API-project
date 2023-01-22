@@ -21,7 +21,8 @@ export const createSpot = (spot) => async (dispatch) => {
         dispatch(createSpotImage(previewImage, response.id))
 
   
-    dispatch(createSpots(response))
+   .then(dispatch(createSpots(response)))
+//    .then(dispatch(getSpot(response.id)))
     
 return response 
 };}
@@ -122,8 +123,8 @@ export const getSpots = (spots) => async (dispatch) => {
         
         switch (action.type) {
             case READ_SPOTS:
-                newState = {allSpots:{}, singleSpot:{}}
-                
+                newState = {allSpots:{}}
+                newState.allspots= action.spots
                 action.payload.forEach(spot => newState.allSpots[spot.id] = spot)
                 return newState 
         

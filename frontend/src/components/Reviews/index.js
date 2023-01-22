@@ -20,10 +20,14 @@ const spotId = parseInt(spotsId)
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
 const history = useHistory()
-useEffect(() => {
-  if(reviews.length)
-  dispatch(reviewActions.getReviews())
-}, [dispatch, reviews.length])
+// useEffect(() => {
+//   if(reviews.allReviews.length){
+//   dispatch(reviewActions.getReviews())
+//   }else{
+//     console.log("loading")
+//   }
+
+// }, [dispatch, reviews.allReviews.length])
 
 const handleSubmit = (e) => {
   e.preventDefault();

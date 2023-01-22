@@ -1,16 +1,17 @@
 import React from "react"
  import {useState, useEffect } from "react";
-import { useDispatch , useSelector} from "react-redux";
+import { shallowEqual, useDispatch , useSelector} from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as spotActions from "../../store/spots";
 import './Get-spot.css';
 import { useHistory, useParams } from "react-router-dom";
 import {createSpotImage} from "../../store/spots"
+import { Redirect, Navigate } from "react-router-dom";
 function CreateSpotForm() {
+
   const dispatch = useDispatch();
-  const spotsobj = useSelector(state=>state.spots.allSpots)
-  const spots = Object.values(spotsobj)
-  
+  const spots = useSelector(state=>state.spots.allSpots)
+  const spotsobj = Object.values(spots)
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
@@ -19,7 +20,6 @@ function CreateSpotForm() {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [previewImage, setPreviewImage] = useState("")
-
   const num = (window.location.href.length - 1)
   const  spotsId = (window.location.href[num])
   
@@ -27,16 +27,22 @@ function CreateSpotForm() {
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
   const history = useHistory()
-  const newSpot = (spots.length )
+  const newSpot = (spotsobj.length -1)
   const newSpotId=Number(newSpot)
   const spoot = spotsobj[newSpotId].id
-  const id= spoot + 1
-  console.log(Number(spoot))
-useEffect(() => {
+  const id = spoot +1
+  console.log(id)
+  const spotsName = useSelector(state=>state.spots.allSpots[id-1].name)
+  console.log(spotsName)
+//   useEffect(() => {
+//   if(!spotsName){
+//   dispatch(spotActions.getSpots())
+//   } else {
+//     console.log("loading...")
+//   }
+
   
-  dispatch(spotActions.getSpots())
-  
-}, [dispatch])
+// }, [dispatch, spotsName])
 
 
 const handleSubmit = (e) => {

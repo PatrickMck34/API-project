@@ -38,6 +38,9 @@
   position:relative;
   border-radius: 5%;;
   box-shadow: 0em 0em .5em rgba(0, 0, 0, .5);
+  margin-top: 3em;
+
+
 }
 .demoButton{
   display:flex;
@@ -45,11 +48,12 @@
   height:5em;
   width: 8em;
   border-bottom:1.5px solid rgba(107, 117, 108, 0.272);
+
   
 }
 .header_user {
   
-  margin-left: 70em;
+  margin-left: 72em;
   display:flex;
   position:absolute;
   height:10.9em;
@@ -62,15 +66,18 @@
   height:4em;
    margin-top:0em;
   border-bottom:1.5px solid rgba(107, 117, 108, 0.632);
-  
+
 }
 .logged {
   display:flex;
+  height:10em;
+
+
 }
 .header_r {
   display:inline-flex;
   margin-top:1em;
-  justify-content:space-between;
+
   margin-left:6em;
 
 }
@@ -90,3 +97,6 @@ width:100%;
 
   
 }
+
+
+

@@ -11,53 +11,73 @@ import * as reviewsActions from '../../store/reviews'
 import * as spotActions from "../../store/spots"
 import ReviewCard from '../ReviewCard/ReviewCards'
 import * as sessionActions from "../../store/session"
+
 import { useHistory } from 'react-router-dom'
 <script src="https://kit.fontawesome.com/d7a09d9013.js" crossorigin="anonymous"></script>
 function SpotDetails() {
-  
+
+    const [isSpots, setIsSpots] = useState(false)
+  useEffect(()=> {
+    setIsSpots(true) }, [])
+
     const dispatch = useDispatch()
-    // useEffect(() => {
-        // dispatch(spotsActions.getSpots())
-    //         }, [dispatch])
-    let spots = useSelector(state=>state.spots)
-    let users = useSelector(state=>state.session.user)
+    const users = useSelector(state=>state.session.user)
     
+    
+    const num = (window.location.href.length - 1)
+    const  spotsId = (window.location.href[num])
+    const spot = useSelector(state=>state.spots.allSpots[spotsId])
    
-    let {spotsId} = useParams()
     const [user, setUser] = useState()
     let reviewId = useParams()
-    spots = spots.allSpots[spotsId]
+    const spots = useSelector(state=>state.spots.allSpots)
+  
     let reviews = useSelector(state=>state.reviews)
     const history = useHistory()
-  const Delete=()=> {
-   dispatch(spotActions.deleteSpots(spotsId))
-   history.push("/")
+    const Delete=(spotsId)=> {
+        dispatch(spotActions.deleteSpots(spotsId))
+        // history.push(`/spots/${spotsId}`)
     }
-
     useEffect(() => {
-        
+        if(spot){
         dispatch(spotActions.getSpots())
-    }, [dispatch])
+        }else{
+            console.log("loading")
+        }
 
-   useEffect(() => {
-    if(reviews)
-    dispatch(reviewsActions.getReviews(spotsId))
-}, [dispatch])
-
-// const userClass = "features" + (showMenu ? "open" : " hidden");
-
-return(
+            }, [dispatch, spot.name])
     
+    useEffect(() => {
+            
+            dispatch(spotActions.getSpots())
+        }, [dispatch])
+        
+    useEffect(() => {
+        if(spotsId){
+        dispatch(reviewsActions.getReviews(spotsId))
+        } else {
+            return console.log("loading")
+        }
+    }, [dispatch, spotsId])
+    
+    // const userClass = "features" + (showMenu ? "open" : " hidden");
+    
+    return(
+    <>
     <div className="full">    
-              
-                <h1 className="SpotName">{spots.name}</h1>
-
+              {/* {spot.name === undefined ? ( */}
+                 
+             
+           
+                             <h1 className="SpotName">{spot.name}</h1>
+                             
+                   
                      <div className="spotDetails">
-                         <i className="fa-solid fa-star">{spots.avgRating}</i>
+                         <i className="fa-solid fa-star">{spot.avgRating}</i>
                 
-                <h4 className="detailsLeft">{spots.city}</h4>
-                <h4 className="detailsCenter">{spots.state}</h4>
-                <h4 className="detailsRight">{spots.country}</h4>
+                <h4 className="detailsLeft">{spot.city}</h4>
+                <h4 className="detailsCenter">{spot.state}</h4>
+                <h4 className="detailsRight">{spot.country}</h4>
                 </div>
 
            
@@ -65,46 +85,46 @@ return(
 
                     <div className="mainImage">
                
-                <img className="Image"  src={spots.previewImage} alt=""/>
+                <img className="Image"  src={spot.previewImage} alt=""/>
                     
             
                         
                             <div className="imagediv">
-                             <img className="Image2"  src={spots.previewImage} alt=""/>
-                             <img className="Image2"  src={spots.previewImage} alt=""/>
+                             <img className="Image2"  src={spot.previewImage} alt=""/>
+                             <img className="Image2"  src={spot.previewImage} alt=""/>
                         
                             </div>
                             
                            
                <div className='div2'>
-                        <img className="Image2"  src={spots.previewImage} alt=""/>
-                       <img className="Image2"  src={spots.previewImage} alt=""/>
+                        <img className="Image2"  src={spot.previewImage} alt=""/>
+                       <img className="Image2"  src={spot.previewImage} alt=""/>
 
                         </div>
 
                         
                      </div>
+                     <div className="reviews">
                      <div className="reviewsb">
                      
-                       {spots.description}
+                       {spot.description}
 
-                     <div className="reviews">
                         <div className="ReviewTxt">
                             User Reviews: 
                              <ReviewCard />
 
-                             
                         </div>
+                             
                </div>
                         
               
              
         
-               <h5 className="price">Price: ${spots.price}
+               <h5 className="price">Price: ${spot.price}
                        <div className="buttons">
                </div>
               {(users !== null) ? (
-             <div>
+                  <div>
 
                   <OpenModalButton 
                   buttonText="Create Spot"
@@ -123,8 +143,8 @@ return(
                        />
                        </div>
               ):(
-                <div></div>
-                       )}
+                  <div></div>
+                  )}
                        </h5>
                        </div>
                        
@@ -135,6 +155,7 @@ return(
     
 
           </div>
+                  </>
     ) 
 }
 export default SpotDetails
