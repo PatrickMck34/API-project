@@ -42,7 +42,7 @@ const handleSubmit = (e) => {
   
 };
 
-history.push(`/spots/${spotId}`)
+
 return (
   <div className="createReview">
       <h1 className="title">Create Review</h1>

@@ -10,27 +10,33 @@ import "./ReviewCard.css"
 function ReviewCard() {
     const history = useHistory()
     const dispatch=useDispatch()
-    const {spotsId} = useParams()
+    const num = (window.location.href.length - 1)
+    const  spotsId = (window.location.href[num])
     const reviewsObj = useSelector(state=> state.reviews.allReviews)
     const users = useSelector(state => state.session.user)
     const reviews = Object.values(reviewsObj) 
    
    
 
- useLayoutEffect(() => {
-     dispatch(reviewsActions.getReviews(spotsId))
-   }
-, [dispatch], [reviews])
+//  useEffect(() => {
+//     if(reviewsObj[spotsId]){
+
+//         dispatch(reviewsActions.getReviews(spotsId))
+//     } else {
+//         console.log("isLoading")
+//     }
+//    }
+// , [dispatch, reviewsObj[spotsId]])
 let revId
 useEffect(() => {
     dispatch(sessionActions.restoreUser());
 }, [dispatch]);
 
-const DeleteReview = () => {
+const DeleteReview = (revId) => {
     
     
- 
-    return dispatch(reviewsActions.deleteReviews(revId))
+    dispatch(reviewsActions.deleteReviews(revId))
+    // history.push(`/spots/${spotsId}`)
     
 }
 return(

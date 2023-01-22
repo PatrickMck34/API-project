@@ -32,20 +32,23 @@ function SpotDetails() {
     let reviewId = useParams()
     const spots = useSelector(state=>state.spots.allSpots)
   
-    let reviews = useSelector(state=>state.reviews)
+    let reviews = useSelector(state=>state.reviews.allReviews)
     const history = useHistory()
     const Delete=(spotsId)=> {
-        dispatch(spotActions.deleteSpots(spotsId))
-        // history.push(`/spots/${spotsId}`)
-    }
-    useEffect(() => {
-        if(spot){
-        dispatch(spotActions.getSpots())
-        }else{
-            console.log("loading")
-        }
+       
 
-            }, [dispatch, spot.name])
+            dispatch(spotActions.deleteSpots(spotsId))
+       
+        history.push(`/`)
+    }
+    // useEffect(() => {
+    //     if(spot){
+    //     dispatch(spotActions.getSpots())
+    //     }else{
+    //         console.log("loading")
+    //     }
+
+    //         }, [dispatch])
     
     useEffect(() => {
             
@@ -53,12 +56,10 @@ function SpotDetails() {
         }, [dispatch])
         
     useEffect(() => {
-        if(spotsId){
-        dispatch(reviewsActions.getReviews(spotsId))
-        } else {
-            return console.log("loading")
-        }
-    }, [dispatch, spotsId])
+     
+        dispatch(reviewsActions.getReviews(spot.id))
+       
+    }, [dispatch, spot.id])
     
     // const userClass = "features" + (showMenu ? "open" : " hidden");
     

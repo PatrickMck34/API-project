@@ -116,7 +116,7 @@ const  spotsId = (window.location.href[num])
         
             <input className="input"
             placeholder="new price"
-              type="text"
+              type="number"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
               required
