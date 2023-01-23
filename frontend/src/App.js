@@ -53,6 +53,16 @@ const  spotsId = (window.location.href[num])
           path="/">
           <Home />
             </Route>
+          
+          {/* <Route path="/spots/create">
+            <CreateSpotForm />
+          </Route> */}
+          <Route
+     
+          exact
+            path="/">
+            <Home isLoaded={isLoaded}/>
+          </Route>
           <Route
           exact
              path={`/spots/:spotsid`}>

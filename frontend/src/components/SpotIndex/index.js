@@ -19,20 +19,16 @@ function SpotDetails() {
     const [isSpots, setIsSpots] = useState(false)
     const dispatch = useDispatch()
     const users = useSelector(state=>state.session.user)
-    const num = (window.location.href.length-1)
-    const  spotsIdObj = (window.location.href[num])
-    const spotsId = Object.values(spotsIdObj)
-    // const sspot = useSelector(state=>state.spots.singleSpot[spotsId])
+    const num = (window.location.href.length - 1)
+    const  spotsId = (window.location.href[num])
+    const spot = useSelector(state=>state.spots.allSpots[spotsId])
+    const sspot = useSelector(state=>state.spots.singleSpot)
     const [user, setUser] = useState()
     let {reviewId} = useParams()
     const id = parseInt(spotsId)
     let reviews = useSelector(state=>state.reviews)
     const history = useHistory()
-    const spotObj = useSelector(state=>state.spots)
-    const spot = Object.values(spotObj)
 
- 
-    
     const Delete=(spotsId)=> {
         dispatch(spotActions.deleteSpots(spotsId))
         history.push(`/`)
@@ -40,12 +36,12 @@ function SpotDetails() {
     useEffect(() => {
        
         
-                dispatch(spotActions.getSpot(id))
+                dispatch(spotActions.getSpot(spotsId))
              
                   
                 
-                        }, [dispatch, spot])
-            
+                        }, [dispatch, spots])
+                console.log(isSpots)
                 useEffect(() => {
             
             dispatch(spotActions.getSpots())

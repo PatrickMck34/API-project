@@ -36,6 +36,7 @@ function CreateSpotForm() {
 const handleSubmit = (e) => {
   e.preventDefault();
   
+  history.push(`/spots/${id}`)
   setErrors([]);
   dispatch(spotActions.createSpot({address, city, state, country,name,description, price, previewImage}))
   
