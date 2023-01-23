@@ -95,9 +95,9 @@ function SpotDetails() {
 
                         
                      </div>
-                      <p className="detailss">
+                      <div className="detailss">
                         {spotObj.allSpots[spotsId].description}
-                        </p> 
+                        </div> 
                      <div className="reviews">
                      <div className="reviewsb">
                      

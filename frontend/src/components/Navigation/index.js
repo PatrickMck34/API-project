@@ -19,7 +19,7 @@ function Navigation({ isLoaded }){
           
             </NavLink>
        <div  className="create">
-        Go-there Your Home
+       
        </div>
         <div className='header_user'>
             <ProfileButton user={sessionUser} /> 

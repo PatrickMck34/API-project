@@ -73,7 +73,7 @@ function ProfileButton({ user }) {
           <div className='ho'>
 
             <div className="demoButton">
-          <div key={"login"} className={"hover"}>
+          <div key={"login"} className={"hovers"}>
             <OpenModalButton
               itemText="Log In"
               onItemClick={closeMenu}

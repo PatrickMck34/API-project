@@ -69,12 +69,12 @@ return(
            {review.review} 
         <p></p>
             {(users ) ? (
-                <p>
+                <div>
                 <button className="button" onClick={()=>DeleteReview(review.id)}>
             Delete Review
 
         </button>
-        </p>
+        </div>
       
 
 

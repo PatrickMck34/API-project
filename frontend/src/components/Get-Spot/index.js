@@ -29,14 +29,13 @@ function CreateSpotForm() {
   const id = spoot +1
 
   useEffect(() => {
-  dispatch(spotActions.getSpots(spots))
+  dispatch(spotActions.getSpots())
 }, [dispatch, spots])
 
 
 const handleSubmit = (e) => {
   e.preventDefault();
   
-  history.push(`/spots/${id}`)
   setErrors([]);
   dispatch(spotActions.createSpot({address, city, state, country,name,description, price, previewImage}))
   
@@ -46,6 +45,7 @@ const handleSubmit = (e) => {
     if (data && data.errors) setErrors(data.errors);
   });
   history.push(`/spots/${id}`)
+  
 }
 
 return (
