@@ -32,7 +32,7 @@ function Card() {
       return(
         <>
          
-<div class="detailsfont" key={spot.id + "D"}>
+<div key={spot.id + "D"}>
 
             <Link 
             key={spot.id + "link"}  to={`/spots/${spot.id}`}>

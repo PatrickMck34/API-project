@@ -29,8 +29,8 @@ function CreateSpotForm() {
   const id = spoot +1
 
   useEffect(() => {
-  dispatch(spotActions.getSpots())
-}, [dispatch])
+  dispatch(spotActions.getSpots(spots))
+}, [dispatch, spots])
 
 
 const handleSubmit = (e) => {

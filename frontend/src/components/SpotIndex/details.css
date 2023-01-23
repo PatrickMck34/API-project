@@ -58,7 +58,7 @@
     border-top-right-radius: 5%;
     border-bottom-left-radius: 5%;
     border-bottom-right-radius: 5%;
-  
+  width:20%;
 font-size: 24px;
    height: 15em;
    box-shadow: 0em 0em 1em rgba(0, 0, 0, 0.3);
@@ -115,7 +115,7 @@ border-bottom-right-radius: 5%;
   border-top-right-radius: 5%;
   border-bottom-left-radius: 5%;
   border-bottom-right-radius: 5%;
-  width:40em;
+  width:25em;
   height: 25em;
   margin-top: 2.5em;
   box-shadow: 0em 0em 1em rgba(0, 0, 0, 0.3);
@@ -124,7 +124,7 @@ border-bottom-right-radius: 5%;
 .reviewsb{
 display: inline-flex;
 padding: 2px;
-margin-left: 13em;
+margin-left: 1em;
 /* min-width:fit-content; */
 
 }
@@ -140,7 +140,10 @@ align-content:center;
 }
 
 
-
+.detailss {
+  margin-left: 13em;
+  font-size:large
+}
 
 
 
