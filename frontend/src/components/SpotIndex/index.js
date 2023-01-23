@@ -39,7 +39,7 @@ function SpotDetails() {
     useEffect(() => {
        
         
-                dispatch(spotActions.getSpot(spotsId))
+                dispatch(spotActions.getSpots(spot))
              
                   
                 
