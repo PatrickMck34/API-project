@@ -59,27 +59,28 @@ return(
 
 
 <div className="ReviewPad">
-            {(users ) ? (
                 <div>
         {/* {review.User.firstName} says: <p></p> */}
                 <i  className="fas fa-user-circle" >
-                {/* {review.User.firstName} */}
+                {review.User.firstName}
          <p></p>
         {(review.updatedAt)}
         </i>
-        <p></p>
            {review.review} 
+        <p></p>
+            {(users ) ? (
+                <p>
                 <button className="button" onClick={()=>DeleteReview(review.id)}>
             Delete Review
 
         </button>
-        </div>
+        </p>
+      
 
 
-
-        ):(
-            <div>
-            {review.review} 
+):(
+    <div>
+                
 </div>
             )}
         </div>
@@ -97,6 +98,7 @@ return(
                 </div>
          
                     <div></div>
+                    </div>
                 </>
                 
 

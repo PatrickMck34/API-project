@@ -6,7 +6,7 @@ import CreateReviewForm from '../../components/Reviews/index'
 import OpenModalButton from '../OpenModalButton'
 import CreateSpotForm from '../Get-Spot'
 import UpdateSpotForm from '../UpdateSpot'
-import Delete from '../DeleteSpot/deleteSpot'
+
 import * as reviewsActions from '../../store/reviews'
 import * as spotActions from "../../store/spots"
 import ReviewCard from '../ReviewCard/ReviewCards'
@@ -106,9 +106,6 @@ function SpotDetails() {
                             User Reviews: 
                              <ReviewCard />
         
-                  <div className="buttons">
-
-                        </div>
                              
                </div>
                         
@@ -117,8 +114,7 @@ function SpotDetails() {
               
                       </div>
               {(users ) ? (
-                  <div>
-                      <h5 className="price">Price: ${spotObj.allSpots[spotsId].price}
+                  <div className="prices">Price: ${spotObj.allSpots[spotsId].price}
                   <OpenModalButton 
                   buttonText="Create Spot"
                   modalComponent={<CreateSpotForm />}
@@ -134,14 +130,15 @@ function SpotDetails() {
                        buttonText="Create Review"
                        modalComponent={<CreateReviewForm />}
                        />
-                       </h5>
-                  </div>
+                     
+                     </div>
                   
-              ):(
-                  <div></div>
-                  )}
-                       </div>
-          </div>
+                  ):(
+                      <div>
+                        </div>
+                      )}
+                      </div>
+                      </div>
                   </>
     ) 
 }

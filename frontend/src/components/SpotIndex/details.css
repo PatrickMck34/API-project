@@ -50,19 +50,18 @@
     border-bottom-left-radius: 5%;
     border-bottom-right-radius: 5%;
   }
-  .price {
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    display:inline-flex;
+  .prices {
+    /* font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
+    display:flex;
  flex-direction: column;
     border-top-left-radius: 5%;
     border-top-right-radius: 5%;
     border-bottom-left-radius: 5%;
     border-bottom-right-radius: 5%;
-  width:20%;
-font-size: 24px;
-   height: 15em;
+  min-width:12em;
+
    box-shadow: 0em 0em 1em rgba(0, 0, 0, 0.3);
-  margin-left:25em;
+  margin-left:35em;
 
   }
   .mainImage {
@@ -106,6 +105,8 @@ border-top-left-radius: 5%;
 border-top-right-radius: 5%;
 border-bottom-left-radius: 5%;
 border-bottom-right-radius: 5%;
+margin-right
+:5em;
 }
 .reviews{
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -124,8 +125,9 @@ border-bottom-right-radius: 5%;
 .reviewsb{
 display: inline-flex;
 padding: 2px;
-margin-left: 1em;
-/* min-width:fit-content; */
+margin-left:1em;
+min-width:fit-content;
+
 
 }
 .full{
@@ -133,6 +135,7 @@ margin-left: 1em;
 display:inline-block;
 margin-left:3em;
 align-content:center;
+width:90em;
 
 }
 .ReviewTxt {
