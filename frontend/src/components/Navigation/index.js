@@ -29,12 +29,8 @@ function Navigation({ isLoaded }){
    
      
   
-  
-  {isLoaded && (
-    <li>
-          {/* <ProfileButton user={sessionUser} /> */}
-        </li>
-      )}
+
+      
       </>
   );
 }

@@ -49,22 +49,12 @@ const  spotsId = (window.location.href[num])
       {isLoaded && (
         <Switch>
         <Route
-        exact
-          path="/">
-          <Home />
-            </Route>
-          
-          {/* <Route path="/spots/create">
-            <CreateSpotForm />
-          </Route> */}
-          <Route
-     
           exact
             path="/">
             <Home isLoaded={isLoaded}/>
           </Route>
           <Route
-          exact
+          
              path={`/spots/:spotsid`}>
             <SpotDetails isLoaded={isLoaded}/>
           </Route>
