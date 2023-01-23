@@ -23,15 +23,15 @@ function ReviewCard() {
 
    console.log(reviews)
 
-//  useEffect(() => {
-//     if(reviewsObj){
+ useEffect(() => {
+    if(reviewsObj){
 
-//         dispatch(reviewsActions.getReviews(spotsId))
-//     } else {
-//         console.log("isLoading")
-//     }
-//    }
-// , [dispatch, spotsId])
+        dispatch(reviewsActions.getReviews(spotsId))
+    } else {
+        console.log("isLoading")
+    }
+   }
+, [dispatch, spotsId])
 let revId
 useEffect(() => {
     dispatch(sessionActions.restoreUser());
@@ -41,7 +41,7 @@ const DeleteReview = (revId) => {
     
     
     dispatch(reviewsActions.deleteReviews(revId)).then(()=>(dispatch(reviewsActions.getReviews(spotsId))))
-    // history.push(`/spots/${spotsId}`)
+    history.push(`/spots/${spotsId}`)
     
 }
 return(
@@ -113,3 +113,8 @@ return(
 )}
 
 export default ReviewCard
+         
+  
+         
+     
+  

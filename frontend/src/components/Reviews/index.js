@@ -32,14 +32,14 @@ const history = useHistory()
 const handleSubmit = (e) => {
   e.preventDefault();
   setErrors([]);
-  return dispatch(reviewActions.createReviews({review, stars, spotId}))
+ dispatch(reviewActions.createReviews({review, stars, spotId}))
   .then(closeModal)
   .catch(async (res) => {
     const data = await res.json();
     
     if (data && data.errors) setErrors(data.errors);
   });
-  
+  history.push(`/spots/${spotsId}`)
 };
 
 

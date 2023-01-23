@@ -1,12 +1,11 @@
 import React from "react"
  import {useState, useEffect } from "react";
-import { shallowEqual, useDispatch , useSelector} from "react-redux";
+import {  useDispatch , useSelector} from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as spotActions from "../../store/spots";
 import './Get-spot.css';
-import { useHistory, useParams } from "react-router-dom";
-import {createSpotImage} from "../../store/spots"
-import { Redirect, Navigate } from "react-router-dom";
+import { useHistory} from "react-router-dom";
+
 function CreateSpotForm() {
 
   const dispatch = useDispatch();
@@ -20,9 +19,6 @@ function CreateSpotForm() {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [previewImage, setPreviewImage] = useState("")
-  const num = (window.location.href.length - 1)
-  const  spotsId = (window.location.href[num])
-  
   
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
@@ -31,31 +27,24 @@ function CreateSpotForm() {
   const newSpotId=Number(newSpot)
   const spoot = spotsobj[newSpotId].id
   const id = spoot +1
-  console.log(id)
-const FreshSpot= useSelector(state=>state.spots.singleSpot)
-  useEffect(() => {
-  if(!spots.ame){
-  dispatch(spotActions.getSpots())
-  } else {
-    console.log("loading...")
-  }
 
-  
-}, [dispatch, spots.name])
+  useEffect(() => {
+  dispatch(spotActions.getSpots())
+}, [dispatch])
 
 
 const handleSubmit = (e) => {
   e.preventDefault();
   
   setErrors([]);
- (dispatch(spotActions.createSpot({address, city, state, country,name,description, price, previewImage})))
+  dispatch(spotActions.createSpot({address, city, state, country,name,description, price, previewImage}))
   
   .then(closeModal)
-  history.push(`/spots/${id}`)
   .catch(async (res) => {
     const data = await res.json();
     if (data && data.errors) setErrors(data.errors);
   });
+  history.push(`/spots/${id}`)
 }
 
 return (

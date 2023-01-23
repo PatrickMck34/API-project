@@ -15,14 +15,7 @@ function Card() {
   const spots = Object.values(spotsObj) 
 
   
-  
-  const newSp = (revId) => {
-    
-    
-    dispatch(spotsActions.getSpot(revId))
-   
-    
-}
+
   useEffect(() => {
     if(spots)
     dispatch(spotsActions.getSpots())
@@ -42,7 +35,7 @@ function Card() {
 <div class="detailsfont" key={spot.id + "D"}>
 
             <Link 
-            key={spot.id + "link"}  to={`/spots/${spot.id}`} onItemClick={()=>newSp}>
+            key={spot.id + "link"}  to={`/spots/${spot.id}`}>
 
               {spot.previewImage === "" ? (
                 <h1>loading . . .</h1>

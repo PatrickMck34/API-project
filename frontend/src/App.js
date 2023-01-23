@@ -48,21 +48,20 @@ const  spotsId = (window.location.href[num])
 <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+        <Route
+        exact
+          path="/">
+          <Home />
+            </Route>
           <Route
-          key={"2"} 
           exact
-            path="/">
-            <Home isLoaded={isLoaded}/>
+             path={`/spots/:spotsid`}>
+            <SpotDetails isLoaded={isLoaded}/>
           </Route>
-          <Route
-            key={spots.id}
-             path={`/spots/:spotsId`}>
-            <SpotDetails />
-          </Route>
-        
-     {/* <Route  path={"/spots/:spotId"}>
-            <UpdateSpotForm isLoaded={isLoaded}/>
-          </Route> */}
+       
+     <Route  path={"/spots/:spotId"}>
+            <UpdateSpotForm isLoaded={isLoaded}/> 
+         </Route> 
           <Route>
   <h1>404: Page not found</h1>
 </Route>

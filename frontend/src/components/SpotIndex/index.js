@@ -19,18 +19,20 @@ function SpotDetails() {
     const [isSpots, setIsSpots] = useState(false)
     const dispatch = useDispatch()
     const users = useSelector(state=>state.session.user)
-    const num = (window.location.href.length - 1)
-    const  spotsId = (window.location.href[num])
-    const spot = useSelector(state=>state.spots.allSpots[spotsId])
-    const sspot = useSelector(state=>state.spots.singleSpot)
+    const num = (window.location.href.length-1)
+    const  spotsIdObj = (window.location.href[num])
+    const spotsId = Object.values(spotsIdObj)
+    // const sspot = useSelector(state=>state.spots.singleSpot[spotsId])
     const [user, setUser] = useState()
-const {spotsIds} = useParams()
     let {reviewId} = useParams()
-    const spots = useSelector(state=>state.spots.allSpots)
-    
-    let reviews = useSelector(state=>state.reviews.allReviews)
+    const id = parseInt(spotsId)
+    let reviews = useSelector(state=>state.reviews)
     const history = useHistory()
+    const spotObj = useSelector(state=>state.spots)
+    const spot = Object.values(spotObj)
 
+ 
+    
     const Delete=(spotsId)=> {
         dispatch(spotActions.deleteSpots(spotsId))
         history.push(`/`)
@@ -38,15 +40,15 @@ const {spotsIds} = useParams()
     useEffect(() => {
        
         
-                dispatch(spotActions.getSpot(spotsId))
+                dispatch(spotActions.getSpot(id))
              
                   
                 
-                        }, [dispatch, spots])
-                console.log(isSpots)
+                        }, [dispatch, spot])
+            
                 useEffect(() => {
             
-            dispatch(spotActions.getSpot(spotsId))
+            dispatch(spotActions.getSpots())
         }, [dispatch])
   
     
@@ -59,15 +61,15 @@ const {spotsIds} = useParams()
                  
              
            
-                             <h1 className="SpotName">{spot.name}</h1>
+                             <h1 className="SpotName">{spotObj.allSpots[spotsId].name}</h1>
                              
                    
                      <div className="spotDetails">
-                         <i className="fa-solid fa-star">{spot.avgRating}</i>
+                         <i className="fa-solid fa-star">{spotObj.allSpots[spotsId].avgRating}</i>
                 
-                <h4 className="detailsLeft">{spot.city}</h4>
-                <h4 className="detailsCenter">{spot.state}</h4>
-                <h4 className="detailsRight">{spot.country}</h4>
+                <h4 className="detailsLeft">{spotObj.allSpots[spotsId].city}</h4>
+                <h4 className="detailsCenter">{spotObj.allSpots[spotsId].state}</h4>
+                <h4 className="detailsRight">{spotObj.allSpots[spotsId].country}</h4>
                 </div>
 
            
@@ -75,27 +77,27 @@ const {spotsIds} = useParams()
 
                     <div className="mainImage">
                
-                <img className="Image"  src={spot.previewImage} alt=""/>
+                <img className="Image"  src={spotObj.allSpots[spotsId].previewImage} alt=""/>
                     
             
                         
                             <div className="imagediv">
-                             <img className="Image2"  src={spot.previewImage} alt=""/>
-                             <img className="Image2"  src={spot.previewImage} alt=""/>
+                             <img className="Image2"  src={spotObj.allSpots[spotsId].previewImage} alt=""/>
+                             <img className="Image2"  src={spotObj.allSpots[spotsId].previewImage} alt=""/>
                         
                             </div>
                             
                            
                <div className='div2'>
-                        <img className="Image2"  src={spot.previewImage} alt=""/>
-                       <img className="Image2"  src={spot.previewImage} alt=""/>
+                        <img className="Image2"  src={spotObj.allSpots[spotsId].previewImage} alt=""/>
+                       <img className="Image2"  src={spotObj.allSpots[spotsId].previewImage} alt=""/>
 
                         </div>
 
                         
                      </div>
                       <p>
-                        {spot.description}
+                        {spotObj.allSpots[spotsId].description}
                         </p> 
                      <div className="reviews">
                      <div className="reviewsb">
@@ -115,9 +117,9 @@ const {spotsIds} = useParams()
              
               
                       </div>
-              {(users !== null) ? (
+              {(users ) ? (
                   <div>
-                      <h5 className="price">Price: ${spots.price}
+                      <h5 className="price">Price: ${spotObj.allSpots[spotsId].price}
                   <OpenModalButton 
                   buttonText="Create Spot"
                   modalComponent={<CreateSpotForm />}

@@ -44,6 +44,8 @@ router.post(
       let result = {message, statusCode, errors}
       return res.status(201).json(result)
       
+    } else{
+      return handleValidationErrors
     }
     let users = await User.scope('defaultScope').signup({ email, password, username, firstName, lastName, token});
      
