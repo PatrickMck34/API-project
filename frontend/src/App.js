@@ -48,16 +48,20 @@ const  spotsId = (window.location.href[num])
 <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          
+          {/* <Route path="/spots/create">
+            <CreateSpotForm />
+          </Route> */}
           <Route
-          key={"2"} 
+     
           exact
             path="/">
             <Home isLoaded={isLoaded}/>
           </Route>
           <Route
-            key={spots.id}
-             path={`/spots/:spotsId`}>
-            <SpotDetails />
+           
+             path={`/spots/:spotsid`}>
+            <SpotDetails isLoaded={isLoaded}/>
           </Route>
         
      {/* <Route  path={"/spots/:spotId"}>

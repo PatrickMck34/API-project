@@ -24,16 +24,15 @@ function SpotDetails() {
     const spotsId = Object.values(spotsIdObj)
     // const sspot = useSelector(state=>state.spots.singleSpot[spotsId])
     const [user, setUser] = useState()
-    const {spotsIds} = useParams()
     let {reviewId} = useParams()
-    const spots = useSelector(state=>state.spots.allSpots)
-    const id = parseInt(spotsIdObj)
-    let reviews = useSelector(state=>state.reviews.allReviews)
+    const id = parseInt(spotsId)
+    let reviews = useSelector(state=>state.reviews)
     const history = useHistory()
-    const spotObj = useSelector(state=>state.spots.allSpots)
+    const spotObj = useSelector(state=>state.spots)
     const spot = Object.values(spotObj)
-   
-    console.log(spotObj[id].name)
+    
+    console.log(spotObj)  
+ 
     
     const Delete=(spotsId)=> {
         dispatch(spotActions.deleteSpots(spotsId))
@@ -42,15 +41,15 @@ function SpotDetails() {
     useEffect(() => {
        
         
-                dispatch(spotActions.getSpot(spotsId))
+                dispatch(spotActions.getSpots())
              
                   
                 
-                        }, [dispatch, spots])
-                console.log(isSpots)
+                        }, [dispatch])
+            
                 useEffect(() => {
             
-            dispatch(spotActions.getSpot(spotsId))
+            dispatch(spotActions.getSpots())
         }, [dispatch])
   
     
@@ -63,15 +62,15 @@ function SpotDetails() {
                  
              
            
-                             <h1 className="SpotName">{spotObj[id].name}</h1>
+                             <h1 className="SpotName">{spotObj.allSpots[spotsId].name}</h1>
                              
                    
                      <div className="spotDetails">
-                         <i className="fa-solid fa-star">{spotObj[id].avgRating}</i>
+                         <i className="fa-solid fa-star">{spotObj.allSpots[spotsId].avgRating}</i>
                 
-                <h4 className="detailsLeft">{spotObj[id].city}</h4>
-                <h4 className="detailsCenter">{spotObj[id].state}</h4>
-                <h4 className="detailsRight">{spotObj[id].country}</h4>
+                <h4 className="detailsLeft">{spotObj.allSpots[spotsId].city}</h4>
+                <h4 className="detailsCenter">{spotObj.allSpots[spotsId].state}</h4>
+                <h4 className="detailsRight">{spotObj.allSpots[spotsId].country}</h4>
                 </div>
 
            
@@ -79,27 +78,27 @@ function SpotDetails() {
 
                     <div className="mainImage">
                
-                <img className="Image"  src={spotObj[id].previewImage} alt=""/>
+                <img className="Image"  src={spotObj.allSpots[spotsId].previewImage} alt=""/>
                     
             
                         
                             <div className="imagediv">
-                             <img className="Image2"  src={spotObj[id].previewImage} alt=""/>
-                             <img className="Image2"  src={spotObj[id].previewImage} alt=""/>
+                             <img className="Image2"  src={spotObj.allSpots[spotsId].previewImage} alt=""/>
+                             <img className="Image2"  src={spotObj.allSpots[spotsId].previewImage} alt=""/>
                         
                             </div>
                             
                            
                <div className='div2'>
-                        <img className="Image2"  src={spotObj[id].previewImage} alt=""/>
-                       <img className="Image2"  src={spotObj[id].previewImage} alt=""/>
+                        <img className="Image2"  src={spotObj.allSpots[spotsId].previewImage} alt=""/>
+                       <img className="Image2"  src={spotObj.allSpots[spotsId].previewImage} alt=""/>
 
                         </div>
 
                         
                      </div>
                       <p>
-                        {spotObj[id].description}
+                        {spotObj.allSpots[spotsId].description}
                         </p> 
                      <div className="reviews">
                      <div className="reviewsb">
@@ -121,7 +120,7 @@ function SpotDetails() {
                       </div>
               {(users !== null) ? (
                   <div>
-                      <h5 className="price">Price: ${spotObj[id].price}
+                      <h5 className="price">Price: ${spotObj.allSpots[spotsId].price}
                   <OpenModalButton 
                   buttonText="Create Spot"
                   modalComponent={<CreateSpotForm />}

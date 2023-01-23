@@ -41,17 +41,17 @@ const FreshSpot= useSelector(state=>state.spots.singleSpot)
   }
 
   
-}, [dispatch, spots.name])
+}, [dispatch])
 
 
 const handleSubmit = (e) => {
   e.preventDefault();
   
+  history.push(`/spots/${id}`)
   setErrors([]);
  (dispatch(spotActions.createSpot({address, city, state, country,name,description, price, previewImage})))
   
   .then(closeModal)
-  history.push(`/spots/${id}`)
   .catch(async (res) => {
     const data = await res.json();
     if (data && data.errors) setErrors(data.errors);
