@@ -33,14 +33,14 @@ const handleSubmit = (e) => {
   e.preventDefault();
   setErrors([]);
  dispatch(reviewActions.createReviews({review, stars, spotId}))
-  .then(closeModal)
-  .catch(async (res) => {
-    const data = await res.json();
-    
-    if (data && data.errors) setErrors(data.errors);
+ .then(closeModal)
+ .catch(async (res) => {
+   const data = await res.json();
+   
+   if (data && data.errors) setErrors(data.errors);
   });
-  history.push(`/spots/${spotsId}`)
 };
+history.push(`/spots/${spotsId}`)
 
 
 return (
