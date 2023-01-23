@@ -18,6 +18,7 @@ function SignupFormModal() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
+    
       setErrors([]);
       return dispatch(sessionActions.signup({ email, username, firstName, lastName, password }))
         .then(closeModal)

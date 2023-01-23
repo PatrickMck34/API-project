@@ -36,7 +36,7 @@ function LoginFormModal() {
         <label className="label">
        
           <input className="input" autocomplete="Username/Email"
-            type="text"
+            type="email/username"
             placeholder="Username/Email"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}

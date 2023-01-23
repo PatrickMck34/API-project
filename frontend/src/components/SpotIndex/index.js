@@ -20,17 +20,21 @@ function SpotDetails() {
     const dispatch = useDispatch()
     const users = useSelector(state=>state.session.user)
     const num = (window.location.href.length - 1)
-    const  spotsId = (window.location.href[num])
-    const spot = useSelector(state=>state.spots.allSpots[spotsId])
-    const sspot = useSelector(state=>state.spots.singleSpot)
+    const  spotsIdObj = (window.location.href[num])
+    const spotsId = Object.values(spotsIdObj)
+    // const sspot = useSelector(state=>state.spots.singleSpot[spotsId])
     const [user, setUser] = useState()
-const {spotsIds} = useParams()
+    const {spotsIds} = useParams()
     let {reviewId} = useParams()
     const spots = useSelector(state=>state.spots.allSpots)
-    
+    const id = parseInt(spotsIdObj)
     let reviews = useSelector(state=>state.reviews.allReviews)
     const history = useHistory()
-
+    const spotObj = useSelector(state=>state.spots.allSpots)
+    const spot = Object.values(spotObj)
+   
+    console.log(spotObj[id].name)
+    
     const Delete=(spotsId)=> {
         dispatch(spotActions.deleteSpots(spotsId))
         history.push(`/`)
@@ -59,15 +63,15 @@ const {spotsIds} = useParams()
                  
              
            
-                             <h1 className="SpotName">{spot.name}</h1>
+                             <h1 className="SpotName">{spotObj[id].name}</h1>
                              
                    
                      <div className="spotDetails">
-                         <i className="fa-solid fa-star">{spot.avgRating}</i>
+                         <i className="fa-solid fa-star">{spotObj[id].avgRating}</i>
                 
-                <h4 className="detailsLeft">{spot.city}</h4>
-                <h4 className="detailsCenter">{spot.state}</h4>
-                <h4 className="detailsRight">{spot.country}</h4>
+                <h4 className="detailsLeft">{spotObj[id].city}</h4>
+                <h4 className="detailsCenter">{spotObj[id].state}</h4>
+                <h4 className="detailsRight">{spotObj[id].country}</h4>
                 </div>
 
            
@@ -75,27 +79,27 @@ const {spotsIds} = useParams()
 
                     <div className="mainImage">
                
-                <img className="Image"  src={spot.previewImage} alt=""/>
+                <img className="Image"  src={spotObj[id].previewImage} alt=""/>
                     
             
                         
                             <div className="imagediv">
-                             <img className="Image2"  src={spot.previewImage} alt=""/>
-                             <img className="Image2"  src={spot.previewImage} alt=""/>
+                             <img className="Image2"  src={spotObj[id].previewImage} alt=""/>
+                             <img className="Image2"  src={spotObj[id].previewImage} alt=""/>
                         
                             </div>
                             
                            
                <div className='div2'>
-                        <img className="Image2"  src={spot.previewImage} alt=""/>
-                       <img className="Image2"  src={spot.previewImage} alt=""/>
+                        <img className="Image2"  src={spotObj[id].previewImage} alt=""/>
+                       <img className="Image2"  src={spotObj[id].previewImage} alt=""/>
 
                         </div>
 
                         
                      </div>
                       <p>
-                        {spot.description}
+                        {spotObj[id].description}
                         </p> 
                      <div className="reviews">
                      <div className="reviewsb">
@@ -117,7 +121,7 @@ const {spotsIds} = useParams()
                       </div>
               {(users !== null) ? (
                   <div>
-                      <h5 className="price">Price: ${spots.price}
+                      <h5 className="price">Price: ${spotObj[id].price}
                   <OpenModalButton 
                   buttonText="Create Spot"
                   modalComponent={<CreateSpotForm />}
