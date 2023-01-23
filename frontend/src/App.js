@@ -57,7 +57,7 @@ const  spotsId = (window.location.href[num])
           <Route
             key={spots.id}
              path={`/spots/:spotsId`}>
-            <SpotDetails spots={spots}/>
+            <SpotDetails />
           </Route>
         
      {/* <Route  path={"/spots/:spotId"}>

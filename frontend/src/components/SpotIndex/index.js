@@ -22,9 +22,10 @@ function SpotDetails() {
     const num = (window.location.href.length - 1)
     const  spotsId = (window.location.href[num])
     const spot = useSelector(state=>state.spots.allSpots[spotsId])
+    const sspot = useSelector(state=>state.spots.singleSpot)
     const [user, setUser] = useState()
-
-    let reviewId = useParams()
+const {spotsIds} = useParams()
+    let {reviewId} = useParams()
     const spots = useSelector(state=>state.spots.allSpots)
     
     let reviews = useSelector(state=>state.reviews.allReviews)
@@ -35,18 +36,17 @@ function SpotDetails() {
         history.push(`/`)
     }
     useEffect(() => {
-            if(spot){
+       
         
-                dispatch(spotActions.getSpots())
-                }else{
-                        console.log("loading")
-                    }
+                dispatch(spotActions.getSpot(spotsId))
+             
+                  
                 
-                        }, [dispatch])
-                
+                        }, [dispatch, spots])
+                console.log(isSpots)
                 useEffect(() => {
             
-            dispatch(spotActions.getSpots())
+            dispatch(spotActions.getSpot(spotsId))
         }, [dispatch])
   
     
@@ -117,14 +117,14 @@ function SpotDetails() {
                       </div>
               {(users !== null) ? (
                   <div>
-                      <h5 className="price">Price: ${spot.price}
+                      <h5 className="price">Price: ${spots.price}
                   <OpenModalButton 
                   buttonText="Create Spot"
-                  modalComponent={<CreateSpotForm spots={spots}/>}
+                  modalComponent={<CreateSpotForm />}
                   />
                   <OpenModalButton
                   buttonText="Edit Spot" 
-                  modalComponent={<UpdateSpotForm spots={spots}/>}
+                  modalComponent={<UpdateSpotForm />}
                   />
                   <button className="button" onClick={()=> Delete(spotsId)}>
      Delete Spot

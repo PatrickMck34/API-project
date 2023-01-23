@@ -5,6 +5,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import { Link } from 'react-router-dom'
 import * as spotsActions from "../../store/spots"
 import { useState , useEffect} from 'react'
+import { useHistory } from 'react-router-dom'
 
 
 
@@ -12,7 +13,16 @@ function Card() {
   const dispatch=useDispatch()
   const spotsObj = useSelector(state=> state.spots.allSpots)
   const spots = Object.values(spotsObj) 
+
   
+  
+  const newSp = (revId) => {
+    
+    
+    dispatch(spotsActions.getSpot(revId))
+   
+    
+}
   useEffect(() => {
     if(spots)
     dispatch(spotsActions.getSpots())
@@ -32,14 +42,12 @@ function Card() {
 <div class="detailsfont" key={spot.id + "D"}>
 
             <Link 
-            key={spot.id + "link"}  to={`/spots/${spot.id}`}>
-               
+            key={spot.id + "link"}  to={`/spots/${spot.id}`} onItemClick={()=>newSp}>
 
               {spot.previewImage === "" ? (
                 <h1>loading . . .</h1>
                 ) : (
                   <img className="card"  src={spot.previewImage} alt={spot.previewImage}/>
-                  
                   ) }
                 </Link>
     <div class="detailsfont" className="details">

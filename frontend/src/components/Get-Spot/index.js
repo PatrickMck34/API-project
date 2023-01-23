@@ -32,29 +32,30 @@ function CreateSpotForm() {
   const spoot = spotsobj[newSpotId].id
   const id = spoot +1
   console.log(id)
-
-//   useEffect(() => {
-//   if(!spotsName){
-//   dispatch(spotActions.getSpots())
-//   } else {
-//     console.log("loading...")
-//   }
+const FreshSpot= useSelector(state=>state.spots.singleSpot)
+  useEffect(() => {
+  if(!spots.ame){
+  dispatch(spotActions.getSpots())
+  } else {
+    console.log("loading...")
+  }
 
   
-// }, [dispatch, spotsName])
+}, [dispatch, spots.name])
 
 
 const handleSubmit = (e) => {
   e.preventDefault();
   
   setErrors([]);
-  (dispatch(spotActions.createSpot({address, city, state, country,name,description, price, previewImage})))
+ (dispatch(spotActions.createSpot({address, city, state, country,name,description, price, previewImage})))
+  
   .then(closeModal)
+  history.push(`/spots/${id}`)
   .catch(async (res) => {
     const data = await res.json();
     if (data && data.errors) setErrors(data.errors);
   });
-  history.push(`/spots/${id}`)
 }
 
 return (

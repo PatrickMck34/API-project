@@ -15,7 +15,12 @@ function ReviewCard() {
     const reviewsObj = useSelector(state=> state.reviews.allReviews)
     const users = useSelector(state => state.session.user)
     const reviews = Object.values(reviewsObj) 
-   const name = useSelector(state=>state.session.user.firstName)
+   
+       
+   
+        
+    
+
    console.log(reviews)
 
 //  useEffect(() => {
@@ -45,19 +50,20 @@ return(
         // console.log(Date(review.createdAt))
        
         revId = review.id
-       
-return(
-           <>
+        
+    
+    return(
+        <>
       
         
 
 
 <div className="ReviewPad">
-            {(name) ? (
+            {(users ) ? (
                 <div>
         {/* {review.User.firstName} says: <p></p> */}
                 <i  className="fas fa-user-circle" >
-                {name}
+                {/* {review.User.firstName} */}
          <p></p>
         {(review.updatedAt)}
         </i>

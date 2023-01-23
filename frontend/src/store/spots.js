@@ -17,15 +17,12 @@ export const createSpot = (spot) => async (dispatch) => {
     });
 
     const response = await data.json()
-    if(previewImage){
-        dispatch(createSpotImage(previewImage, response.id))
-
-  
-   .then(dispatch(createSpots(response)))
-//    .then(dispatch(getSpot(response.id)))
+      return  dispatch(createSpotImage(previewImage, response.id))
+ .then(()=>dispatch(createSpots(response)))
+   .then(()=>dispatch(getSpot(response.id)))
     
-return response 
-};}
+
+;}
 
 
 export const createSpotImage = (url, id) => async (dispatch) => {
@@ -131,7 +128,7 @@ export const getSpots = (spots) => async (dispatch) => {
 
             case READ_SPOT:
                  newState ={...state, singleSpot: {} };
-                newState.singleSpot = action.spots
+                newState.singleSpot = action.payload
                 return newState 
             
             
