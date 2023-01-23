@@ -1,9 +1,15 @@
 .loggedhidden {
   display:none
 }
+.hidden{
+  display:none
+}
 .hover{
   cursor:pointer;
   height:7em;
+}
+.hohidden {
+  display:none;
 }
 .Demo {
   height:2em;
@@ -16,7 +22,7 @@
         height: 1.5em;
         align-items:center;
         position:absolute;
-        margin-top:1.5em;
+        margin-top:1em;
         margin-bottom:em;
         border-radius: 2em;
         font-size:x-large;
@@ -34,7 +40,7 @@
         height:7em;
   padding:.3em;
   position:relative;
-  border-radius: 5%;;
+  border-radius: 5%;
   box-shadow: 0em 0em .5em rgba(0, 0, 0, .5);
   margin-top: 3em;
 
@@ -46,6 +52,7 @@
   height:5em;
   width: 8em;
   border-bottom:1.5px solid rgba(107, 117, 108, 0.272);
+
 
   
 }

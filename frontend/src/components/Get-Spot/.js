@@ -27,12 +27,14 @@ function CreateSpotForm() {
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
   const history = useHistory()
-  const newSpot = (spotsobj.length -1)
+  const newSpot = (spots.length -1)
+  console.log(newSpot)
   const newSpotId=Number(newSpot)
-  const spoot = spotsobj[newSpotId].id
+  const spoot = spots[newSpotId].id
   const id = spoot +1
   console.log(id)
-
+  const spotsName = useSelector(state=>state.spots.allSpots[id-1].name)
+  console.log(spotsName)
 //   useEffect(() => {
 //   if(!spotsName){
 //   dispatch(spotActions.getSpots())

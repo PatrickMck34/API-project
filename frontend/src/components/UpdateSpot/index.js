@@ -33,7 +33,7 @@ const  spotsId = (window.location.href[num])
     const { closeModal } = useModal();
   const history = useHistory()
     const handleSubmit = (e) => {
-      history.push("/")
+
       e.preventDefault();
   
         return (dispatch(spotActions.updateSpot({address, city, state, country,name,description, price, spotsId})))

@@ -15,7 +15,8 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
 const [isSpots, setIsSpots] = useState(false)
 const [isReviews, setIsReviews] = useState(false)
-
+const num = (window.location.href.length - 1)
+const  spotsId = (window.location.href[num])
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch, isLoaded]);
@@ -25,22 +26,15 @@ const [isReviews, setIsReviews] = useState(false)
   const reviews = useSelector(state=> state.reviews)
 
   useEffect(() => {
-   if(isSpots === false){
+ 
 
     dispatch(spotsActions.getSpots()).then(() => setIsSpots(true))
-  }else {
-    console.log("loading")
-  }
   
-  }, [dispatch, isSpots])
+  }, [dispatch])
   
   useEffect(() => {
-    if(!isReviews){
-  dispatch(reviewsActions.getReviews()).then(() => setIsReviews(true))
-    }else {
-      console.log("loading")
-    }
-}, [dispatch, isReviews])
+      dispatch(reviewsActions.getReviews(spotsId)).then(() => setIsReviews(true))
+}, [dispatch. reviews])
 
 
 
@@ -54,25 +48,21 @@ const [isReviews, setIsReviews] = useState(false)
 <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          
-          {/* <Route path="/spots/create">
-            <CreateSpotForm />
-          </Route> */}
-          <Route
-            key={spots.id}
-             path={`/spots/:spotsId`}>
-            <SpotDetails isLoaded={isLoaded}/>
-          </Route>
           <Route
           key={"2"} 
           exact
             path="/">
             <Home isLoaded={isLoaded}/>
           </Route>
-        
-     <Route  path={"/spots/:spotId"}>
-            <UpdateSpotForm isLoaded={isLoaded}/>
+          <Route
+            key={spots.id}
+             path={`/spots/:spotsId`}>
+            <SpotDetails spots={spots}/>
           </Route>
+        
+     {/* <Route  path={"/spots/:spotId"}>
+            <UpdateSpotForm isLoaded={isLoaded}/>
+          </Route> */}
           <Route>
   <h1>404: Page not found</h1>
 </Route>

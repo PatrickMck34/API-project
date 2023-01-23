@@ -15,18 +15,18 @@ function ReviewCard() {
     const reviewsObj = useSelector(state=> state.reviews.allReviews)
     const users = useSelector(state => state.session.user)
     const reviews = Object.values(reviewsObj) 
-   
-   
+   const name = useSelector(state=>state.session.user.firstName)
+   console.log(reviews)
 
 //  useEffect(() => {
-//     if(reviewsObj[spotsId]){
+//     if(reviewsObj){
 
 //         dispatch(reviewsActions.getReviews(spotsId))
 //     } else {
 //         console.log("isLoading")
 //     }
 //    }
-// , [dispatch, reviewsObj[spotsId]])
+// , [dispatch, spotsId])
 let revId
 useEffect(() => {
     dispatch(sessionActions.restoreUser());
@@ -35,13 +35,14 @@ useEffect(() => {
 const DeleteReview = (revId) => {
     
     
-    dispatch(reviewsActions.deleteReviews(revId))
+    dispatch(reviewsActions.deleteReviews(revId)).then(()=>(dispatch(reviewsActions.getReviews(spotsId))))
     // history.push(`/spots/${spotsId}`)
     
 }
 return(
     
     reviews.map((review) => {
+        // console.log(Date(review.createdAt))
        
         revId = review.id
        
@@ -51,12 +52,21 @@ return(
         
 
 
-<div key={review.id} className="ReviewPad">
-            {users ? (
+<div className="ReviewPad">
+            {(name) ? (
                 <div>
         {/* {review.User.firstName} says: <p></p> */}
-      
+                <i  className="fas fa-user-circle" >
+                {name}
+         <p></p>
+        {(review.updatedAt)}
+        </i>
+        <p></p>
            {review.review} 
+                <button className="button" onClick={()=>DeleteReview(review.id)}>
+            Delete Review
+
+        </button>
         </div>
 
 
@@ -74,10 +84,6 @@ return(
         
         <div>
 
-                <button className="button" onClick={()=>DeleteReview(review.id)}>
-            Delete Review
-
-        </button>
             </div>
             ):(
                 <div></div>

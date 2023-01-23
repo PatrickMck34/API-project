@@ -22,7 +22,7 @@ const spotId = parseInt(spotsId)
 const history = useHistory()
 // useEffect(() => {
 //   if(reviews.allReviews.length){
-//   dispatch(reviewActions.getReviews())
+//   dispatch(reviewActions.getReviews(spotsId))
 //   }else{
 //     console.log("loading")
 //   }
