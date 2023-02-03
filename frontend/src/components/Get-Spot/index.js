@@ -5,8 +5,9 @@ import { useModal } from "../../context/Modal";
 import * as spotActions from "../../store/spots";
 import './Get-spot.css';
 import { useHistory} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
-function CreateSpotForm() {
+function CreateSpotForm({spotID}) {
 
   const dispatch = useDispatch();
   const spots = useSelector(state=>state.spots.allSpots)
@@ -19,30 +20,37 @@ function CreateSpotForm() {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [previewImage, setPreviewImage] = useState("")
-  
+  const [spot, setSpot] = useState(false)
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
   const history = useHistory()
   const newSpot = (spotsobj.length -1)
   const newSpotId=Number(newSpot)
   const spoot = spotsobj[newSpotId].id
-  const id = spoot +1
+  const id = spoot + 1
 
 
+useEffect(()=>{
+   if(spot === true){
+  dispatch(spotActions.getSpot(id))
+   setSpot(false)
+   }else{
+    console.log("loading")
+   }
+}, [dispatch, spot])
 
 const handleSubmit = (e) => {
   e.preventDefault();
-  
   setErrors([]);
-  dispatch(spotActions.createSpot({address, city, state, country,name,description, price, previewImage}))
-  
+   dispatch(spotActions.createSpot({address, city, state, country,name,description, price, previewImage})).then(()=>setSpot(true))
   .then(closeModal)
-
-
+ 
   .catch(async (res) => {
     const data = await res.json();
     if (data && data.errors) setErrors(data.errors);
   });
+
+ history.push(`/spots/${id}`)
   
 }
 
@@ -138,7 +146,7 @@ return (
             />
         </label>
           
-        <button className="button" type="submit">Create Spot</button>
+        <button className="button" type="submit" >Create Spot</button>
       </form>
     </div>
   );

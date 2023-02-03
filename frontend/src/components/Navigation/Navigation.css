@@ -75,7 +75,7 @@ width:5em;
 .header_icon {
   display:inline-flex;
   height:5em;
-  margin-left:5em;
+  margin-left:2em;
   height:4em;
    margin-top:0em;
   border-bottom:1.5px solid rgba(107, 117, 108, 0.632);
@@ -95,13 +95,13 @@ width:5em;
   margin-top:1em;
   padding:.5em;
 
-  margin-left:6em;
+  margin-left:9em;
 
 }
 .create {
   display:inline-flex;
 flex-flow: row;
- margin-left:45em;
+ margin-left:47em;
  margin-top:2.5em;
  width:15em;
  

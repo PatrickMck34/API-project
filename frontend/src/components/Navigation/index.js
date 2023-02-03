@@ -5,8 +5,10 @@ import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import OpenModalButton from '../OpenModalButton';
 import CreateSpotForm from '../Get-Spot';
+
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
+  const spots = useSelector(state=>state.spots.allspots)
 
   return (
     
@@ -22,7 +24,7 @@ function Navigation({ isLoaded }){
        <div  className="create">
        <OpenModalButton className="creation"
                   buttonText="Go-There Youre Home"
-                  modalComponent={<CreateSpotForm />}/>
+                  modalComponent={<CreateSpotForm spots={spots}/>}/>
 
                 
             </div> 

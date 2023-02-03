@@ -26,11 +26,11 @@ const  spotsId = (window.location.href[num])
   const reviews = useSelector(state=> state.reviews)
 
   useEffect(() => {
- 
+     if(isSpots === false)
 
     dispatch(spotsActions.getSpots()).then(() => setIsSpots(true))
   
-  }, [])
+  }, [dispatch, spots])
 
   return (
     <>
@@ -46,7 +46,7 @@ const  spotsId = (window.location.href[num])
           <Route
           
              path={`/spots/:spotsid`}>
-            <SpotDetails />
+            <SpotDetails spots={spots}/>
           </Route>
        
      <Route  path={"/spots/:spotId"}>

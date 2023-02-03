@@ -8,12 +8,15 @@ import DemoUser from '../DemoUser/DemoUser'
 import { useDispatch } from 'react-redux'
 import * as sessionActions from "../../store/session"
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem'
+import { Link } from 'react-router-dom'
 function Home() {
     const dispatch = useDispatch()
-    const spots = useSelector(state=> state.spots)
+    const spotsObj = useSelector(state=> state.spots.allSpots)
+    const spots = Object.values(spotsObj)
 const id = spots.id
+
     return(
-        <>
+        <div className="homeCards">
            
         <div className='home'>
           
@@ -21,13 +24,49 @@ const id = spots.id
                
      
             <div className='home_section'>
-     
-            <Card key={id + "card"}/>
+           {spots.map((spot)=>{
+
+
+            return(
+                <>
+                 
+        <div key={spot.id + "D"} className="Homecards">
+        
+                    <Link 
+                    key={spot.id + "link"}  to={`/spots/${spot.id}`}>
+        
+                      {spot.previewImage === "" ? (
+                        <h1>loading . . .</h1>
+                        ) : (
+                          <img className="card"  src={spot.previewImage} alt={spot.previewImage}/>
+                          ) }
+                        </Link>
+            <div ley={spot.id} className="details">
+               <h4 key={spot.id+"h"}>{spot.city}, {spot.state}</h4> 
+               <i className="fa-solid fa-star">{spot.avgRating}</i> 
+            </div>
+                <h4 className="details" key={spot.id+"h3"}>${spot.price} night</h4>
+                        
+                        </div>
+                    
+                  
+                    
+             
+                    </>
+                
+                )
+            }
+         )   
+        
+        
+        
+
+           }
             
                 
         </div>
          </div>
-        </>
+        </div>
     )
 }
 export default Home

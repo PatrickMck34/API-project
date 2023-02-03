@@ -26,7 +26,7 @@ function Card() {
       return(
         <>
          
-<div key={spot.id + "D"}>
+<div key={spot.id + "D"} className="Homecards">
 
             <Link 
             key={spot.id + "link"}  to={`/spots/${spot.id}`}>
@@ -37,11 +37,11 @@ function Card() {
                   <img className="card"  src={spot.previewImage} alt={spot.previewImage}/>
                   ) }
                 </Link>
-    <div class="detailsfont" className="details">
+    <div ley={spot.id} className="details">
        <h4 key={spot.id+"h"}>{spot.city}, {spot.state}</h4> 
        <i className="fa-solid fa-star">{spot.avgRating}</i> 
     </div>
-        <h4 class="detailsfont" className="details" key={spot.id+"h3"}>${spot.price} night</h4>
+        <h4 className="details" key={spot.id+"h3"}>${spot.price} night</h4>
                 
                 </div>
             
