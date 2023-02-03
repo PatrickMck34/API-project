@@ -51,12 +51,12 @@ const  spotsId = (window.location.href[num])
         <Route
           exact
             path="/">
-            <Home isLoaded={isLoaded}/>
+            <Home />
           </Route>
           <Route
           
              path={`/spots/:spotsid`}>
-            <SpotDetails isLoaded={isLoaded}/>
+            <SpotDetails />
           </Route>
        
      <Route  path={"/spots/:spotId"}>

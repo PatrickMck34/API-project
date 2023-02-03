@@ -14,20 +14,24 @@ function LoginFormModal() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
+    if(password.length < 6) {setErrors(["Password must be at least 6 Charecters long"])}
     return dispatch(sessionActions.login({ credential, password }))
       .then(closeModal)
       .catch(
         async (res) => {
           const data = await res.json();
+          if(password.length >= 6){
+          setErrors(["Invalid Credentials Please Try Again"])}
           if (data && data.errors) setErrors(data.errors);
         }
       );
+
   };
 
   return (
     <>
       <h1 className="title">Log In</h1>
-      <form onSubmit={handleSubmit} autocomplete="on">
+      <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
@@ -35,8 +39,8 @@ function LoginFormModal() {
         </ul>
         <label className="label">
        
-          <input className="input" autocomplete="Username/Email"
-            type="email/username"
+          <input className="input"
+            type="text"
             placeholder="Username/Email"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
@@ -45,7 +49,7 @@ function LoginFormModal() {
         </label>
         <label className="label">
      
-          <input className="input" autocomplete="current-password"
+          <input className="input"
             type="password"
             placeholder="password"
             value={password}
