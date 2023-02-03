@@ -1,4 +1,5 @@
 import { csrfFetch } from './csrf';
+import { useHistory } from 'react-router-dom';
 
 const READ_SPOT = '/spots/:spotId';
 const READ_SPOTS = '/spots';
@@ -7,7 +8,6 @@ const DELETE_SPOT = '/spots/:spotId';
 const CREATE_SPOT = '/spots/new'
 
 export const createSpot = (spot) => async (dispatch) => {
-
     const { address, city, state, country, lat, lng, name,description, price, previewImage} = spot
     const data = await csrfFetch("/api/spots/", {
         method: "POST",
@@ -17,11 +17,8 @@ export const createSpot = (spot) => async (dispatch) => {
     });
 
     const response = await data.json()
-      return  dispatch(createSpotImage(previewImage, response.id))
- .then(()=>dispatch(createSpots(response)))
-   .then(()=>dispatch(getSpot(response.id)))
-    
-
+dispatch(createSpots(response))
+return response
 ;}
 
 

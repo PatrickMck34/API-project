@@ -37,11 +37,12 @@ const handleSubmit = (e) => {
   dispatch(spotActions.createSpot({address, city, state, country,name,description, price, previewImage}))
   
   .then(closeModal)
+
+
   .catch(async (res) => {
     const data = await res.json();
     if (data && data.errors) setErrors(data.errors);
   });
-  history.push(`/spots/${id}`)
   
 }
 

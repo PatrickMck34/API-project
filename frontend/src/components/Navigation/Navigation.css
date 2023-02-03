@@ -92,6 +92,7 @@ width:5em;
 .header_r {
   display:inline-flex;
   margin-top:1em;
+  padding:.5em;
 
   margin-left:6em;
 
@@ -99,9 +100,10 @@ width:5em;
 .create {
   display:inline-flex;
 flex-flow: row;
- margin-left:50em;
+ margin-left:45em;
  margin-top:2.5em;
  width:15em;
+ 
   
   
   

@@ -103,10 +103,7 @@ function SpotDetails({spots}) {
                       </div>
               {(users ) ? (
                   <div className="prices">Price: ${spotObj.allSpots[spotsIdObj].price}
-                  <OpenModalButton 
-                  buttonText="Create Spot"
-                  modalComponent={<CreateSpotForm />}
-                  />
+                
                   <OpenModalButton
                   buttonText="Edit Spot" 
                   modalComponent={<UpdateSpotForm />}
