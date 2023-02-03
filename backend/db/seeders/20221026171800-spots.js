@@ -37,7 +37,7 @@ module.exports = {
     avgRating: 3.0,
     avgStarRating: 4.1,
     numReviews: 1,
-    previewImage: "https://upload.wikimedia.org/wikipedia/commons/2/20/Window_tinting_for_homes.png"
+    previewImage: "https://i.postimg.cc/28twJjzP/swiss-alps.webp"
 
   },
   {
@@ -54,7 +54,7 @@ module.exports = {
     avgRating: 2.3,
 avgStarRating: 4.1,
     numReviews: 1,
-    previewImage: "https://st2.depositphotos.com/1187194/5187/i/950/depositphotos_51878049-stock-photo-million-dollar-homes.jpg"
+    previewImage: "https://i.postimg.cc/SKfxXsR5/Amalfi-Coast-Italy-jpg.webp"
   },
  
   {
@@ -71,7 +71,7 @@ avgStarRating: 4.1,
     avgRating: 2.2,
     avgStarRating: 4.1,
     numReviews: 1,
-    previewImage: "https://s3.amazonaws.com/inarkansas/soiree/homes/img/2020/3939-large.jpg",
+    previewImage: "https://i.postimg.cc/SQGqWs67/a-8-wacky-houses-hobbit-home-4x3.webp",
    
   
   },
@@ -90,7 +90,7 @@ avgStarRating: 4.1,
     avgRating: 3.0,
     avgStarRating: 4.1,
     numReviews: 1,
-    previewImage: "https://upload.wikimedia.org/wikipedia/commons/2/20/Window_tinting_for_homes.png"
+    previewImage: "https://i.postimg.cc/CK5c5vFf/header-dream-vacation.webp"
 
   },
    ],{})
