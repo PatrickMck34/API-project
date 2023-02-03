@@ -20,8 +20,8 @@ function Navigation({ isLoaded }){
           
             </NavLink>
        <div  className="create">
-       <OpenModalButton 
-                  buttonText="Get-There Youre Home"
+       <OpenModalButton className="creation"
+                  buttonText="Go-There Youre Home"
                   modalComponent={<CreateSpotForm />}/>
 
                 

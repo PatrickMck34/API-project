@@ -28,7 +28,7 @@
         border-radius: 2em;
         font-size:x-large;
         margin-left:1em;
-        
+        cursor:pointer;
       }
       .fa-solid {
         margin-bottom:1.5em;
@@ -59,7 +59,7 @@ width:5em;
   height:5em;
   width: 8em;
   border-bottom:1.5px solid rgba(107, 117, 108, 0.272);
-
+  cursor:pointer;
 
   
 }
@@ -70,6 +70,7 @@ width:5em;
   position:absolute;
   height:10.9em;
   width:12.6em;
+  
 }
 .header_icon {
   display:inline-flex;
@@ -104,6 +105,7 @@ flex-flow: row;
  margin-top:2.5em;
  width:15em;
  
+ 
   
   
   
@@ -115,6 +117,8 @@ width:100%;
 
   
 }
-
+.creation {
+  cursor:pointer;
+}
 
 
