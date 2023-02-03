@@ -29,7 +29,7 @@ const handleSubmit = (e) => {
  .then(closeModal)
  .catch(async (res) => {
    const data = await res.json();
-   
+   setErrors(["Unable to create Review"])
    if (data && data.errors) setErrors(data.errors);
   });
 };

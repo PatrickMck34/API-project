@@ -44,7 +44,7 @@ function SpotDetails({spots}) {
     return(
     <>
     <div className="full">    
-              {/* {spot.name === undefined ? ( */}
+             
                  
              
            

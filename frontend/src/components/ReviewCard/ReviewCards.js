@@ -32,7 +32,7 @@ const DeleteReview = (revId) => {
 return(
     
     reviews.map((review) => {
-        // console.log(Date(review.createdAt))
+     
        
         revId = review.id
         
@@ -45,12 +45,13 @@ return(
 
 <div className="ReviewPad">
                 <div>
-        {users.firstName} says: 
+      
                 <i  className="fas fa-user-circle" >
-                {users.firstName}
-       
-        {(review.updatedAt)}
         </i>
+                {users.firstName}
+         <br></br>
+        {new Date(review.updatedAt).toLocaleDateString()}
+        <br></br>
            {review.review} 
       
             {(users ) ? (
