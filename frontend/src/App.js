@@ -30,11 +30,11 @@ const  spotsId = (window.location.href[num])
 
     dispatch(spotsActions.getSpots()).then(() => setIsSpots(true))
   
-  }, [dispatch])
+  }, [])
   
   useEffect(() => {
       dispatch(reviewsActions.getReviews(spotsId)).then(() => setIsReviews(true))
-}, [dispatch. reviews])
+}, [dispatch])
 
 
 

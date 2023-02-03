@@ -14,7 +14,7 @@ import * as sessionActions from "../../store/session"
 
 import { useHistory } from 'react-router-dom'
 <script src="https://kit.fontawesome.com/d7a09d9013.js" crossorigin="anonymous"></script>
-function SpotDetails() {
+function SpotDetails({spots}) {
 
     const [isSpots, setIsSpots] = useState(false)
     const dispatch = useDispatch()
@@ -33,22 +33,10 @@ function SpotDetails() {
 
 
     const Delete=(spotsId)=> {
-        dispatch(spotActions.deleteSpots(spotsId))
+        dispatch(spotActions.deleteSpots(spotsId)).then(()=>dispatch(spotActions.getSpots()))
         history.push(`/`)
     }
-    useEffect(() => {
-       
-        
-                dispatch(spotActions.getSpots(spot))
-             
-                  
-                
-                        }, [dispatch, spot])
-                console.log(isSpots)
-                useEffect(() => {
-            
-            dispatch(spotActions.getSpots())
-        }, [dispatch])
+ 
   
     
     // const userClass = "features" + (showMenu ? "open" : " hidden");
@@ -114,7 +102,7 @@ function SpotDetails() {
               
                       </div>
               {(users ) ? (
-                  <div className="prices">Price: ${spotObj.allSpots[spotsId].price}
+                  <div className="prices">Price: ${spotObj.allSpots[spotsIdObj].price}
                   <OpenModalButton 
                   buttonText="Create Spot"
                   modalComponent={<CreateSpotForm />}
@@ -123,7 +111,7 @@ function SpotDetails() {
                   buttonText="Edit Spot" 
                   modalComponent={<UpdateSpotForm />}
                   />
-                  <button className="button" onClick={()=> Delete(spotsId)}>
+                  <button className="button" onClick={()=> Delete(spotsIdObj)}>
      Delete Spot
           </button>
                        <OpenModalButton

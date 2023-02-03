@@ -142,7 +142,7 @@ export const getSpots = (spots) => async (dispatch) => {
              case DELETE_SPOT:
              newState = {...state}
              delete newState[action.payload.id]
-            return newState
+          
 
             case UPDATE_SPOT:
             newState = {...state, allSpots:{ ...state.allSpots}}

@@ -16,22 +16,7 @@ function ReviewCard() {
     const users = useSelector(state => state.session.user)
     const reviews = Object.values(reviewsObj) 
    
-       
-   
-        
-    
 
-   console.log(reviews)
-
- useEffect(() => {
-    if(reviewsObj){
-
-        dispatch(reviewsActions.getReviews(spotsId))
-    } else {
-        console.log("isLoading")
-    }
-   }
-, [dispatch, spotsId])
 let revId
 useEffect(() => {
     dispatch(sessionActions.restoreUser());
@@ -60,14 +45,14 @@ return(
 
 <div className="ReviewPad">
                 <div>
-        {/* {review.User.firstName} says: <p></p> */}
+        {users.firstName} says: 
                 <i  className="fas fa-user-circle" >
-                {review.User.firstName}
-         <p></p>
+                {users.firstName}
+       
         {(review.updatedAt)}
         </i>
            {review.review} 
-        <p></p>
+      
             {(users ) ? (
                 <div>
                 <button className="button" onClick={()=>DeleteReview(review.id)}>
@@ -83,10 +68,11 @@ return(
                 
 </div>
             )}
-        </div>
-<p></p>
+     </div> 
+
      
-<div>        {users && (users.id === review.userId) ? ( 
+ <div>     
+        {users && (users.id === review.userId) ? ( 
 
         
         <div>
@@ -98,7 +84,7 @@ return(
                 </div>
          
                     <div></div>
-                    </div>
+                    </div> 
                 </>
                 
 

@@ -16,13 +16,7 @@ function Card() {
 
   
 
-  useEffect(() => {
-    if(spots)
-    dispatch(spotsActions.getSpots())
-    else {
-      return "Loading"
-    }
-  }, [dispatch])
+  
   
   return(
     

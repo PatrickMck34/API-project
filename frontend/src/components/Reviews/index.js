@@ -20,19 +20,12 @@ const spotId = parseInt(spotsId)
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
 const history = useHistory()
-// useEffect(() => {
-//   if(reviews.allReviews.length){
-//   dispatch(reviewActions.getReviews(spotsId))
-//   }else{
-//     console.log("loading")
-//   }
 
-// }, [dispatch, reviews.allReviews.length])
 
 const handleSubmit = (e) => {
   e.preventDefault();
   setErrors([]);
- dispatch(reviewActions.createReviews({review, stars, spotId}))
+ dispatch(reviewActions.createReviews({review, stars, spotId})).then(()=>dispatch(reviewActions.getReviews(spotId)))
  .then(closeModal)
  .catch(async (res) => {
    const data = await res.json();
