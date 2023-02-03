@@ -44,34 +44,33 @@ router.post(
       let result = {message, statusCode, errors}
       return res.status(201).json(result)
       
-    } else{
-      return handleValidationErrors
     }
     let users = await User.scope('defaultScope').signup({ email, password, username, firstName, lastName, token});
-     
     
-     let id = users.id
-     token = "" 
-     const user = {id, firstName, lastName, email, username, token}
-     setTokenCookie(res, users);
+    
+    let id = users.id
+    token = "" 
+    const user = {id, firstName, lastName, email, username, token}
+    setTokenCookie(res, users);
     return res.json(
       {user
         // "user": {
-        //   "id": 1,
-        //   "firstName": "John",
-        //   "lastName": "Smith",
-        //   "email": "john.smith@gmail.com",
-        //   "username": "JohnSmith"
-        // }
-      }
-    );
-  },
-  // router.post("/api/spots", async (req, res) => {
-  //   const {address, city, state, country, lat, lng, name, description, price} = req.body
-  //   const spot = await Spot.create({address, city, state, country, lat, lng, name, description, price})
-  //   return res.json({ spot })
-  // }),
-  
-);
-
+          //   "id": 1,
+          //   "firstName": "John",
+          //   "lastName": "Smith",
+          //   "email": "john.smith@gmail.com",
+          //   "username": "JohnSmith"
+          // }
+        }
+        );
+        return handleValidationErrors
+      },
+      // router.post("/api/spots", async (req, res) => {
+        //   const {address, city, state, country, lat, lng, name, description, price} = req.body
+        //   const spot = await Spot.create({address, city, state, country, lat, lng, name, description, price})
+        //   return res.json({ spot })
+        // }),
+        
+        );
+        
 module.exports = router;
