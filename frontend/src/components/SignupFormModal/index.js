@@ -17,17 +17,14 @@ function SignupFormModal() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (password === confirmPassword) {
-    
       setErrors([]);
-      return dispatch(sessionActions.signup({ email, username, firstName, lastName, password }))
+   return  dispatch(sessionActions.signup({  username, firstName, lastName, email, password }))
         .then(closeModal)
         .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
         });
-    }
-    return setErrors(['Confirm Password field must be the same as the Password field']);
+    
   };
 
   return (
@@ -41,7 +38,7 @@ function SignupFormModal() {
        
           <input className="input"
           placeholder="Email"
-            type="text"
+            type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -81,6 +78,7 @@ function SignupFormModal() {
          
           <input className="input"
           placeholder="password"
+          autoComplete="password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -91,6 +89,7 @@ function SignupFormModal() {
          
           <input className="input"
           placeholder="confirm password"
+          autoComplete="confirm-password"
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
