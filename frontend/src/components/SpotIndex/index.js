@@ -32,10 +32,13 @@ function SpotDetails({spots}) {
     const spotID = spotId.spotsid
 
     useEffect(() => {
-       if(spots.allSpots[spotID]=== undefined){
+       if(spots.allSpots[spotID] === undefined){
        dispatch(spotActions.getSpots())
+        
+       }else{
+        dispatch(spotActions.getSpots())
        }
-     }, [dispatch, spotID])
+     }, [spotID])
 
 
 
