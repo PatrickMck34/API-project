@@ -1,10 +1,10 @@
 
 import React from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import { useParams, useHistory } from 'react-router-dom'
+import {  useHistory } from 'react-router-dom'
 import * as reviewsActions from "../../store/reviews"
 import * as sessionActions from "../../store/session"
-import { useEffect, useLayoutEffect} from 'react'
+import { useEffect} from 'react'
 import "./ReviewCard.css"
 
 function ReviewCard() {
@@ -17,14 +17,13 @@ function ReviewCard() {
     const reviews = Object.values(reviewsObj) 
    
 
-let revId
-useEffect(() => {
-    dispatch(sessionActions.restoreUser());
-}, [dispatch]);
+
+// useEffect(() => {
+//     dispatch(sessionActions.restoreUser());
+// }, [dispatch]);
 
 const DeleteReview = (revId) => {
-    
-    
+  
     dispatch(reviewsActions.deleteReviews(revId)).then(()=>(dispatch(reviewsActions.getReviews(spotsId))))
     history.push(`/spots/${spotsId}`)
     
@@ -34,7 +33,7 @@ return(
     reviews.map((review) => {
      
        
-        revId = review.id
+       
         
     
     return(

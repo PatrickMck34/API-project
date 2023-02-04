@@ -5,7 +5,7 @@ import * as sessionActions from "./store/session";
 import * as spotsActions from "./store/spots"
 import * as reviewsActions from "./store/reviews"
 import Navigation from ".//components/Navigation/index"
-
+import CreateSpotForm from "./components/Get-Spot";
 import Home from "./components/Home/Home"
 import SpotDetails from "./components/SpotIndex/index.js";
 import UpdateSpotForm from "./components/UpdateSpot";
@@ -26,11 +26,9 @@ const  spotsId = (window.location.href[num])
   const reviews = useSelector(state=> state.reviews)
 
   useEffect(() => {
-     if(isSpots === false)
-
-    dispatch(spotsActions.getSpots()).then(() => setIsSpots(true))
+    dispatch(spotsActions.getSpots())
   
-  }, [dispatch, spots])
+  }, [])
 
   return (
     <>
@@ -43,15 +41,14 @@ const  spotsId = (window.location.href[num])
             path="/">
             <Home />
           </Route>
+           <Route 
+      path={"/spots/:spotsid/new"}>
+            <CreateSpotForm spots={spots}/> 
+        </Route> 
           <Route
-          
              path={`/spots/:spotsid`}>
             <SpotDetails spots={spots}/>
           </Route>
-       
-     <Route  path={"/spots/:spotId"}>
-            <UpdateSpotForm isLoaded={isLoaded}/> 
-         </Route> 
           <Route>
   <h1>404: Page not found</h1>
 </Route>

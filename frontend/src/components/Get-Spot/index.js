@@ -4,10 +4,10 @@ import {  useDispatch , useSelector} from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as spotActions from "../../store/spots";
 import './Get-spot.css';
-import { useHistory} from "react-router-dom";
-import { Redirect } from "react-router-dom";
+import { useHistory, useParams} from "react-router-dom";
 
-function CreateSpotForm({spotID}) {
+
+function CreateSpotForm() {
 
   const dispatch = useDispatch();
   const spots = useSelector(state=>state.spots.allSpots)
@@ -31,20 +31,19 @@ function CreateSpotForm({spotID}) {
 
 
 useEffect(()=>{
-   if(spot === true){
-  dispatch(spotActions.getSpot(id))
-   setSpot(false)
-   }else{
-    console.log("loading")
-   }
-}, [dispatch, spot])
+ 
+  dispatch(spotActions.getSpot(spoot))
+
+ 
+}, [spots])
 
 const handleSubmit = (e) => {
   e.preventDefault();
   setErrors([]);
+
    dispatch(spotActions.createSpot({address, city, state, country,name,description, price, previewImage})).then(()=>setSpot(true))
   .then(closeModal)
- 
+
   .catch(async (res) => {
     const data = await res.json();
     if (data && data.errors) setErrors(data.errors);

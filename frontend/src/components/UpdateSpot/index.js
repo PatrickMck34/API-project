@@ -9,7 +9,8 @@ import { useHistory ,useParams, useLocation} from "react-router-dom";
 
 
 
-function UpdateSpotForm() {
+function UpdateSpotForm({spots1}) {
+  console.log(spots1)
   const spots =  useSelector(state=>state.spots)
  
   let Location = useLocation()

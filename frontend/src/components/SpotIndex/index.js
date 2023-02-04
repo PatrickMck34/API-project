@@ -4,45 +4,56 @@ import "./details.css"
 import {useSelector, useDispatch} from 'react-redux'
 import CreateReviewForm from '../../components/Reviews/index'
 import OpenModalButton from '../OpenModalButton'
-import CreateSpotForm from '../Get-Spot'
+
 import UpdateSpotForm from '../UpdateSpot'
-import * as reviewsActions from '../../store/reviews'
+
 import * as spotActions from "../../store/spots"
 import ReviewCard from '../ReviewCard/ReviewCards'
-import * as sessionActions from "../../store/session"
+
 
 import { useHistory } from 'react-router-dom'
 <script src="https://kit.fontawesome.com/d7a09d9013.js" crossorigin="anonymous"></script>
 function SpotDetails({spots}) {
     
-    const [isSpots, setIsSpots] = useState(false)
+   
     const dispatch = useDispatch()
     const users = useSelector(state=>state.session.user)
-    const num = (window.location.href.length-1)
-    const spotIDObj = (window.location.href[num])
-    const spotids = Object.values(spotIDObj)
+   
+    
     // const sspot = useSelector(state=>state.spots.singleSpot[spotID])
-    const [user, setUser] = useState()
-    let {reviewId} = useParams()
-    const id = parseInt(spotids)
-    let reviews = useSelector(state=>state.reviews)
+  
+  
+ 
+//    const spots = useSelector(state=>state.spots)
     const history = useHistory()
     const spotObj = useSelector(state=>state.spots)
-    const spot = Object.values(spotObj)
+   const [render, setRender] = useState(false)
     const spotId = useParams()
     const spotID = spotId.spotsid
-    const Delete=(spotID)=> {
-        dispatch(spotActions.deleteSpots(spotID)).then(()=>dispatch(spotActions.getSpots()))
-        history.push(`/`)
-    }
- 
-  
-    
-    // const userClass = "features" + (showMenu ? "open" : " hidden");
-    
-    return(
-    <>
-    <div className="full">    
+
+    useEffect(() => {
+       if(spots.allSpots[spotID]=== undefined){
+       dispatch(spotActions.getSpots())
+       }
+     }, [dispatch, spotID])
+
+
+
+
+     
+     const Delete=(spotID)=> {
+         
+         
+         dispatch(spotActions.deleteSpots(spotID)).then(()=>dispatch(spotActions.getSpots()))
+         history.push(`/`)
+     }
+        return(
+            <>
+            {spots.allSpots[spotID] === undefined ? (
+            <div></div>
+            ):(
+            
+            <div className="full">    
              
                  
              
@@ -123,6 +134,8 @@ function SpotDetails({spots}) {
                       )}
                       </div>
                       </div>
+                
+                  )}
                   </>
     ) 
 }
