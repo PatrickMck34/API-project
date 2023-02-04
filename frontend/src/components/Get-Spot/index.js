@@ -32,10 +32,10 @@ function CreateSpotForm() {
 
 useEffect(()=>{
  
-  dispatch(spotActions.getSpot(spoot))
+  dispatch(spotActions.getSpots())
 
  
-}, [spots])
+}, [])
 
 const handleSubmit = (e) => {
   e.preventDefault();
@@ -43,7 +43,7 @@ const handleSubmit = (e) => {
 
    dispatch(spotActions.createSpot({address, city, state, country,name,description, price, previewImage})).then(()=>setSpot(true))
   .then(closeModal)
-
+  .then(()=>dispatch(spotActions.getSpots()))
   .catch(async (res) => {
     const data = await res.json();
     if (data && data.errors) setErrors(data.errors);

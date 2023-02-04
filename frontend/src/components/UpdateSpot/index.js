@@ -1,19 +1,19 @@
 import React from "react"
- import {useState, useContext,} from "react";
+ import {useState} from "react";
 import { useDispatch , useSelector  } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as spotActions from "../../store/spots";
 import './update.css';
-import { useHistory ,useParams, useLocation} from "react-router-dom";
+import { useHistory} from "react-router-dom";
 
 
 
 
-function UpdateSpotForm({spots1}) {
-  console.log(spots1)
+function UpdateSpotForm() {
+
   const spots =  useSelector(state=>state.spots)
  
-  let Location = useLocation()
+
   const dispatch = useDispatch();
 
   

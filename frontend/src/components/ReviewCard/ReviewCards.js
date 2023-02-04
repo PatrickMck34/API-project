@@ -18,9 +18,9 @@ function ReviewCard() {
    
 
 
-// useEffect(() => {
-//     dispatch(sessionActions.restoreUser());
-// }, [dispatch]);
+useEffect(() => {
+    dispatch(sessionActions.restoreUser());
+}, [dispatch]);
 
 const DeleteReview = (revId) => {
   

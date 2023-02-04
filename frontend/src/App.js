@@ -28,7 +28,7 @@ const  spotsId = (window.location.href[num])
   useEffect(() => {
     dispatch(spotsActions.getSpots())
   
-  }, [])
+  }, [dispatch])
 
   return (
     <>
