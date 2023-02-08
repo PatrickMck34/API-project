@@ -41,15 +41,7 @@ function SpotDetails({spots}) {
        }
      }, [render, spotID])
 
-     useEffect(() => {
-        if(spots.allSpots[spotID] === undefined){
-        dispatch(spotActions.getSpots())
-         setRender(true)
-        }else{
-         dispatch(spotActions.getSpots())
-         setRender(false)
-        }
-      }, [])
+    
 
 
      
@@ -114,7 +106,8 @@ function SpotDetails({spots}) {
 
                         <div className="ReviewTxt">
                             User Reviews: 
-                             <ReviewCard />
+                             <ReviewCard spotId={spotID}/>
+                          
         
                              
                </div>

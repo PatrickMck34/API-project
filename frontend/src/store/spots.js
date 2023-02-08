@@ -117,7 +117,7 @@ export const getSpots = (spots) => async (dispatch) => {
         
         switch (action.type) {
             case READ_SPOTS:
-                newState = {allSpots:{}}
+                newState = {...state, allSpots:{}}
                
                 action.payload.forEach(spot => newState.allSpots[spot.id] = spot)
                 return newState 

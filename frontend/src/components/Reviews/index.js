@@ -13,7 +13,7 @@ function CreateReviewForm() {
   const reviews = useSelector(state=>state.reviews.allReviews)
   const [review, setReview] = useState("");
   const [stars, setStars] = useState("");
-
+  const [avgStars, setAvgStars] = useState(0)
   const num = (window.location.href.length - 1)
   const  spotsId = (window.location.href[num])
 const spotId = parseInt(spotsId)
@@ -26,14 +26,14 @@ const handleSubmit = (e) => {
   e.preventDefault();
   setErrors([]);
  dispatch(reviewActions.createReviews({review, stars, spotId})).then(()=>dispatch(reviewActions.getReviews(spotId)))
- .then(closeModal)
+ .then(closeModal).then(()=>setAvgStars((avgStars + stars / 2)))
  .catch(async (res) => {
    const data = await res.json();
    setErrors(["Unable to create Review"])
    if (data && data.errors) setErrors(data.errors);
   });
+  history.push(`/spots/${spotsId}`)
 };
-history.push(`/spots/${spotsId}`)
 
 
 return (

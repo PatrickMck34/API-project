@@ -7,7 +7,7 @@ import * as sessionActions from "../../store/session"
 import { useEffect} from 'react'
 import "./ReviewCard.css"
 
-function ReviewCard() {
+function ReviewCard({spotId}) {
     const history = useHistory()
     const dispatch=useDispatch()
     const num = (window.location.href.length - 1)
@@ -15,9 +15,10 @@ function ReviewCard() {
     const reviewsObj = useSelector(state=> state.reviews.allReviews)
     const users = useSelector(state => state.session.user)
     const reviews = Object.values(reviewsObj) 
+    
    
 
-
+let revId
 useEffect(() => {
     dispatch(sessionActions.restoreUser());
 }, [dispatch]);
@@ -52,6 +53,7 @@ return(
         {new Date(review.updatedAt).toLocaleDateString()}
         <br></br>
            {review.review} 
+           
       
             {(users ) ? (
                 <div>

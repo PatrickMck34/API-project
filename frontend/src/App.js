@@ -9,6 +9,7 @@ import CreateSpotForm from "./components/Get-Spot";
 import Home from "./components/Home/Home"
 import SpotDetails from "./components/SpotIndex/index.js";
 import UpdateSpotForm from "./components/UpdateSpot";
+import ReviewCard from "./components/ReviewCard/ReviewCards";
 
 function App() {
   const dispatch = useDispatch();
@@ -49,6 +50,8 @@ const  spotsId = (window.location.href[num])
              path={`/spots/:spotsid`}>
             <SpotDetails spots={spots}/>
           </Route>
+          
+
           <Route>
   <h1>404: Page not found</h1>
 </Route>
