@@ -1,23 +1,23 @@
 .ReviewPad {
     display:flex;
-    width:23em;
+    width:22em;
     height:8em;
     border:2px solid rgba(179, 173, 173, 0.256);
     margin-bottom:1em;
     border-radius: 1.5ch;
-    padding:.2em;
+    padding:.5em;
+ 
+
 }
 .reviewDetails {
-    display:flex;
-    flex-wrap:nowrap;
-    flex-direction: row;
+    font-size:20px;
  
     
    
 }
 .fa-solid {
     display:inline-flex;
-     /* margin-left:3em; */
+
 
 }
 .Deletebutton {

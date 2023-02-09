@@ -125,8 +125,10 @@ function SpotDetails({spots}) {
               
                       </div>
               {(users ) ? (
-                  <div className="prices">Price: ${spotObj.allSpots[spotID].price}
-                
+                    <div className="prices">
+                  <div className="buttonprices">
+                        Price: ${spotObj.allSpots[spotID].price}
+
                   <OpenModalButton
                   buttonText="Edit Spot" 
                   modalComponent={<UpdateSpotForm />}
@@ -138,6 +140,7 @@ function SpotDetails({spots}) {
                        buttonText="Create Review"
                        modalComponent={<CreateReviewForm spotId={spotId}/>}
                        />
+                       </div>
                      
                      </div>
                   
@@ -147,9 +150,9 @@ function SpotDetails({spots}) {
                       )}
                       </div>
                       </div>
-                
-                  )}
-                  </>
+                      
+                      )}
+                      </>
     ) 
 }
 export default SpotDetails

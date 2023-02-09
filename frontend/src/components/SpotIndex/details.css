@@ -52,6 +52,7 @@
   }
   .prices {
     /* font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
+    font-size:20px;
     display:flex;
  flex-direction: column;
     border-top-left-radius: 5%;
@@ -61,7 +62,7 @@
   min-width:14em;
 
    box-shadow: 0em 0em 1em rgba(0, 0, 0, 0.3);
-  margin-left:28em;
+  margin-left:19.5em;
 
   }
   .mainImage {
@@ -147,7 +148,16 @@ width:90em;
   margin-left: 13em;
   font-size:large
 }
-
+.buttonprices {
+  display:flex;
+  border: 2px solid  rgba(179, 173, 173, 0.301);
+  flex-direction: column;
+  margin-left:.4em;
+  padding:.5em;
+  width:12em;
+  margin-top:.2em;
+  border-radius: 1ch;
+}
 
 
     

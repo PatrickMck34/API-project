@@ -51,7 +51,9 @@ return(
        
              <div className="reviewDetails">
                  <div>
-                <i  className="fas fa-user-circle" /> {users.firstName }   {new Date(review.updatedAt).toLocaleDateString()}
+                <i  className="fas fa-user-circle" /> {users.firstName }<line>
+                    </line>  
+                    {new Date(review.updatedAt).toLocaleDateString()}
                     <i className="fa-solid fa-star"/>{review.stars}
                 </div>  
 
