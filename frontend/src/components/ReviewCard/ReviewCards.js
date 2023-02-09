@@ -8,11 +8,13 @@ import { useEffect} from 'react'
 import "./ReviewCard.css"
 
 function ReviewCard({spotId}) {
+    const spotID = Object.values(spotId)
     const history = useHistory()
     const dispatch=useDispatch()
-    const num = (window.location.href.length - 1)
-    const  spotsId = (window.location.href[num])
+    // const num = (window.location.href.length - 1)
+    // const  spotsId = (window.location.href[num])
     const reviewsObj = useSelector(state=> state.reviews.allReviews)
+    const spots = useSelector(state=>state.spots)
     const users = useSelector(state => state.session.user)
     const reviews = Object.values(reviewsObj) 
     
@@ -20,13 +22,13 @@ function ReviewCard({spotId}) {
 
 let revId
 useEffect(() => {
-    dispatch(sessionActions.restoreUser());
+    dispatch(reviewsActions.getReviews(spotID));
 }, [dispatch]);
 
 const DeleteReview = (revId) => {
   
-    dispatch(reviewsActions.deleteReviews(revId)).then(()=>(dispatch(reviewsActions.getReviews(spotsId))))
-    history.push(`/spots/${spotsId}`)
+    dispatch(reviewsActions.deleteReviews(revId)).then(()=>(dispatch(reviewsActions.getReviews(spotID))))
+    history.push(`/spots/${spotID}`)
     
 }
 return(
@@ -46,18 +48,24 @@ return(
 <div className="ReviewPad">
                 <div>
       
-                <i  className="fas fa-user-circle" >
-        </i>
-                {users.firstName}
-         <br></br>
-        {new Date(review.updatedAt).toLocaleDateString()}
-        <br></br>
+       
+             <div className="reviewDetails">
+                 <div>
+                <i  className="fas fa-user-circle" /> {users.firstName }   {new Date(review.updatedAt).toLocaleDateString()}
+                    <i className="fa-solid fa-star"/>{review.stars}
+                </div>  
+
+           </div>
            {review.review} 
+      
+             
+       
+   
            
       
             {(users ) ? (
                 <div>
-                <button className="button" onClick={()=>DeleteReview(review.id)}>
+                <button className="Deletebutton" onClick={()=>DeleteReview(review.id)}>
             Delete Review
 
         </button>

@@ -142,7 +142,7 @@ router.get(
                      }})
                         
                     
-                    console.log(spotCheck)
+                 
                    
                     const userSpotCheck = await Reviews.findOne({
                         where:{

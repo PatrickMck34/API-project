@@ -58,10 +58,10 @@
     border-top-right-radius: 5%;
     border-bottom-left-radius: 5%;
     border-bottom-right-radius: 5%;
-  min-width:12em;
+  min-width:14em;
 
    box-shadow: 0em 0em 1em rgba(0, 0, 0, 0.3);
-  margin-left:35em;
+  margin-left:28em;
 
   }
   .mainImage {
@@ -105,8 +105,7 @@ border-top-left-radius: 5%;
 border-top-right-radius: 5%;
 border-bottom-left-radius: 5%;
 border-bottom-right-radius: 5%;
-margin-right
-:5em;
+margin-right:5em;
 }
 .reviews{
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -127,6 +126,7 @@ display: inline-flex;
 padding: 2px;
 margin-left:1em;
 min-width:fit-content;
+width:20em;
 
 
 }
@@ -139,7 +139,7 @@ width:90em;
 
 }
 .ReviewTxt {
-  width:15em;
+  width:20em;
 }
 
 

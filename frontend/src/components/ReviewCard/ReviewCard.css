@@ -1,7 +1,34 @@
 .ReviewPad {
     display:flex;
-    padding: 10px;
-    width:15em;
-    height:5em;
+    width:23em;
+    height:8em;
+    border:2px solid rgba(179, 173, 173, 0.256);
+    margin-bottom:1em;
+    border-radius: 1.5ch;
+    padding:.2em;
+}
+.reviewDetails {
+    display:flex;
+    flex-wrap:nowrap;
+    flex-direction: row;
+ 
     
+   
+}
+.fa-solid {
+    display:inline-flex;
+     margin-left:3em;
+
+}
+.Deletebutton {
+    margin-top:1em;
+    width:82%;
+    margin-left: 3.2em;
+    margin-right: .5em;
+    align-self:center;
+    margin-bottom: 2em;
+    padding: .5em;
+    background-image: radial-gradient(circle at center center, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 27.5%, rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%, rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%);
+    color:white;
+    cursor:pointer;
 }

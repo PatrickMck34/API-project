@@ -26,7 +26,7 @@ const handleSubmit = (e) => {
   e.preventDefault();
   setErrors([]);
  dispatch(reviewActions.createReviews({review, stars, spotId})).then(()=>dispatch(reviewActions.getReviews(spotId)))
- .then(closeModal).then(()=>setAvgStars((avgStars + stars / 2)))
+ .then(closeModal).then(()=>setAvgStars((avgStars + stars / reviews.length)))
  .catch(async (res) => {
    const data = await res.json();
    setErrors(["Unable to create Review"])

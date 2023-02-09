@@ -18,8 +18,8 @@ function SpotDetails({spots}) {
    
     const dispatch = useDispatch()
     const users = useSelector(state=>state.session.user)
-   
-    
+   const reviewsObj = useSelector(state=>state.reviews)
+   const reviews = Object.values(reviewsObj)
     // const sspot = useSelector(state=>state.spots.singleSpot[spotID])
   
   
@@ -30,7 +30,8 @@ function SpotDetails({spots}) {
    const [render, setRender] = useState(false)
     const spotId = useParams()
     const spotID = spotId.spotsid
-
+    const avgRating = spots.allSpots.avgRating 
+    const {stars} = {spotID, avgRating}
     useEffect(() => {
        if(spots.allSpots[spotID] === undefined){
        dispatch(spotActions.getSpots())
@@ -66,7 +67,7 @@ function SpotDetails({spots}) {
                              
                    
                      <div className="spotDetails">
-                         <i className="fa-solid fa-star">{spots.allSpots[spotID].avgRating}</i>
+                         <i className="fa-solid fa-star">{(spots.allSpots[spotID].avgRating  / (1 + reviews.length))}</i>
                 
                 <h4 className="detailsLeft">{spots.allSpots[spotID].city}</h4>
                 <h4 className="detailsCenter">{spots.allSpots[spotID].state}</h4>
@@ -106,7 +107,7 @@ function SpotDetails({spots}) {
 
                         <div className="ReviewTxt">
                             User Reviews: 
-                             <ReviewCard spotId={spotID}/>
+                             <ReviewCard spotId={spotId}/>
                           
         
                              
@@ -128,7 +129,7 @@ function SpotDetails({spots}) {
           </button>
                        <OpenModalButton
                        buttonText="Create Review"
-                       modalComponent={<CreateReviewForm />}
+                       modalComponent={<CreateReviewForm spotId={spotId}/>}
                        />
                      
                      </div>

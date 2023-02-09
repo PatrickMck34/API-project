@@ -1,18 +1,19 @@
-import React from 'react'
+import React, { useState} from 'react'
 import './Home.css'
 import Card from "../Cards/Card"
 import Header from '../Header/Header'
 import Navigation from '../Navigation'
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
 import DemoUser from '../DemoUser/DemoUser'
-import { useDispatch } from 'react-redux'
 import * as sessionActions from "../../store/session"
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem'
 import { Link } from 'react-router-dom'
+
 function Home() {
     const dispatch = useDispatch()
     const spotsObj = useSelector(state=> state.spots.allSpots)
     const spots = Object.values(spotsObj)
+    const [averageStars, setAverageStars] = useState(0)
 const id = spots.id
 
     return(
