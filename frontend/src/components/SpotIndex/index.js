@@ -18,7 +18,7 @@ function SpotDetails({spots}) {
    
     const dispatch = useDispatch()
     const users = useSelector(state=>state.session.user)
-   const reviewsObj = useSelector(state=>state.reviews)
+   const reviewsObj = useSelector(state=>state.reviews.allReviews)
    const reviews = Object.values(reviewsObj)
     // const sspot = useSelector(state=>state.spots.singleSpot[spotID])
   
@@ -28,37 +28,39 @@ function SpotDetails({spots}) {
     const history = useHistory()
     const spotObj = useSelector(state=>state.spots)
    const [render, setRender] = useState(false)
-    const spotId = useParams()
-    const spotID = spotId.spotsid
-    const avgRating = spots.allSpots.avgRating 
-    const {stars} = {spotID, avgRating}
+   const [stars, setStars] = useState(5)
+   const spotId = useParams()
+   const spotID = spotId.spotsid
+   const avgRating = spots.allSpots.avgRating 
+   let count = 0
+   
     useEffect(() => {
        if(spots.allSpots[spotID] === undefined){
        dispatch(spotActions.getSpots())
-        setRender(true)
-       }else{
+       setRender(true)
+    }else{
         dispatch(spotActions.getSpots())
+        setStars(spots.allSpots[spotID].avgRating)
         setRender(false)
        }
      }, [render, spotID])
-
-    
-
-
+     
+     
+     
      
      const Delete=(spotID)=> {
          
          
-         dispatch(spotActions.deleteSpots(spotID)).then(()=>dispatch(spotActions.getSpots()))
+         dispatch(spotActions.deleteSpots(spotID)).then(()=>dispatch(spotActions.getSpot(spotID)))
          history.push(`/`)
-     }
+        }
         return(
             <>
             {spots.allSpots[spotID] === undefined ? (
-            <div></div>
-            ):(
-            
-            <div className="full">    
+                <div></div>
+                ):(
+                    
+                    <div className="full">    
              
                  
              
@@ -67,7 +69,12 @@ function SpotDetails({spots}) {
                              
                    
                      <div className="spotDetails">
-                         <i className="fa-solid fa-star">{(spots.allSpots[spotID].avgRating  / (1 + reviews.length))}</i>
+                     { reviews.map(review=>{
+                         count+=  review.stars
+                        
+                        } ,{})
+                    }
+                         <i className="fa-solid fa-star">{count/(reviews.length)}</i>
                 
                 <h4 className="detailsLeft">{spots.allSpots[spotID].city}</h4>
                 <h4 className="detailsCenter">{spots.allSpots[spotID].state}</h4>

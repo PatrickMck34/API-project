@@ -23,7 +23,7 @@ function ReviewCard({spotId}) {
 let revId
 useEffect(() => {
     dispatch(reviewsActions.getReviews(spotID));
-}, [dispatch]);
+}, [dispatch, reviews.length]);
 
 const DeleteReview = (revId) => {
   
