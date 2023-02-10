@@ -20,18 +20,18 @@ function SpotDetails({spots}) {
     const users = useSelector(state=>state.session.user)
    const reviewsObj = useSelector(state=>state.reviews.allReviews)
    const reviews = Object.values(reviewsObj)
-    // const sspot = useSelector(state=>state.spots.singleSpot[spotID])
+
   
   
  
-//    const spots = useSelector(state=>state.spots)
+
     const history = useHistory()
     const spotObj = useSelector(state=>state.spots)
    const [render, setRender] = useState(false)
    const [stars, setStars] = useState(5)
    const spotId = useParams()
    const spotID = spotId.spotsid
-   const avgRating = spots.allSpots.avgRating 
+
    let count = 0
    
     useEffect(() => {
@@ -43,7 +43,7 @@ function SpotDetails({spots}) {
         setStars(spots.allSpots[spotID].avgRating)
         setRender(false)
        }
-     }, [render, spotID])
+     }, [ render, spotID])
      
      
      
@@ -57,10 +57,10 @@ function SpotDetails({spots}) {
         return(
             <>
             {spots.allSpots[spotID] === undefined ? (
-                <div></div>
+                <div key={"no"}></div>
                 ):(
                     
-                    <div className="full">    
+                    <div key={spots.id} className="full">    
              
                  
              
@@ -97,22 +97,22 @@ function SpotDetails({spots}) {
                             </div>
                             
                            
-               <div className='div2'>
+               <div key={spotID+"image"} className='div2'>
                         <img className="Image2"  src={spots.allSpots[spotID].previewImage} alt=""/>
-                       <img className="Image2"  src={spots.allSpots[spotID].previewImage} alt=""/>
-
+                       <img className="Image2" src={spots.allSpots[spotID].previewImage} alt=""/>
+                        
                         </div>
 
                         
                      </div>
-                      <div className="detailss">
+                      <div key={"details" + spotID} className="detailss">
                         {spots.allSpots[spotID].description}
                         </div> 
                      <div className="reviews">
                      <div className="reviewsb">
                      
 
-                        <div className="ReviewTxt">
+                        <div key={spotID+"reviews"} className="ReviewTxt">
                             User Reviews: 
                              <ReviewCard spotId={spotId}/>
                           
@@ -156,3 +156,9 @@ function SpotDetails({spots}) {
     ) 
 }
 export default SpotDetails
+
+
+
+
+
+

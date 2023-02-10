@@ -1,7 +1,7 @@
 .card {
     margin: .5em;
-   width: 19em;
-   height: 19em;
+   width: 20em;
+   height: 21em;
  display: flex;
  flex-wrap: nowrap;
    background:white;
@@ -15,7 +15,7 @@
 .details {
   display:flex;
   justify-content:space-between;
-  width:18em;
+  width:19em;
   flex-direction:row;
   margin-left: 1.5em;
   cursor:pointer;
@@ -27,11 +27,7 @@
   padding: .4em;
   font-size: small;
 }
-.detailsfont{
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 
-}
- 
 
 
 

@@ -9,7 +9,7 @@ import * as sessionActions from "../../store/session"
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem'
 import { Link } from 'react-router-dom'
 
-function Home() {
+function Home({stars}) {
     const dispatch = useDispatch()
     const spotsObj = useSelector(state=> state.spots.allSpots)
     const spots = Object.values(spotsObj)
@@ -24,7 +24,7 @@ const id = spots.id
            
                
      
-            <div className='home_section'>
+            <div key={id} className='home_section'>
            {spots.map((spot)=>{
 
 

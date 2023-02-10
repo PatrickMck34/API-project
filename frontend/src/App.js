@@ -37,18 +37,20 @@ const  spotsId = (window.location.href[num])
 <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-        <Route
-          exact
-            path="/">
-            <Home />
-          </Route>
            <Route 
+           key={spotsId + "new"}
       path={"/spots/:spotsid/new"}>
             <CreateSpotForm spots={spots}/> 
         </Route> 
           <Route
+          key={spotsId}
              path={`/spots/:spotsid`}>
             <SpotDetails spots={spots}/>
+          </Route>
+        <Route
+          exact
+            path="/">
+            <Home />
           </Route>
           
 

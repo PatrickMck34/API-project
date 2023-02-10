@@ -2,7 +2,7 @@
     display: flex;
     margin-left: 6.5em;
     margin-bottom:0;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    
 
   
   }
@@ -11,7 +11,7 @@
     justify-self:left;
   }
   .spotDetails {
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  
     display: flex;
     margin-left:13em;
     margin-right: 6em;
@@ -20,7 +20,7 @@
 
 .detailsRight {
     display:flex;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    
     width: 10em;
     
   }
@@ -29,13 +29,12 @@
      width: 80px;
   justify-content: left;
   display: flex;
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+ 
 }
 .detailsLeft{
     margin-right: 10px;
   justify-content: flex-end;
   display: flex;
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   width: 190px;
 }
 .Image {
@@ -51,7 +50,6 @@
     border-bottom-right-radius: 5%;
   }
   .prices {
-    /* font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
     font-size:20px;
     display:flex;
  flex-direction: column;
@@ -97,27 +95,15 @@
     
     
   }
-  .buttons{
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    display:block;
-    padding: 0;
-margin-top:1em;
-border-top-left-radius: 5%;
-border-top-right-radius: 5%;
-border-bottom-left-radius: 5%;
-border-bottom-right-radius: 5%;
-margin-right:5em;
-}
+
 .reviews{
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   display: flex;
- 
   border-top-left-radius: 5%;
   border-top-right-radius: 5%;
   border-bottom-left-radius: 5%;
   border-bottom-right-radius: 5%;
   width:25em;
-  height: 25em;
+  height: 30em;
   margin-top: 2.5em;
   box-shadow: 0em 0em 1em rgba(0, 0, 0, 0.3);
   margin-left:12em;
@@ -130,9 +116,9 @@ min-width:fit-content;
 width:20em;
 
 
+
 }
 .full{
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 display:inline-block;
 margin-left:3em;
 align-content:center;
@@ -141,6 +127,8 @@ width:90em;
 }
 .ReviewTxt {
   width:20em;
+
+ 
 }
 
 
@@ -160,4 +148,5 @@ width:90em;
 }
 
 
-    
+
+

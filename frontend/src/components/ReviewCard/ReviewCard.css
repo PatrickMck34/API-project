@@ -1,28 +1,26 @@
 .ReviewPad {
     display:flex;
     width:22em;
-    height:8em;
+    height:11em;
     border:2px solid rgba(179, 173, 173, 0.256);
     margin-bottom:1em;
     border-radius: 1.5ch;
     padding:.5em;
+
  
 
 }
 .reviewDetails {
+    display:flex;
     font-size:20px;
- 
+
     
    
 }
-.fa-solid {
-    display:inline-flex;
 
-
-}
 .Deletebutton {
     margin-top:1em;
-    width:82%;
+    width:15em;
     margin-left: 3.2em;
     margin-right: .5em;
     align-self:center;
