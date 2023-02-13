@@ -53,7 +53,7 @@ function SpotDetails({spots}) {
      const Delete=(spotID)=> {
          
          
-         dispatch(spotActions.deleteSpots(spotID)).then(()=>dispatch(spotActions.getSpot(spotID)))
+         dispatch(spotActions.deleteSpots(spotID)).then(()=>dispatch(spotActions.getSpots()))
          history.push(`/`)
         }
         return(

@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState, useEffect} from 'react'
 import './Home.css'
 import Card from "../Cards/Card"
 import Header from '../Header/Header'
@@ -8,6 +8,7 @@ import DemoUser from '../DemoUser/DemoUser'
 import * as sessionActions from "../../store/session"
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem'
 import { Link } from 'react-router-dom'
+import * as spotActions from "../../store/spots"
 
 function Home({stars}) {
     const dispatch = useDispatch()
@@ -15,7 +16,9 @@ function Home({stars}) {
     const spots = Object.values(spotsObj)
     const [averageStars, setAverageStars] = useState(0)
 const id = spots.id
-
+useEffect(() => {
+dispatch(spotActions.getSpots())
+}, [spots.allSpots])
     return(
         <div className="homeCards">
            
