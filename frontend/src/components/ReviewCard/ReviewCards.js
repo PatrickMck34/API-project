@@ -74,7 +74,7 @@ return(
 
            </div>
            {review.review} 
-        {review.User && (users.id === review.User.id) ? ( 
+        {review.User && users && (users.id === review.User.id) ? ( 
   
         
         <div>
