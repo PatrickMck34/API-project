@@ -15,7 +15,9 @@ function Card() {
   const spots = Object.values(spotsObj) 
 
   
-
+const single = (spotId) => {
+ dispatch(spotsActions.getSpot(spotId))
+}
   
   
   return(
@@ -29,7 +31,7 @@ function Card() {
 <div key={spot.id + "D"} className="Homecards">
 
             <Link 
-            key={spot.id + "link"}  to={`/spots/${spot.id}`}>
+            key={spot.id + "link"}  to={`/spots/${spot.id}`} onClick={single(spot.id)}>
 
               {spot.previewImage === "" ? (
                 <h1>loading . . .</h1>

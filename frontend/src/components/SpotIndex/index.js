@@ -20,7 +20,7 @@ function SpotDetails({spots}) {
     const users = useSelector(state=>state.session.user)
    const reviewsObj = useSelector(state=>state.reviews.allReviews)
    const reviews = Object.values(reviewsObj)
-
+   
   
   
  
@@ -37,9 +37,11 @@ function SpotDetails({spots}) {
     useEffect(() => {
        if(spots.allSpots[spotID] === undefined){
        dispatch(spotActions.getSpots())
+       dispatch(spotActions.getSpot(spotID))
        setRender(true)
     }else{
         dispatch(spotActions.getSpots())
+        dispatch(spotActions.getSpot(spotID))
         setStars(spots.allSpots[spotID].avgRating)
         setRender(false)
        }

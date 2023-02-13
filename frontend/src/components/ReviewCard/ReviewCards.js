@@ -52,7 +52,7 @@ return(
                  <div >
                 <i  className="fas fa-user-circle" /> 
                
-                {review.User.firstName !== undefined
+                {review.User !== undefined
                  ? (
                     <div >
                         {review.User.firstName}
@@ -74,11 +74,20 @@ return(
 
            </div>
            {review.review} 
-                <button className="Deletebutton" onClick={()=>DeleteReview(review.id)}>
-            Delete Review
+        {review.User && (users.id === review.User.id) ? ( 
+  
+        
+        <div>
+  
+            <button className="Deletebutton" onClick={()=>DeleteReview(review.id)}>
+        Delete Review
 
-        </button>
-      
+    </button>
+  
+            </div>
+            ):(
+                <div></div>
+                )}
              
        
    
@@ -99,15 +108,6 @@ return(
 
      
  <div>     
-        {users && (users.id === review.userId) ? ( 
-
-        
-        <div>
-
-            </div>
-            ):(
-                <div></div>
-                )}
                 </div>
          
                     <div></div>

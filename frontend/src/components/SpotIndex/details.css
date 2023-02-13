@@ -138,7 +138,7 @@ width:90em;
 }
 .buttonprices {
   display:flex;
-  border: 2px solid  rgba(179, 173, 173, 0.301);
+
   flex-direction: column;
   margin-left:.4em;
   padding:.5em;
