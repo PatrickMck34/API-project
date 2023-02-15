@@ -244,10 +244,10 @@ router.get(
                     }
                 })
             
-                if (startCheck !== null || endCheck !== null){
-                    return res.status(403).json({ message: "Sorry, this spot is already booked for the specified dates", statusCode: 403, "errors": {
-                        startDate: "conflicts with existing booking", endDate: "conflicts with existing booking" }})
-                    }
+                if (startCheck  || endCheck ){
+                    return res.status(403).json({ message: "Sorry, this spot is already booked for the specified dates"})
+                }
+                    
                 if (bookingCheck === null){
                     return res.status(403).json({ message: "Spot couldn't be found" })
                     }

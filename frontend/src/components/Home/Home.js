@@ -9,18 +9,30 @@ import * as sessionActions from "../../store/session"
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem'
 import { Link } from 'react-router-dom'
 import * as spotActions from "../../store/spots"
+import * as reviewActions from "../../store/reviews"
 
 function Home({stars}) {
     const dispatch = useDispatch()
     const spotsObj = useSelector(state=> state.spots.allSpots)
+    const reviewsObj = useSelector(state=>state.reviews.allReviews)
+    const reviews = Object.values(reviewsObj)
     const spots = Object.values(spotsObj)
     const [averageStars, setAverageStars] = useState(0)
+    
 const id = spots.id
 useEffect(() => {
 dispatch(spotActions.getSpots())
 }, [spots.allSpots])
-    return(
-        <div className="homeCards">
+
+const getAvg = (id) =>{
+    
+}
+
+
+
+
+return(
+    <div className="homeCards">
            
         <div className='home'>
           
@@ -29,9 +41,10 @@ dispatch(spotActions.getSpots())
      
             <div key={id} className='home_section'>
            {spots.map((spot)=>{
-
-
-            return(
+               let count = spot.avgRating
+            
+               
+               return(
                 <>
                  
         <div key={spot.id + "D"} className="Homecards">
@@ -47,14 +60,19 @@ dispatch(spotActions.getSpots())
                         </Link>
             <div ley={spot.id} className="details">
                <h4 key={spot.id+"h"}>{spot.city}, {spot.state}</h4> 
-               <i className="fa-solid fa-star">{spot.avgRating}</i> 
+               { reviews.map(review=>{
+                         count+=  review.stars
+                        
+                        } ,{})
+                    }
+                         <i className="fa-solid fa-star">{count/(reviews.length)}</i>
             </div>
                 <h4 className="details" key={spot.id+"h3"}>${spot.price} night</h4>
                         
                         </div>
                     
                   
-                    
+                    {count = 0}
              
                     </>
                 

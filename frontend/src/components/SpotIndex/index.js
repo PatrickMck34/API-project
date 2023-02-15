@@ -4,7 +4,7 @@ import "./details.css"
 import {useSelector, useDispatch} from 'react-redux'
 import CreateReviewForm from '../../components/Reviews/index'
 import OpenModalButton from '../OpenModalButton'
-
+import BookingFormModal from '../Bookings/Bookings'
 import UpdateSpotForm from '../UpdateSpot'
 
 import * as spotActions from "../../store/spots"
@@ -141,6 +141,10 @@ function SpotDetails({spots}) {
                        <OpenModalButton
                        buttonText="Create Review"
                        modalComponent={<CreateReviewForm spotId={spotId}/>}
+                       />
+                       <OpenModalButton
+                       buttonText="Reserve"
+                       modalComponent={<BookingFormModal spotId={spotId}/>}
                        />
                        </div>
                      
