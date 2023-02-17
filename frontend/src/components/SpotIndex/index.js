@@ -131,14 +131,14 @@ function SpotDetails({spots}) {
                   <div className="buttonprices">
                         Price: ${spotObj.allSpots[spotID].price}
 
-                  <OpenModalButton
-                  buttonText="Edit Spot" 
-                  modalComponent={<UpdateSpotForm />}
-                  />
                  { console.log(spots.allSpots[spotID].ownerId)}
                   { users && (users.id ===spots.allSpots[spotID].ownerId ) ? ( 
                       
                       <>
+                      <OpenModalButton
+                      buttonText="Edit Spot" 
+                      modalComponent={<UpdateSpotForm />}
+                      />
 
                   <button className="button" onClick={()=> Delete(spotID)}>
                    Delete Spot
