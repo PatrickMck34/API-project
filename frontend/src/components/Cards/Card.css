@@ -1,7 +1,8 @@
 .card {
+  justify-content:center;
     margin: .5em;
-   width: 20em;
-   height: 21em;
+   width: 15em;
+   height: 15em;
  display: flex;
  flex-wrap: nowrap;
    background:white;
@@ -15,9 +16,9 @@
 .details {
   display:flex;
   justify-content:space-between;
-  width:19em;
+  width:12em;
   flex-direction:row;
-  margin-left: 1.5em;
+  margin-left: 1em;
   cursor:pointer;
 
   

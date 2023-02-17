@@ -57,7 +57,7 @@ function SpotDetails({spots}) {
          history.push(`/`)
         }
         return(
-            <>
+            <div className="root">
             {spots.allSpots[spotID] === undefined ? (
                 <div key={"no"}></div>
                 ):(
@@ -158,7 +158,7 @@ function SpotDetails({spots}) {
                       </div>
                       
                       )}
-                      </>
+                      </div>
     ) 
 }
 export default SpotDetails

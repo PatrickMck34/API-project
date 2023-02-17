@@ -64,7 +64,7 @@
 }
 .header_user {
   
-  margin-left: 72em;
+  margin-left: 55em;
   display:flex;
   position:absolute;
   height:10.9em;
@@ -74,7 +74,7 @@
 .header_icon {
   display:inline-flex;
   height:5em;
-  margin-left:2em;
+  margin-left:5.5em;
   height:4em;
    margin-top:0em;
 
@@ -100,7 +100,7 @@
 .create {
   display:inline-flex;
 flex-flow: row;
- margin-left:47em;
+ margin-left:29em;
  margin-top:2.5em;
  width:15em;
  
