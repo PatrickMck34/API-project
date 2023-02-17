@@ -103,7 +103,7 @@
   border-bottom-left-radius: 5%;
   border-bottom-right-radius: 5%;
   width:25em;
-  height: 30em;
+  height: 50em;
   margin-top: 2.5em;
   box-shadow: 0em 0em 1em rgba(0, 0, 0, 0.3);
   margin-left:13em;
@@ -127,6 +127,7 @@ width:90em;
 }
 .ReviewTxt {
   width:20em;
+  
 
  
 }

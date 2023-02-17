@@ -10,22 +10,35 @@ import OpenModalMenuItem from '../Navigation/OpenModalMenuItem'
 import { Link } from 'react-router-dom'
 import * as spotActions from "../../store/spots"
 import * as reviewActions from "../../store/reviews"
+import { useContext } from 'react'
+import { AvgStarContext } from '../../context/averageContext'
 
-function Home({stars}) {
+function Home({children}) {
+    const Avg = useContext(AvgStarContext)
     const dispatch = useDispatch()
     const spotsObj = useSelector(state=> state.spots.allSpots)
     const reviewsObj = useSelector(state=>state.reviews.allReviews)
     const reviews = Object.values(reviewsObj)
     const spots = Object.values(spotsObj)
-    const [averageStars, setAverageStars] = useState(0)
-    
+    const avg = useSelector(state=>state.spots.avgRating)
+ 
+    const [star, setStar] = useState([])
 const id = spots.id
 useEffect(() => {
 dispatch(spotActions.getSpots())
 }, [spots.allSpots])
+console.log(star)
+const getAvg  =(spot) =>{
+    let result
 
-const getAvg = (id) =>{
-    
+    reviews.map(review=>{
+        
+              spot+=  review.stars
+             console.log(spot)
+               result = spot / (reviews.length)
+             
+             } ,{})
+    return result
 }
 
 
@@ -33,7 +46,7 @@ const getAvg = (id) =>{
 
 return(
     <div className="homeCards">
-           
+ 
         <div className='home'>
           
            
@@ -41,7 +54,7 @@ return(
      
             <div key={id} className='home_section'>
            {spots.map((spot)=>{
-               let count = spot.avgRating
+               let id = parseInt(spot.id)
             
                
                return(
@@ -60,12 +73,8 @@ return(
                         </Link>
             <div ley={spot.id} className="details">
                <h4 key={spot.id+"h"}>{spot.city}, {spot.state}</h4> 
-               { reviews.map(review=>{
-                         count+=  review.stars
-                        
-                        } ,{})
-                    }
-                         <i className="fa-solid fa-star">{count/(reviews.length)}</i>
+                  
+                         <i className="fa-solid fa-star">{spot.avgRating}</i>
             </div>
                 <h4 className="details" key={spot.id+"h3"}>${spot.price} night</h4>
                         
