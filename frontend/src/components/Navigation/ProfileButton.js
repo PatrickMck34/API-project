@@ -43,31 +43,32 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(sessionActions.Demo());
   }
-  const ulClassName = "profile-dropdown" + (showMenu ? "open" : " hidden");
+  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
   return (
     <>
-<div>
+
 
        <div className="menu">
-      <button onClick={openMenu} className={"menu"}>
+      <button onClick={openMenu} className="menu">
       <i  className="fa-solid fa-bars"></i>
         <i className="fas fa-user-circle" />
       </button>
 
         </div>
-</div>
+
     
       <div className={ulClassName} ref={ulRef}>
         {user ? (
-          <div className="logged">
+          <>
           User: {user.username},
            Name: {user.firstName} {user.lastName}
             {user.email}
             
               <button onClick={logout}>Log Out</button>
+          </>
        
-          </div>
+     
         ) : (
           <>
           <div className='ho'>
