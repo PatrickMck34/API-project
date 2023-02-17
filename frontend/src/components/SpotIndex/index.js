@@ -135,9 +135,18 @@ function SpotDetails({spots}) {
                   buttonText="Edit Spot" 
                   modalComponent={<UpdateSpotForm />}
                   />
+                 { console.log(spots.allSpots[spotID].ownerId)}
+                  { users && (users.id ===spots.allSpots[spotID].ownerId ) ? ( 
+                      
+                      <>
+
                   <button className="button" onClick={()=> Delete(spotID)}>
-     Delete Spot
+                   Delete Spot
           </button>
+      </>
+      ):(
+          <div></div>
+          )}
                        <OpenModalButton
                        buttonText="Create Review"
                        modalComponent={<CreateReviewForm spotId={spotId}/>}

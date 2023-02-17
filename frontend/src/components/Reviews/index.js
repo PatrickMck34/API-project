@@ -29,7 +29,7 @@ const handleSubmit = (e) => {
  .then(closeModal).then(()=>setAvgStars((avgStars + stars / reviews.length)))
  .catch(async (res) => {
    const data = await res.json();
-   setErrors(["Unable to create Review"])
+   setErrors(["Review Already Submitted"])
    if (data && data.errors) setErrors(data.errors);
   });
   history.push(`/spots/${spotsId}`)
