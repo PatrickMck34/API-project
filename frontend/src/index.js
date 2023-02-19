@@ -27,17 +27,13 @@ if (process.env.NODE_ENV !== "production") {
 
 function Root() {
   return (
-    
-    
     <ModalProvider>
-      <AvgStarContext>
         <Provider store={store}>
         <BrowserRouter>
             <App /> 
             <Modal/>
         </BrowserRouter>
       </Provider>
-      </AvgStarContext>
     </ModalProvider>
   );
 }

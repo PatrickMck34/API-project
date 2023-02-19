@@ -45,35 +45,35 @@ return(
 
 
 <div key={review.id} className="ReviewPad">
-                <div>
+                <div key={review.id + "hey"}>
       
        
-             <div className="reviewDetails">
-                 <div >
-                <i  className="fas fa-user-circle" /> 
+             <div className="reviewDetails" key={review.spotId}>
+                 <div key={review.id +"user"}>
                
                 {review.User !== undefined
                  ? (
-                    <div >
-                        {review.User.firstName}
-                        </div>
+                     <pre className="pre" key={review.id +"3" }>
+                         <i  className="fas fa-user-circle"/> 
+                        {review.User.firstName}         {new Date(review.updatedAt).toLocaleDateString()}           <i className="fa-solid fa-star"/>{review.stars}  
+                      
+                        </pre>
                 ):(
                     <div key={review.id +"5"}>
                         {users.firstName}
 
                     </div>
 
-                )
-    }
+)
+}
                 
-            
+       <div className="reviewDetails" key={review.id}>
+{review.review} 
+        </div>     
                 
-                    {new Date(review.updatedAt).toLocaleDateString()}
-                    <i className="fa-solid fa-star"/>{review.stars}
                 </div>  
 
            </div>
-           {review.review} 
         {review.User && users && (users.id === review.User.id) ? ( 
   
         

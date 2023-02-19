@@ -21,11 +21,12 @@ function Navigation({ isLoaded }){
             />
           
             </NavLink>
-       <div  className="create">
+       <div  className="create" >
        <OpenModalButton className="creation"
+       
                   buttonText="Go-There Youre Home"
                   modalComponent={<CreateSpotForm spots={spots}/>}/>
-
+            
                 
             </div> 
         <div className='header_user'>
