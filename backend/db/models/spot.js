@@ -86,13 +86,11 @@ module.exports = (sequelize, DataTypes) => {
       
     },
     avgRating: {type: DataTypes.DECIMAL,
-      defaultValue: 4.5
     },
       previewImage: {type: DataTypes.STRING,
       
       },
       avgStarRating: {type: DataTypes.DECIMAL,
-        defaultValue: 4.5
       },
       numReviews: {type: DataTypes.INTEGER,
       },

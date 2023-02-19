@@ -33,6 +33,7 @@ function SpotDetails({spots}) {
    const spotID = spotId.spotsid
 
    let count = 0
+   let average = (count / (reviews.length))
    
     useEffect(() => {
        if(spots.allSpots[spotID] === undefined){
@@ -73,10 +74,33 @@ function SpotDetails({spots}) {
                      <div className="spotDetails">
                      { reviews.map(review=>{
                          count+=  review.stars
-                        
+                        average = count/(reviews.length)
                         } ,{})
-                    }
-                         <i className="fa-solid fa-star">{count/(reviews.length)}</i>
+                    } 
+                    {Number.isNaN(average)  ? (
+                        <div>
+                            <i className="fa-solid fa-star">No Reviews</i>
+
+                        </div>
+                    ):(
+                        <div>
+                            {reviews.length >= 2 ? (
+                                <div>
+                                    <pre className="avgReviews"> <i className="fa-solid fa-star">{average}          {reviews.length}-Reviews</i></pre>
+                                </div>
+                                ):(
+                                <div>
+                           <pre className="avgReviews"> <i className="fa-solid fa-star">{average}          {reviews.length}-Review</i>
+                                    </pre>
+                                    </div>
+                                
+
+                            )}
+
+           
+                        </div>
+                    
+                    )}
                 
                 <h4 className="detailsLeft">{spots.allSpots[spotID].city}</h4>
                 <h4 className="detailsCenter">{spots.allSpots[spotID].state}</h4>
@@ -151,10 +175,10 @@ function SpotDetails({spots}) {
                        buttonText="Create Review"
                        modalComponent={<CreateReviewForm spotId={spotId}/>}
                        />
-                       <OpenModalButton
+                       {/* <OpenModalButton
                        buttonText="Reserve"
                        modalComponent={<BookingFormModal spotId={spotId}/>}
-                       />
+                       /> */}
                        </div>
                      
                      </div>
