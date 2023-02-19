@@ -37,11 +37,12 @@ function ProfileButton({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
-   
+   closeMenu()
   };
   const Demo = (e) => {
     e.preventDefault();
     dispatch(sessionActions.Demo());
+    return closeMenu()
   }
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 

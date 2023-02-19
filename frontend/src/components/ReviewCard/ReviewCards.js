@@ -79,7 +79,7 @@ return(
         
         <div>
   
-            <button className="Deletebutton" onClick={()=>DeleteReview(review.id)}>
+            <button type="button" className="Deletebutton" onClick={()=>DeleteReview(review.id)}>
         Delete Review
 
     </button>

@@ -24,7 +24,7 @@ function Navigation({ isLoaded }){
        <div  className="create" >
        <OpenModalButton className="creation"
        
-                  buttonText="Go-There Youre Home"
+                  buttonText="Go-There Your Home"
                   modalComponent={<CreateSpotForm spots={spots}/>}/>
             
                 
