@@ -1,12 +1,4 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 <a name="readme-top"></a>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
 
 <br />
 <div align="center">
@@ -30,7 +22,7 @@
 
 
 
-<!-- TABLE OF CONTENTS -->
+
 <details>
   <summary>Table of Contents</summary>
   <ol>
@@ -58,7 +50,7 @@
 
 
 
-<!-- ABOUT THE PROJECT -->
+
 ## About The Project
 `A clone of the popular AirBnB web application. Go-there is a marketplace designed to allow owners of rental properties to make their spots available to the public as well as allowing the public to view and reserve time at their desired location.`
 
@@ -71,6 +63,8 @@
 
 * React
 * JavaScript
+* HTML
+* CSS
 * SQL
 * Express
 
@@ -79,7 +73,7 @@
 
 
 
-<!-- GETTING STARTED -->
+
 ## Getting Started
 .
 To get a local copy up and running follow these simple example steps.
@@ -108,7 +102,7 @@ To get a local copy up and running follow these simple example steps.
 
 
 
-<!-- USAGE EXAMPLES -->
+
 ## Usage
 
 <img src="./SignUp.png" alt="Logo" width="500" height="300">
@@ -126,13 +120,13 @@ Once in the details page the user may create a review, manage their own spot or 
 <img src="./Create.png" alt="Logo" width="500" height="300">
 
 With validation in place and suggestions prepopulating the forms, creating a new Spot is simple.
-_For more examples, please refer to the [Documentation](https://example.com)_
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
-<!-- ROADMAP -->
+
 ## Roadmap
 
 - [ ] Spots
@@ -145,7 +139,7 @@ See the [open issues](https://github.com/PatrickMcK34/API-project/issues) for a 
 
 
 
-<!-- CONTRIBUTING -->
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -168,7 +162,7 @@ Don't forget to give the project a star! Thanks again!
 
 
 
-<!-- CONTACT -->
+
 ## Contact
 
 Patrick McKinney  CorkscrewHollow@gmail.com
@@ -179,7 +173,7 @@ Project Link: [https://github.com/PatrickMcK34/API-project](https://github.com/P
 
 
 
-<!-- ACKNOWLEDGMENTS -->
+
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
