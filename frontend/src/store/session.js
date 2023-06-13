@@ -63,8 +63,8 @@ export const login = (user) => async (dispatch) => {
   return response;
 };
 export const Demo = () => async (dispatch) => {
-  const  credential = "DemoUser"
-  const password = "123456" 
+  const  credential = "123@aa.io"
+  const password = "password" 
   const response = await csrfFetch('/api/session', {
     method: 'POST',
     body: JSON.stringify({

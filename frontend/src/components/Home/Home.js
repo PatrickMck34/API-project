@@ -27,7 +27,7 @@ const id = spots.id
 useEffect(() => {
 dispatch(spotActions.getSpots())
 }, [spots.allSpots])
-console.log(star)
+
 const getAvg  =(spot) =>{
     let result
 
@@ -45,14 +45,14 @@ const getAvg  =(spot) =>{
 
 
 return(
-    <div className="homeCards">
+    <div className="home-section ">
  
-        <div className='home'>
+        <div className='home flex'>
           
            
                
      
-            <div key={id} className='home_section'>
+            <div key={id} className='home-section'>
            {spots.map((spot)=>{
                let id = parseInt(spot.id)
             
@@ -60,44 +60,44 @@ return(
                return(
                 <>
                  
-        <div key={spot.id + "D"} className="Homecards">
+        <div className="card">
         
                     <Link 
                     key={spot.id + "link"}  to={`/spots/${spot.id}`}>
         
-                      {spot.previewImage === "" ? (
-                        <h1>loading . . .</h1>
-                        ) : (
-                          <img className="card"  src={spot.previewImage} alt={spot.previewImage}/>
-                          ) }
-                        </Link>
-            <div ley={spot.id} className="details">
-               <h4 key={spot.id+"h"}>{spot.city}, {spot.state}</h4> 
-                  
-                         <i className="fa-solid fa-star">{spot.avgRating}</i>
-            </div>
-                <h4 className="details" key={spot.id+"h3"}>${spot.price} night</h4>
                         
+                        <div class="  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                         </div>
+  
+        <img class="rounded-t-lg h-40 w-50" src={spot.previewImage} alt="" />
+    
+    <div class="p-5">
+     
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-red">{spot.city}, {spot.state}</h5>
+     
+        <p class="mb-3 font-normal text-gray-700 dark:text-yellow-600"><i className="fa-solid fa-star">{spot.avgRating}</i></p>
+        <p class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-red">
+           ${spot.price} A Night
+    
+        </p>
+  
+</div>
+                      </Link>
+   
                     
                   
                   
              
-                    </>
-                
-                )
-            }
-         )   
-        
-        
-        
-
-           }
-            
-                
+       
+            </div>
+            </>
+               )   
+               
+              }
+              )}
+              </div>
         </div>
-         </div>
         </div>
-    )
-}
+)}
+  
 export default Home

@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as bookingsActions from "../../store/bookings"
 import { useHistory } from "react-router-dom";
-
+import "./Bookings.css"
 function BookingFormModal() {
   const dispatch = useDispatch();
   const [startDate, setstartDate] = useState("");
@@ -45,7 +45,7 @@ const handleSubmit = (e) => {
   return (
     <>
       <h1 className="title">Book This Spot</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="flex text-xl justify-center align-center flex-col content-center w-90 p-2 mt-1 ">
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
@@ -54,7 +54,7 @@ const handleSubmit = (e) => {
         </ul>
         <label className="label">
        
-          <input className="input"
+          <input className="flex w-80  h-9 "
             type="Date"
             placeholder={todayTime}
             value={startDate}
@@ -65,7 +65,7 @@ const handleSubmit = (e) => {
 
         <label className="label">
      
-          <input className="input"
+          <input className="flex w-80 h-9"
             type="Date"
             placeholder={todayTime}
             value={endDate}
@@ -73,7 +73,7 @@ const handleSubmit = (e) => {
             required
           />
         </label>
-        <button className="button" type="submit">Reserve</button>
+        <button className="button mt-5 " type="submit">Reserve</button>
       </form>
     </>
   );

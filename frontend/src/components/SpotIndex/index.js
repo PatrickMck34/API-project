@@ -6,6 +6,7 @@ import CreateReviewForm from '../../components/Reviews/index'
 import OpenModalButton from '../OpenModalButton'
 import BookingFormModal from '../Bookings/Bookings'
 import UpdateSpotForm from '../UpdateSpot'
+import * as bookingActions  from "../../store/bookings"
 
 import * as spotActions from "../../store/spots"
 import ReviewCard from '../ReviewCard/ReviewCards'
@@ -32,6 +33,8 @@ function SpotDetails({spots}) {
    const spotId = useParams()
    const spotID = spotId.spotsid
 
+    const booking = useSelector(state=>state.bookings.User)
+    const bookings = Object.values(booking)
    let count = 0
    let average = (count / (reviews.length))
    
@@ -39,6 +42,7 @@ function SpotDetails({spots}) {
        if(spots.allSpots[spotID] === undefined){
        dispatch(spotActions.getSpots())
        dispatch(spotActions.getSpot(spotID))
+       dispatch(bookingActions.getBookingsSpot(spotID))
        setRender(true)
     }else{
         dispatch(spotActions.getSpots())
@@ -175,10 +179,31 @@ function SpotDetails({spots}) {
                        buttonText="Create Review"
                        modalComponent={<CreateReviewForm spotId={spotId}/>}
                        />
-                       {/* <OpenModalButton
+                       <OpenModalButton
                        buttonText="Reserve"
                        modalComponent={<BookingFormModal spotId={spotId}/>}
-                       /> */}
+                       />
+                       Reserved From :
+                       {bookings?.map((el)=>{
+                        {console.log(el.startDate)}
+                            return(<div>
+                                {el.spotId=== spotID? (
+                                    <div>
+                                    {el.startDate}
+                                    <br></br>
+                                    until
+                                    <br></br>
+                                    {el.endDate}
+                                    </div>
+                                ):(
+                                    <div></div>
+                                    )
+                                }
+                                </div>
+                                    )
+                                    
+                                    
+                       })}
                        </div>
                      
                      </div>

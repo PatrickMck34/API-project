@@ -39,11 +39,11 @@ const single = (spotId) => {
                   <img className="card"  src={spot.previewImage} alt={spot.previewImage}/>
                   ) }
                 </Link>
-    <div ley={spot.id} className="details">
+    <div key={spot.id} className="cardh4">
        <h4 key={spot.id+"h"}>{spot.city}, {spot.state}</h4> 
        <i className="fa-solid fa-star">{spot.avgRating}</i> 
     </div>
-        <h4 className="details" key={spot.id+"h3"}>${spot.price} night</h4>
+        <h4 className="cardh4" key={spot.id+"h3"}>${spot.price} night</h4>
                 
                 </div>
             

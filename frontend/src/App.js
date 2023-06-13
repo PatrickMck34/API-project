@@ -36,6 +36,7 @@ const  spotsId = (window.location.href[num])
 
 <Navigation isLoaded={isLoaded} />
       {isLoaded && (
+        
         <Switch>
            <Route 
            key={spotsId + "new"}

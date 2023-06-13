@@ -67,7 +67,7 @@ export const updateSpots = (spot) =>({
 //     payload: spot
 // })
 
-export const getSpots = (spots) => async (dispatch) => {
+export const getSpots = (id) => async (dispatch) => {
     const data = await csrfFetch("/api/spots")
     const spots = await data.json()
     

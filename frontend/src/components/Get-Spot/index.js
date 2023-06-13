@@ -57,7 +57,7 @@ const handleSubmit = (e) => {
 return (
     <div className="createForm">
       <h1 className="title" >Create Spot</h1>
-      <form onSubmit={handleSubmit} autocomplete="on">
+      <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>

@@ -1,26 +1,25 @@
 
-.home_section {
-    display: flex;
-    flex-flow:wrap;
-    margin-top: 5em;
-    width:95em;
-    justify-content:center;
-    align-content:center;
-  
- 
+.home-section {
+    display:flex;
+    padding:30px;
+   flex-wrap:wrap;
+   width:80em;
+  margin:auto;
+  padding:1em;
+   
 }
-.home{
+/* .home{
     display:flex;
     justify-content:center;
     width:70em;
-    margin-left:8em
+    margin-left:8em */
   
  
     
-}
-.Homecards {
+/* } */
+/* .Homecards {
     display:flex;
     justify-content:center;
     flex-direction: column;
 
-}
+} */

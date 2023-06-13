@@ -12,11 +12,12 @@ import * as spotsActions from "./store/spots"
 import * as reviewsActions from './store/reviews'
 import Header from './components/Header/Header';
 import { AvgStarContext } from './context/averageContext';
+
 const store = configureStore();
 
 if (process.env.NODE_ENV !== "production") {
   restoreCSRF();
-  
+
   window.csrfFetch = csrfFetch;
   window.store = store;
   window.sessionActions = sessionActions;
@@ -30,6 +31,7 @@ function Root() {
     <ModalProvider>
         <Provider store={store}>
         <BrowserRouter>
+   
             <App /> 
             <Modal/>
         </BrowserRouter>
