@@ -9,7 +9,8 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^5.3.4",
     "redux": "^4.2.0",
-    "redux-thunk": "^2.4.2"
+    "redux-thunk": "^2.4.2",
+    "sequelize": "^6.31.1"
   },
   "name": "authenticate-me",
   "description": "## USER AUTHENTICATION/AUTHORIZATION",
@@ -37,6 +38,7 @@
   },
   "homepage": "https://github.com/PatrickMck34/API-project#readme",
   "devDependencies": {
-    "redux-logger": "^3.0.6"
+    "redux-logger": "^3.0.6",
+    "tailwindcss": "^3.3.2"
   }
 }

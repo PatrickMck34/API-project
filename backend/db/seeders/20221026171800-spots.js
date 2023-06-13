@@ -75,10 +75,10 @@ avgStarRating: 4.1,
    
   
   },
+ 
   {
-    
-    ownerId: 3,
-    address: '1800s Newcasstle Street',
+    ownerId: 1,
+    address: '1800 Newcasstle Street',
     city: 'NewTown',
     state: 'NC',
     country: 'USA',
@@ -90,14 +90,81 @@ avgStarRating: 4.1,
     avgRating: 3.0,
     avgStarRating: 4.1,
     numReviews: 1,
-    previewImage: "https://i.postimg.cc/CK5c5vFf/header-dream-vacation.webp"
-
+    previewImage: "https://i.postimg.cc/T20FpRzs/stock1.jpg"
   },
+  {
+    ownerId: 2,
+    address: '123 Main Street',
+    city: 'Cityville',
+    state: 'CA',
+    country: 'USA',
+    lat: 34.1,
+    lng: -118.2,
+    name: 'Cozy Apartment',
+    description: 'A cozy apartment in the heart of the city.',
+    price: 99.99,
+    avgRating: 4.5,
+    avgStarRating: 4.9,
+    numReviews: 10,
+    previewImage: "https://i.postimg.cc/bNdCr1HG/stock2.jpg"
+  },
+  {
+    ownerId: 3,
+    address: '456 Oak Avenue',
+    city: 'Woodland',
+    state: 'NY',
+    country: 'USA',
+    lat: 40.7,
+    lng: -73.9,
+    name: 'Rustic Cabin',
+    description: 'A rustic cabin surrounded by nature.',
+    price: 150.00,
+    avgRating: 4.2,
+    avgStarRating: 4.3,
+    numReviews: 5,
+    previewImage: "https://i.postimg.cc/QMgSwmsz/stock3.jpg"
+  },
+  {
+    ownerId: 2,
+    address: '123 Main Street',
+    city: 'Cityville',
+    state: 'CA',
+    country: 'USA',
+    lat: 37.8,
+    lng: -122.4,
+    name: 'Cozy Apartment',
+    description: 'A cozy apartment in the heart of the city.',
+    price: 99.99,
+    avgRating: 4.5,
+    avgStarRating: 4.8,
+    numReviews: 10,
+    previewImage: 'https://i.postimg.cc/R0mL7tfL/stock4.jpg'
+  },
+
+  {
+    ownerId: 3,
+    address: '456 Elm Street',
+    city: 'Greenville',
+    state: 'TX',
+    country: 'USA',
+    lat: 33.1,
+    lng: -96.1,
+    name: 'Modern Loft',
+    description: 'A stylish and modern loft with open floor plan.',
+    price: 200.50,
+    avgRating: 4.2,
+    avgStarRating: 4.6,
+    numReviews: 5,
+    previewImage: 'https://i.postimg.cc/bN2x4g9R/stock5.jpg'
+  }
    ],{})
   },
+
 
   async down (queryInterface, Sequelize) {
  
     await queryInterface.bulkDelete(options, null, {});
-  }
+  },
+  
 };
+
