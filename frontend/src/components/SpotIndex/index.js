@@ -159,17 +159,17 @@ function SpotDetails({ spots }) {
 
             <div key={spotID + "reviews"} className="review max-w-[40%]  ">
               {/* <!-- component --> */}
-              <div class="py-16 white text-lg inline-flex justify-between w-[200%] ">
+              <div className="py-16 white text-lg inline-flex justify-between w-[200%] ">
                 User Reviews:
                 {reviews?.map((review) => (
-                  <div class="grid sm:grid-rows-2 lg:grid-cols-2">
-                    <div class="row-span-2  text-center sm:p-8">
+                  <div className="grid sm:grid-rows-2 lg:grid-cols-2">
+                    <div className="row-span-2  text-center sm:p-8">
                       <Avatar />
                       {review.User.firstName}
-                      <p class="text-gray-600 md:text-xl">
+                      <p className="text-gray-600 md:text-xl">
                         {" "}
-                        <span class="font-serif">"</span> {review.review}{" "}
-                        <span class="font-serif">"</span>
+                        <span className="font-serif">"</span> {review.review}{" "}
+                        <span className="font-serif">"</span>
                       </p>
                       <div>
                         {review.User && users && users.id === review.User.id ? (
