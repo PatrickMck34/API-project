@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "6": "0.0.1",
     "express-validator": "^6.15.0",
     "js-cookie": "^3.0.5",
     "mdb-cli": "^4.3.0",

@@ -1,38 +1,36 @@
 .ReviewPad {
-    display:flex;
- 
-    width:22em;
-    height:11em;
-    border-bottom:2px solid rgba(179, 173, 173, 0.256);
-    margin-bottom:1em;
-    border-radius: 1.5ch;
-    padding:.5em;
+  display: flex;
 
- 
-
+  width: 22em;
+  height: 11em;
+  border-bottom: 2px solid rgba(179, 173, 173, 0.256);
+  margin-bottom: 1em;
+  border-radius: 1.5ch;
+  padding: 0.5em;
 }
 .reviewDetails {
-    font-size:16px;
-
-    
-   
+  font-size: 16px;
 }
 
 .Deletebutton {
-    margin-top:1em;
-    width:15em;
-    margin-left: 3.2em;
-    margin-right: .5em;
-    align-self:center;
-    margin-bottom: 2em;
-    padding: .5em;
-    background-image: radial-gradient(circle at center center, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 27.5%, rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%, rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%);
-    color:white;
-    cursor:pointer;
+  margin-top: 1em;
+  width: 3em;
+  height: 2em;
+  font-size: 10px;
+  align-self: center;
+
+  background-image: radial-gradient(
+    circle at center center,
+    rgb(255, 56, 92) 0%,
+    rgb(230, 30, 77) 27.5%,
+    rgb(227, 28, 95) 40%,
+    rgb(215, 4, 102) 57.5%,
+    rgb(189, 30, 89) 75%,
+    rgb(189, 30, 89) 100%
+  );
+  color: white;
+  cursor: pointer;
 }
 .pre {
-  
-  
-    font-size:16px;
-    
+  font-size: 16px;
 }
