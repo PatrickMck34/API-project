@@ -1,16 +1,17 @@
 {
   "dependencies": {
-    "express-validator": "^6.14.2",
-    "js-cookie": "^3.0.1",
-    "nodemon": "^2.0.20",
+    "express-validator": "^6.15.0",
+    "js-cookie": "^3.0.5",
+    "mdb-cli": "^4.3.0",
+    "nodemon": "^2.0.22",
     "per-env": "^1.0.2",
-    "pg": "^8.8.0",
+    "pg": "^8.11.0",
     "react-dom": "^18.2.0",
-    "react-redux": "^8.0.5",
+    "react-redux": "^8.1.0",
     "react-router-dom": "^5.3.4",
-    "redux": "^4.2.0",
+    "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
-    "sequelize": "^6.31.1"
+    "sequelize": "^6.32.0"
   },
   "name": "authenticate-me",
   "description": "## USER AUTHENTICATION/AUTHORIZATION",
@@ -39,6 +40,7 @@
   "homepage": "https://github.com/PatrickMck34/API-project#readme",
   "devDependencies": {
     "redux-logger": "^3.0.6",
-    "tailwindcss": "^3.3.2"
+    "tailwindcss": "^3.3.2",
+    "tw-elements": "^1.0.0-beta2"
   }
 }

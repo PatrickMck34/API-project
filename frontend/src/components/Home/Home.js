@@ -45,14 +45,14 @@ const getAvg  =(spot) =>{
 
 
 return(
-    <div className="home-section ">
+    <div className="home-section ml-auto mr-auto max-w-[100%] min-w-50%">
  
         <div className='home flex'>
           
            
                
      
-            <div key={id} className='home-section'>
+            <div key={id} className='home-section justify-center'>
            {spots.map((spot)=>{
                let id = parseInt(spot.id)
             
@@ -60,22 +60,22 @@ return(
                return(
                 <>
                  
-        <div className="card">
+        <div className="inline-flex justify-center">
         
                     <Link 
                     key={spot.id + "link"}  to={`/spots/${spot.id}`}>
         
                         
-                        <div class="  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        <div class="justify-center flex-col  ">
                         </div>
   
-        <img class="rounded-t-lg h-40 w-50" src={spot.previewImage} alt="" />
+        <img class="rounded-t-lg rounded-b-lg h-72 w-4/6" src={spot.previewImage} alt="" />
     
-    <div class="p-5">
+    <div class="p-1">
      
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-red">{spot.city}, {spot.state}</h5>
-     
+            <h5 class=" text-md font-bold tracking-tight">{spot.city}, {spot.state}</h5>
         <p class="mb-3 font-normal text-gray-700 dark:text-yellow-600"><i className="fa-solid fa-star">{spot.avgRating}</i></p>
+     
         <p class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-red">
            ${spot.price} A Night
     

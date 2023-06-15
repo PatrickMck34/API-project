@@ -7,27 +7,35 @@ import "./Header.css"
 import OpenModalButton from '../OpenModalButton';
 import CreateSpotForm from '../Get-Spot'; 
 import spots from '../../store/spots';
+import LoginFormModal from '../LoginFormModal';
+import ProfileButton from '../Navigation/ProfileButton';
 
 
 function Header() {
     return (
-        <div className="header">
+        <div className="header ">
             <img className="header-icon"
                 src="https://i.postimg.cc/zGhXX5JQ/Go-therelogo-Png.png" alt="logo" />
 
-            <div className="header-center">
-                <input type="text"  placeholder="Search" />
+            <div className="header-center " onClick={()=> window.alert("Coming soon!")}>
+            Anywhere | Any Week | Add Guest
                 <SearchIcon />
             </div>
-            <div className='header-right'>
-            <OpenModalButton className="header-right"
-       
-       buttonText="Go-There Your Home"
-       modalComponent={<CreateSpotForm spots={spots}/>}/>
-                
-                <LanguageIcon />
-                <ExpandMoreIcon />
-                <Avatar />
+                Go-there Your Home    
+            <div className="flex flex-col justify-between w-fit h-fit m-auto md:min-w-[40%] ">
+          
+                <div className="flex  h-5 w-7 header-right mt-[-4] fixed">
+
+               
+                <ProfileButton className="absolute"/>
+                </div>
+
+            </div>
+               
+            
+           
+        <div className='header_user'>
+           
             </div>
         </div>
     );

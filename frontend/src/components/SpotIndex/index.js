@@ -138,24 +138,16 @@ function SpotDetails({spots}) {
                       <div key={"details" + spotID} className="detailss">
                         {spots.allSpots[spotID].description}
                         </div> 
-                     <div className="reviews">
-                     <div className="reviewsb">
-                     
+                
 
-                        <div key={spotID+"reviews"} className="ReviewTxt">
+                        <div key={spotID+"reviews"} className="reviews">
                             User Reviews: 
-                             <ReviewCard spotId={spotId}/>
-                          
+           
         
-                             
-               </div>
-                        
-              
-             
-              
-                      </div>
+        
+<div className="reviewsb">
               {(users ) ? (
-                    <div className="prices">
+                  <div className="prices">
                   <div className="buttonprices">
                         Price: ${spotObj.allSpots[spotID].price}
 
@@ -185,8 +177,8 @@ function SpotDetails({spots}) {
                        />
                        Reserved From :
                        {bookings?.map((el)=>{
-                        {console.log(el.startDate)}
-                            return(<div>
+                           {console.log(el.startDate)}
+                           return(<div>
                                 {el.spotId=== spotID? (
                                     <div>
                                     {el.startDate}
@@ -203,7 +195,7 @@ function SpotDetails({spots}) {
                                     )
                                     
                                     
-                       })}
+                                })}
                        </div>
                      
                      </div>
@@ -214,7 +206,8 @@ function SpotDetails({spots}) {
                       )}
                       </div>
                       </div>
-                      
+                      </div>
+                  
                       )}
                       </div>
     ) 

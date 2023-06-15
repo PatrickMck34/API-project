@@ -10,6 +10,7 @@ import Home from "./components/Home/Home"
 import SpotDetails from "./components/SpotIndex/index.js";
 import UpdateSpotForm from "./components/UpdateSpot";
 import ReviewCard from "./components/ReviewCard/ReviewCards";
+import Header from "../src/components/Header/Header"
 
 function App() {
   const dispatch = useDispatch();
@@ -33,10 +34,10 @@ const  spotsId = (window.location.href[num])
 
   return (
     <>
-
+ 
 <Navigation isLoaded={isLoaded} />
       {isLoaded && (
-        
+      
         <Switch>
            <Route 
            key={spotsId + "new"}
@@ -51,6 +52,7 @@ const  spotsId = (window.location.href[num])
         <Route
           exact
             path="/">
+           
             <Home />
           </Route>
           
@@ -59,8 +61,9 @@ const  spotsId = (window.location.href[num])
   <h1>404: Page not found</h1>
 </Route>
         </Switch>
-      )}
-    </>
+
+)}
+</>
   );
 }
 
