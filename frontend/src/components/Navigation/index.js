@@ -39,11 +39,11 @@ function Navigation({ isLoaded }) {
        </div>
              */}
 
-      <div className="Header flex justify-between">
+      <div className="Header flex justify-between bg-white">
         <div className="header-left fixed">
           <NavLink exact to="/">
             <img
-              className="header-icon fixed"
+              className="header-icon fixed "
               src="https://i.postimg.cc/zGhXX5JQ/Go-therelogo-Png.png"
               alt=""
             />
@@ -51,14 +51,14 @@ function Navigation({ isLoaded }) {
         </div>
 
         <div
-          className="header-center w-full justify-center mt-4 mx-8 fixed ml-[40%]"
+          className="header-center w-full justify-center mt-4 mx-8 fixed ml-[40%] bg-white"
           onClick={() => window.alert("Coming soon!")}
         >
           Anywhere | Any Week | Add Guest
           <SearchIcon />
         </div>
 
-        <div className=" mx-72 fixed ml-[85%] mt-[-2em] ">
+        <div className=" mx-72 fixed ml-[85%] mt-[-2em] bg-white">
           <ProfileButton />
         </div>
       </div>

@@ -1,40 +1,23 @@
-.label{
-    display:flex;
-    justify-items: center;
-    margin-left: 2em;
-    margin-right: 2em;
-    padding: .7em;
-    height:2em;
-    width:38em;
-    border-top-left-radius: 5%;
-   border-top-right-radius: 5%;
-   border-bottom-left-radius: 5%;
-   border-bottom-right-radius: 5%;
- 
-}
-.title{
-    margin-left: .5em;
-}
-.button{
-    width:82%;
-    margin-left: 3.2em;
-    margin-right: .5em;
-    align-self:center;
-    margin-bottom: 2em;
-    padding: .5em;
-    background-image: radial-gradient(circle at center center, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 27.5%, rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%, rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%);
-    color:white
+.label {
+  display: flex;
+  justify-items: center;
+  margin-left: 1.2em;
 
+  border-top-left-radius: 5%;
+  border-top-right-radius: 5%;
+  border-bottom-left-radius: 5%;
+  border-bottom-right-radius: 5%;
 }
-.input {
-    width:85%
+
+.button {
+  background-image: radial-gradient(
+    circle at center center,
+    rgb(255, 56, 92) 0%,
+    rgb(230, 30, 77) 27.5%,
+    rgb(227, 28, 95) 40%,
+    rgb(215, 4, 102) 57.5%,
+    rgb(189, 30, 89) 75%,
+    rgb(189, 30, 89) 100%
+  );
+  color: white;
 }
-input:invalid {
-    border: .5px dashed red;
-  }
-  
-  input:valid {
-    border: 2px solid black;
-  }
-
-
