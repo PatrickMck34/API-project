@@ -49,6 +49,10 @@ function Navigation({ isLoaded }) {
             />
           </NavLink>
         </div>
+        <a href="https://go-there-live-agent-chat.onrender.com">
+<br></br>
+        <div className="ml-72 text-xl mt-[-.4em] font-bold cursor-pointer">Talk to An Agent!</div>
+        </a>
 
         <div
           className="header-center w-full justify-center mt-4 mx-8 fixed ml-[40%] bg-white"
