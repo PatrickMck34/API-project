@@ -6,66 +6,29 @@ import "./Navigation.css";
 import OpenModalButton from "../OpenModalButton";
 import CreateSpotForm from "../Get-Spot";
 import SearchIcon from "@mui/icons-material/Search";
+import Search from "./Search";
+import UserMenu from "./userMenu";
 
-function Navigation({ isLoaded }) {
+function Navigation() {
   const sessionUser = useSelector((state) => state.session.user);
   const spots = useSelector((state) => state.spots.allspots);
 
   return (
     <>
-      {/* <div className="header_r">
+      <div className="flex justify-between items-center flex-row ">
         <NavLink exact to="/">
-        <img className="header_icon"
+          <img
             src="https://i.postimg.cc/zGhXX5JQ/Go-therelogo-Png.png"
             alt=""
-            />
-          
-            </NavLink>
-            <div className="header-center " onClick={()=> window.alert("Coming soon!")}>
-            Anywhere | Any Week | Add Guest
-                <SearchIcon />
-            </div>
-       <div  className="create" >
-       <OpenModalButton className="creation"
-       
-                  buttonText="Go-There Your Home"
-                  modalComponent={<CreateSpotForm spots={spots}/>}/>
-            
-                
-            </div> 
-        <div className='header_user'>
-            <ProfileButton user={sessionUser} /> 
-        </div>
-       </div>
-             */}
+          />
+        </NavLink>
 
-      <div className="Header flex justify-between bg-white">
-        <div className="header-left fixed">
-          <NavLink exact to="/">
-            <img
-              className="header-icon fixed "
-              src="https://i.postimg.cc/zGhXX5JQ/Go-therelogo-Png.png"
-              alt=""
-            />
-          </NavLink>
-        </div>
-        <a href="https://go-there-live-agent-chat.onrender.com">
-<br></br>
-        <div className="ml-72 text-xl mt-[-.4em] font-bold cursor-pointer">Talk to An Agent!</div>
-        </a>
+        <Search />
 
-        <div
-          className="header-center w-full justify-center mt-4 mx-8 fixed ml-[40%] bg-white"
-          onClick={() => window.alert("Coming soon!")}
-        >
-          Anywhere | Any Week | Add Guest
-          <SearchIcon />
-        </div>
-
-        <div className=" mx-72 fixed ml-[85%] mt-[-2em] bg-white">
-          <ProfileButton />
-        </div>
+        <UserMenu />
       </div>
+
+      {/* <ProfileButton /> */}
     </>
   );
 }
