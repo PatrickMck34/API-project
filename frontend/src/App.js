@@ -9,7 +9,9 @@ import CreateSpotForm from "./components/Get-Spot";
 import Home from "./components/Tree"
 import Navbar from "./components/navbar/Navbar";
 import SingleTree from "./components/singleTree/singleTree";
-
+import LoginFormModal from "./components/LoginFormModal";
+import SignupFormModal from "./components/SignupFormModal";
+import Admin from "./components/Admin/admin";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -46,7 +48,19 @@ const  spotsId = (window.location.href[num])
            
            <SingleTree  />
           </Route>
-         
+          <Route
+          exact
+            path="/admin">
+           
+            <LoginFormModal />
+            <SignupFormModal />
+          </Route>
+          <Route
+          exact
+            path="/dashboard">
+           
+            <Admin />
+          </Route>
         <Route
           exact
             path="/">

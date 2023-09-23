@@ -19,7 +19,7 @@ function SignupFormModal() {
     e.preventDefault();
     setErrors([]);
     return dispatch(
-      sessionActions.signup({ username, firstName, lastName, email, password })
+      sessionActions.signup({ username, password })
     )
       .then(closeModal)
       .catch(async (res) => {
@@ -41,14 +41,7 @@ function SignupFormModal() {
           ))}
         </ul>
         <label className="label ">
-          <input
-            className="input ml-7 "
-            placeholder="Email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+          
         </label>
         <label className="label mt-1 ">
           <input
@@ -60,26 +53,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        <label className="label mt-[1.5em] ">
-          <input
-            className="input ml-7"
-            placeholder="First Name"
-            type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            required
-          />
-        </label>
-        <label className="label mt-[1.5em]">
-          <input
-            className="input ml-7"
-            placeholder="Last Name"
-            type="text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            required
-          />
-        </label>
+        
         <label className="label mt-[1.5em]">
           <input
             className="input ml-7"
@@ -102,7 +76,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        <button className="flex button  mt-9  justify-center " type="submit">
+        <button className="flex button  mt-9  justify-center mx-auto " type="submit">
           Sign Up
         </button>
       </form>

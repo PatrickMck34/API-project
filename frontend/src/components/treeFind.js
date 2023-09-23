@@ -9,6 +9,10 @@ import * as spotActions from "../store/spots"
 
 export default function TreeFind() {
     const dispatch = useDispatch()
+    const Asia = "https://i.postimg.cc/MHhqbdDL/Asiaregistry.jpg"
+    const SouthAmerica ="https://i.postimg.cc/0rR1Jr5R/SAregistry.jpg"
+    const NorthAmerica = "https://i.postimg.cc/VkF5mP4L/NAregistry.jpg"
+    const Canada = "https://i.postimg.cc/Dw7yCYFV/Canadaregistry.jpg"
     const [errors, setErrors] = useState([]);
     const [form, SetForm] = useState({
         location: "",
@@ -40,7 +44,7 @@ export default function TreeFind() {
     
 
             <div className="text-black w-[100%] h-80  ">
-                <img src="../API-project/sprout.png" className="h-80 w-full" />
+                <img src="https://i.postimg.cc/QNgmLH52/tree.jpg" className="h-58 w-full" />
             </div>
             <div className="text-black text-center text-3xl mt-2">
 
@@ -50,7 +54,7 @@ export default function TreeFind() {
 
             </div>
             <div className="border mx-[20%] h-fit flex  mt-2 p-2  shadow-sm shadow-slate-900 rounded-xl ">
-                <img src="../sprout.png" className="h-[30%] w-[30%] p-4 "></img>
+                <img src="https://i.postimg.cc/ZR88hM98/sprout.png" className="h-[30%] w-[30%] p-4 "></img>
                 <div className="flex flex-col w-fit h-fit mt-4 ">
                     <div className="text-black flex mb-4 text-2xl text-center font-serif">
 

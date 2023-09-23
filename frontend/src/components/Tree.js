@@ -1,7 +1,10 @@
 import * as React from "react"
 
 import {Link} from 'react-router-dom'
-
+const Asia = "https://i.postimg.cc/MHhqbdDL/Asiaregistry.jpg"
+    const SouthAmerica ="https://i.postimg.cc/0rR1Jr5R/SAregistry.jpg"
+    const NorthAmerica = "https://i.postimg.cc/VkF5mP4L/NAregistry.jpg"
+    const Canada = "https://i.postimg.cc/Dw7yCYFV/Canadaregistry.jpg"
 
 
 
@@ -36,7 +39,7 @@ export default function Home() {
       </div>
     </div>
     <div className="w-full  flex ">
-    {/* <img src="../API-project/sprout.png" className="w-full h-80 static"></img> */}
+    <img src="https://i.postimg.cc/QNgmLH52/tree.jpg"></img>
 <span className="absolute bottom-80 left-[20%] text-6xl text-white/90 font-serif"> Trees for Triumph (registry) </span>
     </div>
     <div className="h-fit w-full  text-black flex justify-center items-center mt-4 text-3xl font-serif"> Welcome to the Registry for Trees for Triumph
@@ -49,7 +52,7 @@ export default function Home() {
 
     </div>
 
-{/* <img src="../sprout.png" className="h-96 ml-auto mr-24 rounded-xl mt-5  flex"></img> */}
+<img src="https://i.postimg.cc/ZR88hM98/sprout.png" className="h-96 ml-auto mr-24 rounded-xl mt-5  flex"></img>
     </div>
     </div>
   )

@@ -14,7 +14,7 @@ function CreateSpotForm() {
   const user = useSelector(state=>state.session.user)
   const spotsobj = Object.values(spots)
 
-  
+
   
   const [number, setNumber] = useState()
   const [location, setLocation] = useState("here")
@@ -53,7 +53,7 @@ const handleSubmit = (e) => {
 return (
  <div>
 
-      <h1 className="title" >Create Spot</h1>
+      <h1 className="title" >Create Tree</h1>
       <form onSubmit={handleSubmit}
         className="h-[32em] ml-2 px-4 mt-3 w-[100%]  ">
         <ul>
@@ -84,16 +84,8 @@ return (
             required
           />
         </label>
-        <label className="label mt-[1.5em]">
-          <input
-            className="input ml-7"
-            placeholder="#"
-            type="number"
-         
-            onChange={(e) => setNumber(e.target.value)}
-            required
-          />
-        </label>
+       
+    
         <label className="label mt-[1.5em]">
           <input
             className="input ml-7"
@@ -109,7 +101,7 @@ return (
           
         </label>
         <button className="flex button  mt-9  justify-center " type="submit">
-          Sign Up
+          Add Tree
         </button>
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
