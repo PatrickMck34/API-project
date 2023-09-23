@@ -2,15 +2,14 @@ import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import "./details.css";
 import { useSelector, useDispatch } from "react-redux";
-import CreateReviewForm from "../../components/Reviews/index";
+
 import OpenModalButton from "../OpenModalButton";
-import BookingFormModal from "../Bookings/Bookings";
+
 import UpdateSpotForm from "../UpdateSpot";
-import * as bookingActions from "../../store/bookings";
-import Avatar from "@mui/material/Avatar";
+
+
 import * as spotActions from "../../store/spots";
-import ReviewCard from "../ReviewCard/ReviewCards";
-import * as reviewActions from "../../store/reviews";
+
 
 import { useHistory } from "react-router-dom";
 <script
@@ -20,8 +19,8 @@ import { useHistory } from "react-router-dom";
 function SpotDetails({ spots }) {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.session.user);
-  const reviewsObj = useSelector((state) => state.reviews.allReviews);
-  const reviews = Object.values(reviewsObj);
+
+
 
   const history = useHistory();
   const spotObj = useSelector((state) => state.spots);
@@ -30,31 +29,29 @@ function SpotDetails({ spots }) {
   const spotId = useParams();
   const spotID = spotId.spotsid;
 
-  const booking = useSelector((state) => state.bookings.User);
-  const bookings = Object.values(booking);
+
   let count = 0;
-  let average = count / reviews.length;
+  let average = count / 
 
   useEffect(() => {
     if (spots.allSpots[spotID] === undefined) {
       dispatch(spotActions.getSpots());
       dispatch(spotActions.getSpot(spotID));
-      dispatch(reviewActions.getReviews(spotID));
-      dispatch(bookingActions.getBookingsSpot(spotID));
+    
+
       setRender(true);
     } else {
       dispatch(spotActions.getSpots());
       dispatch(spotActions.getSpot(spotID));
-      dispatch(reviewActions.getReviews(spotID));
+     
       setStars(spots.allSpots[spotID].avgRating);
       setRender(false);
     }
   }, [render, spotID]);
 
   const DeleteReview = (revId) => {
-    dispatch(reviewActions.deleteReviews(revId)).then(() =>
-      dispatch(reviewActions.getReviews(spotID))
-    );
+
+    
     history.push(`/spots/${spotID}`);
   };
 
@@ -72,37 +69,8 @@ function SpotDetails({ spots }) {
         <div key={spots.id} className="full">
           <div className="spotDetails">
             <div className="inline-flex justify-center flex-row mt-2">
-              {reviews.map((review) => {
-                count += review.stars;
-                average = count / reviews.length;
-              }, {})}
-              {Number.isNaN(average) ? (
-                <div>
-                  <i className="fa-solid fa-star text-sm">No Reviews</i>
-                </div>
-              ) : (
-                <div>
-                  {reviews.length >= 2 ? (
-                    <div>
-                      <pre className="avgReviews">
-                        {" "}
-                        <i className="fa-solid fa-star">
-                          {average} {reviews.length}-Reviews
-                        </i>
-                      </pre>
-                    </div>
-                  ) : (
-                    <div>
-                      <pre className="avgReviews">
-                        {" "}
-                        <i className="fa-solid fa-star">
-                          {average} {reviews.length}-Review
-                        </i>
-                      </pre>
-                    </div>
-                  )}
-                </div>
-              )}
+             
+              
               <h1 className="SpotName mt-3 text-2xl">
                 {spots?.allSpots[spotID].name}
               </h1>
@@ -161,34 +129,8 @@ function SpotDetails({ spots }) {
               {/* <!-- component --> */}
               <div className="py-16 white text-lg inline-flex justify-between w-[200%] ">
                 User Reviews:
-                {reviews?.map((review) => (
-                  <div className="grid sm:grid-rows-2 lg:grid-cols-2">
-                    <div className="row-span-2  text-center sm:p-8">
-                      <Avatar />
-                      {review.User.firstName}
-                      <p className="text-gray-600 md:text-xl">
-                        {" "}
-                        <span className="font-serif">"</span> {review.review}{" "}
-                        <span className="font-serif">"</span>
-                      </p>
-                      <div>
-                        {review.User && users && users.id === review.User.id ? (
-                          <div>
-                            <button
-                              type="button"
-                              className="Deletebutton"
-                              onClick={() => DeleteReview(review.id)}
-                            >
-                              Delete Review
-                            </button>
-                          </div>
-                        ) : (
-                          <div></div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ))}
+               
+                   
                 {users ? (
                   <div>
                     <div className="buttonprices flex ">
@@ -211,35 +153,7 @@ function SpotDetails({ spots }) {
                       ) : (
                         <div></div>
                       )}
-                      <OpenModalButton
-                        buttonText="Create Review"
-                        modalComponent={<CreateReviewForm spotId={spotId} />}
-                      />
-                      <OpenModalButton
-                        buttonText="Reserve"
-                        modalComponent={<BookingFormModal spotId={spotId} />}
-                      />
-                      Reserved From :
-                      {bookings?.map((el) => {
-                        {
-                          console.log(el.startDate);
-                        }
-                        return (
-                          <div>
-                            {el.spotId === spotID ? (
-                              <div>
-                                {el.startDate}
-                                <br></br>
-                                until
-                                <br></br>
-                                {el.endDate}
-                              </div>
-                            ) : (
-                              <div></div>
-                            )}
-                          </div>
-                        );
-                      })}
+                      
                     </div>
                   </div>
                 ) : (

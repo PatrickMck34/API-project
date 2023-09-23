@@ -3,7 +3,7 @@ let options = {};
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
 }
-options.tableName = "Spots"
+options.tableName = "Trees"
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -13,54 +13,23 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      ownerId: {
-        type: Sequelize.INTEGER,
-        
-      },
-      address: {
+    
+      
+      
+      location: {
         type: Sequelize.STRING
       },
-      city: {
+      message: {
         type: Sequelize.STRING
       },
-      state: {
-        type: Sequelize.STRING
-      },
-      country: {
-        type: Sequelize.STRING
-      },
-      lat: {
-        type: Sequelize.DECIMAL
-      },
-      lng: {
-        type: Sequelize.DECIMAL
-      },
-      name: {
-        type: Sequelize.STRING
-      },
-      description: {
-        type: Sequelize.STRING
-      },
-      price: {
-        type: Sequelize.DECIMAL
-      },
-      avgRating: {
-        type: Sequelize.DECIMAL,
-        defaultValue: 4.5
-      },
-      avgStarRating: {
-        type: Sequelize.DECIMAL,
-        defaultValue: 4.5
-      },
-      numReviews:{
+      
+      number:{
         type: Sequelize.INTEGER,
       },
-        previewImage: {
-          type: Sequelize.STRING,
-          
-        },
-          url: {
-            type: Sequelize.STRING
+       
+          forSurvivor: {
+            type: Sequelize.BOOLEAN,
+
           },
       createdAt: {
         allowNull: false,

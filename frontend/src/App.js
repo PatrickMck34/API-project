@@ -3,20 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import * as spotsActions from "./store/spots"
-import * as reviewsActions from "./store/reviews"
+import TreeFind from "./components/treeFind";
 import Navigation from ".//components/Navigation/index"
 import CreateSpotForm from "./components/Get-Spot";
-import Home from "./components/Home/Home"
-import SpotDetails from "./components/SpotIndex/index.js";
-import UpdateSpotForm from "./components/UpdateSpot";
-import ReviewCard from "./components/ReviewCard/ReviewCards";
-import Header from "../src/components/Header/Header"
+import Home from "./components/Tree"
+import Navbar from "./components/navbar/Navbar";
+import SingleTree from "./components/singleTree/singleTree";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-const [isSpots, setIsSpots] = useState(false)
-const [isReviews, setIsReviews] = useState(false)
+
 const num = (window.location.href.length - 1)
 const  spotsId = (window.location.href[num])
   useEffect(() => {
@@ -25,30 +22,31 @@ const  spotsId = (window.location.href[num])
 
 
   const spots = useSelector(state => state.spots)
-  const reviews = useSelector(state=> state.reviews)
+ 
 
   useEffect(() => {
-    dispatch(spotsActions.getSpots())
+    dispatch(spotsActions.getTrees())
   
   }, [dispatch])
 
   return (
     <>
  
-<Navigation isLoaded={isLoaded} />
-      {isLoaded && (
-      
+
         <Switch>
            <Route 
            key={spotsId + "new"}
-      path={"/spots/:spotsid/new"}>
-            <CreateSpotForm spots={spots}/> 
+      path={"/tree"}>
+           <Navbar />
+          <TreeFind />
         </Route> 
-          <Route
-          key={spotsId}
-             path={`/spots/:spotsid`}>
-            <SpotDetails spots={spots}/>
+        <Route
+          exact
+            path="/api/:treeId">
+           
+           <SingleTree  />
           </Route>
+         
         <Route
           exact
             path="/">
@@ -62,7 +60,7 @@ const  spotsId = (window.location.href[num])
 </Route>
         </Switch>
 
-)}
+
 </>
   );
 }

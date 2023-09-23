@@ -10,30 +10,26 @@ import { useHistory, useParams} from "react-router-dom";
 function CreateSpotForm() {
 
   const dispatch = useDispatch();
-  const spots = useSelector(state=>state.spots.allSpots)
+  const spots = useSelector(state=>state.spots.allTrees)
   const user = useSelector(state=>state.session.user)
   const spotsobj = Object.values(spots)
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [country, setCountry] = useState("");
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [previewImage, setPreviewImage] = useState("")
-  const [spot, setSpot] = useState(false)
+
+  
+  
+  const [number, setNumber] = useState()
+  const [location, setLocation] = useState("here")
+  const [forSurvivor, setForSurvivor] = useState(false)
+  const [message, setMessage]=useState("message")
+  
   const [errors, setErrors] = useState([]);
-  const { closeModal } = useModal();
+
   const history = useHistory()
-  const newSpot = (spotsobj.length -1)
-  const newSpotId=Number(newSpot)
-  const spoot = spotsobj[newSpotId].id
-  const id = spoot + 1
+ 
 
 
 useEffect(()=>{
  
-  dispatch(spotActions.getSpots())
+  dispatch(spotActions.getTrees())
 
  
 }, [])
@@ -41,115 +37,86 @@ useEffect(()=>{
 const handleSubmit = (e) => {
   e.preventDefault();
   setErrors([]);
-    if(!user) return setErrors(["You Must Be Logged in To Create A Spot"])
-   dispatch(spotActions.createSpot({address, city, state, country,name,description, price, previewImage})).then(()=>setSpot(true))
-  .then(closeModal)
-  .then(()=>dispatch(spotActions.getSpots()))
+   
+   dispatch(spotActions.createTree({location, number, forSurvivor, message}))
+  .then()
+  .then(()=>dispatch(spotActions.getTrees()))
   .catch(async (res) => {
     const data = await res.json();
     if (data && data.errors) setErrors(data.errors);
   });
 
- history.push(`/spots/${id}`)
+
   
 }
 
 return (
-    <div className="createForm">
+ <div>
+
       <h1 className="title" >Create Spot</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}
+        className="h-[32em] ml-2 px-4 mt-3 w-[100%]  ">
+        <ul>
+          {errors.map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))}
+        </ul>
+        <label className="label ">
+          
+        </label>
+        <label className="label mt-1 ">
+          <input
+            className="input mt-5 ml-7"
+            placeholder="Location"
+            type="text"
+         
+            onChange={(e) => setLocation(e.target.value)}
+            required
+          />
+        </label>
+        <label className="label mt-[1.5em] ">
+          <input
+            className="input ml-7"
+            placeholder="message"
+            type="text"
+          
+            onChange={(e) => setMessage(e.target.value)}
+            required
+          />
+        </label>
+        <label className="label mt-[1.5em]">
+          <input
+            className="input ml-7"
+            placeholder="#"
+            type="number"
+         
+            onChange={(e) => setNumber(e.target.value)}
+            required
+          />
+        </label>
+        <label className="label mt-[1.5em]">
+          <input
+            className="input ml-7"
+            placeholder="forSurvivor"
+         
+            type="Boolean"
+         
+            onChange={(e) => setForSurvivor(e.target.value)}
+            required
+          />
+        </label>
+        <label className="label mt-[1.5em]">
+          
+        </label>
+        <button className="flex button  mt-9  justify-center " type="submit">
+          Sign Up
+        </button>
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
-        <label className='labels'>
-        
-          <input className="input"
-          placeholder="address"
-            type="text"
-            id="address"
-           
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            required
-          />
-        </label>
-        <label className="labels">
-      
-          <input className="input"
-          placeholder="city"
-            type="text"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            required
-          />
-        </label>
-        <label className="labels">
-      
-          <input className="input"
-          placeholder="state"
-            type="text"
-            minLength={2}
-            maxLength={2}
-            value={state}
-            onChange={(e) => setState(e.target.value)}
-            required
-          />
-        </label>
-        <label className="labels">
-      
-          <input className="input"
-          placeholder="country"
-            type="text"
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
-            required
-          />
-        </label>
-        <label className="labels">
-      
-          <input className="input"
-          placeholder="name"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </label>
-        <label className="labels">
-     
-          <input className="input"
-          placeholder="description"
-            type="text"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
-          </label>
-          <label className="labels">
-
-          <input className="input"
-          placeholder="price"
-            type="number"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            required
-          />
-          </label>
-          <label className="labels">
-        
-          <input className="input"
-          placeholder="image URL"
-            type="url"
-            value={previewImage}
-            onChange={(e) => setPreviewImage(e.target.value)}
-            required
-            />
-        </label>
-          
-        <button className="button" type="submit" >Create Spot</button>
-      </form>
-    </div>
-  );
+        </form>
+ </div>
+)      
   
 }
 

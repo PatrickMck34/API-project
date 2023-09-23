@@ -18,7 +18,7 @@ function Navigation() {
       <div className="flex justify-between items-center flex-row ">
         <NavLink exact to="/">
           <img
-            src="https://i.postimg.cc/zGhXX5JQ/Go-therelogo-Png.png"
+            src="https://i.postimg.cc/GtWHjN5r/Untitled.png"
             alt=""
           />
         </NavLink>

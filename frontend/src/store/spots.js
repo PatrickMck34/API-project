@@ -1,42 +1,27 @@
 import { csrfFetch } from './csrf';
 import { useHistory } from 'react-router-dom';
 
-const READ_SPOT = '/spots/:spotId';
-const READ_SPOTS = '/spots';
-const UPDATE_SPOT = '/spots/edit'
-const DELETE_SPOT = '/spots/:spotId';
-const CREATE_SPOT = '/spots/new'
+const READ_TREE = '/spots/:spotId';
+const READ_TREES = '/spots';
+const UPDATE_TREE = '/spots/edit'
+const DELETE_TREE = '/spots/:spotId';
+const CREATE_TREE = '/spots/new'
 
-export const createSpot = (spot) => async (dispatch) => {
-    const { address, city, state, country, lat, lng, name,description, price, previewImage} = spot
+export const createTree = (tree) => async (dispatch) => {
+    const { number, location, forSurvivor, message} = tree
     const data = await csrfFetch("/api/spots/", {
         method: "POST",
         body: JSON.stringify({
-            address, city, state, country, lat, lng, name,description, price, previewImage
+            number, location, forSurvivor, message
         }),
     });
 
     const response = await data.json()
-dispatch(createSpots(response))
+dispatch(createTrees(response))
 return response
 ;}
 
 
-export const createSpotImage = (url, id) => async (dispatch) => {
- let preview;
-    const data = await csrfFetch(`/api/spots/${id}/images`, {
-        method: "POST",
-        body: JSON.stringify({
-            url, preview
-            
-            
-            
-        }),
-    })
-    const response = await data.json()
-   
-    return response
-}
 export const updateSpot = (spot) => async (dispatch) => {
     // dispatch = useDispatch()
     const { address, city, state, country, name, description, price, spotsId} = spot
@@ -53,13 +38,13 @@ export const updateSpot = (spot) => async (dispatch) => {
     return response
     
 }
-export const createSpots = (spot) =>({
-    type: CREATE_SPOT,
+export const createTrees = (spot) =>({
+    type: CREATE_TREE,
     payload: spot
 
 })
 export const updateSpots = (spot) =>({
-    type: UPDATE_SPOT,
+    type: UPDATE_TREE,
     payload: spot
 })
 // export const createImage = (spot) =>({
@@ -67,11 +52,12 @@ export const updateSpots = (spot) =>({
 //     payload: spot
 // })
 
-export const getSpots = (id) => async (dispatch) => {
-    const data = await csrfFetch("/api/spots")
+export const getTrees = (id) => async (dispatch) => {
+    const data = await csrfFetch("/api/spots/")
     const spots = await data.json()
     
-    dispatch(readSpots(spots.Spots))
+    dispatch(readTrees(spots))
+    console.log(spots.Spots)
     return spots
     
     //    if(response.ok){
@@ -79,71 +65,71 @@ export const getSpots = (id) => async (dispatch) => {
     
     
     
-    export const getSpot = (id) => async (dispatch) => {
-        const data = await csrfFetch(`/api/spots/${id}`)
+    export const getTree = (treeId) => async (dispatch) => {
+        const data = await csrfFetch(`/api/spots/${treeId}`)
         
         const spot = await data.json()
-       
-        dispatch(readSpot(spot))
+       console.log(spot)
+        dispatch(readTree(spot))
         
     }
     
     
-    export const readSpots = (spots) =>({
-        type: READ_SPOTS,
+    export const readTrees = (spots) =>({
+        type: READ_TREES,
         payload: spots
     })
-    export const readSpot = (spot) =>({
-        type: READ_SPOT,
+    export const readTree = (spot) =>({
+        type: READ_TREE,
        payload: spot
     })
     
-    export const deleteSpots = (id) => async (dispatch) => {
+    export const deleteTrees = (id) => async (dispatch) => {
         const response = await csrfFetch(`/api/spots/${id}`, {
             method: 'DELETE',
         });
-        dispatch(deleteSpot(id));
+        dispatch(deleteTree(id));
         return response;
     };
-  export  const deleteSpot = (spotId) => {
+  export  const deleteTree = (spotId) => {
         return {
-            type: DELETE_SPOT,
+            type: DELETE_TREE,
             spotId
         };
     };
-    const initialState =  {allSpots:{}, singleSpot:{}}
+    const initialState =  {allTrees:{}, singleTree:{}}
     export const spotsReducer = (state = initialState, action) => {
         let newState = {}
         
         switch (action.type) {
-            case READ_SPOTS:
-                newState = {...state, allSpots:{}}
+            case READ_TREES:
+                newState = {...state, allTrees:{}}
                
-                action.payload.forEach(spot => newState.allSpots[spot.id] = spot)
+                action.payload.forEach(spot => newState.allTrees[spot.id] = spot)
                 return newState 
         
 
-            case READ_SPOT:
-                 newState ={...state, singleSpot: {} };
-                newState.singleSpot = action.payload
+            case READ_TREE:
+                 newState ={...state, singleTree: {} };
+                newState.singleTree = action.payload
                 return newState 
             
             
-            case CREATE_SPOT:
-                 newState = { allSpots:{ ...state.allSpots}}
+            case CREATE_TREE:
+                 newState = { allTrees:{ ...state.allTrees}}
                 
-                newState.allSpots[action.payload.id] = action.payload
+                newState.allTrees[action.payload.id] = action.payload
                 return newState
                 
       
-             case DELETE_SPOT:
+             case DELETE_TREE:
              newState = {...state}
              delete newState[action.payload.id]
           
 
-            case UPDATE_SPOT:
-            newState = {...state, allSpots:{ ...state.allSpots}}
-            newState.allSpots[action.payload.id] = action.payload
+            case UPDATE_TREE:
+            newState = {...state, allTrees:{ ...state.allTrees}}
+            newState.allTrees[action.payload.id] = action.payload
             return newState
             default:
             return state;

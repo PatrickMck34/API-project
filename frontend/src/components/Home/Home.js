@@ -1,43 +1,28 @@
 import React, { useState, useEffect } from "react";
 import "./Home.css";
-import Card from "../Cards/Card";
-import Header from "../Header/Header";
-import Navigation from "../Navigation";
+
 import { useSelector, useDispatch } from "react-redux";
-import DemoUser from "../DemoUser/DemoUser";
-import * as sessionActions from "../../store/session";
-import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
+
 import { Link } from "react-router-dom";
 import * as spotActions from "../../store/spots";
-import * as reviewActions from "../../store/reviews";
+
 import { useContext } from "react";
 import { AvgStarContext } from "../../context/averageContext";
 
 function Home({ children }) {
   const Avg = useContext(AvgStarContext);
   const dispatch = useDispatch();
-  const spotsObj = useSelector((state) => state.spots.allSpots);
-  const reviewsObj = useSelector((state) => state.reviews.allReviews);
-  const reviews = Object.values(reviewsObj);
+  const spotsObj = useSelector((state) => state.spots.allTrees);
+
   const spots = Object.values(spotsObj);
-  const avg = useSelector((state) => state.spots.avgRating);
 
   const [star, setStar] = useState([]);
   const id = spots.id;
   useEffect(() => {
-    dispatch(spotActions.getSpots());
-  }, [spots.allSpots]);
+    dispatch(spotActions.getTrees());
+  }, [spots.allTrees]);
 
-  const getAvg = (spot) => {
-    let result;
-
-    reviews.map((review) => {
-      spot += review.stars;
-      console.log(spot);
-      result = spot / reviews.length;
-    }, {});
-    return result;
-  };
+ 
 
   return (
     <div className="home-section ml-auto mr-auto max-w-[100%] min-w-50%">

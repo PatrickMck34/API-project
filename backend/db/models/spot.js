@@ -5,23 +5,23 @@ const {
 } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class Spot extends Model {
+  class Tree extends Model {
 
-   static async deleteSpot(spotId) {
-       return await Spot.destroy({
+   static async deleteTree(spotId) {
+       return await Tree.destroy({
         where: {
           id: spotId,}
       });
     }
-      static async getSpotsAll(req){
-      let {id, ownerId, address, city, state, country, lat, lng, name, description, price, previewImage} = req.query
-        const Spots = await Spot.findAll({
-            id, ownerId, address, city, state, country, lat, lng, name, description, price, previewImage})
-             Spots.previewImage = "image url"
+      static async getTreesAll(req){
+      let {id, number, location, forSurvivor, message} = req.query
+        const Trees = await Tree.findAll({
+            id, number, location, message, forSurvivor})
+             
             
-            return ({Spots})
+            return ({Trees})
           }
-          
+           
           
    
     // static async CreatNewSpot({
@@ -41,40 +41,22 @@ module.exports = (sequelize, DataTypes) => {
           
     
     static associate(models) {
-    Spot.belongsTo(models.User, {as: 'Owner', foreignKey: 'ownerId' })
-    Spot.hasMany(models.SpotImages, {foreignKey:'spotId'})
-    Spot.hasMany(models.Reviews, {foreignKey:'spotId'})
-    Spot.hasMany(models.Bookings, {foreignKey:'spotId'})
+ 
+   
+
     }
   }
-  Spot.init({
+  Tree.init({
     id: {
       type:DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
-    ownerId: {type: DataTypes.INTEGER, 
-     
-      
-    },
-    address: {type: DataTypes.STRING,
-    }, 
-    city: {type:DataTypes.STRING,
-    },
-    state: {type: DataTypes.STRING,
-    },
-    country: {type: DataTypes.STRING,
-    },
-    lat: {type: DataTypes.DECIMAL,
-    },
-    lng: {type: DataTypes.DECIMAL,
-    },
-    name: {type:DataTypes.STRING,
-    },
-    description: {type: DataTypes.STRING, 
-    },
-    price: {type: DataTypes.INTEGER,
-    },
+    number:{type:DataTypes.INTEGER},
+    location:{type:DataTypes.STRING},
+    forSurvivor:{type:DataTypes.BOOLEAN},
+    message:{type:DataTypes.STRING},
+   
     createdAt: {
       allowNull: false,
       type: DataTypes.DATE,
@@ -82,59 +64,15 @@ module.exports = (sequelize, DataTypes) => {
     },
     updatedAt: {
       allowNull: false,
-      type: DataTypes.DATE,
-      
-    },
-    avgRating: {type: DataTypes.DECIMAL,
-    },
-      previewImage: {type: DataTypes.STRING,
-      
-      },
-      avgStarRating: {type: DataTypes.DECIMAL,
-      },
-      numReviews: {type: DataTypes.INTEGER,
-      },
-  
-      url: {type: DataTypes.STRING},
-      
-
-  }, {
+      type: DataTypes.DATE,},
+    },{
     sequelize,
-    modelName: 'Spot',
+    modelName: 'Tree',
     defaultScope: {
-      attributes: {
-        exclude: ["url", "numReviews", "avgStarRating"]
+      
       }
     },
-    scopes: {
-    liveScope: {
-      attributes: {
-        exclude: ["url", "avgStarRating", "numReviews"]
-      }
-    },
-    detailScope: {
-      attributes: {
-        exclude: ["url", "avgRating", "previewImage"]
-      }
-    },
-    createScope: {
-      attributes: {
-        exclude: ["url", "avgRating", "previewImage", "avgStarRating", "numReviews"]
-      }
-    },
-    bookingScope: {
-      attributes: {
-        exclude: ["url", "avgRating", "avgStarRating", "numReviews", "createdAt", "updatedAt", "description"]
-      }
-    },
-  
-  reviewScope: {
-    attributes: {
-      exclude: ["url", "avgRating", "numReviews", "avgStarRating", "description", "createdAt", "updatedAt"]
-    }
-  }
-  },
-  }
+   
 );
-  return Spot;
+  return Tree;
 };
