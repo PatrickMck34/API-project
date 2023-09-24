@@ -43,14 +43,8 @@ export default function TreeFind() {
         <div>
     
 
-            <div className="text-black w-[100%] h-80  ">
-                <img src="https://i.postimg.cc/QNgmLH52/tree.jpg" className="h-58 w-full" />
-            </div>
-            <div className="text-black text-center text-3xl mt-2">
-
-                Lookup Your Tree Below
-            </div>
-            <div className="bg-black mx-[15%] text-center rounded-xl mt-4"> Lookup Tree
+           
+            <div className="bg-black mx-[15%] text-center rounded-xl mt-4 text-white"> Lookup Your Tree Below
 
             </div>
             <div className="border mx-[20%] h-fit flex  mt-2 p-2  shadow-sm shadow-slate-900 rounded-xl ">

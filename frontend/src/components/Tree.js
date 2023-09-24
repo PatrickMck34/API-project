@@ -20,7 +20,7 @@ export default function Home() {
 
    <div className="w-full h-14 flex flex-row bg-[#44351d] font-serif">
     <Link href="https://resilience-project.com"> 
-    <div className="w-54 h-7 ml-1 mt-4 text-lg  items-center flex"> Resilience Project // Tucson
+    <div className="w-54 h-7 ml-1 mt-4 text-lg  items-center flex text-white"> Resilience Project // Tucson
 
 </div>
     </Link>
@@ -38,14 +38,16 @@ export default function Home() {
     </Link>
       </div>
     </div>
-    <div className="w-full  flex ">
-    <img src="https://i.postimg.cc/QNgmLH52/tree.jpg"></img>
-<span className="absolute bottom-80 left-[20%] text-6xl text-white/90 font-serif"> Trees for Triumph (registry) </span>
-    </div>
-    <div className="h-fit w-full  text-black flex justify-center items-center mt-4 text-3xl font-serif"> Welcome to the Registry for Trees for Triumph
+    <div className="mx-auto w-full  flex h-68 ">
+    <img src="https://i.postimg.cc/nc1DT91H/tree-Welcome.jpg" className="w-full h-54"></img>
+    
 
     </div>
-    <div className="bg-black rounded-xl justify-center items-center flex ml-[15%] mr-[15%] mt-8 font-serif"> Info about Registry</div>
+   
+   
+
+    
+    <div className="bg-black rounded-xl justify-center items-center flex ml-[15%] mr-[15%] mt-8 font-serif text-white"> Info about Registry</div>
     <div className="flex text-black bg-gray-200 rounded-xl mx-[18%] mt-2 border shadow-sm w-[65%]">
     <div className="text-2xl ml-auto w-96 mt-16 text-center font-serif ">
     Your donation goes to agroforestry projects led by women and empowering communities throughout the world. Simply choose a region where you would like a tree planted and use your healing to cultivate female empowerment.

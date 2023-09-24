@@ -1,6 +1,6 @@
 import React from "react"
 import { useSelector } from "react-redux"
-import CreateSpotForm from "../Get-Spot"
+import CreateSpotForm from "../"
 const Admin = () => {
     const trees = useSelector(state=>state.spots?.allTrees)
     const treesobj = Object.values(trees)
@@ -12,7 +12,6 @@ return (
         {tree.location} {tree.message}
         </div>
        ))}
-       <CreateSpotForm />
     </div>
 )
 }

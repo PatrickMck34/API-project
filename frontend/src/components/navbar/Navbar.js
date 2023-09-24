@@ -6,7 +6,7 @@ export default function Navbar() {
 
         <div className="w-full h-14 flex flex-row bg-[#44351d] font-serif">
          <Link href="https://resilience-project.com"> 
-         <div className="w-54 h-7 ml-1 mt-4 text-lg  items-center flex"> Resilience Project // Tucson
+         <div className="w-54 h-7 ml-1 mt-4 text-lg text-white items-center flex "> Resilience Project // Tucson
      
      </div>
      </Link>

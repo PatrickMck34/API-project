@@ -4,14 +4,15 @@ import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import * as spotsActions from "./store/spots"
 import TreeFind from "./components/treeFind";
-import Navigation from ".//components/Navigation/index"
-import CreateSpotForm from "./components/Get-Spot";
+
+
 import Home from "./components/Tree"
 import Navbar from "./components/navbar/Navbar";
 import SingleTree from "./components/singleTree/singleTree";
 import LoginFormModal from "./components/LoginFormModal";
 import SignupFormModal from "./components/SignupFormModal";
 import Admin from "./components/Admin/admin";
+import Banner from "./components/Banner/Banner";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -28,9 +29,9 @@ const  spotsId = (window.location.href[num])
 
   useEffect(() => {
     dispatch(spotsActions.getTrees())
-  
+    
   }, [dispatch])
-
+  
   return (
     <>
  
@@ -40,25 +41,26 @@ const  spotsId = (window.location.href[num])
            key={spotsId + "new"}
       path={"/tree"}>
            <Navbar />
+           <Banner />
           <TreeFind />
         </Route> 
         <Route
           exact
             path="/api/:treeId">
-           
+           <Navbar/>
+    <Banner />
            <SingleTree  />
           </Route>
           <Route
           exact
             path="/admin">
-           
+           <Navbar />
             <LoginFormModal />
-            <SignupFormModal />
+            {/* <SignupFormModal /> */}
           </Route>
           <Route
           exact
             path="/dashboard">
-           
             <Admin />
           </Route>
         <Route
